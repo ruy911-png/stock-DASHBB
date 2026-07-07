@@ -29,9 +29,70 @@
 </div>
   <div id="__bundler_loading">Unpacking...</div>
 
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script>
+  (function() {
+    var firebaseConfig = {apiKey: "AIzaSyCg-I089GiVYvabif0hSUw6IdVlPVu1Wmw", authDomain: "stocking-d5ef6.firebaseapp.com", projectId: "stocking-d5ef6", storageBucket: "stocking-d5ef6.firebasestorage.app", messagingSenderId: "576916973893", appId: "1:576916973893:web:d571826af227214bc0762c"};
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var docRef = db.collection('dashboard').doc('stock-dashbb');
+
+    var _setItem = Storage.prototype.setItem;
+    var _removeItem = Storage.prototype.removeItem;
+    var _clear = Storage.prototype.clear;
+    var syncTimer = null;
+    var applying = false;
+
+    function scheduleSync() {
+      if (applying) return;
+      if (syncTimer) clearTimeout(syncTimer);
+      syncTimer = setTimeout(function() {
+        var snapshot = {};
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          snapshot[k] = localStorage.getItem(k);
+        }
+        docRef.set({ data: snapshot, updatedAt: firebase.firestore.FieldValue.serverTimestamp() })
+          .catch(function(err) { console.error('[sync] Firestore write failed:', err); });
+      }, 800);
+    }
+
+    Storage.prototype.setItem = function(key, value) {
+      _setItem.call(this, key, value);
+      scheduleSync();
+    };
+    Storage.prototype.removeItem = function(key) {
+      _removeItem.call(this, key);
+      scheduleSync();
+    };
+    Storage.prototype.clear = function() {
+      _clear.call(this);
+      scheduleSync();
+    };
+
+    window.__firestoreReady = docRef.get().then(function(doc) {
+      if (doc.exists) {
+        var data = doc.data().data || {};
+        applying = true;
+        for (var k in data) {
+          if (Object.prototype.hasOwnProperty.call(data, k)) {
+            _setItem.call(localStorage, k, data[k]);
+          }
+        }
+        applying = false;
+      }
+    }).catch(function(err) {
+      console.error('[sync] Firestore read failed:', err);
+      window.__firestoreReady = Promise.resolve();
+    });
+  })();
+  </script>
+
   <script>
     
 document.addEventListener('DOMContentLoaded', async function() {
+  await window.__firestoreReady;
   const loading = document.getElementById('__bundler_loading');
   function setStatus(msg) { if (loading) loading.textContent = msg; }
 
