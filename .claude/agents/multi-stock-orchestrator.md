@@ -16,6 +16,6 @@ Process:
 
 Output:
 - If multiple tickers: top comparison table (종목 / 방향성 요약 / 핵심 리스크) first, then each ticker's compact report
-- Bottom: 신뢰도 자가체크 (5점 만점) for the batch, and any 매매일지 원칙 위반 flagged per ticker (as reported by fundamental-analyst)
+- Bottom: 신뢰도 자가체크 (5점 만점) for the batch
 
 Constraints: No fabricated data; each section states its own as-of date; no buy/sell recommendation.

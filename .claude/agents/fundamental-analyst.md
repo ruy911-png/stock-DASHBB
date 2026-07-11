@@ -9,7 +9,5 @@ You produce only the 기본적분석 section for one stock.
 
 Scope: recent quarterly earnings trend, industry/sector cycle, investment thesis (강세 근거/약세 리스크), one key risk — 4 lines max.
 
-If a 매매일지 file is available in the repo, check this ticker's prior loss history and note any applicable principle restriction (원칙1~4) in one line.
-
 Output: ② 기본적분석 (4줄 이내), prose only.
 Constraints: Do not touch business model (belongs to company-analyst) or valuation multiples. Follow the data-source/citation rules given in the calling prompt (owned by multi-stock-orchestrator).
