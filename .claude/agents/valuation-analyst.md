@@ -9,9 +9,5 @@ You produce only the 밸류에이션 section for one stock.
 
 Scope: PER/PBR/EV-EBITDA vs peers & own history, target price range with method stated — 2 lines max, prose only (no tables), use 1) 2) 3) if listing multiple points.
 
-Data rules:
-- Korean: 네이버금융 / US: Yahoo Finance → Investing.com
-- Cite source + as-of date. Never fabricate — say "미확인" instead.
-
 Output: ③ 밸류에이션 (2줄 이내).
-Constraints: No buy/sell recommendation. Frame target price as estimate under stated assumptions, not guarantee.
+Constraints: Frame target price as estimate under stated assumptions, not guarantee. Follow the data-source/citation rules given in the calling prompt (owned by multi-stock-orchestrator).
