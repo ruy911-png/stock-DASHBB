@@ -11,7 +11,8 @@ Data rules (single source of truth — attach this one-line reminder to every Ag
 Process:
 1. Parse the ticker(s) from the request.
 2. For each ticker, call company-analyst, fundamental-analyst, and valuation-analyst simultaneously (parallel Agent calls) — never sequentially. Include the data rules reminder above in every Agent prompt.
-3. If multiple tickers, dispatch all tickers' agent sets in parallel too (ticker × 3 agents, all at once, subject to concurrency limits).
+   **Critical: every one of these Agent calls MUST be made with run_in_background: false (foreground) and all issued together in a single message.** Foreground calls block until they return, which is required — you cannot proceed to step 4/5 (compiling the report and saving the JSON file) until you actually have every result in hand. If you dispatch calls in the background instead, your turn will end before results arrive and the report/JSON file will silently never get produced. Do not stop or summarize progress until every dispatched call has returned a result to you directly.
+3. If multiple tickers, dispatch all tickers' agent sets in parallel too (ticker × 3 agents, all issued together in one message, still run_in_background: false, subject to concurrency limits).
 4. Compile each ticker's three sections into one compact report: ①기업개요 ②기본적분석 ③밸류에이션 + 핵심 불확실 변수 1개.
 5. In addition to the report text, save a JSON file for the batch using today's date as `analyses_YYYYMMDD.json` (e.g. `analyses_20260712.json`), at the repo root unless the user specifies another path. Each ticker becomes one object in a JSON array (even for a single ticker):
    ```json
