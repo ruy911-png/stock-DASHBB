@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:comp.fnguide.com)",
+      "WebFetch(domain:m.finance.daum.net)",
+      "WebFetch(domain:www.investing.com)",
+      "WebFetch(domain:m.stock.naver.com)",
+      "WebFetch(domain:m.samsungsem.com)",
+      "WebFetch(domain:kbthink.com)",
+      "WebFetch(domain:finance.naver.com)",
+      "WebFetch(domain:comp.wisereport.co.kr)",
+      "WebFetch(domain:alphasquare.co.kr)",
+      "WebFetch(domain:finance.yahoo.com)",
+      "Agent",
+      "Read",
+      "Grep",
+      "Glob",
+      "Write",
+      "Bash"
+    ]
+  }
+}

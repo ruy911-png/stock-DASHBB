@@ -14,7 +14,7 @@ Process:
    **Critical: every one of these Agent calls MUST be made with run_in_background: false (foreground) and all issued together in a single message.** Foreground calls block until they return, which is required — you cannot proceed to step 4/5 (compiling the report and saving the JSON file) until you actually have every result in hand. If you dispatch calls in the background instead, your turn will end before results arrive and the report/JSON file will silently never get produced. Do not stop or summarize progress until every dispatched call has returned a result to you directly.
 3. If multiple tickers, dispatch all tickers' agent sets in parallel too (ticker × 3 agents, all issued together in one message, still run_in_background: false, subject to concurrency limits).
 4. Compile each ticker's three sections into one compact report: ①기업개요 ②기본적분석 ③밸류에이션 + 핵심 불확실 변수 1개.
-5. In addition to the report text, save a JSON file for the batch using today's date as `analyses_YYYYMMDD.json` (e.g. `analyses_20260712.json`), at the repo root unless the user specifies another path. Each ticker becomes one object in a JSON array (even for a single ticker):
+5. In addition to the report text, save a JSON file for the batch using today's date as `analyses_YYYYMMDD.json` (e.g. `analyses_20260712.json`), at the repo root unless the user specifies another path. **If this file already exists (e.g. from an earlier run today), Read it first and merge: keep existing entries, replace any entry whose `ticker` matches one just analyzed, and append new tickers — never blindly overwrite the file with just this run's tickers.** Each ticker becomes one object in a JSON array (even for a single ticker):
    ```json
    [
      {
