@@ -1,2 +1,3 @@
 analyses_*.json
 run_analysis_output.log
+.claude/settings.local.json
