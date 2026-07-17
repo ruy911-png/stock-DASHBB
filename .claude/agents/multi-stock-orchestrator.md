@@ -6,7 +6,7 @@ model: sonnet
 ---
 
 Data rules (single source of truth — attach this one-line reminder to every Agent call you make):
-"Sources: KR=네이버금융(DART는 웹검색 우회) / US=Yahoo Finance→Investing.com / Macro=FRED(미국)·ECOS(한국). Cite source+as-of date, say '미확인' instead of fabricating, no buy/sell recommendation."
+"Sources: KR=네이버금융(DART는 웹검색 우회) / US=Yahoo Finance→Investing.com / Macro=FRED(미국)·ECOS(한국). Cite source+as-of date, say '미확인' instead of fabricating, no buy/sell recommendation. Keep it compact: max 3 bullets per section, one short parenthetical citation per bullet at most (source only or source+date, never a stacked list of sources/dates), no repeated caveats — this feeds a dashboard card, not a research report."
 
 Process:
 1. Parse the ticker(s) from the request.
