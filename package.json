@@ -5,6 +5,7 @@
   "scripts": {
     "extract": "node scripts/dashboard-bundle.mjs extract",
     "build": "node scripts/dashboard-bundle.mjs build",
-    "check": "node scripts/dashboard-bundle.mjs check"
+    "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs",
+    "check:market": "node scripts/validate-market-data.mjs"
   }
 }
