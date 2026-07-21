@@ -1,0 +1,10 @@
+{
+  "name": "stock-dashbb",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "extract": "node scripts/dashboard-bundle.mjs extract",
+    "build": "node scripts/dashboard-bundle.mjs build",
+    "check": "node scripts/dashboard-bundle.mjs check"
+  }
+}

@@ -1,0 +1,4 @@
+/src/dashboard.template.html text eol=lf
+/scripts/dashboard-bundle.mjs text eol=lf
+/.github/workflows/*.yml text eol=lf
+/package.json text eol=lf
