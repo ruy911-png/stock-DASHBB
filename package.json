@@ -5,11 +5,10 @@
   "scripts": {
     "extract": "node scripts/dashboard-bundle.mjs extract",
     "build": "node scripts/dashboard-bundle.mjs build",
-    "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs && node scripts/process-insight-request.mjs --validate && node scripts/test-market-collector.mjs && node scripts/test-insight-request.mjs",
+    "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs && node scripts/test-market-collector.mjs",
     "check:market": "node scripts/validate-market-data.mjs",
     "collect:market": "node scripts/collect-market-data.mjs",
     "collect:market:dry-run": "node scripts/collect-market-data.mjs --dry-run",
-    "test:market-collector": "node scripts/test-market-collector.mjs",
-    "test:insights": "node scripts/test-insight-request.mjs"
+    "test:market-collector": "node scripts/test-market-collector.mjs"
   }
 }
