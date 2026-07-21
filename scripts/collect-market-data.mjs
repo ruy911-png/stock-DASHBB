@@ -13,12 +13,15 @@ const requestHeaders = {
 
 const urls = {
   home: 'https://m.stock.naver.com/',
+  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=50',
+  briefingDetail: 'https://m.stock.naver.com/front-api/market/briefing/detail',
   kospi: 'https://m.stock.naver.com/api/index/KOSPI/basic',
   kosdaq: 'https://m.stock.naver.com/api/index/KOSDAQ/basic',
   fx: 'https://api.stock.naver.com/marketindex/exchange/FX_USDKRW/prices?page=1&pageSize=5',
   sp500: 'https://api.stock.naver.com/index/.INX/basic',
   nasdaq: 'https://api.stock.naver.com/index/.IXIC/basic',
   vix: 'https://api.stock.naver.com/index/.VIX/basic',
+  vixHistory: 'https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv',
   sox: 'https://api.stock.naver.com/index/.SOX/basic',
   wti: 'https://api.stock.naver.com/marketindex/energy/CLcv1/prices?page=1&pageSize=5',
 };
@@ -45,22 +48,6 @@ async function request(url, asJson = true) {
   throw new Error(`데이터 요청 실패: ${url} (${lastError.message})`);
 }
 
-function decodeHtml(value) {
-  return String(value || '')
-    .replace(/<!--.*?-->/gs, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
-    .replace(/&#(\d+);/g, (_, number) => String.fromCodePoint(Number(number)))
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;|&apos;/g, "'")
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function isoDate(value, label) {
   const match = String(value || '').match(/^(20\d{2})-(\d{2})-(\d{2})/);
   if (!match) throw new Error(`${label} 기준일을 읽지 못했습니다: ${value}`);
@@ -84,71 +71,57 @@ function marketIndex(name, data, requireClose = true) {
   };
 }
 
-export function parseFlowAmount(value) {
-  const text = decodeHtml(value).replace(/\s/g, '');
-  const sign = /^[-−]/.test(text) ? -1 : 1;
-  const jo = text.match(/([\d,]+)조/);
-  const eok = text.match(/([\d,]+)억/);
-  if (!jo && !eok) throw new Error(`수급 금액을 읽지 못했습니다: ${text}`);
-  return sign * ((jo ? numberValue(jo[1], '조 단위 수급') * 10000 : 0) + (eok ? numberValue(eok[1], '억 단위 수급') : 0));
+export function selectClosingBriefing(payload, targetDate) {
+  const items = payload?.result?.items;
+  if (!Array.isArray(items)) throw new Error('네이버페이 증권 AI 브리핑 목록을 읽지 못했습니다.');
+  const sameDate = items.filter(item => item.briefingDate === targetDate);
+  const selected = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20')
+    || sameDate.find(item => /코스피|국내 증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`));
+  if (!selected) throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다.`);
+  return selected;
 }
 
-export function extractBriefing(homeHtml, detailHtml) {
-  const href = homeHtml.match(/href="(\/briefing\/market\/posts\/\d+)"/i)?.[1];
-  const titleRaw = homeHtml.match(/<strong class="AIBriefing_title__[^"]*">([\s\S]*?)<\/strong>/i)?.[1];
-  if (!href || !titleRaw) throw new Error('네이버페이 증권 AI 브리핑 링크 또는 제목을 찾지 못했습니다.');
-
-  const summary = [...detailHtml.matchAll(/<li class="ContentText_item-summary__[^"]*">([\s\S]*?)<\/li>/gi)]
-    .map(match => decodeHtml(match[1]))
-    .filter(Boolean);
-  if (summary.length < 1) throw new Error('AI 브리핑 핵심요약을 찾지 못했습니다.');
-
-  const detailText = decodeHtml(detailHtml);
-  const published = detailText.match(/(20\d{2})\.\s*(\d{1,2})\.\s*(\d{1,2})[^\d]{0,12}(\d{2}):(\d{2})\s*AI 핵심요약/);
-  if (!published) throw new Error('AI 브리핑 작성 시각을 찾지 못했습니다.');
-  const publishedDate = `${published[1]}-${String(published[2]).padStart(2, '0')}-${String(published[3]).padStart(2, '0')}`;
-  const publishedAt = `${publishedDate}T${published[4]}:${published[5]}:00+09:00`;
-
-  const kospiSection = detailHtml.match(/<section class="InvestorFlowCombinedBar_market-box__[^"]*">[\s\S]*?<h5[^>]*>코스피<\/h5>([\s\S]*?)<\/section>/i)?.[1];
-  if (!kospiSection) throw new Error('AI 브리핑의 코스피 투자자 수급을 찾지 못했습니다.');
-  const flowMap = new Map();
-  const flowPattern = /<span class="InvestorFlowCombinedBar_category__[^"]*">(개인|외국인|기관)<\/span>\s*<span class="InvestorFlowCombinedBar_value__[^"]*">([\s\S]*?)<\/span>/gi;
-  for (const match of kospiSection.matchAll(flowPattern)) flowMap.set(match[1], parseFlowAmount(match[2]));
+export function extractBriefing(payload, targetDate) {
+  const result = payload?.result;
+  if (!result || result.briefingDate !== targetDate) throw new Error('AI 브리핑 기준일이 국장 기준일과 다릅니다.');
+  const flowVisual = (result.visuals || []).find(item => item.type === 'investor_flow_combined_bar');
+  const kospiFlow = flowVisual?.data?.find(item => item.market === 'KOSPI');
+  if (!Array.isArray(kospiFlow?.flows)) throw new Error('AI 브리핑에서 코스피 투자자 수급을 찾지 못했습니다.');
+  const actorNames = { FOREIGN: '외국인', INSTITUTIONAL: '기관', INDIVIDUAL: '개인' };
+  const flowMap = new Map(kospiFlow.flows.map(item => [actorNames[item.actor], numberValue(item.amount, `${item.actor} 수급`) / 100000000]));
   const flows = ['외국인', '기관', '개인'].map(name => {
-    if (!flowMap.has(name)) throw new Error(`AI 브리핑에서 ${name} 수급을 찾지 못했습니다.`);
-    return { name, amount: flowMap.get(name) };
+    const amount = flowMap.get(name);
+    if (!Number.isFinite(amount)) throw new Error(`AI 브리핑에서 ${name} 수급을 찾지 못했습니다.`);
+    return { name, amount };
   });
-
-  const title = decodeHtml(titleRaw);
-  const comment = summary.slice(0, 3).join(' ');
+  const keywordVisual = (result.visuals || []).find(item => item.type === 'keyword_tags');
+  const keywords = (keywordVisual?.data || []).map(item => item.keyword).filter(Boolean).slice(0, 6);
+  if (!keywords.length) throw new Error('AI 브리핑에서 오늘의 키워드를 찾지 못했습니다.');
+  const generatedAt = result.briefingMeta?.generatedAt || `${targetDate}T${String(result.briefingHour).padStart(2, '0')}:00:00`;
+  const publishedAt = /(?:Z|[+-]\d{2}:\d{2})$/.test(generatedAt) ? generatedAt : `${generatedAt}+09:00`;
   return {
-    title,
-    comment,
+    title: result.title,
+    comment: result.title,
+    keywords,
     flows,
-    publishedDate,
+    publishedDate: result.briefingDate,
     publishedAt,
-    url: new URL(href, urls.home).href,
+    url: new URL(`/briefing/market/posts/${result.id}`, urls.home).href,
   };
 }
 
-export function makeKeywords(title, comment) {
-  const text = `${title} ${comment}`;
-  const dictionary = [
-    '반도체', '삼성전자', 'SK하이닉스', 'HBM', 'AI', '코스피', '코스닥', '외국인', '기관',
-    '수출', '환율', '원화', '금리', '유가', 'WTI', '바이오', '2차전지', '자동차', '금융',
-    '내수', '관세', '실적', '공매도', '강세', '약세', '반등', '급락',
-  ];
-  const keywords = dictionary
-    .map(word => ({ word, index: text.toLowerCase().indexOf(word.toLowerCase()) }))
-    .filter(item => item.index >= 0)
-    .sort((a, b) => a.index - b.index)
-    .map(item => item.word);
-  const stopWords = new Set(['오늘', '국내', '증시', '시장', '마감', '다시', '중심', '오르며', '내리며']);
-  for (const token of title.replace(/[^가-힣A-Za-z0-9]+/g, ' ').split(/\s+/)) {
-    if (keywords.length >= 6) break;
-    if (token.length >= 2 && !stopWords.has(token) && !keywords.includes(token)) keywords.push(token);
-  }
-  return keywords.slice(0, 6);
+export function vixFromHistory(csv, targetDate) {
+  const rows = String(csv || '').trim().split(/\r?\n/).slice(1).map(line => line.split(','));
+  const target = `${targetDate.slice(5, 7)}/${targetDate.slice(8, 10)}/${targetDate.slice(0, 4)}`;
+  const index = rows.findIndex(row => row[0] === target);
+  if (index < 1) throw new Error(`Cboe VIX ${targetDate} 마감 데이터를 찾지 못했습니다.`);
+  const close = numberValue(rows[index][4], 'VIX 마감값');
+  const previousClose = numberValue(rows[index - 1][4], 'VIX 전일 마감값');
+  return {
+    name: 'VIX',
+    value: close.toFixed(2),
+    chg: Number((((close / previousClose) - 1) * 100).toFixed(2)),
+  };
 }
 
 export function marketMood(indices) {
@@ -167,30 +140,32 @@ function writeOutput(name, value) {
 }
 
 async function main() {
-  const [homeHtml, kospi, kosdaq, fxRows, sp500, nasdaq, vix, sox, wtiRows] = await Promise.all([
-    request(urls.home, false), request(urls.kospi), request(urls.kosdaq), request(urls.fx),
+  const [briefingList, kospi, kosdaq, fxRows, sp500, nasdaq, vix, sox, wtiRows] = await Promise.all([
+    request(urls.briefingList), request(urls.kospi), request(urls.kosdaq), request(urls.fx),
     request(urls.sp500), request(urls.nasdaq), request(urls.vix), request(urls.sox), request(urls.wti),
   ]);
   if (!Array.isArray(fxRows) || !fxRows[0]) throw new Error('원/달러 마감 데이터를 찾지 못했습니다.');
   if (!Array.isArray(wtiRows) || !wtiRows[0]) throw new Error('WTI 결제 데이터를 찾지 못했습니다.');
-
-  const briefingHref = homeHtml.match(/href="(\/briefing\/market\/posts\/\d+)"/i)?.[1];
-  if (!briefingHref) throw new Error('네이버페이 증권 AI 브리핑 상세 링크를 찾지 못했습니다.');
-  const detailHtml = await request(new URL(briefingHref, urls.home).href, false);
-  const briefing = extractBriefing(homeHtml, detailHtml);
 
   const krDate = isoDate(kospi.localTradedAt, '국장');
   const kosdaqDate = isoDate(kosdaq.localTradedAt, '코스닥');
   const fxDate = isoDate(fxRows[0].localTradedAt, '원/달러');
   const usDate = isoDate(sp500.localTradedAt, '미장');
   const wtiDate = isoDate(wtiRows[0].localTradedAt, 'WTI');
+  const briefingItem = selectClosingBriefing(briefingList, krDate);
+  const briefingPayload = await request(`${urls.briefingDetail}?id=${briefingItem.id}`);
+  const briefing = extractBriefing(briefingPayload, krDate);
   if (kosdaqDate !== krDate || fxDate !== krDate || briefing.publishedDate !== krDate) {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);
   }
-  for (const [name, data] of [['나스닥', nasdaq], ['VIX', vix], ['필라델피아 반도체', sox]]) {
+  for (const [name, data] of [['나스닥', nasdaq], ['필라델피아 반도체', sox]]) {
     const date = isoDate(data.localTradedAt, name);
     if (date !== usDate) throw new Error(`미장 기준일 불일치: S&P500 ${usDate}, ${name} ${date}`);
   }
+  const vixDate = isoDate(vix.localTradedAt, 'VIX');
+  const vixIndex = vixDate === usDate && vix.marketStatus === 'CLOSE'
+    ? marketIndex('VIX', vix)
+    : vixFromHistory(await request(urls.vixHistory, false), usDate);
 
   const indices = [
     marketIndex('KOSPI', kospi),
@@ -198,7 +173,7 @@ async function main() {
     { name: '원/달러', value: String(fxRows[0].closePrice), chg: numberValue(fxRows[0].fluctuationsRatio, '원/달러 등락률') },
     marketIndex('S&P500', sp500),
     marketIndex('나스닥', nasdaq),
-    marketIndex('VIX', vix),
+    vixIndex,
     marketIndex('필라델피아 반도체', sox),
     { name: 'WTI', value: String(wtiRows[0].closePrice), chg: numberValue(wtiRows[0].fluctuationsRatio, 'WTI 등락률') },
   ];
@@ -212,11 +187,12 @@ async function main() {
     indices,
     flows: briefing.flows,
     comment: briefing.comment,
-    keywords: makeKeywords(briefing.title, briefing.comment),
+    keywords: briefing.keywords,
     ...mood,
     sources: {
       kr: 'https://m.stock.naver.com/domestic/index/KOSPI/total',
       us: 'https://m.stock.naver.com/worldstock/index/.INX/total',
+      vix: urls.vixHistory,
       wti: 'https://m.stock.naver.com/marketindex/energy/CLcv1',
       briefing: {
         provider: '네이버페이 증권 AI 브리핑',
