@@ -154,9 +154,9 @@
                     <div onclick="{{ nextInsight }}" style="width:30px; height:30px; border-radius:9px; border:1px solid #DEDBF2; background:#fff; color:#6B62F0; display:flex; align-items:center; justify-content:center; cursor:pointer;">›</div>
                   </div>
                   <div style="display:flex; gap:8px; align-items:center;">
-                    <div onclick="{{ editInsight }}" style="font-size:12px; font-weight:700; color:#77758A; cursor:pointer; padding:7px 8px;">수정</div>
-                    <div onclick="{{ deleteInsight }}" style="font-size:12px; font-weight:700; color:#B06A75; cursor:pointer; padding:7px 8px;">삭제</div>
-                    <div onclick="{{ openInsightAdd }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:8px 12px; cursor:pointer;">＋ 문장 추가</div>
+                    <div onclick="{{ editInsight }}" style="font-size:12px; font-weight:700; color:#77758A; cursor:pointer; padding:7px 8px;">수정 요청</div>
+                    <div onclick="{{ deleteInsight }}" style="font-size:12px; font-weight:700; color:#B06A75; cursor:pointer; padding:7px 8px;">삭제 요청</div>
+                    <div onclick="{{ openInsightAdd }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:8px 12px; cursor:pointer;">＋ 문장 등록</div>
                   </div>
                 </div>
               </sc-if>
@@ -165,7 +165,7 @@
                   <div style="font-size:28px;">💡</div>
                   <div style="font-size:14px; font-weight:750; color:#56566A; margin-top:8px;">아직 저장한 문장이 없어요</div>
                   <div style="font-size:12.5px; color:#9A9AAC; margin-top:4px;">나만의 투자 원칙과 기억할 문장을 쌓아보세요.</div>
-                  <div onclick="{{ openInsightAdd }}" style="display:inline-block; font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:9px 14px; margin-top:14px; cursor:pointer;">＋ 첫 문장 추가</div>
+                  <div onclick="{{ openInsightAdd }}" style="display:inline-block; font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:9px 14px; margin-top:14px; cursor:pointer;">＋ 첫 문장 등록</div>
                 </div>
               </sc-if>
               <sc-if value="{{ insightFormOpen }}" hint-placeholder-val="{{ false }}">
@@ -179,11 +179,15 @@
                   <sc-if value="{{ insightError }}" hint-placeholder-val="">
                     <div style="font-size:12px; color:#C0392B; margin-top:8px;">{{ insightError }}</div>
                   </sc-if>
+                  <div style="font-size:11.5px; color:#8C8C9E; line-height:1.5; margin-top:9px;">GitHub 등록 화면이 열립니다. 제출 후 생성된 PR을 병합하면 모든 기기에 반영됩니다.</div>
                   <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:11px;">
                     <div onclick="{{ closeInsightForm }}" style="font-size:12.5px; font-weight:700; color:#77758A; padding:8px 12px; cursor:pointer;">취소</div>
-                    <div onclick="{{ saveInsight }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#2A2740; border-radius:9px; padding:8px 14px; cursor:pointer;">저장</div>
+                    <div onclick="{{ saveInsight }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#2A2740; border-radius:9px; padding:8px 14px; cursor:pointer;">GitHub 등록 요청</div>
                   </div>
                 </div>
+              </sc-if>
+              <sc-if value="{{ insightMessage }}" hint-placeholder-val="">
+                <div style="font-size:12px; font-weight:700; color:#1E8E5A; background:#E7F6EE; border-radius:10px; padding:9px 12px; margin-top:12px;">{{ insightMessage }}</div>
               </sc-if>
             </div>
           </div>
@@ -1406,7 +1410,7 @@ class Component extends DCLogic {
     marketOpen: false, mktPasteText: '', marketHistory: null, marketSel: 0, marketMsg: '',
     newsQuery: '', newsText: '', newsItems: null, newsMsg: '', newsCollapsed: {},
     insights: null, insightIndex: null, insightFormOpen: false, insightEditId: null,
-    insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '',
+    insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: '',
     noteOpen: false, noteKind: null, n_cat: '기본기', n_editIdx: null, n_title: '', n_body: '', n_src: '', n_err: '',
     studyAllNotes: null, caseAllNotes: null,
     aiMarket: 'kospi',
@@ -1430,7 +1434,6 @@ class Component extends DCLogic {
   LS_TRADES = 'recdash_trades_v1';
   LS_MARKET = 'recdash_market_v1';
   LS_NEWS = 'recdash_news_v1';
-  LS_INSIGHTS = 'recdash_insights_v1';
   LS_STUDY = 'recdash_study_all_v1';
   LS_CASES = 'recdash_cases_all_v1';
   LS_CHARTREVIEW = 'recdash_chartreview_v1';
@@ -1468,11 +1471,6 @@ class Component extends DCLogic {
       }
       const nw = localStorage.getItem(this.LS_NEWS);
       if (nw) next.newsItems = JSON.parse(nw);
-      const ins = localStorage.getItem(this.LS_INSIGHTS);
-      if (ins) {
-        const parsedInsights = JSON.parse(ins);
-        if (Array.isArray(parsedInsights)) next.insights = parsedInsights;
-      }
       try { localStorage.removeItem('recdash_research_v1'); } catch(ex) {}
       const st = localStorage.getItem(this.LS_STUDY);
       next.studyAllNotes = st ? JSON.parse(st) : this.study.notes.map(n => ({ ...n }));
@@ -1499,6 +1497,7 @@ class Component extends DCLogic {
     });
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
+    this.loadInsightsSnapshot();
   }
 
   saveAnalyses(list) { try { localStorage.setItem(this.LS_ANALYSES, JSON.stringify(list)); } catch (e) {} }
@@ -1544,6 +1543,16 @@ class Component extends DCLogic {
       const merged = [...remote, ...local.filter(item => !remoteKeys.has(entryKey(item)))];
       this.setState({ marketHistory: merged, marketSel: 0 });
       try { localStorage.setItem(this.LS_MARKET, JSON.stringify(merged)); } catch (e) {}
+    } catch (e) {}
+  }
+
+  async loadInsightsSnapshot() {
+    try {
+      const res = await fetch('./data/insights/index.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      if (!payload || !Array.isArray(payload.entries)) return;
+      this.setState({ insights: payload.entries, insightIndex: null });
     } catch (e) {}
   }
 
@@ -1723,8 +1732,6 @@ class Component extends DCLogic {
     this.setState({ newsItems: null, newsMsg: '' });
   }
 
-  saveInsights(list) { try { localStorage.setItem(this.LS_INSIGHTS, JSON.stringify(list)); } catch (e) {} }
-
   insightDisplayIndex(list) {
     if (!list.length) return 0;
     if (this.state.insightIndex != null && Number.isInteger(Number(this.state.insightIndex))) {
@@ -1736,7 +1743,7 @@ class Component extends DCLogic {
   }
 
   openInsightAdd() {
-    this.setState({ insightFormOpen: true, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '' });
+    this.setState({ insightFormOpen: true, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: '' });
   }
 
   openInsightEdit(id) {
@@ -1748,7 +1755,7 @@ class Component extends DCLogic {
       insightQuoteInput: item.quote || '',
       insightSourceInput: item.source || '',
       insightMemoInput: item.memo || '',
-      insightError: '',
+      insightError: '', insightMessage: '',
     });
   }
 
@@ -1756,20 +1763,28 @@ class Component extends DCLogic {
     this.setState({ insightFormOpen: false, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '' });
   }
 
+  insightRequestUrl(payload) {
+    const marker = encodeURIComponent(JSON.stringify(payload));
+    const actionLabel = payload.action === 'add' ? '추가' : (payload.action === 'update' ? '수정' : '삭제');
+    const title = '[투자 인사이트] ' + actionLabel + ' 요청';
+    const body = '<!-- stockking-insight:' + marker + ' -->\n\n'
+      + '## 요청\n' + actionLabel + '\n\n'
+      + '## 문장\n' + (payload.quote || '-') + '\n\n'
+      + '## 인물·출처\n' + (payload.source || '-') + '\n\n'
+      + '## 내 메모\n' + (payload.memo || '-') + '\n\n'
+      + '> 이 요청을 제출하면 자동으로 데이터 반영 PR이 생성됩니다.';
+    return 'https://github.com/ruy911-png/stock-DASHBB/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+  }
+
   submitInsight() {
     const quote = String(this.state.insightQuoteInput || '').trim();
     if (!quote) { this.setState({ insightError: '투자 문장을 입력해주세요.' }); return; }
     const source = String(this.state.insightSourceInput || '').trim();
     const memo = String(this.state.insightMemoInput || '').trim();
-    const current = this.state.insights || [];
-    let next;
-    if (this.state.insightEditId) {
-      next = current.map(item => item.id === this.state.insightEditId ? { ...item, quote, source, memo } : item);
-    } else {
-      next = [{ id: String(Date.now()), quote, source, memo, createdAt: new Date().toISOString() }, ...current];
-    }
-    this.saveInsights(next);
-    this.setState({ insights: next, insightIndex: this.state.insightEditId ? this.insightDisplayIndex(next) : 0, insightFormOpen: false, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '' });
+    const action = this.state.insightEditId ? 'update' : 'add';
+    const requestUrl = this.insightRequestUrl({ action, id: this.state.insightEditId || '', quote, source, memo });
+    try { window.open(requestUrl, '_blank', 'noopener'); } catch (e) { window.location.href = requestUrl; }
+    this.setState({ insightFormOpen: false, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: 'GitHub에서 요청을 제출한 뒤 PR을 병합해주세요.' });
   }
 
   moveInsight(delta) {
@@ -1779,10 +1794,11 @@ class Component extends DCLogic {
   }
 
   deleteInsight(id) {
-    if (!id || !window.confirm('이 투자 문장을 삭제할까요?')) return;
-    const next = (this.state.insights || []).filter(item => item.id !== id);
-    this.saveInsights(next);
-    this.setState({ insights: next, insightIndex: next.length ? Math.min(this.insightDisplayIndex(next), next.length - 1) : null, insightFormOpen: false, insightEditId: null, insightError: '' });
+    const item = (this.state.insights || []).find(entry => entry.id === id);
+    if (!item) return;
+    const requestUrl = this.insightRequestUrl({ action: 'delete', id: item.id, quote: item.quote || '', source: item.source || '', memo: item.memo || '' });
+    try { window.open(requestUrl, '_blank', 'noopener'); } catch (e) { window.location.href = requestUrl; }
+    this.setState({ insightFormOpen: false, insightEditId: null, insightError: '', insightMessage: 'GitHub에서 삭제 요청을 제출한 뒤 PR을 병합해주세요.' });
   }
 
   submitMarketText() {
@@ -3158,11 +3174,12 @@ class Component extends DCLogic {
       insightMemo: currentInsight.memo || '', insightHasMemo: !!currentInsight.memo,
       insightPosition: insights.length ? ((insightIdx + 1) + ' / ' + insights.length) : '0 / 0',
       insightFormOpen: this.state.insightFormOpen,
-      insightFormTitle: this.state.insightEditId ? '문장 수정' : '새 문장 추가',
+      insightFormTitle: this.state.insightEditId ? '문장 수정 요청' : '새 문장 등록',
       insightQuoteInput: this.state.insightQuoteInput,
       insightSourceInput: this.state.insightSourceInput,
       insightMemoInput: this.state.insightMemoInput,
       insightError: this.state.insightError,
+      insightMessage: this.state.insightMessage,
       openInsightAdd: () => this.openInsightAdd(),
       editInsight: () => this.openInsightEdit(currentInsight.id),
       deleteInsight: () => this.deleteInsight(currentInsight.id),
