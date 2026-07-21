@@ -1,6 +1,8 @@
 /src/dashboard.template.html text eol=lf
 /scripts/dashboard-bundle.mjs text eol=lf
 /scripts/validate-market-data.mjs text eol=lf
+/scripts/collect-market-data.mjs text eol=lf
+/scripts/test-market-collector.mjs text eol=lf
 /data/market/*.json text eol=lf
 /data/market/*.md text eol=lf
 /.github/workflows/*.yml text eol=lf

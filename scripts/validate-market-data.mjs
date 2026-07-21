@@ -8,7 +8,7 @@ const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 const indexNames = ['KOSPI', 'KOSDAQ', '원/달러', 'S&P500', '나스닥', 'VIX', '필라델피아 반도체', 'WTI'];
 const flowNames = ['외국인', '기관', '개인'];
 const isoDate = /^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/;
-const isoDateTime = /^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])T([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:Z|[+-]\d{2}:\d{2})$/;
+const isoDateTime = /^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])T([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{3})?)?(?:Z|[+-]\d{2}:\d{2})$/;
 const webUrl = /^https:\/\//;
 
 function fail(message) {
@@ -45,6 +45,7 @@ payload.entries.forEach((entry, index) => {
   previousDate = entry.krDate;
 
   if (typeof entry.date !== 'string' || !entry.date.trim()) fail(`${position}.date가 비었습니다.`);
+  if (!isoDateTime.test(entry.collectedAt || '')) fail(`${position}.collectedAt은 ISO 시각이어야 합니다.`);
   exactNames(entry.indices, indexNames, 'indices', position);
   entry.indices.forEach((item, itemIndex) => {
     if ((typeof item.value !== 'string' && typeof item.value !== 'number') || String(item.value).trim() === '') {
