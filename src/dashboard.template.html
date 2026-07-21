@@ -127,67 +127,31 @@
         <div style="margin-top:24px;">
           <div>
             <div style="display:flex; align-items:center; justify-content:space-between; margin:0 4px 14px;">
-              <div>
-                <div style="font-size:16px; font-weight:800; letter-spacing:-.3px;">투자 인사이트</div>
-                <div style="font-size:11.5px; color:#9A9AAC; margin-top:3px;">기억할 투자 원칙과 문장을 모아두세요</div>
-              </div>
-              <div style="font-size:12px; font-weight:700; color:#8C8C9E;">{{ insightCount }}개 문장</div>
+              <div style="font-size:16px; font-weight:800; letter-spacing:-.3px;">뉴스 검색</div>
+              <div onclick="{{ goNews }}" style="font-size:12.5px; font-weight:700; color:#6B62F0; cursor:pointer;">전체보기 ›</div>
             </div>
-            <div style="background:linear-gradient(145deg,#fff 0%,#F7F6FF 100%); border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #E8E5FB; padding:22px 24px;">
-              <sc-if value="{{ insightHasItems }}" hint-placeholder-val="{{ false }}">
-                <div style="display:flex; gap:16px; align-items:flex-start;">
-                  <div style="width:38px; height:38px; flex-shrink:0; border-radius:12px; background:#EFEDFE; color:#6B62F0; display:flex; align-items:center; justify-content:center; font-size:24px; font-family:Georgia,serif;">“</div>
+            <div style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:18px;">
+              <div style="display:flex; gap:8px;">
+                <input oninput="{{ onNewsQuery }}" value="{{ newsQuery }}" placeholder="종목·키워드 검색" style="flex:1; min-width:0; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:13.5px; font-family:inherit; background:#FAFAFD;">
+                <div onclick="{{ searchNaver }}" style="background:#03C75A; color:#fff; font-size:13px; font-weight:800; padding:10px 14px; border-radius:11px; cursor:pointer; white-space:nowrap;">네이버</div>
+              </div>
+              <div style="display:flex; gap:8px; margin-top:9px;">
+                <div onclick="{{ searchGoogle }}" style="flex:1; text-align:center; border:1.5px solid #E6E6EE; color:#56566A; font-size:12.5px; font-weight:700; padding:9px 0; border-radius:11px; cursor:pointer;">구글뉴스</div>
+                <div onclick="{{ searchDaum }}" style="flex:1; text-align:center; border:1.5px solid #E6E6EE; color:#56566A; font-size:12.5px; font-weight:700; padding:9px 0; border-radius:11px; cursor:pointer;">다음뉴스</div>
+              </div>
+              <div style="height:1px; background:#F1F1F6; margin:15px 0 12px;"></div>
+              <div style="font-size:11.5px; font-weight:700; color:#9A9AAC; margin-bottom:9px;">스크랩한 기사 · {{ newsCount }}건</div>
+              <sc-for list="{{ newsPreview }}" as="n" hint-placeholder-count="2">
+                <div onclick="{{ goNews }}" style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; cursor:pointer;">
+                  <div style="width:6px; height:6px; border-radius:50%; background:#6B62F0; margin-top:6px; flex-shrink:0;"></div>
                   <div style="flex:1; min-width:0;">
-                    <div style="font-size:18px; font-weight:750; line-height:1.65; letter-spacing:-.25px; color:#252438;">{{ insightQuote }}</div>
-                    <sc-if value="{{ insightHasSource }}" hint-placeholder-val="{{ true }}">
-                      <div style="font-size:12.5px; font-weight:700; color:#6B62F0; margin-top:10px;">— {{ insightSource }}</div>
-                    </sc-if>
-                    <sc-if value="{{ insightHasMemo }}" hint-placeholder-val="{{ false }}">
-                      <div style="font-size:12.5px; line-height:1.55; color:#6F6E82; background:rgba(255,255,255,.7); border-radius:10px; padding:9px 12px; margin-top:11px;">내 메모 · {{ insightMemo }}</div>
-                    </sc-if>
+                    <div style="font-size:13px; font-weight:600; line-height:1.45; color:#2E2E3C;">{{ n.title }}</div>
+                    <div style="font-size:11px; color:#A0A0B0; margin-top:1px;">{{ n.meta }}</div>
                   </div>
                 </div>
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-top:18px; padding-top:14px; border-top:1px solid #EAE8F5;">
-                  <div style="display:flex; gap:7px; align-items:center;">
-                    <div onclick="{{ prevInsight }}" style="width:30px; height:30px; border-radius:9px; border:1px solid #DEDBF2; background:#fff; color:#6B62F0; display:flex; align-items:center; justify-content:center; cursor:pointer;">‹</div>
-                    <div style="font-size:11.5px; color:#9A9AAC; min-width:42px; text-align:center;">{{ insightPosition }}</div>
-                    <div onclick="{{ nextInsight }}" style="width:30px; height:30px; border-radius:9px; border:1px solid #DEDBF2; background:#fff; color:#6B62F0; display:flex; align-items:center; justify-content:center; cursor:pointer;">›</div>
-                  </div>
-                  <div style="display:flex; gap:8px; align-items:center;">
-                    <div onclick="{{ editInsight }}" style="font-size:12px; font-weight:700; color:#77758A; cursor:pointer; padding:7px 8px;">수정 요청</div>
-                    <div onclick="{{ deleteInsight }}" style="font-size:12px; font-weight:700; color:#B06A75; cursor:pointer; padding:7px 8px;">삭제 요청</div>
-                    <div onclick="{{ openInsightAdd }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:8px 12px; cursor:pointer;">＋ 문장 등록</div>
-                  </div>
-                </div>
-              </sc-if>
-              <sc-if value="{{ insightEmpty }}" hint-placeholder-val="{{ true }}">
-                <div style="text-align:center; padding:18px 10px 16px;">
-                  <div style="font-size:28px;">💡</div>
-                  <div style="font-size:14px; font-weight:750; color:#56566A; margin-top:8px;">아직 저장한 문장이 없어요</div>
-                  <div style="font-size:12.5px; color:#9A9AAC; margin-top:4px;">나만의 투자 원칙과 기억할 문장을 쌓아보세요.</div>
-                  <div onclick="{{ openInsightAdd }}" style="display:inline-block; font-size:12.5px; font-weight:800; color:#fff; background:#6B62F0; border-radius:10px; padding:9px 14px; margin-top:14px; cursor:pointer;">＋ 첫 문장 등록</div>
-                </div>
-              </sc-if>
-              <sc-if value="{{ insightFormOpen }}" hint-placeholder-val="{{ false }}">
-                <div style="border-top:1px solid #EAE8F5; margin-top:18px; padding-top:18px;">
-                  <div style="font-size:13.5px; font-weight:800; color:#353449; margin-bottom:11px;">{{ insightFormTitle }}</div>
-                  <textarea oninput="{{ onInsightQuote }}" value="{{ insightQuoteInput }}" placeholder="기억하고 싶은 투자 문장 또는 원칙" style="width:100%; min-height:76px; resize:vertical; box-sizing:border-box; border:1.5px solid #DEDBEA; border-radius:11px; padding:11px 13px; font-size:13.5px; line-height:1.55; font-family:inherit; background:#fff;"></textarea>
-                  <div style="display:grid; grid-template-columns:1fr 1.5fr; gap:8px; margin-top:8px;">
-                    <input oninput="{{ onInsightSource }}" value="{{ insightSourceInput }}" placeholder="인물·출처 (선택)" style="min-width:0; box-sizing:border-box; border:1.5px solid #DEDBEA; border-radius:11px; padding:10px 12px; font-size:12.5px; font-family:inherit; background:#fff;">
-                    <input oninput="{{ onInsightMemo }}" value="{{ insightMemoInput }}" placeholder="내 메모 (선택)" style="min-width:0; box-sizing:border-box; border:1.5px solid #DEDBEA; border-radius:11px; padding:10px 12px; font-size:12.5px; font-family:inherit; background:#fff;">
-                  </div>
-                  <sc-if value="{{ insightError }}" hint-placeholder-val="">
-                    <div style="font-size:12px; color:#C0392B; margin-top:8px;">{{ insightError }}</div>
-                  </sc-if>
-                  <div style="font-size:11.5px; color:#8C8C9E; line-height:1.5; margin-top:9px;">GitHub 등록 화면이 열립니다. 제출 후 생성된 PR을 병합하면 모든 기기에 반영됩니다.</div>
-                  <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:11px;">
-                    <div onclick="{{ closeInsightForm }}" style="font-size:12.5px; font-weight:700; color:#77758A; padding:8px 12px; cursor:pointer;">취소</div>
-                    <div onclick="{{ saveInsight }}" style="font-size:12.5px; font-weight:800; color:#fff; background:#2A2740; border-radius:9px; padding:8px 14px; cursor:pointer;">GitHub 등록 요청</div>
-                  </div>
-                </div>
-              </sc-if>
-              <sc-if value="{{ insightMessage }}" hint-placeholder-val="">
-                <div style="font-size:12px; font-weight:700; color:#1E8E5A; background:#E7F6EE; border-radius:10px; padding:9px 12px; margin-top:12px;">{{ insightMessage }}</div>
+              </sc-for>
+              <sc-if value="{{ newsEmpty }}" hint-placeholder-val="{{ false }}">
+                <div onclick="{{ goNews }}" style="font-size:12.5px; color:#A0A0B0; line-height:1.5; cursor:pointer;">아직 스크랩한 기사가 없어요. 검색 후 기사 제목을 붙여넣어 모아두세요 ›</div>
               </sc-if>
             </div>
           </div>
@@ -1409,8 +1373,6 @@ class Component extends DCLogic {
 ], trades: null,
     marketOpen: false, mktPasteText: '', marketHistory: null, marketSel: 0, marketMsg: '',
     newsQuery: '', newsText: '', newsItems: null, newsMsg: '', newsCollapsed: {},
-    insights: null, insightIndex: null, insightFormOpen: false, insightEditId: null,
-    insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: '',
     noteOpen: false, noteKind: null, n_cat: '기본기', n_editIdx: null, n_title: '', n_body: '', n_src: '', n_err: '',
     studyAllNotes: null, caseAllNotes: null,
     aiMarket: 'kospi',
@@ -1497,7 +1459,6 @@ class Component extends DCLogic {
     });
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
-    this.loadInsightsSnapshot();
   }
 
   saveAnalyses(list) { try { localStorage.setItem(this.LS_ANALYSES, JSON.stringify(list)); } catch (e) {} }
@@ -1543,16 +1504,6 @@ class Component extends DCLogic {
       const merged = [...remote, ...local.filter(item => !remoteKeys.has(entryKey(item)))];
       this.setState({ marketHistory: merged, marketSel: 0 });
       try { localStorage.setItem(this.LS_MARKET, JSON.stringify(merged)); } catch (e) {}
-    } catch (e) {}
-  }
-
-  async loadInsightsSnapshot() {
-    try {
-      const res = await fetch('./data/insights/index.json', { cache: 'no-store' });
-      if (!res.ok) return;
-      const payload = await res.json();
-      if (!payload || !Array.isArray(payload.entries)) return;
-      this.setState({ insights: payload.entries, insightIndex: null });
     } catch (e) {}
   }
 
@@ -1730,75 +1681,6 @@ class Component extends DCLogic {
   clearNews() {
     try { localStorage.removeItem(this.LS_NEWS); } catch (e) {}
     this.setState({ newsItems: null, newsMsg: '' });
-  }
-
-  insightDisplayIndex(list) {
-    if (!list.length) return 0;
-    if (this.state.insightIndex != null && Number.isInteger(Number(this.state.insightIndex))) {
-      return ((Number(this.state.insightIndex) % list.length) + list.length) % list.length;
-    }
-    const now = new Date();
-    const daySeed = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
-    return daySeed % list.length;
-  }
-
-  openInsightAdd() {
-    this.setState({ insightFormOpen: true, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: '' });
-  }
-
-  openInsightEdit(id) {
-    const item = (this.state.insights || []).find(entry => entry.id === id);
-    if (!item) return;
-    this.setState({
-      insightFormOpen: true,
-      insightEditId: id,
-      insightQuoteInput: item.quote || '',
-      insightSourceInput: item.source || '',
-      insightMemoInput: item.memo || '',
-      insightError: '', insightMessage: '',
-    });
-  }
-
-  closeInsightForm() {
-    this.setState({ insightFormOpen: false, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '' });
-  }
-
-  insightRequestUrl(payload) {
-    const marker = encodeURIComponent(JSON.stringify(payload));
-    const actionLabel = payload.action === 'add' ? '추가' : (payload.action === 'update' ? '수정' : '삭제');
-    const title = '[투자 인사이트] ' + actionLabel + ' 요청';
-    const body = '<!-- stockking-insight:' + marker + ' -->\n\n'
-      + '## 요청\n' + actionLabel + '\n\n'
-      + '## 문장\n' + (payload.quote || '-') + '\n\n'
-      + '## 인물·출처\n' + (payload.source || '-') + '\n\n'
-      + '## 내 메모\n' + (payload.memo || '-') + '\n\n'
-      + '> 이 요청을 제출하면 자동으로 데이터 반영 PR이 생성됩니다.';
-    return 'https://github.com/ruy911-png/stock-DASHBB/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-  }
-
-  submitInsight() {
-    const quote = String(this.state.insightQuoteInput || '').trim();
-    if (!quote) { this.setState({ insightError: '투자 문장을 입력해주세요.' }); return; }
-    const source = String(this.state.insightSourceInput || '').trim();
-    const memo = String(this.state.insightMemoInput || '').trim();
-    const action = this.state.insightEditId ? 'update' : 'add';
-    const requestUrl = this.insightRequestUrl({ action, id: this.state.insightEditId || '', quote, source, memo });
-    try { window.open(requestUrl, '_blank', 'noopener'); } catch (e) { window.location.href = requestUrl; }
-    this.setState({ insightFormOpen: false, insightEditId: null, insightQuoteInput: '', insightSourceInput: '', insightMemoInput: '', insightError: '', insightMessage: 'GitHub에서 요청을 제출한 뒤 PR을 병합해주세요.' });
-  }
-
-  moveInsight(delta) {
-    const list = this.state.insights || [];
-    if (!list.length) return;
-    this.setState({ insightIndex: (this.insightDisplayIndex(list) + delta + list.length) % list.length, insightFormOpen: false, insightEditId: null, insightError: '' });
-  }
-
-  deleteInsight(id) {
-    const item = (this.state.insights || []).find(entry => entry.id === id);
-    if (!item) return;
-    const requestUrl = this.insightRequestUrl({ action: 'delete', id: item.id, quote: item.quote || '', source: item.source || '', memo: item.memo || '' });
-    try { window.open(requestUrl, '_blank', 'noopener'); } catch (e) { window.location.href = requestUrl; }
-    this.setState({ insightFormOpen: false, insightEditId: null, insightError: '', insightMessage: 'GitHub에서 삭제 요청을 제출한 뒤 PR을 병합해주세요.' });
   }
 
   submitMarketText() {
@@ -3046,11 +2928,6 @@ class Component extends DCLogic {
       label, onClick: () => { this.setState({ newsQuery: label }); this.openNewsSearch('naver', label); },
     }));
 
-    // ---- Home investment insights ----
-    const insights = Array.isArray(this.state.insights) ? this.state.insights : [];
-    const insightIdx = this.insightDisplayIndex(insights);
-    const currentInsight = insights[insightIdx] || { id: '', quote: '', source: '', memo: '' };
-
     // ---- Chart Review ----
     const crList = this.state.chartReviews || [];
     const crQ = (this.state.crQuery || '').trim().toLowerCase();
@@ -3165,29 +3042,6 @@ class Component extends DCLogic {
       newsFeatured, newsRest, newsHasFeatured: !!newsFeatured,
       newsByDate, newsByDateHas: newsByDate.length > 0,
       newsCount: newsData.length, newsHasItems: newsData.length > 0, newsEmpty: newsData.length === 0,
-
-      insightCount: insights.length,
-      insightHasItems: insights.length > 0,
-      insightEmpty: insights.length === 0,
-      insightQuote: currentInsight.quote || '',
-      insightSource: currentInsight.source || '', insightHasSource: !!currentInsight.source,
-      insightMemo: currentInsight.memo || '', insightHasMemo: !!currentInsight.memo,
-      insightPosition: insights.length ? ((insightIdx + 1) + ' / ' + insights.length) : '0 / 0',
-      insightFormOpen: this.state.insightFormOpen,
-      insightFormTitle: this.state.insightEditId ? '문장 수정 요청' : '새 문장 등록',
-      insightQuoteInput: this.state.insightQuoteInput,
-      insightSourceInput: this.state.insightSourceInput,
-      insightMemoInput: this.state.insightMemoInput,
-      insightError: this.state.insightError,
-      insightMessage: this.state.insightMessage,
-      openInsightAdd: () => this.openInsightAdd(),
-      editInsight: () => this.openInsightEdit(currentInsight.id),
-      deleteInsight: () => this.deleteInsight(currentInsight.id),
-      prevInsight: () => this.moveInsight(-1), nextInsight: () => this.moveInsight(1),
-      closeInsightForm: () => this.closeInsightForm(), saveInsight: () => this.submitInsight(),
-      onInsightQuote: e => this.setF('insightQuoteInput', e.target.value),
-      onInsightSource: e => this.setF('insightSourceInput', e.target.value),
-      onInsightMemo: e => this.setF('insightMemoInput', e.target.value),
 
       studyHomeMeta: this.study.notes.length + '개 노트 · 매매 원칙 ' + doneCount + '/' + this.study.rules.length,
       studyHomeTitle: studyNotes[0].title,
