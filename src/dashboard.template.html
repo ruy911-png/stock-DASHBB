@@ -105,7 +105,7 @@
             <div onclick="{{ goMarket }}" style="font-size:13px; font-weight:700; color:#6B62F0; cursor:pointer;">시황분석 ›</div>
           </div>
           <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
-            <sc-for list="{{ indices }}" as="i" hint-placeholder-count="6">
+            <sc-for list="{{ homeIndices }}" as="i" hint-placeholder-count="6">
               <div onclick="{{ goMarket }}" style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:22px 20px; cursor:pointer;">
                 <div style="font-size:13px; font-weight:700; color:#8C8C9E;">{{ i.name }}</div>
                 <div style="font-size:25px; font-weight:800; letter-spacing:-.5px; margin-top:9px;">{{ i.value }}</div>
@@ -787,7 +787,7 @@
         <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:18px;">
           <div>
             <div style="font-size:28px; font-weight:800; letter-spacing:-.6px;">시황분석</div>
-            <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">{{ marketSelDate }} 기준 · 붙여넣은 시황을 날짜별로 모아둬요</div>
+            <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">{{ marketDateLabel }} · 국장·미장 각각 정규장 마감 기준</div>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
             <sc-if value="{{ marketSaved }}" hint-placeholder-val="{{ false }}">
@@ -798,8 +798,8 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
-          <sc-for list="{{ indices }}" as="i" hint-placeholder-count="6">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+          <sc-for list="{{ indices }}" as="i" hint-placeholder-count="8">
             <div onclick="{{ i.onEdit }}" style="background:#fff; border-radius:20px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:18px 20px; cursor:pointer;">
               <div style="font-size:13px; font-weight:700; color:#8C8C9E;">{{ i.name }}</div>
               <div style="font-size:24px; font-weight:800; letter-spacing:-.6px; margin-top:8px;">{{ i.value }}</div>
@@ -1458,6 +1458,7 @@ class Component extends DCLogic {
       }
     });
     this.loadBackupSnapshot();
+    this.loadMarketSnapshot();
   }
 
   saveAnalyses(list) { try { localStorage.setItem(this.LS_ANALYSES, JSON.stringify(list)); } catch (e) {} }
@@ -1490,6 +1491,22 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  async loadMarketSnapshot() {
+    try {
+      const res = await fetch('./data/market/index.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      const remote = payload && Array.isArray(payload.entries) ? payload.entries : [];
+      if (!remote.length) return;
+      const local = Array.isArray(this.state.marketHistory) ? this.state.marketHistory : [];
+      const entryKey = item => String((item && (item.date || item.krDate)) || '');
+      const remoteKeys = new Set(remote.map(entryKey));
+      const merged = [...remote, ...local.filter(item => !remoteKeys.has(entryKey(item)))];
+      this.setState({ marketHistory: merged, marketSel: 0 });
+      try { localStorage.setItem(this.LS_MARKET, JSON.stringify(merged)); } catch (e) {}
+    } catch (e) {}
+  }
+
   saveTrades(list) { try { localStorage.setItem(this.LS_TRADES, JSON.stringify(list)); } catch (e) {} }
 
   resetAll() {
@@ -1498,7 +1515,7 @@ class Component extends DCLogic {
   }
 
   openMarketPaste() {
-    const tmpl = '날짜:\n\nKOSPI:\nKOSDAQ:\n원/달러:\nS&P500:\n나스닥:\nVIX:\n\n외국인:\n기관:\n개인:\n\n키워드: #반도체 #환율\n코멘트: ';
+    const tmpl = '날짜:\n\nKOSPI:\nKOSDAQ:\n원/달러:\nS&P500:\n나스닥:\nVIX:\n필라델피아 반도체:\nWTI:\n\n외국인:\n기관:\n개인:\n\n키워드: #반도체 #환율\n코멘트: ';
     console.log('[openMarketPaste] tmpl type:', typeof tmpl, 'val:', tmpl.slice(0,20));
     this.setState({ marketOpen: true, marketMsg: '', mktPasteText: tmpl });
   }
@@ -1548,6 +1565,8 @@ class Component extends DCLogic {
       { name: 'S&P500', alias: ['S&P500', 'S&P 500', 'SP500', '에스앤피'] },
       { name: '나스닥', alias: ['나스닥', 'NASDAQ', 'Nasdaq'] },
       { name: 'VIX', alias: ['VIX', '빅스', '변동성지수'] },
+      { name: '필라델피아 반도체', alias: ['필라델피아 반도체', 'SOX', 'PHLX Semiconductor'] },
+      { name: 'WTI', alias: ['WTI', '서부텍사스유', '서부 텍사스유'] },
     ];
     let foundCount = 0;
     const indices = idxDefs.map(d => {
@@ -1818,6 +1837,9 @@ class Component extends DCLogic {
 
   market = {
     date: '예시',
+    krDate: '',
+    usDate: '',
+    wtiDate: '',
     mood: '강보합 · 위험선호',
     moodUp: true,
     indices: [
@@ -1827,6 +1849,8 @@ class Component extends DCLogic {
       { name: 'S&P500', value: '5,488.41', chg: 0.31 },
       { name: '나스닥', value: '17,890.7', chg: 0.45 },
       { name: 'VIX', value: '13.24', chg: -3.10 },
+      { name: '필라델피아 반도체', value: '5,500.00', chg: 0.60 },
+      { name: 'WTI', value: '75.00', chg: 0.25 },
     ],
     flows: [
       { name: '외국인', amount: 4820 },
@@ -2779,12 +2803,20 @@ class Component extends DCLogic {
         onDel: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.delMarket(i); },
       };
     });
-    const indices = mk.indices.map((i, idx) => ({
-      name: i.name, value: i.value,
-      change: (i.chg >= 0 ? '▲ +' : '▼ ') + Math.abs(i.chg).toFixed(2) + '%',
-      col: i.chg >= 0 ? UP : DOWN,
-      onEdit: () => this.editIndexValue(idx),
-    }));
+    const rawIndices = Array.isArray(mk.indices) ? mk.indices : [];
+    const indices = this.market.indices.map((definition) => {
+      const rawIdx = rawIndices.findIndex(item => item.name === definition.name);
+      const item = rawIdx >= 0 ? rawIndices[rawIdx] : { name: definition.name, value: '—', chg: null };
+      const chg = Number(item.chg);
+      const hasChange = item.chg !== null && item.chg !== '' && Number.isFinite(chg);
+      return {
+        name: item.name, value: item.value == null || item.value === '' ? '—' : item.value,
+        change: hasChange ? ((chg >= 0 ? '▲ +' : '▼ ') + Math.abs(chg).toFixed(2) + '%') : '—',
+        col: hasChange ? (chg >= 0 ? UP : DOWN) : '#9A9AAC',
+        onEdit: rawIdx >= 0 ? () => this.editIndexValue(rawIdx) : () => {},
+      };
+    });
+    const homeIndices = indices.slice(0, 6);
     const flowMax = Math.max(...mk.flows.map(f => Math.abs(f.amount)), 1);
     const flows = mk.flows.map((f, idx) => ({
       name: f.name,
@@ -3020,9 +3052,13 @@ class Component extends DCLogic {
       studyPct: rulePct + '%', studyBarW: rulePct + '%',
 
       marketMood: mk.mood, marketMoodCol: mk.moodUp ? UP : DOWN, marketMoodBg: mk.moodUp ? '#FDECEC' : '#EAF0FD',
-      indices, flows, sectors,
+      indices, homeIndices, flows, sectors,
       marketComment: mk.comment, marketKeywords: mk.keywords, onEditComment: () => this.editMarketComment(),
-      marketSelDate: mk.date || '오늘', marketList, marketHasHistory: hist.length > 0, marketEmpty: hist.length === 0,
+      marketSelDate: mk.date || '오늘',
+      marketDateLabel: mk.krDate
+        ? ('국장 ' + mk.krDate + ' · 미장 ' + (mk.usDate || '-') + ' · WTI ' + (mk.wtiDate || '-'))
+        : ((mk.date || '오늘') + ' 기준'),
+      marketList, marketHasHistory: hist.length > 0, marketEmpty: hist.length === 0,
       marketListTitle: hist.length > 0 ? ('날짜별 시황 기록 · ' + hist.length + '건') : '날짜별 시황 기록',
       marketOpen: this.state.marketOpen, marketText: this.state.mktPasteText || '', marketMsg: this.state.marketMsg,
       marketSaved: hist.length > 0,
