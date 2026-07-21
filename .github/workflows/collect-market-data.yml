@@ -1,0 +1,84 @@
+name: Collect market data
+
+on:
+  schedule:
+    # 월~금 21:30 UTC = 화~토 06:30 KST
+    - cron: "30 21 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: collect-market-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Collect closing market data
+        id: collect
+        run: npm run collect:market
+
+      - name: Validate generated data
+        if: steps.collect.outputs.changed == 'true'
+        run: npm run check
+
+      - name: Create daily pull request
+        if: steps.collect.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KR_DATE: ${{ steps.collect.outputs.kr_date }}
+          US_DATE: ${{ steps.collect.outputs.us_date }}
+          WTI_DATE: ${{ steps.collect.outputs.wti_date }}
+          BRIEFING_TITLE: ${{ steps.collect.outputs.briefing_title }}
+        shell: bash
+        run: |
+          BRANCH="automation/market-data-${KR_DATE}"
+          EXISTING_URL="$(gh pr list --state open --head "$BRANCH" --json url --jq '.[0].url // empty')"
+          if [ -n "$EXISTING_URL" ]; then
+            echo "이미 열린 PR이 있습니다: $EXISTING_URL"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add data/market/index.json
+          git commit -m "Update market data for ${KR_DATE}"
+
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "refs/heads/${BRANCH}:refs/remotes/origin/${BRANCH}"
+            git push --force-with-lease origin "HEAD:refs/heads/${BRANCH}"
+          else
+            git push origin "HEAD:refs/heads/${BRANCH}"
+          fi
+
+          BODY="$(printf '%s\n' \
+            '## 자동 수집 결과' \
+            "- 국장 기준일: ${KR_DATE}" \
+            "- 미장 기준일: ${US_DATE}" \
+            "- WTI 기준일: ${WTI_DATE}" \
+            "- AI 브리핑: ${BRIEFING_TITLE}" \
+            '' \
+            '## 자동 검증' \
+            '- 8개 지표, 코스피 투자자 수급, 날짜 및 출처 검증 통과' \
+            '- 코멘트·키워드 출처: 네이버페이 증권 AI 브리핑')"
+
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "시황 데이터 ${KR_DATE} 자동 반영" \
+            --body "$BODY"
