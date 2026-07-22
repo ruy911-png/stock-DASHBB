@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "7.22",
+      "krDate": "2026-07-22",
+      "usDate": "2026-07-21",
+      "wtiDate": "2026-07-21",
+      "collectedAt": "2026-07-22T12:18:37.985Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,797.70",
+          "chg": 0.74
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "751.09",
+          "chg": -0.3
+        },
+        {
+          "name": "원/달러",
+          "value": "1,479.90",
+          "chg": -0.18
+        },
+        {
+          "name": "S&P500",
+          "value": "7,509.20",
+          "chg": 0.89
+        },
+        {
+          "name": "나스닥",
+          "value": "25,837.21",
+          "chg": 1.29
+        },
+        {
+          "name": "VIX",
+          "value": "17.05",
+          "chg": -8.58
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,356.16",
+          "chg": 5.21
+        },
+        {
+          "name": "WTI",
+          "value": "84.34",
+          "chg": 2.26
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 26211
+        },
+        {
+          "name": "기관",
+          "amount": -13963
+        },
+        {
+          "name": "개인",
+          "amount": -12176
+        }
+      ],
+      "comment": "미국 기술주 강세와 빅테크 실적 기대가 반도체 불안을 완화한 가운데, 외국인이 코스피에서 2조 6,211억원을 순매수하며 삼성전자·현대차 중심으로 지수를 끌어올렸습니다. 다만 기관 매도와 코스닥 외국인·기관 동반 매도, 바이오 약세로 코스닥은 하락했고 WTI 상승은 물가 부담 요인으로 남았습니다.",
+      "keywords": [
+        "환율",
+        "부동산 정책",
+        "전력공급",
+        "반도체",
+        "디스플레이",
+        "코스피"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-07-22T20:01:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/3754"
+        }
+      }
+    },
+    {
       "date": "7.21",
       "krDate": "2026-07-21",
       "usDate": "2026-07-20",
