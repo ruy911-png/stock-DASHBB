@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
+import { buildBriefingComment, extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
 
 const briefingList = {
   result: {
@@ -15,6 +15,7 @@ const detail = {
   result: {
     id: 3730,
     title: '반도체 매수세 회복에 코스피 강세 마감',
+    summary: '반도체 대형주가 다시 시장의 중심에 섰어요.\n7월 수출 증가와 반도체 수출 급증이 힘을 보탰고, 외국인과 기관 매수가 집중됐어요.',
     briefingDate: '2026-07-21',
     briefingHour: '20',
     briefingMeta: { generatedAt: '2026-07-21T20:01:27' },
@@ -40,7 +41,11 @@ const detail = {
 
 const briefing = extractBriefing(detail, '2026-07-21');
 assert.equal(briefing.title, '반도체 매수세 회복에 코스피 강세 마감');
-assert.equal(briefing.comment, briefing.title);
+assert.equal(
+  briefing.comment,
+  '반도체 매수세 회복에 코스피 강세 마감. 7월 수출 증가와 반도체 수출 급증이 힘을 보탰고, 외국인과 기관 매수가 집중됐어요.',
+);
+assert.equal(buildBriefingComment('제목', ''), '제목');
 assert.equal(briefing.publishedAt, '2026-07-21T20:01:27+09:00');
 assert.deepEqual(briefing.keywords, ['회생절차', 'AI', '환율', '반도체']);
 assert.deepEqual(briefing.flows, [

@@ -81,6 +81,23 @@ export function selectClosingBriefing(payload, targetDate) {
   return selected;
 }
 
+export function buildBriefingComment(title, summary) {
+  const headline = String(title || '').trim().replace(/[.!?。]+$/, '');
+  const lines = String(summary || '')
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+  const reasonTerms = ['수출', '실적', '금리', '환율', '유가', '관세', '매수', '매도', '급증', '감소', '기대', '집중', '여파'];
+  const reason = lines
+    .map((line, index) => ({
+      line,
+      index,
+      score: reasonTerms.reduce((score, term) => score + Number(line.includes(term)), 0),
+    }))
+    .sort((a, b) => b.score - a.score || a.index - b.index)[0];
+  return reason?.score > 0 ? `${headline}. ${reason.line}` : (headline || lines[0] || '');
+}
+
 export function extractBriefing(payload, targetDate) {
   const result = payload?.result;
   if (!result || result.briefingDate !== targetDate) throw new Error('AI 브리핑 기준일이 국장 기준일과 다릅니다.');
@@ -101,7 +118,7 @@ export function extractBriefing(payload, targetDate) {
   const publishedAt = /(?:Z|[+-]\d{2}:\d{2})$/.test(generatedAt) ? generatedAt : `${generatedAt}+09:00`;
   return {
     title: result.title,
-    comment: result.title,
+    comment: buildBriefingComment(result.title, result.summary),
     keywords,
     flows,
     publishedDate: result.briefingDate,
