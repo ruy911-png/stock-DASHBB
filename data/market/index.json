@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "7.24",
+      "krDate": "2026-07-24",
+      "usDate": "2026-07-23",
+      "wtiDate": "2026-07-23",
+      "collectedAt": "2026-07-24T09:37:19.853Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,690.62",
+          "chg": -5.72
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "748.22",
+          "chg": -5.32
+        },
+        {
+          "name": "원/달러",
+          "value": "1,462.90",
+          "chg": -0.92
+        },
+        {
+          "name": "S&P500",
+          "value": "7,408.30",
+          "chg": -1.21
+        },
+        {
+          "name": "나스닥",
+          "value": "25,137.69",
+          "chg": -2.15
+        },
+        {
+          "name": "VIX",
+          "value": "18.70",
+          "chg": 12.38
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,343.84",
+          "chg": -0.54
+        },
+        {
+          "name": "WTI",
+          "value": "92.19",
+          "chg": 6.17
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -32685
+        },
+        {
+          "name": "기관",
+          "amount": -19515
+        },
+        {
+          "name": "개인",
+          "amount": 51784
+        }
+      ],
+      "comment": "중동 긴장과 대형주 매도 확산에 사이드카 재발동",
+      "keywords": [
+        "영업이익",
+        "코스피",
+        "강제노동 관세",
+        "재산분할",
+        "사이드카",
+        "실적"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-07-24T17:00:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/3799"
+        }
+      }
+    },
+    {
       "date": "7.23",
       "krDate": "2026-07-23",
       "usDate": "2026-07-22",
