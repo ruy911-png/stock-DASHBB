@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "7.27",
+      "krDate": "2026-07-27",
+      "usDate": "2026-07-24",
+      "wtiDate": "2026-07-24",
+      "collectedAt": "2026-07-27T12:09:34.314Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,755.75",
+          "chg": 0.97
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "764.86",
+          "chg": 2.22
+        },
+        {
+          "name": "원/달러",
+          "value": "1,470.30",
+          "chg": 0.53
+        },
+        {
+          "name": "S&P500",
+          "value": "7,411.98",
+          "chg": 0.05
+        },
+        {
+          "name": "나스닥",
+          "value": "24,975.82",
+          "chg": -0.64
+        },
+        {
+          "name": "VIX",
+          "value": "18.58",
+          "chg": -0.64
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,818.89",
+          "chg": -4.25
+        },
+        {
+          "name": "WTI",
+          "value": "89.31",
+          "chg": -3.12
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -28811
+        },
+        {
+          "name": "기관",
+          "amount": 8595
+        },
+        {
+          "name": "개인",
+          "amount": 19788
+        }
+      ],
+      "comment": "AI 기대와 기관 매수에 코스닥 강세, 외국인 매도 속 코스피 상승 마감",
+      "keywords": [
+        "부동산 정책",
+        "코스피",
+        "종합부동산세",
+        "실적",
+        "영업이익",
+        "종부세"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-07-27T20:02:01+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/3823"
+        }
+      }
+    },
+    {
       "date": "7.24",
       "krDate": "2026-07-24",
       "usDate": "2026-07-23",
