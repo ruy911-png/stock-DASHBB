@@ -394,5 +394,27 @@
         "valuation": "• 현재가 약$38.5, trailing PER 41배·forward PER 21~24배·PEG 0.75~0.78배로 이익성장 대비 낮은 편, EV/EBITDA는 연초 30배대→약20배로 하락(Yahoo Finance/stockanalysis.com, 2026.7)\n• 동종업계(Nike forward EV/EBITDA19배, Deckers·Adidas 각10배, Lululemon5.8배) 대비 여전히 프리미엄 구간 거래(Investing.com, 2026.7)\n• 애널리스트 목표주가 24개사 평균 약$49~53(범위$24~85, Buy우세) — 추정치로 확정치 아님(Yahoo Finance/Investing.com, 2026.7)"
       }
     ]
+  },
+  {
+    "code": "MRK",
+    "name": "머크",
+    "price": 0,
+    "chg": 0,
+    "market": "us",
+    "tags": [
+      "제약",
+      "Keytruda",
+      "면역항암제"
+    ],
+    "ais": [
+      {
+        "ai": "claude",
+        "date": "8.3",
+        "overview": "• 미국 대형 제약사 — 종양학(Keytruda)·백신(Gardasil)·심혈관(Winrevair) 중심 포트폴리오, Keytruda+피하주사제형 Keytruda Qlex가 2025년 매출$31.7B로 전체 절반 육박(labiotech.eu 등 종합, 2026)\n• 2028년 Keytruda 미국 특허만료(단일 최대 매출공백 리스크)에 대응해 Keytruda Qlex(2025.9 승인, 2030년 이후까지 특허보호 연장) 출시 및 파이프라인 인수로 다각화 추진\n• Winrevair(폐동맥고혈압 치료제) 1분기 매출$525M(YoY 약2배)로 고성장, 피크매출$5~7B 전망되는 신성장동력(marketsupplychain.com, 2026)",
+        "fundamental": "• 1분기 실적 컨센서스 상회, 2026년 매출 가이던스$65.8~67B로 상향(기존 하한$65.5B 대비), 조정EPS$5.04~5.16로 소폭 상향(CNBC, 2026.4.30)\n• 2분기 실적은 8/4 발표 예정(컨센서스 매출$16.33B, Keytruda$8.06B) — 실제치는 미확인(Zacks, 2026.8)\n• 리스크: Gardasil 중국 매출 급감 지속, 2028년 Keytruda 특허절벽이 여전히 최대 리스크",
+        "technical": "• 차트 이미지 미제공, 웹검색 기반 텍스트 분석 — 현재가($130~131)가 52주 최고$135.05에 근접한 고점권 거래(52주 최저$77.53 대비 큰 폭 상승)\n• 이동평균선·RSI·거래량 등 구체적 기술적 지표는 웹검색으로 확인 불가 — 미확인\n• 8/4 2분기 실적 발표를 앞두고 있어 단기 변동성 확대 가능성(매수/매도 추천 아님)",
+        "valuation": "• 주가 약$130~131(2026.8초), trailing PER 36.2배·forward PER 21.1배·EV/EBITDA 12.2배, 배당수익률 2.64%(연배당$3.40)(macrotrends/stockanalysis.com, 2026.8)\n• 애널리스트 평균목표가$129.74~135.19(Buy우세, 범위$100~150) — 현재가와 괴리 크지 않아 추가 상승여력은 제한적일 수 있음, 추정치로 확정치 아님(S&P Global, 2026)"
+      }
+    ]
   }
 ]
