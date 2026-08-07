@@ -13,7 +13,7 @@ const requestHeaders = {
 
 const urls = {
   home: 'https://m.stock.naver.com/',
-  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=100',
+  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=50',
   briefingDetail: 'https://m.stock.naver.com/front-api/market/briefing/detail',
   kospi: 'https://m.stock.naver.com/api/index/KOSPI/basic',
   kosdaq: 'https://m.stock.naver.com/api/index/KOSDAQ/basic',
