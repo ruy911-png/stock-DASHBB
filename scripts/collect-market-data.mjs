@@ -13,7 +13,7 @@ const requestHeaders = {
 
 const urls = {
   home: 'https://m.stock.naver.com/',
-  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=50',
+  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=100',
   briefingDetail: 'https://m.stock.naver.com/front-api/market/briefing/detail',
   kospi: 'https://m.stock.naver.com/api/index/KOSPI/basic',
   kosdaq: 'https://m.stock.naver.com/api/index/KOSDAQ/basic',
@@ -75,9 +75,18 @@ export function selectClosingBriefing(payload, targetDate) {
   const items = payload?.result?.items;
   if (!Array.isArray(items)) throw new Error('네이버페이 증권 AI 브리핑 목록을 읽지 못했습니다.');
   const sameDate = items.filter(item => item.briefingDate === targetDate);
+  if (!sameDate.length) {
+    const availableDates = [...new Set(items.map(item => item.briefingDate))].slice(0, 10).join(', ');
+    throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (목록에서 확인된 날짜: ${availableDates || '없음'}, 총 ${items.length}건)`);
+  }
+  const byHourDesc = [...sameDate].sort((a, b) => Number(b.briefingHour) - Number(a.briefingHour));
   const selected = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20')
-    || sameDate.find(item => /코스피|국내 증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`));
-  if (!selected) throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다.`);
+    || sameDate.find(item => /코스피|국내\s*증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`))
+    || byHourDesc[0];
+  if (!selected) {
+    const hours = sameDate.map(item => item.briefingHour).join(', ');
+    throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (해당 날짜 브리핑 시각: ${hours})`);
+  }
   return selected;
 }
 

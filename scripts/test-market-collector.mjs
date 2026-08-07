@@ -11,6 +11,23 @@ const briefingList = {
 };
 assert.equal(selectClosingBriefing(briefingList, '2026-07-21').id, 3730);
 
+// 20시 정각 브리핑도 없고 키워드 매치도 안 되면, 해당 날짜의 가장 늦은 시각 브리핑으로 폴백한다
+const fallbackList = {
+  result: {
+    items: [
+      { id: 4001, title: '오전 시황 요약', briefingDate: '2026-07-22', briefingHour: '09' },
+      { id: 4002, title: '오후 시황 요약', briefingDate: '2026-07-22', briefingHour: '15' },
+    ],
+  },
+};
+assert.equal(selectClosingBriefing(fallbackList, '2026-07-22').id, 4002);
+
+// 해당 날짜 자체가 목록에 없으면, 에러 메시지에 실제 존재하는 날짜 목록을 포함해 진단을 돕는다
+assert.throws(
+  () => selectClosingBriefing(briefingList, '2099-01-01'),
+  /2026-07-21/,
+);
+
 const detail = {
   result: {
     id: 3730,
