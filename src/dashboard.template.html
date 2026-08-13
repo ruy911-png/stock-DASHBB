@@ -1028,6 +1028,10 @@
         <textarea oninput="{{ onOverview }}" value="{{ fOverview }}" placeholder="사업 모델, 경쟁 우위, 주요 고객 등 기업 개요를 붙여넣으세요." style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:13px 14px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:80px; resize:vertical; line-height:1.6;">{{ fOverview }}</textarea>
       </div>
       <div style="margin-bottom:14px;">
+        <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">경제적 해자 <span style="font-weight:500; color:#B0B0BE;">경쟁우위·전환비용</span></div>
+        <textarea oninput="{{ onMoat }}" value="{{ fMoat }}" placeholder="이 회사의 경제적 해자(경쟁우위·전환비용·네트워크효과 등)와 리스크를 분석해서 붙여넣으세요." style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:13px 14px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:80px; resize:vertical; line-height:1.6;">{{ fMoat }}</textarea>
+      </div>
+      <div style="margin-bottom:14px;">
         <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">기본적 분석 <span style="font-weight:500; color:#B0B0BE;">실적·업황</span></div>
         <textarea oninput="{{ onFund }}" value="{{ fFund }}" placeholder="실적·재무·업황 등 기본적 분석을 붙여넣으세요." style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:13px 14px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:80px; resize:vertical; line-height:1.6;">{{ fFund }}</textarea>
       </div>
@@ -1039,7 +1043,7 @@
         <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">밸류에이션 <span style="font-weight:500; color:#B0B0BE;">목표가·PER·PBR</span></div>
         <textarea oninput="{{ onValuation }}" value="{{ fValuation }}" placeholder="목표가 근거, PER·PBR 비교, 업사이드 등 밸류에이션 분석을 붙여넣으세요." style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:13px 14px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:80px; resize:vertical; line-height:1.6;">{{ fValuation }}</textarea>
       </div>
-      <div style="font-size:11.5px; color:#A8A8B6; margin-top:10px; line-height:1.5;">💡 AI에게 "기업개요·기본적·기술적·밸류에이션으로 나눠서 답해줘"라고 하면 그대로 칸에 붙여넣기 좋아요.</div>
+      <div style="font-size:11.5px; color:#A8A8B6; margin-top:10px; line-height:1.5;">💡 AI에게 "기업개요·경제적 해자·기본적·기술적·밸류에이션으로 나눠서 답해줘"라고 하면 그대로 칸에 붙여넣기 좋아요.</div>
 
       <sc-if value="{{ fErr }}" hint-placeholder-val="">
         <div style="font-size:13px; color:#C0392B; background:#FCEBEC; padding:10px 13px; border-radius:11px; margin-top:12px;">{{ fErr }}</div>
@@ -1091,22 +1095,23 @@
             <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_overview"></div>
           </div>
         </sc-if>
+        <sc-if value="{{ peekPanel.hasMoat }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-bottom:12px;">
+            <div style="font-size:14.5px; font-weight:800; color:#2C6FB0; margin-bottom:6px;">🏰 경제적 해자</div>
+            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_moat"></div>
+          </div>
+        </sc-if>
         <sc-if value="{{ peekPanel.hasFund }}" hint-placeholder-val="{{ true }}">
           <div style="margin-bottom:12px;">
             <div style="font-size:14.5px; font-weight:800; color:#6B62F0; margin-bottom:6px;">📊 기본적 분석</div>
             <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_fundamental"></div>
           </div>
         </sc-if>
-        <sc-if value="{{ peekPanel.hasTech }}" hint-placeholder-val="{{ false }}">
-          <div style="margin-bottom:12px;">
-            <div style="font-size:14.5px; font-weight:800; color:#E0922B; margin-bottom:6px;">📈 기술적 분석</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_technical"></div>
-          </div>
-        </sc-if>
-        <sc-if value="{{ peekPanel.hasValuation }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ peekPanel.hasTechOrValuation }}" hint-placeholder-val="{{ false }}">
           <div>
-            <div style="font-size:14.5px; font-weight:800; color:#C45F3C; margin-bottom:6px;">💰 밸류에이션</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_valuation"></div>
+            <div style="font-size:14.5px; font-weight:800; color:#E0922B; margin-bottom:6px;">🎯 기술적 분석 및 목표가</div>
+            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_technical"></div>
+            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
           </div>
         </sc-if>
       </div>
@@ -1329,7 +1334,7 @@ class Component extends DCLogic {
     caseId: 'rate2022',
     addOpen: false,
     f_ai: 'claude', f_market: 'kospi',
-    f_name: '', f_tags: '', f_overview: '', f_fundamental: '', f_technical: '', f_valuation: '',
+    f_name: '', f_tags: '', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '', f_valuation: '',
     f_err: '',
     csvMsg: '',
     jsonImportMsg: '',
@@ -1891,6 +1896,7 @@ class Component extends DCLogic {
         const r = stock.ais[aiTabIdx] || {};
         const mdFields = [
           ['__analysis_peek_overview', r.overview || ''],
+          ['__analysis_peek_moat', r.moat || ''],
           ['__analysis_peek_fundamental', r.fundamental || r.reason || ''],
           ['__analysis_peek_technical', r.technical || ''],
           ['__analysis_peek_valuation', r.valuation || ''],
@@ -1906,12 +1912,12 @@ class Component extends DCLogic {
     }
   }
 
-  openAdd() { this.setState({ addOpen: true, editAnalysisCode: null, editAnalysisAiIdx: null, f_err: '', f_name: '', f_tags: '', f_ai: 'claude', f_market: 'kospi', f_overview: '', f_fundamental: '', f_technical: '', f_valuation: '' }); }
+  openAdd() { this.setState({ addOpen: true, editAnalysisCode: null, editAnalysisAiIdx: null, f_err: '', f_name: '', f_tags: '', f_ai: 'claude', f_market: 'kospi', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '', f_valuation: '' }); }
   openAddForStock(code) {
     const cur = this.state.analyses || this.analyses;
     const stock = cur.find(a => a.code === code);
     if (!stock) return;
-    this.setState({ addOpen: true, editAnalysisCode: null, editAnalysisAiIdx: null, f_err: '', f_name: stock.name, f_tags: (stock.tags || []).join(', '), f_ai: 'claude', f_market: stock.market || 'kospi', f_overview: '', f_fundamental: '', f_technical: '', f_valuation: '' });
+    this.setState({ addOpen: true, editAnalysisCode: null, editAnalysisAiIdx: null, f_err: '', f_name: stock.name, f_tags: (stock.tags || []).join(', '), f_ai: 'claude', f_market: stock.market || 'kospi', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '', f_valuation: '' });
   }
   closeAdd() { this.setState({ addOpen: false, editAnalysisCode: null, editAnalysisAiIdx: null }); }
   setF(k, v) { this.setState({ [k]: v }); }
@@ -2023,6 +2029,7 @@ class Component extends DCLogic {
       f_market: stock.market || 'kospi',
       f_ai: r.ai,
       f_overview: r.overview || '',
+      f_moat: r.moat || '',
       f_fundamental: r.fundamental || r.reason || '',
       f_technical: r.technical || '',
       f_valuation: r.valuation || '',
@@ -2212,6 +2219,7 @@ class Component extends DCLogic {
     const entry = {
       ai: s.f_ai, date: this.todayShort(),
       overview: (s.f_overview || '').trim(),
+      moat: (s.f_moat || '').trim(),
       fundamental: s.f_fundamental.trim(), technical: s.f_technical.trim(),
       valuation: (s.f_valuation || '').trim(),
     };
@@ -2225,7 +2233,7 @@ class Component extends DCLogic {
       next = [{ code, name: s.f_name.trim(), price: 0, chg: 0, market: mkt, tags, ais: [entry] }, ...cur];
     }
     this.saveAnalyses(next);
-    this.setState({ analyses: next, addOpen: false, editAnalysisCode: null, editAnalysisAiIdx: null, aiFilter: 'all', f_err: '', f_name: '', f_tags: '', f_overview: '', f_fundamental: '', f_technical: '' });
+    this.setState({ analyses: next, addOpen: false, editAnalysisCode: null, editAnalysisAiIdx: null, aiFilter: 'all', f_err: '', f_name: '', f_tags: '', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '' });
   }
 
   splitCsv(line) {
@@ -2444,10 +2452,12 @@ class Component extends DCLogic {
             };
           }),
           brandLabel: brand.label, brandCol: brand.color, date: r.date || '',
-          overview: r.overview || '', fundamental: r.fundamental || r.reason || '',
+          overview: r.overview || '', moat: r.moat || '', fundamental: r.fundamental || r.reason || '',
           technical: r.technical || '', valuation: r.valuation || '',
-          hasOverview: !!r.overview, hasFund: !!(r.fundamental || r.reason),
+          hasOverview: !!r.overview, hasMoat: !!r.moat, hasFund: !!(r.fundamental || r.reason),
           hasTech: !!r.technical, hasValuation: !!r.valuation,
+          hasTechOrValuation: !!(r.technical || r.valuation),
+          valuationDividerStyle: (r.technical && r.valuation) ? 'border-top:1px dashed #F0D9B8; margin-top:8px; padding-top:8px;' : '',
           onEdit: () => this.openEditAnalysis(stock.code, aiTabIdx),
           onEditStock: () => this.openStockEdit(stock.code),
           onAddNew: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openAddForStock(stock.code); },
@@ -3077,7 +3087,7 @@ class Component extends DCLogic {
       isSaved: !!(this.state.analyses || this.state.trades),
       onReset: () => this.resetAll(),
       peekOpen, peekType, mainPadRight,
-      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
+      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
       isPeekChartReview: peekType === 'chartreview' && !!peekPanel,
@@ -3125,9 +3135,10 @@ class Component extends DCLogic {
       onName: e => this.setF('f_name', e.target.value),
       fName: this.state.f_name,
       fTags: this.state.f_tags,
-      fOverview: this.state.f_overview || '', fFund: this.state.f_fundamental, fTech: this.state.f_technical, fValuation: this.state.f_valuation || '',
+      fOverview: this.state.f_overview || '', fMoat: this.state.f_moat || '', fFund: this.state.f_fundamental, fTech: this.state.f_technical, fValuation: this.state.f_valuation || '',
       onTags: e => this.setF('f_tags', e.target.value),
       onOverview: e => this.setF('f_overview', e.target.value),
+      onMoat: e => this.setF('f_moat', e.target.value),
       onFund: e => this.setF('f_fundamental', e.target.value),
       onTech: e => this.setF('f_technical', e.target.value),
       onValuation: e => this.setF('f_valuation', e.target.value),
