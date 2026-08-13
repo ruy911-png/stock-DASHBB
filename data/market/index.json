@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.13",
+      "krDate": "2026-08-13",
+      "usDate": "2026-08-12",
+      "wtiDate": "2026-08-12",
+      "collectedAt": "2026-08-13T07:16:40.968Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,813.34",
+          "chg": 3.56
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "861.37",
+          "chg": 0.29
+        },
+        {
+          "name": "원/달러",
+          "value": "1,424.00",
+          "chg": 0.35
+        },
+        {
+          "name": "S&P500",
+          "value": "7,748.50",
+          "chg": 0.26
+        },
+        {
+          "name": "나스닥",
+          "value": "26,588.49",
+          "chg": 0.54
+        },
+        {
+          "name": "VIX",
+          "value": "14.55",
+          "chg": -4.78
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,399.38",
+          "chg": 2.49
+        },
+        {
+          "name": "WTI",
+          "value": "83.27",
+          "chg": 0.08
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 21065
+        },
+        {
+          "name": "기관",
+          "amount": 6817
+        },
+        {
+          "name": "개인",
+          "amount": -27355
+        }
+      ],
+      "comment": "반도체 대형주 매수 집중에 코스피 급등, 코스닥은 제자리",
+      "keywords": [
+        "주택 공급",
+        "공공주택",
+        "카페디저트페어",
+        "점포 재개장",
+        "영업이익",
+        "재개장"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-13T16:00:24+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4130"
+        }
+      }
+    },
+    {
       "date": "7.27",
       "krDate": "2026-07-27",
       "usDate": "2026-07-24",
