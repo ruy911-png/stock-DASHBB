@@ -54,6 +54,12 @@ function isoDate(value, label) {
   return `${match[1]}-${match[2]}-${match[3]}`;
 }
 
+export function addDays(isoDateStr, days) {
+  const d = new Date(`${isoDateStr}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
 function numberValue(value, label) {
   const number = Number(String(value ?? '').replace(/,/g, ''));
   if (!Number.isFinite(number)) throw new Error(`${label} 숫자가 올바르지 않습니다: ${value}`);
@@ -74,20 +80,21 @@ function marketIndex(name, data, requireClose = true) {
 export function selectClosingBriefing(payload, targetDate) {
   const items = payload?.result?.items;
   if (!Array.isArray(items)) throw new Error('네이버페이 증권 AI 브리핑 목록을 읽지 못했습니다.');
-  const sameDate = items.filter(item => item.briefingDate === targetDate);
-  if (!sameDate.length) {
-    const availableDates = [...new Set(items.map(item => item.briefingDate))].slice(0, 10).join(', ');
-    throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (목록에서 확인된 날짜: ${availableDates || '없음'}, 총 ${items.length}건)`);
+  // 네이버페이 증권 AI 브리핑이 종종 국장 마감일(targetDate)이 아니라 그 다음 날짜로
+  // 라벨링되는 경우가 관측되어(2026.8 이후 거의 매일), targetDate를 우선 찾고
+  // 없으면 targetDate+1일도 폴백으로 확인한다.
+  const candidateDates = [targetDate, addDays(targetDate, 1)];
+  for (const date of candidateDates) {
+    const sameDate = items.filter(item => item.briefingDate === date);
+    if (!sameDate.length) continue;
+    const byHourDesc = [...sameDate].sort((a, b) => Number(b.briefingHour) - Number(a.briefingHour));
+    const selected = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20')
+      || sameDate.find(item => /코스피|국내\s*증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`))
+      || byHourDesc[0];
+    if (selected) return selected;
   }
-  const byHourDesc = [...sameDate].sort((a, b) => Number(b.briefingHour) - Number(a.briefingHour));
-  const selected = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20')
-    || sameDate.find(item => /코스피|국내\s*증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`))
-    || byHourDesc[0];
-  if (!selected) {
-    const hours = sameDate.map(item => item.briefingHour).join(', ');
-    throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (해당 날짜 브리핑 시각: ${hours})`);
-  }
-  return selected;
+  const availableDates = [...new Set(items.map(item => item.briefingDate))].slice(0, 10).join(', ');
+  throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (${targetDate}, ${candidateDates[1]} 모두 확인, 목록에서 확인된 날짜: ${availableDates || '없음'}, 총 ${items.length}건)`);
 }
 
 export function extractBriefing(payload, targetDate) {
@@ -163,8 +170,9 @@ async function main() {
   const wtiDate = isoDate(wtiRows[0].localTradedAt, 'WTI');
   const briefingItem = selectClosingBriefing(briefingList, krDate);
   const briefingPayload = await request(`${urls.briefingDetail}?id=${briefingItem.id}`);
-  const briefing = extractBriefing(briefingPayload, krDate);
-  if (kosdaqDate !== krDate || fxDate !== krDate || briefing.publishedDate !== krDate) {
+  const briefing = extractBriefing(briefingPayload, briefingItem.briefingDate);
+  const briefingDateOk = briefing.publishedDate === krDate || briefing.publishedDate === addDays(krDate, 1);
+  if (kosdaqDate !== krDate || fxDate !== krDate || !briefingDateOk) {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);
   }
   for (const [name, data] of [['나스닥', nasdaq], ['필라델피아 반도체', sox]]) {

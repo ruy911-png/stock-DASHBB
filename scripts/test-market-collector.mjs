@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import { extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
+import { addDays, extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
+
+assert.equal(addDays('2026-07-31', 1), '2026-08-01');
+assert.equal(addDays('2026-12-31', 1), '2027-01-01');
 
 const briefingList = {
   result: {
@@ -27,6 +30,28 @@ assert.throws(
   () => selectClosingBriefing(briefingList, '2099-01-01'),
   /2026-07-21/,
 );
+
+// 2026.8 이후 관측된 네이버 브리핑 라벨링 지연: 국장 마감일(targetDate)이 아니라
+// 그 다음 날짜로 브리핑이 태깅되는 경우, targetDate+1일로 폴백해서 찾는다
+const nextDayLabeledList = {
+  result: {
+    items: [
+      { id: 5001, title: '코스피 반도체 대형주 급락에 하락 마감', briefingDate: '2026-08-13', briefingHour: '20' },
+    ],
+  },
+};
+assert.equal(selectClosingBriefing(nextDayLabeledList, '2026-08-12').id, 5001);
+
+// 정확한 날짜가 있으면 다음날 폴백보다 우선한다
+const bothDatesList = {
+  result: {
+    items: [
+      { id: 6001, title: '정확한 날짜 브리핑', briefingDate: '2026-08-12', briefingHour: '20' },
+      { id: 6002, title: '다음날로 밀린 브리핑', briefingDate: '2026-08-13', briefingHour: '20' },
+    ],
+  },
+};
+assert.equal(selectClosingBriefing(bothDatesList, '2026-08-12').id, 6001);
 
 const detail = {
   result: {
