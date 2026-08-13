@@ -179,29 +179,51 @@
         </div>
 
 
-        <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
+            <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
+            <div style="display:flex; align-items:center; gap:4px; position:relative;">
+              시장
+              <sc-if value="{{ showAiMarketFilter }}" hint-placeholder-val="{{ true }}">
+                <span onclick="{{ onToggleAiMarketFilterOpen }}" style="display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:4px; cursor:pointer; font-size:9px; color:{{ aiMarketFilterIconCol }};">▾</span>
+                <sc-if value="{{ aiMarketFilterOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute; top:calc(100% + 6px); left:0; z-index:20; width:172px; background:#fff; border:1px solid #E6E6EE; border-radius:12px; box-shadow:0 12px 30px rgba(20,20,50,.14); padding:8px; font-weight:600;">
+                    <sc-for list="{{ aiMarketFilterOptions }}" as="o" hint-placeholder-count="4">
+                      <div onclick="{{ o.onToggle }}" style="display:flex; align-items:center; gap:7px; font-size:12px; color:#2E2E3C; padding:5px 6px; border-radius:6px; cursor:pointer;">
+                        <span style="width:14px; height:14px; border-radius:4px; background:{{ o.chkBg }}; border:1.5px solid {{ o.chkBorder }}; color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">{{ o.chkMark }}</span>
+                        <span style="flex:1;">{{ o.label }}</span>
+                        <span style="color:#B7B7C6; font-size:10.5px;">{{ o.count }}</span>
+                      </div>
+                    </sc-for>
+                    <div style="display:flex; gap:6px; margin-top:8px;">
+                      <div onclick="{{ onResetAiMarketFilter }}" style="flex:1; text-align:center; background:#F3F3F8; color:#8C8C9E; border-radius:8px; padding:6px 0; font-size:11.5px; font-weight:800; cursor:pointer;">초기화</div>
+                      <div onclick="{{ onToggleAiMarketFilterOpen }}" style="flex:1; text-align:center; background:#6B62F0; color:#fff; border-radius:8px; padding:6px 0; font-size:11.5px; font-weight:800; cursor:pointer;">확인</div>
+                    </div>
+                  </div>
+                </sc-if>
+              </sc-if>
+            </div>
+            <div onclick="{{ onSortAiDate }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">날짜 <span style="font-size:10px; color:{{ aiSortDateCol }};">{{ aiSortDateIcon }}</span></div>
+            <div>태그</div>
+            <div></div>
+          </div>
+
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
-            <div style="background:#fff; border-radius:16px; box-shadow:0 4px 16px rgba(40,40,90,.04); border:{{ a.cardBorder }}; overflow:hidden;">
-              <div onclick="{{ a.onPeek }}" style="padding:15px 18px; cursor:pointer; display:flex; align-items:center; gap:18px; flex-wrap:wrap;">
-                <div style="width:180px; min-width:150px;">
-                  <div style="font-size:17px; font-weight:800; letter-spacing:-.3px;">{{ a.name }}</div>
-                </div>
-                <div style="width:150px; min-width:135px; display:flex; align-items:center; gap:8px;">
-                  <span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span>
-                  <span style="font-size:13px; font-weight:700; color:#56566A; white-space:nowrap;">{{ a.latestDate }}</span>
-                </div>
-                <div style="display:flex; align-items:center; gap:6px; flex:1; min-width:180px; flex-wrap:wrap;">
-                  <sc-for list="{{ a.tags }}" as="t" hint-placeholder-count="2">
-                    <span style="font-size:11px; font-weight:700; color:#6B62F0; background:#EFEDFE; padding:4px 9px; border-radius:8px; white-space:nowrap;">#{{ t }}</span>
-                  </sc-for>
-                  <sc-if value="{{ a.noMeta }}" hint-placeholder-val="{{ false }}">
-                    <span style="font-size:11px; font-weight:700; color:#B0B0BE;">태그 없음</span>
-                  </sc-if>
-                </div>
-                <div style="display:flex; gap:6px; flex-shrink:0;" onclick="{{ a.stopProp }}">
-                  <div onclick="{{ a.onStockEdit }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:6px 8px; background:#F3F3F8; border-radius:8px;" title="수정">✏</div>
-                  <div onclick="{{ a.onStockDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:6px 8px; background:#F3F3F8; border-radius:8px;" title="삭제">✕</div>
-                </div>
+            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+              <div style="font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
+              <div><span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
+              <div style="font-size:12px; font-weight:700; color:#56566A; white-space:nowrap;">{{ a.latestDate }}</div>
+              <div style="display:flex; align-items:center; gap:5px; overflow:hidden; white-space:nowrap;">
+                <sc-for list="{{ a.tags }}" as="t" hint-placeholder-count="2">
+                  <span style="font-size:10.5px; font-weight:700; color:#6B62F0; background:#EFEDFE; padding:3px 8px; border-radius:7px; white-space:nowrap; flex-shrink:0;">#{{ t }}</span>
+                </sc-for>
+                <sc-if value="{{ a.noMeta }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:11px; font-weight:700; color:#B0B0BE;">태그 없음</span>
+                </sc-if>
+              </div>
+              <div style="display:flex; justify-content:flex-end; gap:6px; flex-shrink:0;" onclick="{{ a.stopProp }}">
+                <div onclick="{{ a.onStockEdit }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:5px 7px; background:#F3F3F8; border-radius:8px;" title="수정">✏</div>
+                <div onclick="{{ a.onStockDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:5px 7px; background:#F3F3F8; border-radius:8px;" title="삭제">✕</div>
               </div>
             </div>
           </sc-for>
@@ -1349,7 +1371,9 @@ class Component extends DCLogic {
     newsQuery: '', newsText: '', newsItems: null, newsMsg: '', newsCollapsed: {},
     noteOpen: false, noteKind: null, n_cat: '기본기', n_editIdx: null, n_title: '', n_body: '', n_src: '', n_err: '',
     studyAllNotes: null, caseAllNotes: null,
-    aiMarket: 'kospi',
+    aiMarket: 'all',
+    aiMarketFilter: ['kospi', 'kosdaq', 'us', 'etc'], aiMarketFilterOpen: false,
+    aiSortKey: null, aiSortDir: 'asc',
     editAnalysisCode: null, editAnalysisAiIdx: null,
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
@@ -2017,6 +2041,18 @@ class Component extends DCLogic {
     return { col: '#8A8AA0', bg: '#F0F0F4' };
   }
 
+  toggleAiMarketFilter(key) {
+    const cur = this.state.aiMarketFilter || ['kospi', 'kosdaq', 'us', 'etc'];
+    const next = cur.includes(key) ? cur.filter(k => k !== key) : [...cur, key];
+    this.setState({ aiMarketFilter: next });
+  }
+  toggleAiMarketFilterOpen() { this.setState({ aiMarketFilterOpen: !this.state.aiMarketFilterOpen }); }
+  resetAiMarketFilter() { this.setState({ aiMarketFilter: ['kospi', 'kosdaq', 'us', 'etc'], aiMarketFilterOpen: false }); }
+  toggleAiSort(key) {
+    if (this.state.aiSortKey !== key) this.setState({ aiSortKey: key, aiSortDir: key === 'date' ? 'desc' : 'asc' });
+    else this.setState({ aiSortDir: this.state.aiSortDir === 'asc' ? 'desc' : 'asc' });
+  }
+
   openEditAnalysis(code, aiIdx) {
     const cur = this.state.analyses || this.analyses;
     const stock = cur.find(a => a.code === code);
@@ -2412,6 +2448,7 @@ class Component extends DCLogic {
     const mkt = this.state.aiMarket;
     const analysesData = this.state.analyses || this.analyses;
     const mktDef = [
+      { key: 'all', label: '전체' },
       { key: 'kospi', label: 'KOSPI' },
       { key: 'kosdaq', label: 'KOSDAQ' },
       { key: 'us', label: '미국주식' },
@@ -2505,11 +2542,24 @@ class Component extends DCLogic {
       }
     }
 
+    const marketFilter = this.state.aiMarketFilter || ['kospi', 'kosdaq', 'us', 'etc'];
     const filteredByMarket = analysesData.filter(a => {
       const am = a.market || (this.isUS(a.code) ? 'us' : 'kospi');
-      return am === mkt;
+      return mkt === 'all' ? marketFilter.includes(am) : am === mkt;
     });
-    const analyses = filteredByMarket.map(a => {
+    const aiSortKey = this.state.aiSortKey;
+    const aiSortDir = this.state.aiSortDir || 'asc';
+    const dateKeyOf = s => {
+      const d = (s.ais && s.ais[0] && s.ais[0].date) || '';
+      const p = d.split('.');
+      return p.length === 2 ? Number(p[0]) * 100 + Number(p[1]) : -1;
+    };
+    const sortedByMarket = aiSortKey === 'name'
+      ? [...filteredByMarket].sort((x, y) => x.name.localeCompare(y.name, 'ko') * (aiSortDir === 'asc' ? 1 : -1))
+      : aiSortKey === 'date'
+        ? [...filteredByMarket].sort((x, y) => (dateKeyOf(x) - dateKeyOf(y)) * (aiSortDir === 'asc' ? 1 : -1))
+        : filteredByMarket;
+    const analyses = sortedByMarket.map(a => {
       const am = a.market || (this.isUS(a.code) ? 'us' : 'kospi');
       const isUS = am === 'us';
       const pct = a.price ? a.chg / (a.price - a.chg) * 100 : 0;
@@ -2563,10 +2613,33 @@ class Component extends DCLogic {
         onStockDel: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); if(window.confirm('종목 ' + a.name + ' 전체를 삭제할까요?')) this.deleteAnalysis(a.code); },
         stopProp: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); },
         ais: aisV, miniBadges,
-        cardBorder: (this.state.peekCode === a.code && this.state.peekType === 'analysis') ? '2px solid #6B62F0' : '1px solid #EFEFF5',
+        rowBg: (this.state.peekCode === a.code && this.state.peekType === 'analysis') ? '#F4F3FF' : '#fff',
         onPeek: () => this.openPeekAnalysis(a.code),
       };
     });
+    const aiMarketCounts = { kospi: 0, kosdaq: 0, us: 0, etc: 0 };
+    analysesData.forEach(a => {
+      const am = a.market || (this.isUS(a.code) ? 'us' : 'kospi');
+      if (aiMarketCounts[am] !== undefined) aiMarketCounts[am]++;
+    });
+    const aiMarketFilterOptions = [
+      { key: 'kospi', label: 'KOSPI', count: aiMarketCounts.kospi, checked: marketFilter.includes('kospi') },
+      { key: 'kosdaq', label: 'KOSDAQ', count: aiMarketCounts.kosdaq, checked: marketFilter.includes('kosdaq') },
+      { key: 'us', label: '미국주식', count: aiMarketCounts.us, checked: marketFilter.includes('us') },
+      { key: 'etc', label: '기타', count: aiMarketCounts.etc, checked: marketFilter.includes('etc') },
+    ].map(o => ({
+      ...o,
+      onToggle: () => this.toggleAiMarketFilter(o.key),
+      chkBg: o.checked ? '#6B62F0' : '#fff', chkBorder: o.checked ? '#6B62F0' : '#D8D8E4',
+      chkMark: o.checked ? '✓' : '',
+    }));
+    const aiMarketFilterActive = mkt === 'all' && marketFilter.length < 4;
+    const aiMarketFilterIconCol = aiMarketFilterActive ? '#6B62F0' : '#A8A8B6';
+    const aiSortArrow = aiSortDir === 'asc' ? '↑' : '↓';
+    const aiSortNameCol = aiSortKey === 'name' ? '#6B62F0' : '#A8A8B6';
+    const aiSortDateCol = aiSortKey === 'date' ? '#6B62F0' : '#A8A8B6';
+    const aiSortNameIcon = aiSortKey === 'name' ? aiSortArrow : '↕';
+    const aiSortDateIcon = aiSortKey === 'date' ? aiSortArrow : '↕';
     const aiFilters = [
       { key: 'all', label: '전체' }, { key: 'claude', label: 'Claude' },
       { key: 'gemini', label: 'Gemini' }, { key: 'gpt', label: 'GPT' },
@@ -3147,6 +3220,12 @@ class Component extends DCLogic {
       caseUser, caseCards, caseHasUser: caseCards.length > 0,
       openStudyNote: () => this.openNote('study'), openCaseNote: () => this.addNewCase(),
       marketTabs, aiCountText: filteredByMarket.length + '개 종목 · ' + (mktDef.find(d=>d.key===mkt)||{label:mkt}).label,
+      showAiMarketFilter: mkt === 'all',
+      aiMarketFilterOpen: this.state.aiMarketFilterOpen, aiMarketFilterOptions, aiMarketFilterIconCol,
+      onToggleAiMarketFilterOpen: () => this.toggleAiMarketFilterOpen(),
+      onResetAiMarketFilter: () => this.resetAiMarketFilter(),
+      aiSortNameCol, aiSortDateCol, aiSortNameIcon, aiSortDateIcon,
+      onSortAiName: () => this.toggleAiSort('name'), onSortAiDate: () => this.toggleAiSort('date'),
       noteOpen: this.state.noteOpen,
       noteModalTitle: this.state.noteKind === 'study' ? (this.state.n_editIdx != null ? '노트 수정' : '노트 추가') : '과거사례 기록 추가',
       noteBodyLabel: this.state.noteKind === 'study' ? '내용 (개념·요점 자유롭게)' : '내용 (사건·뉴스·주가 흐름·교훈 자유롭게)',
