@@ -180,8 +180,8 @@
 
 
         <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
-          <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
+          <sc-if value="{{ isListWide }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid; grid-template-columns:minmax(150px,1.3fr) minmax(70px,.85fr) minmax(55px,.6fr) minmax(90px,2fr) minmax(65px,.55fr); gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div style="display:flex; align-items:center; gap:4px; position:relative;">
               시장
@@ -210,7 +210,7 @@
           </div>
           </sc-if>
 
-          <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ isListCompact }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px 14px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:12px; font-weight:800; color:#8C8C9E;">
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div onclick="{{ onSortAiDate }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">날짜 <span style="font-size:10px; color:{{ aiSortDateCol }};">{{ aiSortDateIcon }}</span></div>
@@ -239,7 +239,7 @@
 
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
             <sc-if value="{{ a.isWide }}" hint-placeholder-val="{{ true }}">
-            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(150px,1.3fr) minmax(70px,.85fr) minmax(55px,.6fr) minmax(90px,2fr) minmax(65px,.55fr); gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
               <div style="font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
               <div><span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
               <div style="font-size:12px; font-weight:700; color:#56566A; white-space:nowrap;">{{ a.latestDate }}</div>
@@ -2522,6 +2522,12 @@ class Component extends DCLogic {
     const peekType = this.state.peekType;
     const peekOpen = !!peekType;
     const isNarrow = (this.state.viewportWidth || 1200) < 760;
+    // 종목분석 리스트의 5칸 표는 실제 본문에 남는 폭(뷰포트 - 왼쪽 사이드바 248px)으로 판단한다.
+    // 갤럭시 폴드 펼친 화면(~670~720px)은 뷰포트만 보면 넉넉해 보이지만 사이드바가 기본으로
+    // 열려있어 실제 본문 폭은 420px대로 좁아서, 뷰포트만 기준 삼으면 5칸 표가 여전히 찌부러진다.
+    const sidebarW = this.state.sidebarOpen === false ? 0 : 248;
+    const mainContentWidth = (this.state.viewportWidth || 1200) - sidebarW;
+    const isListCompact = mainContentWidth < 650;
     const mainPadRight = peekOpen ? (isNarrow ? '0' : '440px') : '0';
     const peekPanelWidth = isNarrow ? '100%' : '440px';
     let peekPanel = null;
@@ -2676,7 +2682,7 @@ class Component extends DCLogic {
         stopProp: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); },
         ais: aisV, miniBadges,
         rowBg: (this.state.peekCode === a.code && this.state.peekType === 'analysis') ? '#F4F3FF' : '#fff',
-        isNarrow, isWide: !isNarrow,
+        isNarrow: isListCompact, isWide: !isListCompact,
         onPeek: () => this.openPeekAnalysis(a.code),
       };
     });
@@ -3223,6 +3229,7 @@ class Component extends DCLogic {
       isSaved: !!(this.state.analyses || this.state.trades),
       onReset: () => this.resetAll(),
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
+      isListCompact, isListWide: !isListCompact,
       peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
