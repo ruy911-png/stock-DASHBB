@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.14",
+      "krDate": "2026-08-14",
+      "usDate": "2026-08-13",
+      "wtiDate": "2026-08-13",
+      "collectedAt": "2026-08-14T07:02:53.365Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,977.94",
+          "chg": 2.42
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "864.65",
+          "chg": 0.38
+        },
+        {
+          "name": "원/달러",
+          "value": "1,416.90",
+          "chg": -0.23
+        },
+        {
+          "name": "S&P500",
+          "value": "7,798.99",
+          "chg": 0.65
+        },
+        {
+          "name": "나스닥",
+          "value": "26,803.03",
+          "chg": 0.81
+        },
+        {
+          "name": "VIX",
+          "value": "14.63",
+          "chg": 0.55
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,456.00",
+          "chg": 0.46
+        },
+        {
+          "name": "WTI",
+          "value": "81.25",
+          "chg": -2.43
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 30387
+        },
+        {
+          "name": "기관",
+          "amount": -10300
+        },
+        {
+          "name": "개인",
+          "amount": -19819
+        }
+      ],
+      "comment": "ICT 수출 서프라이즈에 반도체 쏠림, 코스닥은 힘 덜한 하루",
+      "keywords": [
+        "가계부채",
+        "임원 보수",
+        "영업이익",
+        "코스피",
+        "실적",
+        "가계대출"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-14T16:00:21+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4154"
+        }
+      }
+    },
+    {
       "date": "8.13",
       "krDate": "2026-08-13",
       "usDate": "2026-08-12",
