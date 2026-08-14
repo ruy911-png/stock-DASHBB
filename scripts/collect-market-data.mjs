@@ -88,10 +88,17 @@ export function selectClosingBriefing(payload, targetDate) {
     const sameDate = items.filter(item => item.briefingDate === date);
     if (!sameDate.length) continue;
     const byHourDesc = [...sameDate].sort((a, b) => Number(b.briefingHour) - Number(a.briefingHour));
-    const selected = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20')
-      || sameDate.find(item => /코스피|국내\s*증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`))
-      || byHourDesc[0];
-    if (selected) return selected;
+    const preferred = sameDate.find(item => String(item.briefingHour).padStart(2, '0') === '20');
+    const titleMatch = sameDate.find(item => /코스피|국내\s*증시|국내장/.test(`${item.title || ''} ${item.summary || ''}`));
+    // 선호 순서(20시 정각 > 제목 키워드매치 > 최신순)로 후보 전체를 반환한다 — 1순위 후보의
+    // 상세 데이터에 코스피 수급 정보가 없는 경우(예: 미국장 브리핑이 잘못 픽업된 경우)
+    // 호출측에서 다음 후보로 재시도할 수 있게 하기 위함.
+    const ordered = [];
+    const seen = new Set();
+    for (const candidate of [preferred, titleMatch, ...byHourDesc]) {
+      if (candidate && !seen.has(candidate.id)) { ordered.push(candidate); seen.add(candidate.id); }
+    }
+    if (ordered.length) return ordered;
   }
   const availableDates = [...new Set(items.map(item => item.briefingDate))].slice(0, 10).join(', ');
   throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (${targetDate}, ${candidateDates[1]} 모두 확인, 목록에서 확인된 날짜: ${availableDates || '없음'}, 총 ${items.length}건)`);
@@ -168,9 +175,19 @@ async function main() {
   const fxDate = isoDate(fxRows[0].localTradedAt, '원/달러');
   const usDate = isoDate(sp500.localTradedAt, '미장');
   const wtiDate = isoDate(wtiRows[0].localTradedAt, 'WTI');
-  const briefingItem = selectClosingBriefing(briefingList, krDate);
-  const briefingPayload = await request(`${urls.briefingDetail}?id=${briefingItem.id}`);
-  const briefing = extractBriefing(briefingPayload, briefingItem.briefingDate);
+  const briefingCandidates = selectClosingBriefing(briefingList, krDate);
+  let briefing = null;
+  let briefingError = null;
+  for (const candidate of briefingCandidates) {
+    try {
+      const briefingPayload = await request(`${urls.briefingDetail}?id=${candidate.id}`);
+      briefing = extractBriefing(briefingPayload, candidate.briefingDate);
+      break;
+    } catch (error) {
+      briefingError = error;
+    }
+  }
+  if (!briefing) throw briefingError || new Error('AI 브리핑 후보 중 유효한 항목을 찾지 못했습니다.');
   const briefingDateOk = briefing.publishedDate === krDate || briefing.publishedDate === addDays(krDate, 1);
   if (kosdaqDate !== krDate || fxDate !== krDate || !briefingDateOk) {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);

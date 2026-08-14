@@ -12,7 +12,7 @@ const briefingList = {
     ],
   },
 };
-assert.equal(selectClosingBriefing(briefingList, '2026-07-21').id, 3730);
+assert.equal(selectClosingBriefing(briefingList, '2026-07-21')[0].id, 3730);
 
 // 20시 정각 브리핑도 없고 키워드 매치도 안 되면, 해당 날짜의 가장 늦은 시각 브리핑으로 폴백한다
 const fallbackList = {
@@ -23,7 +23,7 @@ const fallbackList = {
     ],
   },
 };
-assert.equal(selectClosingBriefing(fallbackList, '2026-07-22').id, 4002);
+assert.equal(selectClosingBriefing(fallbackList, '2026-07-22')[0].id, 4002);
 
 // 해당 날짜 자체가 목록에 없으면, 에러 메시지에 실제 존재하는 날짜 목록을 포함해 진단을 돕는다
 assert.throws(
@@ -40,7 +40,7 @@ const nextDayLabeledList = {
     ],
   },
 };
-assert.equal(selectClosingBriefing(nextDayLabeledList, '2026-08-12').id, 5001);
+assert.equal(selectClosingBriefing(nextDayLabeledList, '2026-08-12')[0].id, 5001);
 
 // 정확한 날짜가 있으면 다음날 폴백보다 우선한다
 const bothDatesList = {
@@ -51,7 +51,20 @@ const bothDatesList = {
     ],
   },
 };
-assert.equal(selectClosingBriefing(bothDatesList, '2026-08-12').id, 6001);
+assert.equal(selectClosingBriefing(bothDatesList, '2026-08-12')[0].id, 6001);
+
+// 같은 날짜에 여러 브리핑이 있으면(20시 정각 우선, 그다음 제목매치, 그다음 최신순) 후보 전체를
+// 순서대로 돌려준다 — 1순위 후보 상세에 코스피 수급이 없어도 호출측이 다음 후보로 재시도 가능
+const multiCandidateList = {
+  result: {
+    items: [
+      { id: 7001, title: '오전 시황 요약', briefingDate: '2026-08-13', briefingHour: '09' },
+      { id: 7002, title: '미국 개장 전 브리핑', briefingDate: '2026-08-13', briefingHour: '22' },
+      { id: 7003, title: '코스피 반도체 강세 마감', briefingDate: '2026-08-13', briefingHour: '20' },
+    ],
+  },
+};
+assert.deepEqual(selectClosingBriefing(multiCandidateList, '2026-08-13').map(c => c.id), [7003, 7002, 7001]);
 
 const detail = {
   result: {
