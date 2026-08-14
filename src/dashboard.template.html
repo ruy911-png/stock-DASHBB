@@ -180,6 +180,7 @@
 
 
         <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
+          <sc-if value="{{ isWide }}" hint-placeholder-val="{{ true }}">
           <div style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div style="display:flex; align-items:center; gap:4px; position:relative;">
@@ -207,8 +208,37 @@
             <div>태그</div>
             <div></div>
           </div>
+          </sc-if>
+
+          <sc-if value="{{ isNarrow }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px 14px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:12px; font-weight:800; color:#8C8C9E;">
+            <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
+            <div onclick="{{ onSortAiDate }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">날짜 <span style="font-size:10px; color:{{ aiSortDateCol }};">{{ aiSortDateIcon }}</span></div>
+            <sc-if value="{{ showAiMarketFilter }}" hint-placeholder-val="{{ true }}">
+              <div style="position:relative;">
+                <div onclick="{{ onToggleAiMarketFilterOpen }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE; color:{{ aiMarketFilterIconCol }};">시장 ▾</div>
+                <sc-if value="{{ aiMarketFilterOpen }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute; top:calc(100% + 6px); left:0; z-index:20; width:172px; background:#fff; border:1px solid #E6E6EE; border-radius:12px; box-shadow:0 12px 30px rgba(20,20,50,.14); padding:8px; font-weight:600;">
+                    <sc-for list="{{ aiMarketFilterOptions }}" as="o" hint-placeholder-count="4">
+                      <div onclick="{{ o.onToggle }}" style="display:flex; align-items:center; gap:7px; font-size:12px; color:#2E2E3C; padding:5px 6px; border-radius:6px; cursor:pointer;">
+                        <span style="width:14px; height:14px; border-radius:4px; background:{{ o.chkBg }}; border:1.5px solid {{ o.chkBorder }}; color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">{{ o.chkMark }}</span>
+                        <span style="flex:1;">{{ o.label }}</span>
+                        <span style="color:#B7B7C6; font-size:10.5px;">{{ o.count }}</span>
+                      </div>
+                    </sc-for>
+                    <div style="display:flex; gap:6px; margin-top:8px;">
+                      <div onclick="{{ onResetAiMarketFilter }}" style="flex:1; text-align:center; background:#F3F3F8; color:#8C8C9E; border-radius:8px; padding:6px 0; font-size:11.5px; font-weight:800; cursor:pointer;">초기화</div>
+                      <div onclick="{{ onToggleAiMarketFilterOpen }}" style="flex:1; text-align:center; background:#6B62F0; color:#fff; border-radius:8px; padding:6px 0; font-size:11.5px; font-weight:800; cursor:pointer;">확인</div>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+          </sc-if>
 
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
+            <sc-if value="{{ a.isWide }}" hint-placeholder-val="{{ true }}">
             <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
               <div style="font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
               <div><span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
@@ -226,6 +256,29 @@
                 <div onclick="{{ a.onStockDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:5px 7px; background:#F3F3F8; border-radius:8px;" title="삭제">✕</div>
               </div>
             </div>
+            </sc-if>
+
+            <sc-if value="{{ a.isNarrow }}" hint-placeholder-val="{{ false }}">
+            <div onclick="{{ a.onPeek }}" style="padding:12px 14px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="flex:1; min-width:0; font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
+                <span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap; flex-shrink:0;">{{ a.mktLabel }}</span>
+                <span style="font-size:11.5px; font-weight:700; color:#56566A; white-space:nowrap; flex-shrink:0;">{{ a.latestDate }}</span>
+                <div style="display:flex; gap:5px; flex-shrink:0;" onclick="{{ a.stopProp }}">
+                  <div onclick="{{ a.onStockEdit }}" style="font-size:11px; color:#9A9AAC; cursor:pointer; padding:4px 6px; background:#F3F3F8; border-radius:7px;" title="수정">✏</div>
+                  <div onclick="{{ a.onStockDel }}" style="font-size:11px; color:#C4C4D2; cursor:pointer; padding:4px 6px; background:#F3F3F8; border-radius:7px;" title="삭제">✕</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:5px; flex-wrap:wrap; margin-top:7px;">
+                <sc-for list="{{ a.tags }}" as="t" hint-placeholder-count="2">
+                  <span style="font-size:10.5px; font-weight:700; color:#6B62F0; background:#EFEDFE; padding:3px 8px; border-radius:7px; white-space:nowrap;">#{{ t }}</span>
+                </sc-for>
+                <sc-if value="{{ a.noMeta }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:11px; font-weight:700; color:#B0B0BE;">태그 없음</span>
+                </sc-if>
+              </div>
+            </div>
+            </sc-if>
           </sc-for>
         </div>
       </div>
@@ -1077,7 +1130,7 @@
 
   <!-- ===================== PEEK PANEL ===================== -->
   <sc-if value="{{ peekOpen }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed; right:0; top:0; height:100vh; width:440px; z-index:60; display:flex; flex-direction:column; background:#fff; box-shadow:-8px 0 40px rgba(20,20,50,.14); border-left:1px solid #EAEAF0;">
+  <div style="position:fixed; right:0; top:0; height:100vh; width:{{ peekPanelWidth }}; z-index:60; display:flex; flex-direction:column; background:#fff; box-shadow:-8px 0 40px rgba(20,20,50,.14); border-left:1px solid #EAEAF0;">
     <div style="display:flex; align-items:center; padding:18px 20px 14px; border-bottom:1px solid #F0F0F6; flex-shrink:0;">
       <div style="font-size:13px; font-weight:700; color:#9A9AAC; flex:1;">{{ peekPanel.name }}{{ peekPanel.title }}</div>
       <div onclick="{{ closePeek }}" style="font-size:18px; color:#B0B0BE; cursor:pointer; padding:4px 8px; border-radius:8px; background:#F3F3F8; line-height:1;">✕</div>
@@ -1361,6 +1414,7 @@ class Component extends DCLogic {
     csvMsg: '',
     jsonImportMsg: '',
     selectedPnlStock: '삼성전자', pnlFilter: 'loss', showSmallPnl: false,
+    viewportWidth: 1200,
     analyses: [
   { id: 1, market: "kosdaq", name: "원익IPS", code: "240810", tags: ["반도체", "장비", "HBM"], summary: "반도체·디스플레이 전공정 장비. 메모리 캐펙스와 HBM/미세공정 전환 수혜.", ais: [{ ai: "claude", date: "6.30", overview: "• 반도체·디스플레이 전공정 장비(증착/식각) 기업. 삼성전자·SK하이닉스 메모리 캐펙스 직접 수혜주.", fundamental: "• 1Q26 매출 1,649억(+33%YoY), 영업익 107억 흑자전환(컨센서스 241% 상회) / 2025년 매출 9,098억(+21.6%), 영업익 738억(+594%)\n• Thesis: 2026년 D램(P4·M15X향)→2027년 NAND 투자사이클 수혜, HBM·1b/1c나노 전환 장비발주 확대\n• 리스크: 장비업 수주~매출인식 시차, 하반기 매출반영 의존도 높음", technical: "• 6/25 종가 154,700원(전일 150,600), 52주 25,850~183,300원. 신고가 근접권에서 등락", valuation: "• 컨센서스 평균목표가 152,929원(범위 95,000~185,000), 메리츠(5/11) 176,000원, 키움(3/10) 160,000원\n• 현재가가 컨센서스 평균 근접 → 추가 상향 리포트 여부가 키 변수" }] },
   { id: 2, market: "kosdaq", name: "에스티팜", code: "237690", tags: ["바이오", "RNA", "CDMO"], summary: "올리고뉴클레오타이드 CDMO. RNA 치료제 원료 상업화 공급과 증설 수혜.", ais: [{ ai: "claude", date: "6.30", overview: "• 동아쏘시오그룹 계열, 올리고뉴클레오타이드(RNA치료제 원료) CDMO 전문기업. 임상~상업화 API 공급.", fundamental: "• 영업이익률 20%대 안착, 2028년까지 연평균 영업익 +30%YoY 전망 / 1월 미국 바이오텍과 1년 내 825억 상업화 공급계약\n• Thesis: RNA치료제 적응증 확장(이상지질혈증·FCS 등) 구조적 성장 + 제2올리고동 가동\n• 리스크: 고객사 파이프라인 임상 결과(2026 상반기 Lp(a) 임상 등)에 실적 연동", technical: "• 3/7 종가 160,000원(전일 148,800), 52주 신고가 경신 흐름, 52주 범위 66,600~166,600원\n• ※ 6월 최신가 검색결과 없음 — 미확인, 화면 확인 필요", valuation: "• 컨센서스 평균 158,889원(범위 130,000~200,000), 유진투자증권(1/26) 170,000원(2027E EPS×PE40배), 흥국·미래에셋 160,000원" }] },
@@ -1457,6 +1511,12 @@ class Component extends DCLogic {
     });
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
+    this.setState({ viewportWidth: window.innerWidth });
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => this.setState({ viewportWidth: window.innerWidth }), 150);
+    });
   }
 
   saveAnalyses(list) { try { localStorage.setItem(this.LS_ANALYSES, JSON.stringify(list)); } catch (e) {} }
@@ -2461,7 +2521,9 @@ class Component extends DCLogic {
     // ---- Peek ----
     const peekType = this.state.peekType;
     const peekOpen = !!peekType;
-    const mainPadRight = peekOpen ? '440px' : '0';
+    const isNarrow = (this.state.viewportWidth || 1200) < 760;
+    const mainPadRight = peekOpen ? (isNarrow ? '0' : '440px') : '0';
+    const peekPanelWidth = isNarrow ? '100%' : '440px';
     let peekPanel = null;
     const opC = op => op === '매수' ? UP : (op === '매도' || op === '손절') ? DOWN : '#8A8AA0';
     const opB = op => op === '매수' ? '#FDECEC' : (op === '매도' || op === '손절') ? '#EAF0FD' : '#F0F0F4';
@@ -2614,6 +2676,7 @@ class Component extends DCLogic {
         stopProp: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); },
         ais: aisV, miniBadges,
         rowBg: (this.state.peekCode === a.code && this.state.peekType === 'analysis') ? '#F4F3FF' : '#fff',
+        isNarrow, isWide: !isNarrow,
         onPeek: () => this.openPeekAnalysis(a.code),
       };
     });
@@ -3159,7 +3222,7 @@ class Component extends DCLogic {
       jsonMsgBg: /저장됨/.test(this.state.jsonImportMsg) ? '#E7F6EE' : '#FCEBEC',
       isSaved: !!(this.state.analyses || this.state.trades),
       onReset: () => this.resetAll(),
-      peekOpen, peekType, mainPadRight,
+      peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
