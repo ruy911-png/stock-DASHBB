@@ -181,7 +181,7 @@
 
         <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
           <sc-if value="{{ isListWide }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
+          <div style="display:grid; grid-template-columns:minmax(150px,1.3fr) minmax(70px,.85fr) minmax(55px,.6fr) minmax(90px,2fr) minmax(65px,.55fr); gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div style="display:flex; align-items:center; gap:4px; position:relative;">
               시장
@@ -239,7 +239,7 @@
 
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
             <sc-if value="{{ a.isWide }}" hint-placeholder-val="{{ true }}">
-            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:1.3fr .85fr .6fr 2fr .55fr; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(150px,1.3fr) minmax(70px,.85fr) minmax(55px,.6fr) minmax(90px,2fr) minmax(65px,.55fr); gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
               <div style="font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
               <div><span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
               <div style="font-size:12px; font-weight:700; color:#56566A; white-space:nowrap;">{{ a.latestDate }}</div>
