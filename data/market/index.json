@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.18",
+      "krDate": "2026-08-18",
+      "usDate": "2026-08-13",
+      "wtiDate": "2026-08-17",
+      "collectedAt": "2026-08-18T15:01:26.865Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,869.83",
+          "chg": -1.55
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "834.20",
+          "chg": -3.52
+        },
+        {
+          "name": "원/달러",
+          "value": "1,412.20",
+          "chg": -0.37
+        },
+        {
+          "name": "S&P500",
+          "value": "7,798.99",
+          "chg": 0.65
+        },
+        {
+          "name": "나스닥",
+          "value": "26,803.03",
+          "chg": 0.81
+        },
+        {
+          "name": "VIX",
+          "value": "14.63",
+          "chg": 0.55
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,456.00",
+          "chg": 0.46
+        },
+        {
+          "name": "WTI",
+          "value": "84.50",
+          "chg": 2.55
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 868
+        },
+        {
+          "name": "기관",
+          "amount": -6924
+        },
+        {
+          "name": "개인",
+          "amount": 6431
+        }
+      ],
+      "comment": "장기금리 뛰자 대형주는 버티고 코스닥은 더 밀리는 흐름",
+      "keywords": [
+        "코스피",
+        "로보틱스",
+        "환율",
+        "주택시장",
+        "AI 협력",
+        "수출"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-18T15:00:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4192"
+        }
+      }
+    },
+    {
       "date": "8.14",
       "krDate": "2026-08-14",
       "usDate": "2026-08-13",
