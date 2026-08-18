@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { addDays, extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
+import { addDays, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
 
 assert.equal(addDays('2026-07-31', 1), '2026-08-01');
 assert.equal(addDays('2026-12-31', 1), '2027-01-01');
@@ -112,5 +112,42 @@ assert.deepEqual(marketMood([
   { name: 'S&P500', chg: 1 },
   { name: '나스닥', chg: 1 },
 ]), { mood: '강세 · 위험선호', moodUp: true });
+
+// 국장 마감 시점엔 미장이 아직 열려있는 경우가 흔하므로, 가장 최근 저장된 엔트리에서
+// 미장 쪽 지표(S&P500/나스닥/VIX/필라델피아 반도체)만 그대로 이어받는다
+const usIndexNames = ['S&P500', '나스닥', 'VIX', '필라델피아 반도체'];
+const historyEntries = [
+  {
+    krDate: '2026-08-18', usDate: '2026-08-14',
+    indices: [
+      { name: 'KOSPI', value: '3,200.00', chg: 0.5 },
+      { name: 'S&P500', value: '5,600.00', chg: 0.3 },
+      { name: '나스닥', value: '18,000.00', chg: 0.4 },
+      { name: 'VIX', value: '14.00', chg: -1.2 },
+      { name: '필라델피아 반도체', value: '5,000.00', chg: 0.6 },
+    ],
+  },
+  {
+    krDate: '2026-08-14', usDate: '2026-08-14',
+    indices: [
+      { name: 'KOSPI', value: '3,190.00', chg: 0.1 },
+      { name: 'S&P500', value: '5,600.00', chg: 0.3 },
+      { name: '나스닥', value: '18,000.00', chg: 0.4 },
+      { name: 'VIX', value: '14.00', chg: -1.2 },
+      { name: '필라델피아 반도체', value: '5,000.00', chg: 0.6 },
+    ],
+  },
+];
+const carried = carryForwardUsIndices(historyEntries, usIndexNames);
+assert.equal(carried.usDate, '2026-08-14');
+assert.deepEqual(carried.usIndices.map(i => i.name), usIndexNames);
+assert.equal(carried.usIndices.find(i => i.name === 'S&P500').value, '5,600.00');
+// 이어받은 지표는 원본 엔트리와 별개 객체여야 한다(참조 공유 금지)
+assert.notEqual(carried.usIndices[0], historyEntries[0].indices[1]);
+
+assert.throws(
+  () => carryForwardUsIndices([{ krDate: '2026-08-01', indices: [{ name: 'KOSPI', value: '1', chg: 0 }] }], usIndexNames),
+  /참고할 이전 미장 데이터가 없습니다/,
+);
 
 console.log('시황 자동수집 파서 검증 완료');

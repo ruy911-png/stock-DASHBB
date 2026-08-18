@@ -158,6 +158,18 @@ export function marketMood(indices) {
   return { mood: '약세 · 위험회피', moodUp: false };
 }
 
+// 국장 마감 시점엔 미장이 아직 열려있는 경우가 흔하다(네이버 등 국내 증권 사이트도 이 시점엔
+// 전일 미장 마감치를 그대로 보여줌). 미장이 열려있으면 당일 미장 데이터를 새로 가져오지 않고,
+// 가장 최근 저장된 엔트리의 미장 쪽 값을 그대로 이어받는다.
+export function carryForwardUsIndices(entries, usIndexNames) {
+  const latestUsEntry = entries.find(item => usIndexNames.every(name => (item.indices || []).some(i => i.name === name)));
+  if (!latestUsEntry) throw new Error('미장이 아직 진행 중인데 참고할 이전 미장 데이터가 없습니다.');
+  return {
+    usDate: latestUsEntry.usDate,
+    usIndices: usIndexNames.map(name => ({ ...latestUsEntry.indices.find(i => i.name === name) })),
+  };
+}
+
 function writeOutput(name, value) {
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `${name}=${value}\n`);
 }
@@ -173,7 +185,6 @@ async function main() {
   const krDate = isoDate(kospi.localTradedAt, '국장');
   const kosdaqDate = isoDate(kosdaq.localTradedAt, '코스닥');
   const fxDate = isoDate(fxRows[0].localTradedAt, '원/달러');
-  const usDate = isoDate(sp500.localTradedAt, '미장');
   const wtiDate = isoDate(wtiRows[0].localTradedAt, 'WTI');
   const briefingCandidates = selectClosingBriefing(briefingList, krDate);
   let briefing = null;
@@ -192,23 +203,33 @@ async function main() {
   if (kosdaqDate !== krDate || fxDate !== krDate || !briefingDateOk) {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);
   }
-  for (const [name, data] of [['나스닥', nasdaq], ['필라델피아 반도체', sox]]) {
-    const date = isoDate(data.localTradedAt, name);
-    if (date !== usDate) throw new Error(`미장 기준일 불일치: S&P500 ${usDate}, ${name} ${date}`);
+
+  const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  if (!Array.isArray(payload.entries)) throw new Error('data/market/index.json의 entries가 배열이 아닙니다.');
+
+  const usIndexNames = ['S&P500', '나스닥', 'VIX', '필라델피아 반도체'];
+  let usDate;
+  let usIndices;
+  if (sp500.marketStatus === 'CLOSE') {
+    usDate = isoDate(sp500.localTradedAt, '미장');
+    for (const [name, data] of [['나스닥', nasdaq], ['필라델피아 반도체', sox]]) {
+      const date = isoDate(data.localTradedAt, name);
+      if (date !== usDate) throw new Error(`미장 기준일 불일치: S&P500 ${usDate}, ${name} ${date}`);
+    }
+    const vixDate = isoDate(vix.localTradedAt, 'VIX');
+    const vixIndex = vixDate === usDate && vix.marketStatus === 'CLOSE'
+      ? marketIndex('VIX', vix)
+      : vixFromHistory(await request(urls.vixHistory, false), usDate);
+    usIndices = [marketIndex('S&P500', sp500), marketIndex('나스닥', nasdaq), vixIndex, marketIndex('필라델피아 반도체', sox)];
+  } else {
+    ({ usDate, usIndices } = carryForwardUsIndices(payload.entries, usIndexNames));
   }
-  const vixDate = isoDate(vix.localTradedAt, 'VIX');
-  const vixIndex = vixDate === usDate && vix.marketStatus === 'CLOSE'
-    ? marketIndex('VIX', vix)
-    : vixFromHistory(await request(urls.vixHistory, false), usDate);
 
   const indices = [
     marketIndex('KOSPI', kospi),
     marketIndex('KOSDAQ', kosdaq),
     { name: '원/달러', value: String(fxRows[0].closePrice), chg: numberValue(fxRows[0].fluctuationsRatio, '원/달러 등락률') },
-    marketIndex('S&P500', sp500),
-    marketIndex('나스닥', nasdaq),
-    vixIndex,
-    marketIndex('필라델피아 반도체', sox),
+    ...usIndices,
     { name: 'WTI', value: String(wtiRows[0].closePrice), chg: numberValue(wtiRows[0].fluctuationsRatio, 'WTI 등락률') },
   ];
   const mood = marketMood(indices);
@@ -236,8 +257,6 @@ async function main() {
     },
   };
 
-  const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-  if (!Array.isArray(payload.entries)) throw new Error('data/market/index.json의 entries가 배열이 아닙니다.');
   const exists = payload.entries.some(item => item.krDate === krDate);
   writeOutput('kr_date', krDate);
   writeOutput('us_date', usDate);
