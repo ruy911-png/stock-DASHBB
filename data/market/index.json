@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.19",
+      "krDate": "2026-08-19",
+      "usDate": "2026-08-13",
+      "wtiDate": "2026-08-18",
+      "collectedAt": "2026-08-19T14:44:19.010Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,471.17",
+          "chg": -5.8
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "824.46",
+          "chg": -1.17
+        },
+        {
+          "name": "원/달러",
+          "value": "1,386.10",
+          "chg": -1.94
+        },
+        {
+          "name": "S&P500",
+          "value": "7,798.99",
+          "chg": 0.65
+        },
+        {
+          "name": "나스닥",
+          "value": "26,803.03",
+          "chg": 0.81
+        },
+        {
+          "name": "VIX",
+          "value": "14.63",
+          "chg": 0.55
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,456.00",
+          "chg": 0.46
+        },
+        {
+          "name": "WTI",
+          "value": "84.94",
+          "chg": 0.52
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -34726
+        },
+        {
+          "name": "기관",
+          "amount": -13390
+        },
+        {
+          "name": "개인",
+          "amount": 46357
+        }
+      ],
+      "comment": "미 장기금리 급등에 외국인 반도체 매도, 코스피 5.8% 약세 마감",
+      "keywords": [
+        "환율",
+        "코스피",
+        "용산공원",
+        "가계대출",
+        "주주환원",
+        "국채 금리"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-19T20:01:23+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4221"
+        }
+      }
+    },
+    {
       "date": "8.18",
       "krDate": "2026-08-18",
       "usDate": "2026-08-13",
