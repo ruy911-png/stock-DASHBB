@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.20",
+      "krDate": "2026-08-20",
+      "usDate": "2026-08-19",
+      "wtiDate": "2026-08-19",
+      "collectedAt": "2026-08-20T08:38:39.043Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,852.58",
+          "chg": 5.89
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "840.89",
+          "chg": 1.99
+        },
+        {
+          "name": "원/달러",
+          "value": "1,393.90",
+          "chg": 0.28
+        },
+        {
+          "name": "S&P500",
+          "value": "7,707.98",
+          "chg": 0.21
+        },
+        {
+          "name": "나스닥",
+          "value": "26,331.09",
+          "chg": 0.16
+        },
+        {
+          "name": "VIX",
+          "value": "14.89",
+          "chg": -6
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,738.23",
+          "chg": -2.12
+        },
+        {
+          "name": "WTI",
+          "value": "85.83",
+          "chg": 1.05
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 17079
+        },
+        {
+          "name": "기관",
+          "amount": -4906
+        },
+        {
+          "name": "개인",
+          "amount": -22712
+        }
+      ],
+      "comment": "SK하이닉스 40조 자사주 소각에 반도체로 매수 집중, 코스닥은 외국인 이탈",
+      "keywords": [
+        "용산공원",
+        "GV 90",
+        "환율",
+        "코스피",
+        "플래그십 SUV",
+        "성과급"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-20T17:00:32+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4242"
+        }
+      }
+    },
+    {
       "date": "8.18",
       "krDate": "2026-08-18",
       "usDate": "2026-08-13",
