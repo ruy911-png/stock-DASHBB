@@ -82,3 +82,8 @@ jobs:
             --head "$BRANCH" \
             --title "시황 데이터 ${KR_DATE} 자동 반영" \
             --body "$BODY"
+
+          # 이 시점에 이미 npm run check로 데이터를 검증했으므로, 사람이 매번 찾아서
+          # 머지할 필요 없이 자동 머지되게 한다(브랜치 보호에 필수 체크가 걸려있으면
+          # 그 체크들이 통과된 뒤에 머지된다).
+          gh pr merge "$BRANCH" --auto --merge
