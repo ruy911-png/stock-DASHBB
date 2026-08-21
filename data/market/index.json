@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.21",
+      "krDate": "2026-08-21",
+      "usDate": "2026-08-20",
+      "wtiDate": "2026-08-20",
+      "collectedAt": "2026-08-21T10:12:13.193Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,912.95",
+          "chg": 0.88
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "801.94",
+          "chg": -4.63
+        },
+        {
+          "name": "원/달러",
+          "value": "1,384.90",
+          "chg": -0.71
+        },
+        {
+          "name": "S&P500",
+          "value": "7,641.16",
+          "chg": -0.87
+        },
+        {
+          "name": "나스닥",
+          "value": "26,067.17",
+          "chg": -1
+        },
+        {
+          "name": "VIX",
+          "value": "16.01",
+          "chg": 7.52
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,800.02",
+          "chg": 0.53
+        },
+        {
+          "name": "WTI",
+          "value": "87.83",
+          "chg": 2.33
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -1760
+        },
+        {
+          "name": "기관",
+          "amount": 2481
+        },
+        {
+          "name": "개인",
+          "amount": -11652
+        }
+      ],
+      "comment": "주주환원 기대에 삼성은 올랐지만 코스닥 매도 사이드카 충격",
+      "keywords": [
+        "전면 파업",
+        "주주 환원",
+        "주택 신속공급",
+        "클래리티법",
+        "지분 매각",
+        "임금협상"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-21T19:00:29+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4268"
+        }
+      }
+    },
+    {
       "date": "8.20",
       "krDate": "2026-08-20",
       "usDate": "2026-08-19",
