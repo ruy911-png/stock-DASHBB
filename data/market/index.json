@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.26",
+      "krDate": "2026-08-26",
+      "usDate": "2026-08-25",
+      "wtiDate": "2026-08-25",
+      "collectedAt": "2026-08-26T09:46:36.246Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,808.21",
+          "chg": 0.97
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "826.87",
+          "chg": -0.03
+        },
+        {
+          "name": "원/달러",
+          "value": "1,384.90",
+          "chg": 0.1
+        },
+        {
+          "name": "S&P500",
+          "value": "7,677.28",
+          "chg": 0.32
+        },
+        {
+          "name": "나스닥",
+          "value": "26,151.30",
+          "chg": 0.66
+        },
+        {
+          "name": "VIX",
+          "value": "15.45",
+          "chg": -2.52
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,588.04",
+          "chg": 1.44
+        },
+        {
+          "name": "WTI",
+          "value": "82.36",
+          "chg": -3.12
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -1162
+        },
+        {
+          "name": "기관",
+          "amount": 7594
+        },
+        {
+          "name": "개인",
+          "amount": -22424
+        }
+      ],
+      "comment": "반도체 자사주 매입 기대는 버텼지만 코스닥엔 매도 압력 지속",
+      "keywords": [
+        "주택 공급",
+        "중장기 사업 전략",
+        "산업용 전기요금제",
+        "주택공급 대체부지",
+        "코스피",
+        "반도체 패키징 산업전"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-26T17:00:57+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4342"
+        }
+      }
+    },
+    {
       "date": "8.21",
       "krDate": "2026-08-21",
       "usDate": "2026-08-20",
