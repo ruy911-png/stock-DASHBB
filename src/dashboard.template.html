@@ -1486,8 +1486,18 @@ class Component extends DCLogic {
       const nw = localStorage.getItem(this.LS_NEWS);
       if (nw) next.newsItems = JSON.parse(nw);
       try { localStorage.removeItem('recdash_research_v1'); } catch(ex) {}
-      const st = localStorage.getItem(this.LS_STUDY);
-      next.studyAllNotes = st ? JSON.parse(st) : this.study.notes.map(n => ({ ...n }));
+      // 종목분석과 마찬가지로, 새 기본 노트를 추가해도 이미 LS_STUDY가 채워진
+      // 브라우저에서는 예전 캐시가 항상 우선돼 새 노트가 영원히 안 보인다.
+      // 버전 키를 올릴 때마다 한 번 강제로 최신 기본 노트로 덮어쓴다.
+      const studyUploadKey = 'stockking_study_upload_20260828_v1';
+      if (localStorage.getItem(studyUploadKey) !== 'done') {
+        localStorage.setItem(this.LS_STUDY, JSON.stringify(this.study.notes));
+        localStorage.setItem(studyUploadKey, 'done');
+        next.studyAllNotes = this.study.notes.map(n => ({ ...n }));
+      } else {
+        const st = localStorage.getItem(this.LS_STUDY);
+        next.studyAllNotes = st ? JSON.parse(st) : this.study.notes.map(n => ({ ...n }));
+      }
       const cs2 = localStorage.getItem(this.LS_CASES);
       next.caseAllNotes = cs2 ? JSON.parse(cs2) : this.cases.map(c => ({ ...c }));
       const cr = localStorage.getItem(this.LS_CHARTREVIEW);
