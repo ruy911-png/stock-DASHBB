@@ -334,7 +334,7 @@
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:minmax(320px,.9fr) minmax(520px,1.35fr); gap:18px; margin-top:18px; align-items:start;">
+        <div style="display:grid; grid-template-columns:{{ journalDetailGridCols }}; gap:18px; margin-top:18px; align-items:start;">
           <div>
             <div style="display:flex; align-items:center; justify-content:space-between; margin:0 4px 12px;">
               <div style="font-size:14px; font-weight:800; color:#56566A;">거래종목별 손익</div>
@@ -2528,6 +2528,10 @@ class Component extends DCLogic {
     const sidebarW = this.state.sidebarOpen === false ? 0 : 248;
     const mainContentWidth = (this.state.viewportWidth || 1200) - sidebarW;
     const isListCompact = mainContentWidth < 650;
+    // 매매일지 "선택 종목 상세" 2단 구성은 minmax(320px)+minmax(520px)이라 본문 폭이
+    // 좁으면(폭 여백 80px 포함 958px 미만) 강제로 옆이 잘린다. 그 아래에서는 1단으로 쌓는다.
+    const isJournalCompact = mainContentWidth < 958;
+    const journalDetailGridCols = isJournalCompact ? '1fr' : 'minmax(320px,.9fr) minmax(520px,1.35fr)';
     const mainPadRight = peekOpen ? (isNarrow ? '0' : '440px') : '0';
     const peekPanelWidth = isNarrow ? '100%' : '440px';
     let peekPanel = null;
@@ -3230,6 +3234,7 @@ class Component extends DCLogic {
       onReset: () => this.resetAll(),
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       isListCompact, isListWide: !isListCompact,
+      journalDetailGridCols,
       peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
