@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.28",
+      "krDate": "2026-08-28",
+      "usDate": "2026-08-27",
+      "wtiDate": "2026-08-27",
+      "collectedAt": "2026-08-28T06:52:25.562Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,788.88",
+          "chg": -1.79
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "838.41",
+          "chg": 0.09
+        },
+        {
+          "name": "원/달러",
+          "value": "1,373.80",
+          "chg": -0.59
+        },
+        {
+          "name": "S&P500",
+          "value": "7,730.99",
+          "chg": 0.72
+        },
+        {
+          "name": "나스닥",
+          "value": "26,541.35",
+          "chg": 1.57
+        },
+        {
+          "name": "VIX",
+          "value": "14.51",
+          "chg": -4.6
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,882.17",
+          "chg": 2.33
+        },
+        {
+          "name": "WTI",
+          "value": "83.53",
+          "chg": 1.58
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -8096
+        },
+        {
+          "name": "기관",
+          "amount": -94
+        },
+        {
+          "name": "개인",
+          "amount": 367
+        }
+      ],
+      "comment": "나스닥 강세에도 반도체 차익실현, 금리 인상·유증이 눌러버린 코스피",
+      "keywords": [
+        "AI 메모리 패키징",
+        "게임스컴 2026",
+        "코스피 하락",
+        "기준금리 인상",
+        "유상증자",
+        "코스피"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-28T12:00:26+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4385"
+        }
+      }
+    },
+    {
       "date": "8.26",
       "krDate": "2026-08-26",
       "usDate": "2026-08-25",
