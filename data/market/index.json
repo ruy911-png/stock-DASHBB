@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "8.31",
+      "krDate": "2026-08-31",
+      "usDate": "2026-08-28",
+      "wtiDate": "2026-08-28",
+      "collectedAt": "2026-08-31T10:06:39.672Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,820.02",
+          "chg": 0.46
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "834.29",
+          "chg": -0.49
+        },
+        {
+          "name": "원/달러",
+          "value": "1,368.20",
+          "chg": -0.93
+        },
+        {
+          "name": "S&P500",
+          "value": "7,711.76",
+          "chg": -0.25
+        },
+        {
+          "name": "나스닥",
+          "value": "26,402.42",
+          "chg": -0.52
+        },
+        {
+          "name": "VIX",
+          "value": "14.43",
+          "chg": -0.55
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,469.66",
+          "chg": -3.47
+        },
+        {
+          "name": "WTI",
+          "value": "83.40",
+          "chg": -0.16
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -6434
+        },
+        {
+          "name": "기관",
+          "amount": -7891
+        },
+        {
+          "name": "개인",
+          "amount": -1464
+        }
+      ],
+      "comment": "자사주 매입 버팀목에 6800선 회복, 코스닥은 매도 압박 지속",
+      "keywords": [
+        "코스피",
+        "식비 지출",
+        "자사주 매입",
+        "원·달러 환율",
+        "한일상공회의소 회장단 회의",
+        "세제개편안"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-08-31T19:00:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4421"
+        }
+      }
+    },
+    {
       "date": "8.28",
       "krDate": "2026-08-28",
       "usDate": "2026-08-27",
