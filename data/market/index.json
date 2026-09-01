@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.1",
+      "krDate": "2026-09-01",
+      "usDate": "2026-08-31",
+      "wtiDate": "2026-08-31",
+      "collectedAt": "2026-09-01T07:36:02.680Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,835.80",
+          "chg": 0.23
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "821.25",
+          "chg": -1.56
+        },
+        {
+          "name": "원/달러",
+          "value": "1,372.60",
+          "chg": 0.23
+        },
+        {
+          "name": "S&P500",
+          "value": "7,686.14",
+          "chg": -0.33
+        },
+        {
+          "name": "나스닥",
+          "value": "26,370.89",
+          "chg": -0.12
+        },
+        {
+          "name": "VIX",
+          "value": "14.92",
+          "chg": 3.4
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,535.05",
+          "chg": 0.57
+        },
+        {
+          "name": "WTI",
+          "value": "85.76",
+          "chg": 2.83
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -4919
+        },
+        {
+          "name": "기관",
+          "amount": -6340
+        },
+        {
+          "name": "개인",
+          "amount": -5398
+        }
+      ],
+      "comment": "반도체·AI 20조 지원 발표에도 코스닥 약세, 수급은 대형주 방어",
+      "keywords": [
+        "종합부동산세",
+        "추석 민생안정대책",
+        "성수품 공급",
+        "중소기업 AI 전환",
+        "회생계획안",
+        "미래대응기금"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-01T16:00:34+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4442"
+        }
+      }
+    },
+    {
       "date": "8.31",
       "krDate": "2026-08-31",
       "usDate": "2026-08-28",
