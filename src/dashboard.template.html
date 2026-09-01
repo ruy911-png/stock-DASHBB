@@ -2679,8 +2679,12 @@ class Component extends DCLogic {
     // 좁으면(폭 여백 80px 포함 958px 미만) 강제로 옆이 잘린다. 그 아래에서는 1단으로 쌓는다.
     const isJournalCompact = mainContentWidth < 958;
     const journalDetailGridCols = isJournalCompact ? '1fr' : 'minmax(320px,.9fr) minmax(520px,1.35fr)';
-    const mainPadRight = peekOpen ? (isNarrow ? '0' : '440px') : '0';
-    const peekPanelWidth = isNarrow ? '100%' : '440px';
+    // 상세보기 패널은 노트북 폭까지는 440px 그대로, 27인치급 이상 넓은 화면에서만
+    // 화면폭의 28%(최대 560px)까지 넓어진다 — 화면이 넓어져도 분석 텍스트가 늘 같은
+    // 좁은 칸에 줄바꿈되던 문제 대응.
+    const peekPanelWidthPx = Math.max(440, Math.min(560, Math.round((this.state.viewportWidth || 1200) * 0.28)));
+    const mainPadRight = peekOpen ? (isNarrow ? '0' : peekPanelWidthPx + 'px') : '0';
+    const peekPanelWidth = isNarrow ? '100%' : peekPanelWidthPx + 'px';
     let peekPanel = null;
     const opC = op => op === '매수' ? UP : (op === '매도' || op === '손절') ? DOWN : '#8A8AA0';
     const opB = op => op === '매수' ? '#FDECEC' : (op === '매도' || op === '손절') ? '#EAF0FD' : '#F0F0F4';
