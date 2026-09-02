@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.2",
+      "krDate": "2026-09-02",
+      "usDate": "2026-09-01",
+      "wtiDate": "2026-09-01",
+      "collectedAt": "2026-09-02T11:13:19.156Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,562.72",
+          "chg": -3.99
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "803.98",
+          "chg": -2.1
+        },
+        {
+          "name": "원/달러",
+          "value": "1,364.00",
+          "chg": -0.84
+        },
+        {
+          "name": "S&P500",
+          "value": "7,631.47",
+          "chg": -0.71
+        },
+        {
+          "name": "나스닥",
+          "value": "26,099.77",
+          "chg": -1.03
+        },
+        {
+          "name": "VIX",
+          "value": "16.34",
+          "chg": 9.52
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,288.61",
+          "chg": -2.14
+        },
+        {
+          "name": "WTI",
+          "value": "90.22",
+          "chg": 5.2
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -19173
+        },
+        {
+          "name": "기관",
+          "amount": -20361
+        },
+        {
+          "name": "개인",
+          "amount": 23029
+        }
+      ],
+      "comment": "중동발 유가·금리 부담에 대형주 동반 약세, 개인만 저가 매수",
+      "keywords": [
+        "코스피 하락",
+        "회생계획안",
+        "가계대출",
+        "기후행동 공동결의대회",
+        "한우 가격",
+        "소비자물가"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-02T19:00:31+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4469"
+        }
+      }
+    },
+    {
       "date": "9.1",
       "krDate": "2026-09-01",
       "usDate": "2026-08-31",
