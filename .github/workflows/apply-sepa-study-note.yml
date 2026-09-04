@@ -1,0 +1,52 @@
+name: Apply SEPA study note
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/apply-sepa-study-note.yml"
+      - "scripts/apply-sepa-study-note.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Add study note
+        run: node scripts/apply-sepa-study-note.mjs
+
+      - name: Build dashboard bundle
+        run: npm run build
+
+      - name: Verify dashboard
+        run: npm run check
+
+      - name: Remove one-time updater
+        run: |
+          rm -f scripts/apply-sepa-study-note.mjs
+          rm -f .github/workflows/apply-sepa-study-note.yml
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "feat: add SEPA stock selection methodology to study notes"
+          git push origin HEAD:main
