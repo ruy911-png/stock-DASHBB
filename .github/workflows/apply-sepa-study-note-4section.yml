@@ -1,0 +1,145 @@
+name: Apply 4-section SEPA study note
+
+on:
+  push:
+    branches:
+      - "chatgpt/shorten-sepa-study-note"
+    paths:
+      - ".github/workflows/apply-sepa-study-note-4section.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: chatgpt/shorten-sepa-study-note
+          fetch-depth: 0
+
+      - name: Replace SEPA note with 4-section version
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('src/dashboard.template.html')
+          text = path.read_text(encoding='utf-8')
+
+          needle = "      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body:"
+          start = text.find(needle)
+          if start < 0:
+              raise SystemExit('SEPA study note not found')
+          next_note = text.find("\n      { cat:", start + len(needle))
+          if next_note < 0:
+              raise SystemExit('next study note boundary not found')
+
+          replacement = '''      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body: `## 1. 목표 및 평가 순서
+
+좋은 회사와 **지금 살 종목**은 다릅니다.
+
+SEPA는 **실적과 추세가 강한 종목 중 현재 진입 위치와 손익비가 좋은 종목만 매수 후보로 선정**합니다.
+
+> **종목선정 ≠ 매수추천**
+
+평가 순서는 다음과 같습니다.
+
+**SEPA 펀더멘털 → Trend Template → Base / VCP → Pivot → Extension → Technical Stop → Risk / Reward → BUY CANDIDATE**
+
+실적만 보지 않고 **추세·진입 위치·손절·손익비까지 모두 확인**합니다.
+
+## 2. SEPA 펀더멘털 및 Trend Template
+
+기본적으로 다음을 선호합니다.
+
+- 최근 분기 EPS **+25% 이상**
+- 매출 **+20% 이상**
+- 영업이익 증가
+- 최근 2~4분기 성장 지속
+- 가이던스 상향
+- 신제품·신시장·점유율 확대 등 Catalyst
+
+기저효과나 일회성 이익은 감점합니다.
+
+SEPA는 바닥주보다 **이미 강한 시장 주도주**를 찾습니다.
+
+주요 조건은:
+
+- 현재가가 50·150·200일선 위
+- 장기 이동평균선 상승
+- 52주 고점 근처
+- 시장 대비 상대강도 우수
+
+단,
+
+> **신고가 근처라는 이유만으로 매수하지 않는다.**
+
+## 3. Base / VCP 및 Pivot / Extension
+
+VCP는 조정폭과 변동성이 단계적으로 줄어드는 구조입니다.
+
+**-20% → -10% → -5% → 거래량 감소 → Pivot**
+
+좋은 VCP는 **가격폭과 거래량이 함께 줄어듭니다.**
+
+급등 후 첫 눌림, 거래량 증가 하락, Wide & Loose, Failed Breakout은 제외합니다.
+
+> **VCP 가능성 ≠ VCP 완성**
+
+Pivot은 Base 상단이나 마지막 contraction 상단처럼 **명확한 저항선**을 사용합니다.
+
+Pivot 돌파 후 약 **+5% 이상 확장**되면 추격 위험을 경계하고, 급등 후에는 새로운 Mini-VCP를 기다립니다.
+
+> **강한 종목을 사되 너무 늦게 사지 않는다.**
+
+## 4. Technical Stop / 손익비 및 최종 판정
+
+손절은 임의 비율이 아니라 **차트 구조가 깨지는 위치**로 잡습니다.
+
+> **차트 구조 → Stop → Risk 계산**
+
+손익비는:
+
+- **2R 미만**: 추천 금지
+- **2R 이상**: BUY 가능
+- **3R 이상**: 우수
+
+목표가를 억지로 높여 손익비를 만들지 않습니다.
+
+**BUY CANDIDATE**  
+SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
+
+**WATCH**  
+좋은 종목이지만 VCP 미완성, Pivot 돌파 전, 과도한 상승, 손익비 부족.
+
+**EXCLUDE**  
+추세 훼손, Failed Breakout, 대량거래 하락, 고점 추격, 손절 불명확, 데이터 부족.
+
+> **핵심 원칙: 좋은 종목보다 좋은 Entry를 우선한다.**` },'''
+
+          text = text[:start] + replacement + text[next_note:]
+          old_key = 'stockking_study_upload_20260904_v4'
+          new_key = 'stockking_study_upload_20260904_v5'
+          if old_key not in text:
+              raise SystemExit('study cache version key not found')
+          text = text.replace(old_key, new_key, 1)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Build and verify dashboard
+        run: |
+          npm run build
+          npm run check
+
+      - name: Remove one-time workflow and commit
+        shell: bash
+        run: |
+          rm .github/workflows/apply-sepa-study-note-4section.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/dashboard.template.html index.html .github/workflows/apply-sepa-study-note-4section.yml
+          git commit -m "docs: regroup SEPA methodology into four sections"
+          git push origin HEAD:chatgpt/shorten-sepa-study-note
