@@ -25,10 +25,9 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
+          import base64
           path = Path('src/dashboard.template.html')
           text = path.read_text(encoding='utf-8')
-
           needle = "      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body:"
           start = text.find(needle)
           if start < 0:
@@ -36,90 +35,7 @@ jobs:
           next_note = text.find("\n      { cat:", start + len(needle))
           if next_note < 0:
               raise SystemExit('next study note boundary not found')
-
-          replacement = '''      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body: `## 1. 목표 및 평가 순서
-
-좋은 회사와 **지금 살 종목**은 다릅니다.
-
-SEPA는 **실적과 추세가 강한 종목 중 현재 진입 위치와 손익비가 좋은 종목만 매수 후보로 선정**합니다.
-
-> **종목선정 ≠ 매수추천**
-
-평가 순서는 다음과 같습니다.
-
-**SEPA 펀더멘털 → Trend Template → Base / VCP → Pivot → Extension → Technical Stop → Risk / Reward → BUY CANDIDATE**
-
-실적만 보지 않고 **추세·진입 위치·손절·손익비까지 모두 확인**합니다.
-
-## 2. SEPA 펀더멘털 및 Trend Template
-
-기본적으로 다음을 선호합니다.
-
-- 최근 분기 EPS **+25% 이상**
-- 매출 **+20% 이상**
-- 영업이익 증가
-- 최근 2~4분기 성장 지속
-- 가이던스 상향
-- 신제품·신시장·점유율 확대 등 Catalyst
-
-기저효과나 일회성 이익은 감점합니다.
-
-SEPA는 바닥주보다 **이미 강한 시장 주도주**를 찾습니다.
-
-주요 조건은:
-
-- 현재가가 50·150·200일선 위
-- 장기 이동평균선 상승
-- 52주 고점 근처
-- 시장 대비 상대강도 우수
-
-단,
-
-> **신고가 근처라는 이유만으로 매수하지 않는다.**
-
-## 3. Base / VCP 및 Pivot / Extension
-
-VCP는 조정폭과 변동성이 단계적으로 줄어드는 구조입니다.
-
-**-20% → -10% → -5% → 거래량 감소 → Pivot**
-
-좋은 VCP는 **가격폭과 거래량이 함께 줄어듭니다.**
-
-급등 후 첫 눌림, 거래량 증가 하락, Wide & Loose, Failed Breakout은 제외합니다.
-
-> **VCP 가능성 ≠ VCP 완성**
-
-Pivot은 Base 상단이나 마지막 contraction 상단처럼 **명확한 저항선**을 사용합니다.
-
-Pivot 돌파 후 약 **+5% 이상 확장**되면 추격 위험을 경계하고, 급등 후에는 새로운 Mini-VCP를 기다립니다.
-
-> **강한 종목을 사되 너무 늦게 사지 않는다.**
-
-## 4. Technical Stop / 손익비 및 최종 판정
-
-손절은 임의 비율이 아니라 **차트 구조가 깨지는 위치**로 잡습니다.
-
-> **차트 구조 → Stop → Risk 계산**
-
-손익비는:
-
-- **2R 미만**: 추천 금지
-- **2R 이상**: BUY 가능
-- **3R 이상**: 우수
-
-목표가를 억지로 높여 손익비를 만들지 않습니다.
-
-**BUY CANDIDATE**  
-SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
-
-**WATCH**  
-좋은 종목이지만 VCP 미완성, Pivot 돌파 전, 과도한 상승, 손익비 부족.
-
-**EXCLUDE**  
-추세 훼손, Failed Breakout, 대량거래 하락, 고점 추격, 손절 불명확, 데이터 부족.
-
-> **핵심 원칙: 좋은 종목보다 좋은 Entry를 우선한다.**` },'''
-
+          replacement = base64.b64decode('ICAgICAgeyBjYXQ6ICfrp6Trp6Tsm5DsuZknLCBjYXRDb2w6ICcjMUU4RTVBJywgY2F0Qmc6ICcjRTdGNkVFJywgdGl0bGU6ICdTRVBBIOq4sOuwmCDsooXrqqnstpTsspwg67Cp67KV66GgJywgYm9keTogYCMjIDEuIOuqqe2RnCDrsI8g7Y+J6rCAIOyInOyEnAoK7KKL7J2AIO2ajOyCrOyZgCAqKuyngOq4iCDsgrQg7KKF66qpKirsnYAg64uk66aF64uI64ukLgoKU0VQQeuKlCAqKuyLpOygjeqzvCDstpTshLjqsIAg6rCV7ZWcIOyiheuqqSDspJEg7ZiE7J6sIOynhOyehSDsnITsuZjsmYAg7IaQ7J2167mE6rCAIOyii+ydgCDsooXrqqnrp4wg66ek7IiYIO2bhOuztOuhnCDshKDsoJUqKu2VqeuLiOuLpC4KCj4gKirsooXrqqnshKDsoJUg4omgIOunpOyImOy2lOyynCoqCgrtj4nqsIAg7Iic7ISc64qUIOuLpOydjOqzvCDqsJnsirXri4jri6QuCgoqKlNFUEEg7Y6A642U66mY7YS4IOKGkiBUcmVuZCBUZW1wbGF0ZSDihpIgQmFzZSAvIFZDUCDihpIgUGl2b3Qg4oaSIEV4dGVuc2lvbiDihpIgVGVjaG5pY2FsIFN0b3Ag4oaSIFJpc2sgLyBSZXdhcmQg4oaSIEJVWSBDQU5ESURBVEUqKgoK7Iuk7KCB66eMIOuztOyngCDslYrqs6AgKirstpTshLjCt+ynhOyehSDsnITsuZjCt+yGkOygiMK37IaQ7J2167mE6rmM7KeAIOuqqOuRkCDtmZXsnbgqKu2VqeuLiOuLpC4KCiMjIDIuIFNFUEEg7Y6A642U66mY7YS4IOuwjyBUcmVuZCBUZW1wbGF0ZQoK6riw67O47KCB7Jy866GcIOuLpOydjOydhCDshKDtmLjtlanri4jri6QuCgotIOy1nOq3vCDrtoTquLAgRVBTICoqKzI1JSDsnbTsg4EqKgotIOunpOy2nCAqKisyMCUg7J207IOBKioKLSDsmIHsl4XsnbTsnbUg7Kad6rCACi0g7LWc6re8IDJ+NOu2hOq4sCDshLHsnqUg7KeA7IaNCi0g6rCA7J20642Y7IqkIOyDge2WpQotIOyLoOygnO2SiMK37Iug7Iuc7J6lwrfsoJDsnKDsnKgg7ZmV64yAIOuTsSBDYXRhbHlzdAoK6riw7KCA7Zqo6rO864KYIOydvO2ajOyEsSDsnbTsnbXsnYAg6rCQ7KCQ7ZWp64uI64ukLgoKU0VQQeuKlCDrsJTri6Xso7zrs7Tri6QgKirsnbTrr7gg6rCV7ZWcIOyLnOyepSDso7zrj4Tso7wqKuulvCDssL7sirXri4jri6QuCgrso7zsmpQg7KGw6rG07J2AOgoKLSDtmITsnqzqsIDqsIAgNTDCtzE1MMK3MjAw7J287ISgIOychAotIOyepeq4sCDsnbTrj5ntj4nqt6DshKAg7IOB7Iq5Ci0gNTLso7wg6rOg7KCQIOq3vOyymAotIOyLnOyepSDrjIDruYQg7IOB64yA6rCV64+EIOyasOyImAoK64uoLAoKPiAqKuyLoOqzoOqwgCDqt7zsspjrnbzripQg7J207Jyg66eM7Jy866GcIOunpOyImO2VmOyngCDslYrripTri6QuKioKCiMjIDMuIEJhc2UgLyBWQ1Ag67CPIFBpdm90IC8gRXh0ZW5zaW9uCgpWQ1DripQg7KGw7KCV7Y+t6rO8IOuzgOuPmeyEseydtCDri6jqs4TsoIHsnLzroZwg7KSE7Ja065Oc64qUIOq1rOyhsOyeheuLiOuLpC4KCioqLTIwJSDihpIgLTEwJSDihpIgLTUlIOKGkiDqsbDrnpjrn4kg6rCQ7IaMIOKGkiBQaXZvdCoqCgrsoovsnYAgVkNQ64qUICoq6rCA6rKp7Y+t6rO8IOqxsOuemOufieydtCDtlajqu5gg7KSE7Ja065Ot64uI64ukLioqCgrquInrk7Eg7ZuEIOyyqyDriIzrprwsIOqxsOuemOufiSDspp3qsIAg7ZWY6529LCBXaWRlICYgTG9vc2UsIEZhaWxlZCBCcmVha291dOydgCDsoJzsmbjtlanri4jri6QuCgo+ICoqVkNQIOqwgOuKpeyEsSDiiaAgVkNQIOyZhOyEsSoqCgpQaXZvdOydgCBCYXNlIOyDgeuLqOydtOuCmCDrp4jsp4Drp4kgY29udHJhY3Rpb24g7IOB64uo7LKY65+8ICoq66qF7ZmV7ZWcIOyggO2VreyEoCoq7J2EIOyCrOyaqe2VqeuLiOuLpC4KClBpdm90IOuPjO2MjCDtm4Qg7JW9ICoqKzUlIOydtOyDgSDtmZXsnqUqKuuQmOuptCDstpTqsqkg7JyE7ZeY7J2EIOqyveqzhO2VmOqzoCwg6riJ65OxIO2bhOyXkOuKlCDsg4jroZzsmrQgTWluaS1WQ1Drpbwg6riw64uk66a964uI64ukLgoKPiAqKuqwle2VnCDsooXrqqnsnYQg7IKs65CYIOuEiOustCDriqbqsowg7IKs7KeAIOyViuuKlOuLpC4qKgoKIyMgNC4gVGVjaG5pY2FsIFN0b3AgLyDshpDsnbXruYQg67CPIOy1nOyihSDtjJDsoJUKCuyGkOygiOydgCDsnoTsnZgg67mE7Jyo7J20IOyVhOuLiOudvCAqKuywqO2KuCDqtazsobDqsIAg6rmo7KeA64qUIOychOy5mCoq66GcIOyeoeyKteuLiOuLpC4KCj4gKirssKjtirgg6rWs7KGwIOKGkiBTdG9wIOKGkiBSaXNrIOqzhOyCsCoqCgrshpDsnbXruYTripQ6CgotICoqMlIg66+466eMKio6IOy2lOyynCDquIjsp4AKLSAqKjJSIOydtOyDgSoqOiBCVVkg6rCA64qlCi0gKiozUiDsnbTsg4EqKjog7Jqw7IiYCgrrqqntkZzqsIDrpbwg7Ja17KeA66GcIOuGkuyXrCDshpDsnbXruYTrpbwg66eM65Ok7KeAIOyViuyKteuLiOuLpC4KCioqQlVZIENBTkRJREFURSoqICAKU0VQQSArIFRyZW5kICsgVkNQICsgUGl2b3QgKyBFeHRlbnNpb24gKyBTdG9wICsgKipSL1Ig4omlIDIqKiDrqqjrkZAg7Ya16rO8LgoKKipXQVRDSCoqICAK7KKL7J2AIOyiheuqqeydtOyngOunjCBWQ1Ag66+47JmE7ISxLCBQaXZvdCDrj4ztjIwg7KCELCDqs7zrj4TtlZwg7IOB7Iq5LCDshpDsnbXruYQg67aA7KGxLgoKKipFWENMVURFKiogIArstpTshLgg7Zu87IaQLCBGYWlsZWQgQnJlYWtvdXQsIOuMgOufieqxsOuemCDtlZjrnb0sIOqzoOygkCDstpTqsqksIOyGkOygiCDrtojrqoXtmZUsIOuNsOydtO2EsCDrtoDsobEuCgo+ICoq7ZW17IusIOybkOy5mTog7KKL7J2AIOyiheuqqeuztOuLpCDsoovsnYAgRW50cnnrpbwg7Jqw7ISg7ZWc64ukLioqYCB9LA==').decode('utf-8')
           text = text[:start] + replacement + text[next_note:]
           old_key = 'stockking_study_upload_20260904_v4'
           new_key = 'stockking_study_upload_20260904_v5'
