@@ -1489,7 +1489,7 @@ class Component extends DCLogic {
       // 종목분석과 마찬가지로, 새 기본 노트를 추가해도 이미 LS_STUDY가 채워진
       // 브라우저에서는 예전 캐시가 항상 우선돼 새 노트가 영원히 안 보인다.
       // 버전 키를 올릴 때마다 한 번 강제로 최신 기본 노트로 덮어쓴다.
-      const studyUploadKey = 'stockking_study_upload_20260904_v4';
+      const studyUploadKey = 'stockking_study_upload_20260904_v5';
       if (localStorage.getItem(studyUploadKey) !== 'done') {
         localStorage.setItem(this.LS_STUDY, JSON.stringify(this.study.notes));
         localStorage.setItem(studyUploadKey, 'done');
@@ -1939,58 +1939,88 @@ class Component extends DCLogic {
 
   study = {
     notes: [
-      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body: `## 1. 목표
+      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body: `## 1. 목표 및 평가 순서
 
-좋은 회사와 **지금 살 종목**은 다르다. SEPA는 실적과 추세가 강한 종목 중 현재 진입 위치와 손익비가 좋은 종목만 매수 후보로 선정한다.
+좋은 회사와 **지금 살 종목**은 다릅니다.
+
+SEPA는 **실젍과 추세가 강한 종목 중 현재 진입 위치와 손익비가 좋은 종목만 매수 후보로 선정**합니다.
 
 > **종목선정 ≠ 매수추천**
 
-## 2. 평가 순서
+평가 순서는 다음과 같습니다.
 
-**SEPA 펀더멘털 → Trend Template → Base/VCP → Pivot → Extension → Technical Stop → Risk/Reward → BUY CANDIDATE**
+**SEPA 펀더멘털 → Trend Template → Base / VCP → Pivot → Extension → Technical Stop → Risk / Reward → BUY CANDIDATE**
 
-실적만 보지 않고 추세·진입 위치·손절·손익비까지 순서대로 확인한다.
+실적만 보지 않고 **추세·진입 위치·손절·손익비까지 모두 확인**합니다.
 
-## 3. SEPA 펀더멘털
+## 2. SEPA 펀더멘털 및 Trend Template
 
-최근 분기 **EPS +25% 이상, 매출 +20% 이상**을 기본 선호 기준으로 본다. 영업이익 증가, 최근 2~4분기 성장 지속, 가이던스 상향, 신제품·신시장·점유율 확대 같은 Catalyst도 함께 확인한다. 기저효과나 일회성 이익은 감점한다.
+기본적으로 다음을 선호합니다.
 
-## 4. Trend Template
+- 최근 분기 EPS **+25% 이상**
+- 매출 **+20% 이상**
+- 영업이익 증가
+- 최근 2~4분기 성장 지속
+- 가이던스 상향
+- 신제품·신시장·점유율 확대 등 Catalyst
 
-SEPA는 바닥주보다 **이미 강한 시장 주도주**를 찾는다. 현재가가 50·150·200일선 위에 있고 장기 이동평균선이 상승하며, 52주 고점 근처이고 시장 대비 상대강도가 좋은 종목을 선호한다.
+기저효과나 일회성 이익은 감점합니다.
+
+SEPA는 바닥주보다 **이미 강한 시장 주도주**를 찾습니다.
+
+주요 조건은:
+
+- 현재가가 50·150·200일선 위
+- 장기 이동평균선 상승
+- 52주 고점 근처
+- 시장 대비 상대강도 우수
+
+단,
 
 > **신고가 근처라는 이유만으로 매수하지 않는다.**
 
-## 5. Base / VCP
+## 3. Base / VCP 및 Pivot / Extension
 
-VCP는 조정폭과 변동성이 단계적으로 줄어드는 구조다. 예를 들어 **-20% → -10% → -5%**처럼 수축하고 거래량도 함께 감소하는 형태가 이상적이다. 급등 후 첫 눌림, 거래량 증가 하락, Wide & Loose, Failed Breakout은 제외한다.
+VCP는 조정폭과 변동성이 단계적으로 줄어드는 구조입니다.
+
+**-20% → -10% → -5% → 거래량 감소 → Pivot**
+
+좋은 VCP는 **가격폭과 거래량이 함께 줄어듭니다.**
+
+급등 후 첫 눌림, 거래량 증가 하락, Wide & Loose, Failed Breakout은 제외합니다.
 
 > **VCP 가능성 ≠ VCP 완성**
 
-## 6. Pivot / Extension
+Pivot은 Base 상단이나 마지막 contraction 상단처럼 **명확한 저항선**을 사용합니다.
 
-Pivot은 Base 상단이나 마지막 contraction 상단처럼 객관적으로 확인 가능한 저항선을 사용한다. Pivot 돌파 후 약 **+5% 이상** 확장되면 추격 위험을 경계하고, 급등 후에는 새로운 Mini-VCP를 기다린다.
+Pivot 돌파 후 약 **+5% 이상 확장**되면 추격 위험을 경계하고, 급등 후에는 새로운 Mini-VCP를 기다립니다.
 
 > **강한 종목을 사되 너무 늦게 사지 않는다.**
 
-## 7. Technical Stop / 손익비
+## 4. Technical Stop / 손익비 및 최종 판정
 
-손절은 임의 비율이 아니라 마지막 contraction 저점, Base 하단, Pivot 실패선 등 **차트 구조가 깨지는 위치**로 잡는다.
+손절은 임의 비율이 아니라 **차트 구조가 깨지는 위치**로 잡습니다.
 
 > **차트 구조 → Stop → Risk 계산**
 
-손익비는 **2R 미만 추천 금지, 2R 이상 BUY 가능, 3R 이상 우수**로 본다. 목표가를 억지로 높여 손익비를 만들지 않는다.
+손익비는:
 
-## 8. 최종 판정
+- **2R 미만**: 추천 금지
+- **2R 이상**: BUY 가능
+- **3R 이상**: 우수
 
-**BUY CANDIDATE**: SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
+목표가를 억지로 높여 손익비를 만들지 않습니다.
 
-**WATCH**: 좋은 종목이지만 VCP 미완성, Pivot 돌파 전, 과도한 상승, 손익비 부족.
+**BUY CANDIDATE**  
+SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
 
-**EXCLUDE**: 추세 훼손, Failed Breakout, 대량거래 하락, 고점 추격, 손절 불명확, 데이터 부족.
+**WATCH**  
+좋은 종목이지만 VCP 미완성, Pivot 돌파 전, 과도한 상승, 손익비 부족.
+
+**EXCLUDE**  
+추세 훼손, Failed Breakout, 대량거래 하락, 고점 추격, 손절 불명확, 데이터 부족.
 
 > **핵심 원칙: 좋은 종목보다 좋은 Entry를 우선한다.**` },
-
       { cat: '기본기', catCol: '#6B62F0', catBg: '#EFEDFE', title: 'PER · PBR 빠르게 읽기', body: 'PER는 주가가 이익의 몇 배인지(낮을수록 저평가), PBR은 순자산 대비 배수예요. 같은 업종끼리 비교해야 의미가 있어요.' },
       { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: '분할매수 · 분할매도', body: '한 번에 다 사지 않고 3번에 나눠 담으면 평단 부담이 줄어요. 팔 때도 목표가 도달 시 절반씩 익절하면 욕심을 누를 수 있어요.' },
       { cat: '리스크', catCol: '#C0392B', catBg: '#FCEBEC', title: '손절 라인 먼저 정하기', body: '사기 전에 \'-7%면 판다\' 같은 기준을 정해두세요. 감정이 개입되기 전에 미리 정한 규칙이 패닉셀을 막아줘요.' },
