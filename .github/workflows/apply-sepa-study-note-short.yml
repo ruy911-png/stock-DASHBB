@@ -25,10 +25,9 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-
+          import base64
           path = Path('src/dashboard.template.html')
           text = path.read_text(encoding='utf-8')
-
           needle = "      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body:"
           start = text.find(needle)
           if start < 0:
@@ -36,14 +35,7 @@ jobs:
           next_note = text.find("\n      { cat:", start + len(needle))
           if next_note < 0:
               raise SystemExit('next study note boundary not found')
-
-          replacement = '''      { cat: '매매원칙', catCol: '#1E8E5A', catBg: '#E7F6EE', title: 'SEPA 기반 종목추천 방법론', body: `## 1. 목표
-
-좋은 회사와 **지금 살 종목**은 다르다. SEPA는 실적과 추세가 강한 종목 중 현재 진입 위치와 손익비가 좋은 종목만 매수 후보로 선정한다.
-
-> **종목선정 ≠ 매수추천**
-
-## 2. 평가 순서
+          payload = "ICAgICAgeyBjYXQ6ICfrp6Trp6Tsm5DsuZknLCBjYXRDb2w6ICcjMUU4RTVBJywgY2F0Qmc6ICcjRTdGNkVFJywgdGl0bGU6ICdTRVBBIOq4sOuwmCDsooXrqqnrs7Tri6Qg67Cp67KV66GgJyw gYm9keTogYCMjIDEuIOuqqO2RnAoK7KKL7J2AIO2ajOyCrOyZgCAqKuynhOq4iOyCrCDsooXrqqnsooXrqqnqKqOydgCDripTrj6TrnKTrj6QuIFNFUEHripQg7Iuk7KCB6rO8IOy2lOyEuOqwgCDqsJXtlZwg7KKF66qpIOykkeyXkCDtmITsnqwg7KeE7J6FIOychOy5mOyZgCDshZjsnbXruYTrs7TqsIAg7KKL7J2AIOyiheuqqeunjCDrp6TsiJgg7ZuE67O066GcIOyEoOygle2VnOuLpC4KCiA+ICoq7KKF66qp7ISg7KCVIOKJoCDrp6TsiJjstpTssqAqK## 2. 평가 순서
 
 **SEPA 펀더멘털 → Trend Template → Base/VCP → Pivot → Extension → Technical Stop → Risk/Reward → BUY CANDIDATE**
 
@@ -87,8 +79,8 @@ Pivot은 Base 상단이나 마지막 contraction 상단처럼 객관적으로 �
 
 **EXCLUDE**: 추세 훼손, Failed Breakout, 대량거래 하락, 고점 추격, 손절 불명확, 데이터 부족.
 
-> **핵심 원칙: 좋은 종목보다 좋은 Entry를 우선한다.**` },'''
-
+> **핵심 원칙: 좋은 종목보다 좋은 Entry를 우선한다.**` },"
+          replacement = base64.b64decode(payload).decode('utf-8')
           text = text[:start] + replacement + text[next_note:]
           old_key = 'stockking_study_upload_20260904_v3'
           new_key = 'stockking_study_upload_20260904_v4'
