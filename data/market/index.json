@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.7",
+      "krDate": "2026-09-07",
+      "usDate": "2026-09-04",
+      "wtiDate": "2026-09-04",
+      "collectedAt": "2026-09-07T12:32:09.623Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,995.39",
+          "chg": 4.61
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "822.19",
+          "chg": 1.07
+        },
+        {
+          "name": "원/달러",
+          "value": "1,347.70",
+          "chg": -0.13
+        },
+        {
+          "name": "S&P500",
+          "value": "7,718.60",
+          "chg": -0.38
+        },
+        {
+          "name": "나스닥",
+          "value": "26,506.99",
+          "chg": -0.29
+        },
+        {
+          "name": "VIX",
+          "value": "14.53",
+          "chg": 1.47
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,735.26",
+          "chg": 3.38
+        },
+        {
+          "name": "WTI",
+          "value": "91.48",
+          "chg": 0.2
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 25532
+        },
+        {
+          "name": "기관",
+          "amount": 26491
+        },
+        {
+          "name": "개인",
+          "amount": -68374
+        }
+      ],
+      "comment": "AI 반도체 기대에 코스피 7000선 목전 강세 마감",
+      "keywords": [
+        "원달러 환율",
+        "원·달러 환율",
+        "코스피 상승",
+        "서울 아파트값",
+        "K-뷰티 체험관",
+        "코스피"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-07T20:01:22+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4546"
+        }
+      }
+    },
+    {
       "date": "9.2",
       "krDate": "2026-09-02",
       "usDate": "2026-09-01",
