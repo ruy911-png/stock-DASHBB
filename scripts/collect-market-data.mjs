@@ -109,7 +109,11 @@ export function extractBriefing(payload, targetDate) {
   if (!result || result.briefingDate !== targetDate) throw new Error('AI 브리핑 기준일이 국장 기준일과 다릅니다.');
   const flowVisual = (result.visuals || []).find(item => item.type === 'investor_flow_combined_bar');
   const kospiFlow = flowVisual?.data?.find(item => item.market === 'KOSPI');
-  if (!Array.isArray(kospiFlow?.flows)) throw new Error('AI 브리핑에서 코스피 투자자 수급을 찾지 못했습니다.');
+  if (!Array.isArray(kospiFlow?.flows)) {
+    const visualTypes = (result.visuals || []).map(item => item.type);
+    const debugDump = JSON.stringify(flowVisual ?? null).slice(0, 1500);
+    throw new Error(`AI 브리핑에서 코스피 투자자 수급을 찾지 못했습니다. (visuals 타입 목록: ${JSON.stringify(visualTypes)}, flowVisual 덤프: ${debugDump})`);
+  }
   const actorNames = { FOREIGN: '외국인', INSTITUTIONAL: '기관', INDIVIDUAL: '개인' };
   const flowMap = new Map(kospiFlow.flows.map(item => [actorNames[item.actor], numberValue(item.amount, `${item.actor} 수급`) / 100000000]));
   const flows = ['외국인', '기관', '개인'].map(name => {
