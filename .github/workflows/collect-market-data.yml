@@ -2,8 +2,11 @@ name: Collect market data
 
 on:
   schedule:
-    # 월~금 21:30 UTC = 화~토 06:30 KST
-    - cron: "30 21 * * 1-5"
+    # 월~금 12:00 UTC = 월~금 21:00 KST (국장 마감일 당일 저녁)
+    # 네이버페이 증권 AI 브리핑의 코스피 투자자 수급(investor_flow_combined_bar)은
+    # 20시 KST 브리핑에만 실리고 다음 날 새벽에는 조회되지 않는다. 기존 06:30 KST
+    # 스케줄은 이 때문에 매일 실패했으므로(#80), 브리핑 게시 직후인 21시 KST로 옮긴다.
+    - cron: "0 12 * * 1-5"
   workflow_dispatch:
 
 permissions:
