@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.10",
+      "krDate": "2026-09-10",
+      "usDate": "2026-09-04",
+      "wtiDate": "2026-09-09",
+      "collectedAt": "2026-09-10T13:59:54.981Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "7,033.92",
+          "chg": -0.25
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "836.92",
+          "chg": 0.79
+        },
+        {
+          "name": "원/달러",
+          "value": "1,345.00",
+          "chg": 0.3
+        },
+        {
+          "name": "S&P500",
+          "value": "7,718.60",
+          "chg": -0.38
+        },
+        {
+          "name": "나스닥",
+          "value": "26,506.99",
+          "chg": -0.29
+        },
+        {
+          "name": "VIX",
+          "value": "14.53",
+          "chg": 1.47
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,735.26",
+          "chg": 3.38
+        },
+        {
+          "name": "WTI",
+          "value": "96.05",
+          "chg": 3.25
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -26217
+        },
+        {
+          "name": "기관",
+          "amount": 5744
+        },
+        {
+          "name": "개인",
+          "amount": 3802
+        }
+      ],
+      "comment": "외국인 2.5조 매도에도 코스피 7,000선 방어, 코스닥 상승 마감",
+      "keywords": [
+        "코스피",
+        "생애최초 매수",
+        "한-아프리카 경제협력",
+        "추석 물가",
+        "공개매수",
+        "AI 데이터센터"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-10T20:01:31+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4608"
+        }
+      }
+    },
+    {
       "date": "9.7",
       "krDate": "2026-09-07",
       "usDate": "2026-09-04",
