@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.14",
+      "krDate": "2026-09-14",
+      "usDate": "2026-09-04",
+      "wtiDate": "2026-09-11",
+      "collectedAt": "2026-09-14T13:32:29.847Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,684.37",
+          "chg": -3.26
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "806.79",
+          "chg": -1.69
+        },
+        {
+          "name": "원/달러",
+          "value": "1,349.50",
+          "chg": 0.42
+        },
+        {
+          "name": "S&P500",
+          "value": "7,718.60",
+          "chg": -0.38
+        },
+        {
+          "name": "나스닥",
+          "value": "26,506.99",
+          "chg": -0.29
+        },
+        {
+          "name": "VIX",
+          "value": "14.53",
+          "chg": 1.47
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,735.26",
+          "chg": 3.38
+        },
+        {
+          "name": "WTI",
+          "value": "100.05",
+          "chg": -2.37
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -33363
+        },
+        {
+          "name": "기관",
+          "amount": -11869
+        },
+        {
+          "name": "개인",
+          "amount": 30351
+        }
+      ],
+      "comment": "외국인 3조 순매도와 반도체 급락에 코스피 약세 마감",
+      "keywords": [
+        "애프터마켓",
+        "코스피 하락",
+        "마이너스통장",
+        "마이너스통장 대출",
+        "원·달러 환율",
+        "서민금융진흥원"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-14T20:01:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4659"
+        }
+      }
+    },
+    {
       "date": "9.11",
       "krDate": "2026-09-11",
       "usDate": "2026-09-10",
