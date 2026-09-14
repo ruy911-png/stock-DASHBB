@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.11",
+      "krDate": "2026-09-11",
+      "usDate": "2026-09-10",
+      "wtiDate": "2026-09-10",
+      "collectedAt": "2026-09-11T11:58:12.235Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,909.91",
+          "chg": -1.76
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "820.64",
+          "chg": -1.95
+        },
+        {
+          "name": "원/달러",
+          "value": "1,343.10",
+          "chg": -0.58
+        },
+        {
+          "name": "S&P500",
+          "value": "7,591.70",
+          "chg": -0.58
+        },
+        {
+          "name": "나스닥",
+          "value": "26,081.73",
+          "chg": -0.65
+        },
+        {
+          "name": "VIX",
+          "value": "17.84",
+          "chg": 8.38
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,614.17",
+          "chg": -2.66
+        },
+        {
+          "name": "WTI",
+          "value": "102.48",
+          "chg": 6.69
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -22984
+        },
+        {
+          "name": "기관",
+          "amount": -12184
+        },
+        {
+          "name": "개인",
+          "amount": 18675
+        }
+      ],
+      "comment": "미 CPI 경계감 속 외국인·기관 동반 매도, 코스피 1.8% 하락 마감",
+      "keywords": [
+        "미래대응기금",
+        "코스피 하락",
+        "국제유가",
+        "국제유가 급등",
+        "코스피",
+        "미국 CPI"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-11T20:01:35+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4632"
+        }
+      }
+    },
+    {
       "date": "9.10",
       "krDate": "2026-09-10",
       "usDate": "2026-09-04",
