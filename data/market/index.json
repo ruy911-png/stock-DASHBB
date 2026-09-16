@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.16",
+      "krDate": "2026-09-16",
+      "usDate": "2026-09-15",
+      "wtiDate": "2026-09-15",
+      "collectedAt": "2026-09-16T12:21:02.713Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,717.97",
+          "chg": 1.37
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "815.98",
+          "chg": 0.44
+        },
+        {
+          "name": "원/달러",
+          "value": "1,367.20",
+          "chg": 0.26
+        },
+        {
+          "name": "S&P500",
+          "value": "7,585.73",
+          "chg": -0.45
+        },
+        {
+          "name": "나스닥",
+          "value": "25,981.57",
+          "chg": -0.78
+        },
+        {
+          "name": "VIX",
+          "value": "17.20",
+          "chg": 0.58
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,175.55",
+          "chg": 0.4
+        },
+        {
+          "name": "WTI",
+          "value": "105.83",
+          "chg": 4.38
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -16742
+        },
+        {
+          "name": "기관",
+          "amount": 12199
+        },
+        {
+          "name": "개인",
+          "amount": -11975
+        }
+      ],
+      "comment": "반도체 저가매수 유입에도 외국인 현물 매도 지속",
+      "keywords": [
+        "추석 차례상 비용",
+        "수산대전",
+        "코스피",
+        "클래리티 법",
+        "가계부채 비율",
+        "전월세 안심신탁"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-16T19:01:02+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4706"
+        }
+      }
+    },
+    {
       "date": "9.15",
       "krDate": "2026-09-15",
       "usDate": "2026-09-14",
