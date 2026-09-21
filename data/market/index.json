@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.21",
+      "krDate": "2026-09-21",
+      "usDate": "2026-09-17",
+      "wtiDate": "2026-09-18",
+      "collectedAt": "2026-09-21T13:31:23.730Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "7,007.72",
+          "chg": 1.65
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "836.27",
+          "chg": 1.11
+        },
+        {
+          "name": "원/달러",
+          "value": "1,372.40",
+          "chg": -1.12
+        },
+        {
+          "name": "S&P500",
+          "value": "7,637.76",
+          "chg": 1.14
+        },
+        {
+          "name": "나스닥",
+          "value": "26,418.30",
+          "chg": 1.69
+        },
+        {
+          "name": "VIX",
+          "value": "15.44",
+          "chg": -12.82
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,599.49",
+          "chg": 3.14
+        },
+        {
+          "name": "WTI",
+          "value": "100.30",
+          "chg": -1.58
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 117
+        },
+        {
+          "name": "기관",
+          "amount": 15162
+        },
+        {
+          "name": "개인",
+          "amount": -31850
+        }
+      ],
+      "comment": "외국인 삼성전자 1조원대 순매수에 코스피 7,000선 회복 강세 마감",
+      "keywords": [
+        "코스피",
+        "공적주택 공급",
+        "반도체 수출",
+        "보편형 공공임대",
+        "국내 증시",
+        "통인시장 방문"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-21T20:01:21+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4783"
+        }
+      }
+    },
+    {
       "date": "9.18",
       "krDate": "2026-09-18",
       "usDate": "2026-09-17",
