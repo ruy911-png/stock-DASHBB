@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.23",
+      "krDate": "2026-09-23",
+      "usDate": "2026-09-22",
+      "wtiDate": "2026-09-22",
+      "collectedAt": "2026-09-23T12:28:43.491Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "7,080.92",
+          "chg": 0.9
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "844.48",
+          "chg": 1.21
+        },
+        {
+          "name": "원/달러",
+          "value": "1,366.20",
+          "chg": 0.79
+        },
+        {
+          "name": "S&P500",
+          "value": "7,764.64",
+          "chg": 0
+        },
+        {
+          "name": "나스닥",
+          "value": "27,244.28",
+          "chg": 0.45
+        },
+        {
+          "name": "VIX",
+          "value": "14.21",
+          "chg": -4.44
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,689.82",
+          "chg": 2.06
+        },
+        {
+          "name": "WTI",
+          "value": "94.59",
+          "chg": -1.24
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -4877
+        },
+        {
+          "name": "기관",
+          "amount": 3190
+        },
+        {
+          "name": "개인",
+          "amount": -14711
+        }
+      ],
+      "comment": "삼성전자 실적 기대에 반도체만 탄력, 은행·자동차는 밀림",
+      "keywords": [
+        "원달러 환율",
+        "소비자심리지수",
+        "발행어음 인가",
+        "코스피 상승",
+        "원/달러 환율",
+        "코스피"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-23T19:00:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4830"
+        }
+      }
+    },
+    {
       "date": "9.22",
       "krDate": "2026-09-22",
       "usDate": "2026-09-21",
