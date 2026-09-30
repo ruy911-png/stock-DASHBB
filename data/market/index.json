@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "9.30",
+      "krDate": "2026-09-30",
+      "usDate": "2026-09-22",
+      "wtiDate": "2026-09-29",
+      "collectedAt": "2026-09-30T13:14:05.591Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,838.04",
+          "chg": -0.48
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "855.91",
+          "chg": 0.72
+        },
+        {
+          "name": "원/달러",
+          "value": "1,353.20",
+          "chg": -0.02
+        },
+        {
+          "name": "S&P500",
+          "value": "7,764.64",
+          "chg": 0
+        },
+        {
+          "name": "나스닥",
+          "value": "27,244.28",
+          "chg": 0.45
+        },
+        {
+          "name": "VIX",
+          "value": "14.21",
+          "chg": -4.44
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,689.82",
+          "chg": 2.06
+        },
+        {
+          "name": "WTI",
+          "value": "89.38",
+          "chg": -3.48
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -20465
+        },
+        {
+          "name": "기관",
+          "amount": -7837
+        },
+        {
+          "name": "개인",
+          "amount": 11791
+        }
+      ],
+      "comment": "미 장기금리 부담에 외국인·기관 매도, 메모리만 버틴 장",
+      "keywords": [
+        "국민성장펀드",
+        "코스피 하락",
+        "의무공개매수제도",
+        "서민금융 복합지원센터",
+        "알래스카 LNG",
+        "AI 풀스택"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-09-30T18:00:26+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4923"
+        }
+      }
+    },
+    {
       "date": "9.29",
       "krDate": "2026-09-29",
       "usDate": "2026-09-22",
