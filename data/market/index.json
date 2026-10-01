@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.1",
+      "krDate": "2026-10-01",
+      "usDate": "2026-09-22",
+      "wtiDate": "2026-09-30",
+      "collectedAt": "2026-10-01T14:05:07.752Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,971.35",
+          "chg": 1.95
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "894.29",
+          "chg": 4.48
+        },
+        {
+          "name": "원/달러",
+          "value": "1,362.50",
+          "chg": 0.33
+        },
+        {
+          "name": "S&P500",
+          "value": "7,764.64",
+          "chg": 0
+        },
+        {
+          "name": "나스닥",
+          "value": "27,244.28",
+          "chg": 0.45
+        },
+        {
+          "name": "VIX",
+          "value": "14.21",
+          "chg": -4.44
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,689.82",
+          "chg": 2.06
+        },
+        {
+          "name": "WTI",
+          "value": "90.42",
+          "chg": 1.16
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -5558
+        },
+        {
+          "name": "기관",
+          "amount": 3239
+        },
+        {
+          "name": "개인",
+          "amount": -14102
+        }
+      ],
+      "comment": "마이크론 호실적과 9월 수출 호조에 코스닥 강세, 코스피도 7,000선 근접 마감",
+      "keywords": [
+        "반도체 수출",
+        "알래스카 LNG",
+        "임원 승진",
+        "임원 인사",
+        "산업안전보건법 개정안",
+        "마이크론 실적"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-01T20:01:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4949"
+        }
+      }
+    },
+    {
       "date": "9.29",
       "krDate": "2026-09-29",
       "usDate": "2026-09-22",
