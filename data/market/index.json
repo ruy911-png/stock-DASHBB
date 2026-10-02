@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.2",
+      "krDate": "2026-10-02",
+      "usDate": "2026-09-22",
+      "wtiDate": "2026-10-01",
+      "collectedAt": "2026-10-02T13:25:13.180Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "7,003.74",
+          "chg": 0.46
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "893.29",
+          "chg": -0.11
+        },
+        {
+          "name": "원/달러",
+          "value": "1,346.90",
+          "chg": -0.93
+        },
+        {
+          "name": "S&P500",
+          "value": "7,764.64",
+          "chg": 0
+        },
+        {
+          "name": "나스닥",
+          "value": "27,244.28",
+          "chg": 0.45
+        },
+        {
+          "name": "VIX",
+          "value": "14.21",
+          "chg": -4.44
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,689.82",
+          "chg": 2.06
+        },
+        {
+          "name": "WTI",
+          "value": "92.87",
+          "chg": 2.71
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -1080
+        },
+        {
+          "name": "기관",
+          "amount": 4155
+        },
+        {
+          "name": "개인",
+          "amount": -17897
+        }
+      ],
+      "comment": "원화 강세와 기관 매수에 코스피 7000선 안착 마감",
+      "keywords": [
+        "소비자물가",
+        "개인정보 유출",
+        "SK㈜ 지분 매각",
+        "원·달러 환율",
+        "청라 헤드쿼터",
+        "서울 아파트값"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-02T20:01:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4973"
+        }
+      }
+    },
+    {
       "date": "9.29",
       "krDate": "2026-09-29",
       "usDate": "2026-09-22",
