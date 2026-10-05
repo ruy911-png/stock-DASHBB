@@ -2,9 +2,179 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.2",
+      "krDate": "2026-10-02",
+      "usDate": "2026-10-01",
+      "wtiDate": "2026-10-01",
+      "collectedAt": "2026-10-02T13:25:13.180Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "7,003.74",
+          "chg": 0.46
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "893.29",
+          "chg": -0.11
+        },
+        {
+          "name": "원/달러",
+          "value": "1,346.90",
+          "chg": -0.93
+        },
+        {
+          "name": "S&P500",
+          "value": "7,666.45",
+          "chg": 0.19
+        },
+        {
+          "name": "나스닥",
+          "value": "26,871.60",
+          "chg": 0.04
+        },
+        {
+          "name": "VIX",
+          "value": "16.39",
+          "chg": 0.31
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,829.00",
+          "chg": 1.59
+        },
+        {
+          "name": "WTI",
+          "value": "92.87",
+          "chg": 2.71
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -1080
+        },
+        {
+          "name": "기관",
+          "amount": 4155
+        },
+        {
+          "name": "개인",
+          "amount": -17897
+        }
+      ],
+      "comment": "원화 강세와 기관 매수에 코스피 7000선 안착 마감",
+      "keywords": [
+        "소비자물가",
+        "개인정보 유출",
+        "SK㈜ 지분 매각",
+        "원·달러 환율",
+        "청라 헤드쿼터",
+        "서울 아파트값"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-02T20:01:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4973"
+        }
+      }
+    },
+    {
+      "date": "10.1",
+      "krDate": "2026-10-01",
+      "usDate": "2026-09-30",
+      "wtiDate": "2026-09-30",
+      "collectedAt": "2026-10-01T14:05:07.752Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,971.35",
+          "chg": 1.95
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "894.29",
+          "chg": 4.48
+        },
+        {
+          "name": "원/달러",
+          "value": "1,362.50",
+          "chg": 0.33
+        },
+        {
+          "name": "S&P500",
+          "value": "7,651.54",
+          "chg": -0.25
+        },
+        {
+          "name": "나스닥",
+          "value": "26,861.06",
+          "chg": 0.24
+        },
+        {
+          "name": "VIX",
+          "value": "16.34",
+          "chg": 1.87
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,628.62",
+          "chg": 0
+        },
+        {
+          "name": "WTI",
+          "value": "90.42",
+          "chg": 1.16
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -5558
+        },
+        {
+          "name": "기관",
+          "amount": 3239
+        },
+        {
+          "name": "개인",
+          "amount": -14102
+        }
+      ],
+      "comment": "마이크론 호실적과 9월 수출 호조에 코스닥 강세, 코스피도 7,000선 근접 마감",
+      "keywords": [
+        "반도체 수출",
+        "알래스카 LNG",
+        "임원 승진",
+        "임원 인사",
+        "산업안전보건법 개정안",
+        "마이크론 실적"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-01T20:01:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/4949"
+        }
+      }
+    },
+    {
       "date": "9.30",
       "krDate": "2026-09-30",
-      "usDate": "2026-09-22",
+      "usDate": "2026-09-29",
       "wtiDate": "2026-09-29",
       "collectedAt": "2026-09-30T13:14:05.591Z",
       "indices": [
@@ -25,23 +195,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,764.64",
-          "chg": 0
+          "value": "7,670.84",
+          "chg": -0.17
         },
         {
           "name": "나스닥",
-          "value": "27,244.28",
-          "chg": 0.45
+          "value": "26,797.54",
+          "chg": -0.09
         },
         {
           "name": "VIX",
-          "value": "14.21",
-          "chg": -4.44
+          "value": "16.04",
+          "chg": -0.19
         },
         {
           "name": "필라델피아 반도체",
-          "value": "12,689.82",
-          "chg": 2.06
+          "value": "12,629.16",
+          "chg": 1.32
         },
         {
           "name": "WTI",
@@ -89,7 +259,7 @@
     {
       "date": "9.29",
       "krDate": "2026-09-29",
-      "usDate": "2026-09-22",
+      "usDate": "2026-09-28",
       "wtiDate": "2026-09-28",
       "collectedAt": "2026-09-29T13:38:12.939Z",
       "indices": [
@@ -110,23 +280,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,764.64",
-          "chg": 0
+          "value": "7,683.69",
+          "chg": -0.77
         },
         {
           "name": "나스닥",
-          "value": "27,244.28",
-          "chg": 0.45
+          "value": "26,820.38",
+          "chg": -0.92
         },
         {
           "name": "VIX",
-          "value": "14.21",
-          "chg": -4.44
+          "value": "16.07",
+          "chg": 8.07
         },
         {
           "name": "필라델피아 반도체",
-          "value": "12,689.82",
-          "chg": 2.06
+          "value": "12,465.24",
+          "chg": -1.61
         },
         {
           "name": "WTI",
@@ -174,7 +344,7 @@
     {
       "date": "9.28",
       "krDate": "2026-09-28",
-      "usDate": "2026-09-22",
+      "usDate": "2026-09-25",
       "wtiDate": "2026-09-25",
       "collectedAt": "2026-09-28T14:48:56.146Z",
       "indices": [
@@ -195,23 +365,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,764.64",
-          "chg": 0
+          "value": "7,743.41",
+          "chg": 0.51
         },
         {
           "name": "나스닥",
-          "value": "27,244.28",
-          "chg": 0.45
+          "value": "27,068.72",
+          "chg": 0.48
         },
         {
           "name": "VIX",
-          "value": "14.21",
-          "chg": -4.44
+          "value": "14.87",
+          "chg": -5.11
         },
         {
           "name": "필라델피아 반도체",
-          "value": "12,689.82",
-          "chg": 2.06
+          "value": "12,668.93",
+          "chg": 1.41
         },
         {
           "name": "WTI",
@@ -429,7 +599,7 @@
     {
       "date": "9.21",
       "krDate": "2026-09-21",
-      "usDate": "2026-09-17",
+      "usDate": "2026-09-18",
       "wtiDate": "2026-09-18",
       "collectedAt": "2026-09-21T13:31:23.730Z",
       "indices": [
@@ -450,23 +620,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,637.76",
-          "chg": 1.14
+          "value": "7,650.50",
+          "chg": 0.17
         },
         {
           "name": "나스닥",
-          "value": "26,418.30",
-          "chg": 1.69
+          "value": "26,522.54",
+          "chg": 0.39
         },
         {
           "name": "VIX",
-          "value": "15.44",
-          "chg": -12.82
+          "value": "14.81",
+          "chg": -4.08
         },
         {
           "name": "필라델피아 반도체",
-          "value": "11,599.49",
-          "chg": 3.14
+          "value": "11,921.69",
+          "chg": 2.78
         },
         {
           "name": "WTI",
@@ -854,7 +1024,7 @@
     {
       "date": "9.14",
       "krDate": "2026-09-14",
-      "usDate": "2026-09-04",
+      "usDate": "2026-09-11",
       "wtiDate": "2026-09-11",
       "collectedAt": "2026-09-14T13:32:29.847Z",
       "indices": [
@@ -875,23 +1045,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,718.60",
-          "chg": -0.38
+          "value": "7,656.98",
+          "chg": 0.86
         },
         {
           "name": "나스닥",
-          "value": "26,506.99",
-          "chg": -0.29
+          "value": "26,333.04",
+          "chg": 0.96
         },
         {
           "name": "VIX",
-          "value": "14.53",
-          "chg": 1.47
+          "value": "15.84",
+          "chg": -11.21
         },
         {
           "name": "필라델피아 반도체",
-          "value": "11,735.26",
-          "chg": 3.38
+          "value": "11,824.00",
+          "chg": 1.81
         },
         {
           "name": "WTI",
@@ -1024,7 +1194,7 @@
     {
       "date": "9.10",
       "krDate": "2026-09-10",
-      "usDate": "2026-09-04",
+      "usDate": "2026-09-09",
       "wtiDate": "2026-09-09",
       "collectedAt": "2026-09-10T13:59:54.981Z",
       "indices": [
@@ -1045,23 +1215,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,718.60",
-          "chg": -0.38
+          "value": "7,636.36",
+          "chg": -0.48
         },
         {
           "name": "나스닥",
-          "value": "26,506.99",
-          "chg": -0.29
+          "value": "26,253.34",
+          "chg": -0.64
         },
         {
           "name": "VIX",
-          "value": "14.53",
-          "chg": 1.47
+          "value": "16.46",
+          "chg": 4.71
         },
         {
           "name": "필라델피아 반도체",
-          "value": "11,735.26",
-          "chg": 3.38
+          "value": "11,931.32",
+          "chg": 0.37
         },
         {
           "name": "WTI",
@@ -1789,7 +1959,7 @@
     {
       "date": "8.18",
       "krDate": "2026-08-18",
-      "usDate": "2026-08-13",
+      "usDate": "2026-08-17",
       "wtiDate": "2026-08-17",
       "collectedAt": "2026-08-18T15:01:26.865Z",
       "indices": [
@@ -1810,23 +1980,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,798.99",
-          "chg": 0.65
+          "value": "7,745.06",
+          "chg": -0.52
         },
         {
           "name": "나스닥",
-          "value": "26,803.03",
-          "chg": 0.81
+          "value": "26,644.91",
+          "chg": -0.32
         },
         {
           "name": "VIX",
-          "value": "14.63",
-          "chg": 0.55
+          "value": "15.19",
+          "chg": 6.6
         },
         {
           "name": "필라델피아 반도체",
-          "value": "12,456.00",
-          "chg": 0.46
+          "value": "12,621.00",
+          "chg": 1.64
         },
         {
           "name": "WTI",
@@ -2214,7 +2384,7 @@
     {
       "date": "7.23",
       "krDate": "2026-07-23",
-      "usDate": "2026-07-22",
+      "usDate": "2026-07-23",
       "wtiDate": "2026-07-22",
       "collectedAt": "2026-07-24T00:02:38.987Z",
       "indices": [
@@ -2235,23 +2405,23 @@
         },
         {
           "name": "S&P500",
-          "value": "7,498.96",
-          "chg": -0.14
+          "value": "7,408.30",
+          "chg": -1.21
         },
         {
           "name": "나스닥",
-          "value": "25,690.90",
-          "chg": -0.57
+          "value": "25,137.69",
+          "chg": -2.15
         },
         {
           "name": "VIX",
-          "value": "16.64",
-          "chg": -2.4
+          "value": "18.70",
+          "chg": 12.38
         },
         {
           "name": "필라델피아 반도체",
-          "value": "12,410.67",
-          "chg": 0.44
+          "value": "12,343.84",
+          "chg": -0.54
         },
         {
           "name": "WTI",

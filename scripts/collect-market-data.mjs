@@ -11,7 +11,7 @@ const requestHeaders = {
   referer: 'https://m.stock.naver.com/',
 };
 
-const urls = {
+export const urls = {
   home: 'https://m.stock.naver.com/',
   briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=50',
   briefingDetail: 'https://m.stock.naver.com/front-api/market/briefing/detail',
@@ -24,13 +24,16 @@ const urls = {
   vixHistory: 'https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv',
   sox: 'https://api.stock.naver.com/index/.SOX/basic',
   wti: 'https://api.stock.naver.com/marketindex/energy/CLcv1/prices?page=1&pageSize=5',
+  // 미장이 열려 있을 때(국장 마감 시각엔 흔함) 직전에 끝난 정규장 종가를 가져오는 일봉 이력(야후, 비공식)
+  yahooChart: 'https://query1.finance.yahoo.com/v8/finance/chart/',
 };
+export const yahooSymbols = { 'S&P500': '^GSPC', '나스닥': '^IXIC', '필라델피아 반도체': '^SOX' };
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function request(url, asJson = true) {
+export async function request(url, asJson = true) {
   let lastError;
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     try {
@@ -174,6 +177,59 @@ export function carryForwardUsIndices(entries, usIndexNames) {
   };
 }
 
+// 뉴욕 시간 기준 날짜(YYYY-MM-DD)와 0시부터의 분
+export function newYorkParts(date) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+  }).formatToParts(date);
+  const get = type => parts.find(part => part.type === type).value;
+  return { date: `${get('year')}-${get('month')}-${get('day')}`, minutes: Number(get('hour')) * 60 + Number(get('minute')) };
+}
+
+// 야후 일봉(chart API) → now 이전에 끝난 마지막 정규장 종가와 그 전 종가 대비 등락률.
+// 뉴욕 16:00 전의 '오늘' 봉은 장중 값이라 빼고, now 뒤의 봉(백필 때)도 보지 않는다.
+// 전에는 미장이 열려 있으면 직전 저장값을 복사했는데, 그 값도 복사본이면 같은 숫자가 계속 이어졌다(2026-09-23~10-02 S&P500 7,764.64 반복).
+export function usFromHistory(name, chart, now = new Date()) {
+  const result = chart && chart.chart && Array.isArray(chart.chart.result) && chart.chart.result[0];
+  if (!result || !Array.isArray(result.timestamp)) throw new Error(`${name} 야후 일봉을 읽지 못했습니다.`);
+  const closes = result.indicators.quote[0].close;
+  const ny = newYorkParts(now);
+  const bars = result.timestamp
+    .map((ts, i) => ({ date: newYorkParts(new Date(ts * 1000)).date, close: closes[i] }))
+    .filter(bar => Number.isFinite(bar.close) && bar.date <= ny.date);
+  if (bars.length && bars[bars.length - 1].date === ny.date && ny.minutes < 16 * 60) bars.pop();
+  if (bars.length < 2) throw new Error(`${name} 야후 일봉이 부족합니다.`);
+  const last = bars[bars.length - 1];
+  const previous = bars[bars.length - 2];
+  return {
+    usDate: last.date,
+    index: {
+      name,
+      value: last.close.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      chg: Number((((last.close / previous.close) - 1) * 100).toFixed(2)),
+    },
+  };
+}
+
+export async function fetchUsFromHistory(now = new Date()) {
+  const results = [];
+  for (const [name, symbol] of Object.entries(yahooSymbols)) {
+    const chart = await request(`${urls.yahooChart}${encodeURIComponent(symbol)}?range=1mo&interval=1d`);
+    results.push(usFromHistory(name, chart, now));
+  }
+  const usDate = results[0].usDate;
+  if (results.some(item => item.usDate !== usDate)) {
+    throw new Error(`미장 기준일 불일치(이력): ${results.map(item => `${item.index.name} ${item.usDate}`).join(', ')}`);
+  }
+  const vixIndex = vixFromHistory(await request(urls.vixHistory, false), usDate);
+  const byName = Object.fromEntries(results.map(item => [item.index.name, item.index]));
+  return { usDate, usIndices: [byName['S&P500'], byName['나스닥'], vixIndex, byName['필라델피아 반도체']] };
+}
+
+export function alreadyCollected(payload, krDate) {
+  return payload.entries.some(item => item.krDate === krDate);
+}
+
 function writeOutput(name, value) {
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `${name}=${value}\n`);
 }
@@ -190,6 +246,17 @@ async function main() {
   const kosdaqDate = isoDate(kosdaq.localTradedAt, '코스닥');
   const fxDate = isoDate(fxRows[0].localTradedAt, '원/달러');
   const wtiDate = isoDate(wtiRows[0].localTradedAt, 'WTI');
+
+  const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  if (!Array.isArray(payload.entries)) throw new Error('data/market/index.json의 entries가 배열이 아닙니다.');
+  // 이미 수집된 거래일이면(휴일·같은 날 재실행) 브리핑을 찾기 전에 정상 종료한다.
+  // 전에는 이 검사가 브리핑 조회 뒤에 있어서, 휴일에는 "브리핑을 찾지 못했습니다"로 실패했다(2026-09-24·25).
+  if (alreadyCollected(payload, krDate)) {
+    writeOutput('kr_date', krDate);
+    writeOutput('changed', 'false');
+    console.log(`${krDate} 시황 데이터가 이미 있어 변경하지 않았습니다.`);
+    return;
+  }
   const briefingCandidates = selectClosingBriefing(briefingList, krDate);
   let briefing = null;
   let briefingError = null;
@@ -208,9 +275,6 @@ async function main() {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);
   }
 
-  const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-  if (!Array.isArray(payload.entries)) throw new Error('data/market/index.json의 entries가 배열이 아닙니다.');
-
   const usIndexNames = ['S&P500', '나스닥', 'VIX', '필라델피아 반도체'];
   let usDate;
   let usIndices;
@@ -226,7 +290,9 @@ async function main() {
       : vixFromHistory(await request(urls.vixHistory, false), usDate);
     usIndices = [marketIndex('S&P500', sp500), marketIndex('나스닥', nasdaq), vixIndex, marketIndex('필라델피아 반도체', sox)];
   } else {
-    ({ usDate, usIndices } = carryForwardUsIndices(payload.entries, usIndexNames));
+    // 미장이 프리마켓·장중이면 직전에 끝난 정규장 종가를 이력에서 직접 가져온다(복사하지 않음).
+    ({ usDate, usIndices } = await fetchUsFromHistory());
+    if (usIndices.length !== usIndexNames.length) throw new Error('미장 지수 이력이 불완전합니다.');
   }
 
   const indices = [

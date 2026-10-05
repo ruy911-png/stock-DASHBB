@@ -1,5 +1,20 @@
 import assert from 'node:assert/strict';
-import { addDays, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, vixFromHistory } from './collect-market-data.mjs';
+import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory } from './collect-market-data.mjs';
+
+// 야후 일봉 → 직전에 끝난 정규장: 뉴욕 16시 전의 '오늘' 봉은 장중이라 빼고, now 뒤의 봉은 보지 않는다
+const chartOf = (dates, closes) => ({ chart: { result: [{
+  timestamp: dates.map(d => Date.parse(`${d}T13:30:00Z`) / 1000), // 09:30 EDT 개장 봉
+  indicators: { quote: [{ close: closes }] },
+}] } });
+const chart = chartOf(['2026-09-28', '2026-09-29', '2026-09-30', '2026-10-01'], [6600, 6650.5, 6700.25, 6720]);
+assert.deepEqual(usFromHistory('S&P500', chart, new Date('2026-10-01T15:00:00Z')), // 10/1 11:00 EDT 장중 → 9/30 종가
+  { usDate: '2026-09-30', index: { name: 'S&P500', value: '6,700.25', chg: 0.75 } });
+assert.equal(usFromHistory('S&P500', chart, new Date('2026-10-01T21:30:00Z')).usDate, '2026-10-01'); // 17:30 EDT 마감 뒤
+assert.equal(usFromHistory('S&P500', chart, new Date('2026-09-30T14:00:00Z')).usDate, '2026-09-29'); // 백필: 9/30 장중 시점 → 9/29
+assert.equal(usFromHistory('S&P500', chart, new Date('2026-10-03T12:00:00Z')).usDate, '2026-10-01'); // 주말 → 금요일 종가
+assert.throws(() => usFromHistory('S&P500', chartOf(['2026-10-01'], [1]), new Date('2026-10-02T00:00:00Z')), /부족/);
+assert.ok(alreadyCollected({ entries: [{ krDate: '2026-10-02' }] }, '2026-10-02'));
+assert.ok(!alreadyCollected({ entries: [{ krDate: '2026-10-02' }] }, '2026-10-05'));
 
 assert.equal(addDays('2026-07-31', 1), '2026-08-01');
 assert.equal(addDays('2026-12-31', 1), '2027-01-01');
