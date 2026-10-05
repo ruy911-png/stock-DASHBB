@@ -36,8 +36,10 @@ export function latestAnalysisDate(entry, now = today) {
 export function plan(list, { tickers: want, maxAgeDays: maxAge, chunkSize: size, now }) {
   let targets = list;
   if (want && want.toLowerCase() !== 'all') {
-    const wanted = new Set(want.split(',').map(t => t.trim().toUpperCase()).filter(Boolean));
-    targets = list.filter(e => wanted.has(String(e.code).toUpperCase()));
+    // 목록에 없는 코드/티커는 신규 종목으로 넣는다(사용자 요청 2026-10-05: 신규 종목분석도 웹에서)
+    const known = new Map(list.map(e => [String(e.code).toUpperCase(), e]));
+    const wanted = [...new Set(want.split(',').map(t => t.trim().toUpperCase()).filter(Boolean))];
+    targets = wanted.map(c => known.get(c) || { code: c, ais: [], isNew: true });
   }
   if (maxAge > 0) {
     const cutoff = now.getTime() - maxAge * 86400000;
@@ -55,6 +57,8 @@ export function plan(list, { tickers: want, maxAgeDays: maxAge, chunkSize: size,
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const chunks = plan(entries, { tickers, maxAgeDays, chunkSize, now: today });
-  console.error(`대상 ${chunks.reduce((n, c) => n + c.split(',').length, 0)}종목 → ${chunks.length}묶음 (묶음당 최대 ${chunkSize})`);
+  const known = new Set(entries.map(e => String(e.code).toUpperCase()));
+  const fresh = chunks.flatMap(c => c.split(',')).filter(c => !known.has(c.toUpperCase()));
+  console.error(`대상 ${chunks.reduce((n, c) => n + c.split(',').length, 0)}종목(신규 ${fresh.length}: ${fresh.join(', ') || '없음'}) → ${chunks.length}묶음 (묶음당 최대 ${chunkSize})`);
   process.stdout.write(JSON.stringify(chunks));
 }

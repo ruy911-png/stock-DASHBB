@@ -29,7 +29,7 @@ concurrency:
   group: refresh-analyses
   cancel-in-progress: false
 env:
-  TEST_TICKERS: "SCHW,001450"
+  TEST_TICKERS: "SCHW,001450,NVDA,035720" # 기존 미장·국장 1개씩 + 목록에 없는 신규(엔비디아·카카오) — 신규 추가 경로까지 시험
 jobs:
   plan:
     runs-on: ubuntu-latest

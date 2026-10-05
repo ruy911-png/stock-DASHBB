@@ -26,15 +26,27 @@ MARKET_TZ = {"us": ("America/New_York", 17), "kospi": ("Asia/Seoul", 16), "kosda
 MA_WINDOWS = (5, 20, 60, 120)
 
 
-def yahoo_symbol(code: str, market: str) -> str | None:
+def candidate_symbols(code: str, market: str) -> list[str]:
+    """야후 심볼 후보. market이 'auto'(목록에 없는 신규 종목)면 6자리 숫자는 코스피→코스닥 순으로, 그 외는 미국으로 본다."""
     code = str(code).strip()
     if market == "us":
-        return code.replace(".", "-")
+        return [code.replace(".", "-")]
     if market == "kospi":
-        return f"{code}.KS"
+        return [f"{code}.KS"]
     if market == "kosdaq":
-        return f"{code}.KQ"
-    return None  # etc: 어느 거래소인지 몰라 조회하지 않는다
+        return [f"{code}.KQ"]
+    if market == "auto":
+        return [f"{code}.KS", f"{code}.KQ"] if code.isdigit() and len(code) == 6 else [code.replace(".", "-")]
+    return []  # etc: 어느 거래소인지 몰라 조회하지 않는다
+
+
+def yahoo_symbol(code: str, market: str) -> str | None:
+    c = candidate_symbols(code, market)
+    return c[0] if c else None
+
+
+def market_of_symbol(symbol: str) -> str:
+    return "kospi" if symbol.endswith(".KS") else "kosdaq" if symbol.endswith(".KQ") else "us"
 
 
 def sma(s: pd.Series, n: int) -> pd.Series:
@@ -121,49 +133,75 @@ def summarize(df: pd.DataFrame) -> dict:
 
 
 def load_targets(tickers: str | None) -> list[dict]:
+    """목록(backup)의 종목. --tickers에 목록에 없는 코드가 있으면 신규 종목(market='auto')으로 넣는다."""
     entries = json.loads(BACKUP.read_text(encoding="utf-8"))
-    if tickers and tickers.strip().lower() != "all":
-        want = {t.strip().upper() for t in tickers.split(",") if t.strip()}
-        entries = [e for e in entries if str(e.get("code", "")).upper() in want]
-    return [{"code": str(e["code"]), "name": e.get("name", ""), "market": e.get("market", "")} for e in entries]
+    known = {str(e.get("code", "")).upper(): e for e in entries}
+    if not tickers or tickers.strip().lower() == "all":
+        picked = [(str(e["code"]), e) for e in entries]
+    else:
+        picked = []
+        for c in dict.fromkeys(t.strip().upper() for t in tickers.split(",") if t.strip()):
+            picked.append((str(known[c]["code"]), known[c]) if c in known else (c, None))
+    return [{"code": code, "name": e.get("name", "") if e else "", "market": e.get("market", "") if e else "auto",
+             "new": e is None} for code, e in picked]
 
 
-def fetch(targets: list[dict], period: str = "2y") -> dict[str, pd.DataFrame]:
+def fetch(targets: list[dict], period: str = "2y") -> dict[str, tuple[pd.DataFrame, str]]:
+    """{code: (일봉, 쓰인 야후 심볼)}. 후보 심볼이 여럿이면(신규 국장 종목) 데이터가 있는 첫 번째를 쓴다."""
     import yfinance as yf
 
-    symbols = {t["code"]: yahoo_symbol(t["code"], t["market"]) for t in targets}
-    symbols = {c: s for c, s in symbols.items() if s}
+    cands = {t["code"]: candidate_symbols(t["code"], t["market"]) for t in targets}
+    symbols = sorted({s for c in cands.values() for s in c})
     if not symbols:
         return {}
-    raw = yf.download(list(symbols.values()), period=period, auto_adjust=False, group_by="ticker",
+    raw = yf.download(symbols, period=period, auto_adjust=False, group_by="ticker",
                       threads=True, progress=False, multi_level_index=True)
     out = {}
-    for code, sym in symbols.items():
-        try:
-            df = raw[sym] if isinstance(raw.columns, pd.MultiIndex) else raw
-        except KeyError:
-            continue
-        df = df[["Close", "Volume"]].dropna(subset=["Close"])
-        if df.empty:
-            continue
-        df.index = pd.DatetimeIndex(df.index).tz_localize(None).normalize()
-        out[code] = df
+    for code, syms in cands.items():
+        for sym in syms:
+            try:
+                df = raw[sym] if isinstance(raw.columns, pd.MultiIndex) else raw
+            except KeyError:
+                continue
+            df = df[["Close", "Volume"]].dropna(subset=["Close"])
+            if df.empty:
+                continue
+            df.index = pd.DatetimeIndex(df.index).tz_localize(None).normalize()
+            out[code] = (df, sym)
+            break
     return out
 
 
-def build(targets: list[dict], frames: dict[str, pd.DataFrame], now: datetime | None = None) -> dict:
+def name_hint(symbol: str) -> str | None:
+    """신규 종목의 회사명 참고값(야후). 못 받으면 None — 정식 이름은 Claude가 웹검색으로 확인한다."""
+    try:
+        import yfinance as yf
+
+        info = yf.Ticker(symbol).info or {}
+        return info.get("longName") or info.get("shortName") or None
+    except Exception:  # noqa: BLE001 — 참고값이라 실패해도 계속
+        return None
+
+
+def build(targets: list[dict], frames: dict[str, tuple[pd.DataFrame, str]], now: datetime | None = None,
+          names: dict[str, str | None] | None = None) -> dict:
     items, failed = {}, []
     for t in targets:
-        df = frames.get(t["code"])
-        if df is None:
+        got = frames.get(t["code"])
+        if got is None:
             failed.append(t["code"])
             continue
-        df = drop_unfinished_session(df, t["market"], now)
+        df, sym = got
+        market = t["market"] if t["market"] != "auto" else market_of_symbol(sym)
+        df = drop_unfinished_session(df, market, now)
         if len(df) < 30:
             failed.append(t["code"])
             continue
-        items[t["code"]] = {"name": t["name"], "market": t["market"], "symbol": yahoo_symbol(t["code"], t["market"]),
-                            **summarize(df)}
+        item = {"name": t["name"], "market": market, "symbol": sym, **summarize(df)}
+        if t.get("new"):
+            item["new"] = True  # 목록에 없던 종목 — Claude가 새 항목을 만든다
+            item["name_hint"] = (names or {}).get(t["code"])
+        items[t["code"]] = item
     return {"generated_at": (now or datetime.now(timezone.utc)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음", "failed": failed, "items": items}
 
@@ -204,9 +242,15 @@ def selftest() -> int:
     assert len(drop_unfinished_session(today, "us", ny_open.replace(hour=18))) == 2
     assert yahoo_symbol("005930", "kospi") == "005930.KS" and yahoo_symbol("BRK.B", "us") == "BRK-B"
     assert yahoo_symbol("X", "etc") is None
-    built = build([{"code": "AAA", "name": "a", "market": "us"}, {"code": "BBB", "name": "b", "market": "us"}], {"AAA": df},
-                  datetime(2026, 10, 5, 12, 0, tzinfo=timezone.utc))
-    assert built["failed"] == ["BBB"] and set(built["items"]) == {"AAA"}
+    assert candidate_symbols("035720", "auto") == ["035720.KS", "035720.KQ"] and candidate_symbols("NVDA", "auto") == ["NVDA"]
+    assert market_of_symbol("035720.KQ") == "kosdaq" and market_of_symbol("NVDA") == "us"
+    built = build([{"code": "AAA", "name": "a", "market": "us"}, {"code": "BBB", "name": "b", "market": "us"},
+                   {"code": "035720", "name": "", "market": "auto", "new": True}],
+                  {"AAA": (df, "AAA"), "035720": (df, "035720.KQ")}, datetime(2026, 10, 5, 12, 0, tzinfo=timezone.utc),
+                  names={"035720": "Kakao Corp."})
+    assert built["failed"] == ["BBB"] and set(built["items"]) == {"AAA", "035720"}
+    assert built["items"]["035720"]["market"] == "kosdaq" and built["items"]["035720"]["new"] is True
+    assert built["items"]["035720"]["name_hint"] == "Kakao Corp." and "new" not in built["items"]["AAA"]
     print("selftest ok")
     return 0
 
@@ -223,12 +267,15 @@ def main() -> int:
     if not targets:
         print("대상 종목 없음", file=sys.stderr)
         return 1
-    fresh = build(targets, fetch(targets))
+    frames = fetch(targets)
+    names = {t["code"]: name_hint(frames[t["code"]][1]) for t in targets if t.get("new") and t["code"] in frames}
+    fresh = build(targets, frames, names=names)
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     merged = merge_into(out_path, fresh)
     out_path.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"계산 {len(fresh['items'])}종목, 실패 {len(fresh['failed'])}종목 {fresh['failed']} → {out_path}")
+    new_codes = [c for c, it in fresh["items"].items() if it.get("new")]
+    print(f"계산 {len(fresh['items'])}종목(신규 {new_codes}), 실패 {len(fresh['failed'])}종목 {fresh['failed']} → {out_path}")
     return 0
 
 

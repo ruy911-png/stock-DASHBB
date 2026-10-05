@@ -31,4 +31,5 @@
 
 ### 오늘자 업데이트 흐름
 - 페이지 버튼 → GitHub 토큰(브라우저에만 저장) → `workflow_dispatch` → ① `scripts/technical-indicators.py`가 yfinance 일봉으로 기술지표 계산(`data/technical/latest.json`, 숫자는 코드만) ② Claude Code가 스킬 절차대로 종목당 분석가 3개(기업·기본적·밸류에이션) 웹검색 → 5개 섹션 작성, 기술적분석은 ①의 숫자로만 ③ 검증 → 커밋 → 페이지 '새로고침'
+- 목록에 없는 코드/티커를 입력하면 **신규 종목**으로 추가된다(시장은 일봉이 있는 쪽으로 코드가 판별, 회사명·태그는 Claude가 웹검색으로 확인). 사용자가 직접 커밋·푸시할 일은 없다
 - 인증: Secret `CLAUDE_CODE_OAUTH_TOKEN`(사용자 Claude 구독 토큰). 토큰·키는 절대 커밋하지 않는다

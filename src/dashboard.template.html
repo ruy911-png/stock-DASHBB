@@ -1565,7 +1565,7 @@ class Component extends DCLogic {
     if (this.state.refreshBusy) { this.setState({ refreshMsg: '이미 실행 중입니다' }); return; }
     const token = this.ghToken();
     if (!token) return;
-    const scope = window.prompt('어느 종목을 오늘자로 다시 분석할까요?\nall = 전체, 또는 종목코드/티커를 쉼표로 (예: 005930,SCHW)', 'all');
+    const scope = window.prompt('어느 종목을 오늘자로 분석할까요?\nall = 목록 전체 다시 분석\n또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다', 'all');
     if (scope == null) return;
     const tickers = scope.trim() || 'all';
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
