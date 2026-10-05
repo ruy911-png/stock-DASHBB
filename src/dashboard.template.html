@@ -1094,6 +1094,7 @@
         <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">태그 <span style="font-weight:500; color:#B0B0BE;">쉼표로 구분 · 종목 요약</span></div>
         <input oninput="{{ onTags }}" value="{{ fTags }}" placeholder="예: 주도주, 반도체, 실적 서프라이즈" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:12px 14px; font-size:14.5px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px;">
       </div>
+      <sc-if value="{{ showAiSeg }}" hint-placeholder-val="{{ false }}">
       <div style="margin-bottom:16px;">
         <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">AI 선택</div>
         <div style="display:flex; gap:9px; margin-top:7px;">
@@ -1102,6 +1103,7 @@
           </sc-for>
         </div>
       </div>
+      </sc-if>
 
       <div style="margin-bottom:14px;">
         <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">기업개요 <span style="font-weight:500; color:#B0B0BE;">사업모델·경쟁우위</span></div>
@@ -2866,7 +2868,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           aiTabs: stock.ais.map((x, i) => {
             const b2 = this.AI[x.ai] || { label: x.ai, color: '#888', bg: '#eee' };
             return {
-              label: b2.label + (x.date ? ' · ' + x.date : ''), col: i === aiTabIdx ? '#fff' : b2.color, bg: i === aiTabIdx ? b2.color : b2.bg,
+              label: x.date ? x.date + ' 분석' : b2.label, col: i === aiTabIdx ? '#fff' : b2.color, bg: i === aiTabIdx ? b2.color : b2.bg, // 모델명은 숨김(사용자 결정 2026-10-05, 분석은 모두 Claude)
               onClick: () => this.setState({ peekAiTab: i }),
               onDel: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); if (window.confirm('이 날짜(' + (x.date || '') + ') 분석을 삭제할까요?' + (stock.ais.length <= 1 ? '\n(마지막 항목이라 종목 전체가 삭제됩니다)' : ''))) this.delAnalysisEntry(stock.code, i); },
             };
@@ -3040,8 +3042,8 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       };
     });
     const aiCountText = filt === 'all'
-      ? analysesData.length + '개 종목 · 클로드 · 제미나이 · GPT 분석 보관'
-      : this.AI[filt].label + '의 분석 ' + analysesData.length + '건';
+      ? analysesData.length + '개 종목 · 분석 보관'
+      : '분석 ' + analysesData.length + '건';
 
     const holdings = this.holdings.map(h => {
       const pl = (h.price - h.avg) * h.qty;
@@ -3504,7 +3506,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
 
       dateStr: '2026년 6월 26일 금요일',
       homeCards: [
-        { icon: '🤖', bg: '#EFEDFE', title: '종목분석 모음', sub: '클로드·제미나이·GPT 의견 모아보기', stat: analysesData.length + '종목', statLabel: '보관됨', statCol: '#6B62F0', onClick: () => this.go('ai') },
+        { icon: '🤖', bg: '#EFEDFE', title: '종목분석 모음', sub: '종목별 분석 모아보기', stat: analysesData.length + '종목', statLabel: '보관됨', statCol: '#6B62F0', onClick: () => this.go('ai') },
         { icon: '📒', bg: '#FFF0E8', title: '매매일지', sub: '보유 평가 + 매매 회고·특이사항', stat: new Set(tradesData.map(t => (t.name || '').trim())).size + '종목', statLabel: '이번 달 매매', statCol: '#E07B2B', onClick: () => this.go('journal') },
         { icon: '🖼️', bg: '#FCEFFB', title: '차트 복기 노트', sub: '매매 기록을 차트와 함께 복기', stat: (this.state.chartReviews || []).length + '건', statLabel: '작성됨', statCol: '#B24FA0', onClick: () => this.go('chartreview') },
         { icon: '🔮', bg: '#E8F4FF', title: '과거사례 Study', sub: '비슷한 사례의 뉴스와 주가 흐름', stat: '3사례', statLabel: '참고용', statCol: '#3B72E0', onClick: () => this.go('predict') },
@@ -3592,7 +3594,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         bg: this.state.f_market === d.key ? '#16161D' : '#F0F0F4',
         onClick: () => this.setF('f_market', d.key),
       })),
-      aiSeg, sampleCsvHref, onCsvFile: e => this.onCsvFile(e),
+      aiSeg, showAiSeg: false, sampleCsvHref, onCsvFile: e => this.onCsvFile(e),
       onName: e => this.setF('f_name', e.target.value),
       fName: this.state.f_name,
       fTags: this.state.f_tags,
