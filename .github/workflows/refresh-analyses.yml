@@ -1,0 +1,117 @@
+# 종목분석 오늘자 업데이트 — 사용자 결정(2026-10-05): 페이지의 '오늘자로 업데이트' 버튼(또는 Run workflow)이 이 워크플로를
+# 실행하면, 코드가 기술지표를 계산하고 Claude Code가 지정 종목을 다시 분석해 data/analyses-backup.json에 오늘자 분석을 넣는다.
+# 검증(npm run check + validate-analyses)을 통과하면 실행한 브랜치(main)에 바로 커밋한다 — 버튼을 누른 것이 사용자의 명시 요청이다.
+# 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(사용자 Claude 구독 토큰, `claude setup-token`) — 추가 API 과금 없음.
+name: refresh-analyses
+on:
+  workflow_dispatch:
+    inputs:
+      tickers:
+        description: "종목코드/티커 쉼표 구분, 또는 all"
+        default: "all"
+        type: string
+      max_age_days:
+        description: "마지막 분석이 이 일수보다 오래된 종목만 (0 = 전부)"
+        default: "0"
+        type: string
+      chunk_size:
+        description: "한 번의 Claude 실행이 맡는 종목 수"
+        default: "8"
+        type: string
+  # 시험용: 이 파일을 feature 브랜치에 푸시하면 2종목(미장 1·국장 1)으로 돌려 실제로 되는지 본다. main에 합친 뒤에는 버튼으로만 실행
+  push:
+    branches: [feature/refresh-analyses]
+    paths: [".github/workflows/refresh-analyses.yml"]
+permissions:
+  contents: write
+  id-token: write
+concurrency:
+  group: refresh-analyses
+  cancel-in-progress: false
+env:
+  TEST_TICKERS: "SCHW,001450"
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      chunks: ${{ steps.plan.outputs.chunks }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: plan
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            TICKERS="$TEST_TICKERS"; MAX_AGE=0; CHUNK=8
+          else
+            TICKERS="${{ inputs.tickers }}"; MAX_AGE="${{ inputs.max_age_days }}"; CHUNK="${{ inputs.chunk_size }}"
+          fi
+          CHUNKS="$(node scripts/plan-refresh.mjs --tickers "$TICKERS" --max-age-days "$MAX_AGE" --chunk-size "$CHUNK")"
+          echo "chunks=$CHUNKS" >> "$GITHUB_OUTPUT"
+          echo "계획: $CHUNKS"
+          [ "$CHUNKS" != "[]" ] || { echo "::warning::대상 종목이 없습니다"; }
+
+  refresh:
+    needs: plan
+    if: needs.plan.outputs.chunks != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      max-parallel: 1 # 같은 파일을 고치므로 묶음은 차례로
+      fail-fast: false
+      matrix:
+        chunk: ${{ fromJson(needs.plan.outputs.chunks) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 앞 묶음이 커밋한 결과 받기
+        run: git pull --rebase origin "${GITHUB_REF_NAME}"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install yfinance==1.7.0 pandas==3.0.6 numpy==2.4.6
+      - name: 기술지표 계산 (코드)
+        run: |
+          python3 scripts/technical-indicators.py --selftest
+          python3 scripts/technical-indicators.py --tickers "${{ matrix.chunk }}"
+      - name: Secret 확인
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Secret CLAUDE_CODE_OAUTH_TOKEN이 없습니다 — PC에서 'claude setup-token'으로 만든 토큰을 Settings > Secrets and variables > Actions에 저장하세요"
+            exit 1
+          fi
+      - name: Claude 재분석
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: "/refresh-analyses ${{ matrix.chunk }}"
+          claude_args: |
+            --max-turns 60
+            --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(date *)"
+      - name: 검증
+        run: |
+          node scripts/validate-analyses.mjs
+          npm run check
+          git status --short
+      - name: 커밋 (검증 통과 시, 실행한 브랜치에 바로)
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/analyses-backup.json data/technical/latest.json index.html
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "종목분석 오늘자 업데이트: ${{ matrix.chunk }}"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "푸시 완료"; exit 0; fi
+            sleep 5
+          done
+          echo "푸시 실패"; exit 1

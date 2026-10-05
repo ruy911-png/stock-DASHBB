@@ -26,4 +26,9 @@
 
 ### 자동머지 정책
 - **시황 자동수집 PR(`automation/market-data-*`)에 한해서만** 자동머지 허용 (`.github/workflows/collect-market-data.yml`)
+- **종목분석 오늘자 업데이트**(`.github/workflows/refresh-analyses.yml`, 사용자 결정 2026-10-05): 사용자가 페이지의 '오늘자로 업데이트' 버튼이나 Run workflow로 직접 실행한 것이므로, 검증(`npm run check` + `validate-analyses`) 통과 시 PR 없이 main에 바로 커밋한다. 절차는 `.claude/skills/refresh-analyses/SKILL.md`(PC에서도 `/refresh-analyses 005930,SCHW`로 같은 절차)
 - 그 외 모든 PR(종목분석 추가, 기능/레이아웃 수정 등)은 사용자가 명시적으로 요청할 때만 머지 — 임의로 자동머지하지 않음
+
+### 오늘자 업데이트 흐름
+- 페이지 버튼 → GitHub 토큰(브라우저에만 저장) → `workflow_dispatch` → ① `scripts/technical-indicators.py`가 yfinance 일봉으로 기술지표 계산(`data/technical/latest.json`, 숫자는 코드만) ② Claude Code가 스킬 절차대로 종목당 분석가 3개(기업·기본적·밸류에이션) 웹검색 → 5개 섹션 작성, 기술적분석은 ①의 숫자로만 ③ 검증 → 커밋 → 페이지 '새로고침'
+- 인증: Secret `CLAUDE_CODE_OAUTH_TOKEN`(사용자 Claude 구독 토큰). 토큰·키는 절대 커밋하지 않는다
