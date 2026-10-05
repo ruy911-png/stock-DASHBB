@@ -1,7 +1,7 @@
 # 종목분석 오늘자 업데이트 — 사용자 결정(2026-10-05): 페이지의 '오늘자로 업데이트' 버튼(또는 Run workflow)이 이 워크플로를
 # 실행하면, 코드가 기술지표를 계산하고 Claude Code가 지정 종목을 다시 분석해 data/analyses-backup.json에 오늘자 분석을 넣는다.
 # 검증(npm run check + validate-analyses)을 통과하면 실행한 브랜치(main)에 바로 커밋한다 — 버튼을 누른 것이 사용자의 명시 요청이다.
-# 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(사용자 Claude 구독 토큰, `claude setup-token`) — 추가 API 과금 없음.
+# 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(사용자 Claude 구독 토큰, `claude setup-token`) — 추가 API 과금 없음. 시험 3회차(2026-10-05).
 name: refresh-analyses
 on:
   workflow_dispatch:
