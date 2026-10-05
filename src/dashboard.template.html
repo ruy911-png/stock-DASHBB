@@ -867,6 +867,10 @@
             <sc-if value="{{ marketSaved }}" hint-placeholder-val="{{ false }}">
               <div onclick="{{ resetMarket }}" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">↺ 예시로</div>
             </sc-if>
+            <sc-if value="{{ hasMarketRefreshMsg }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12px; color:#8C8C9E; max-width:260px; text-align:right; line-height:1.4;">{{ marketRefreshMsg }}</div>
+            </sc-if>
+            <div onclick="{{ onRefreshMarket }}" title="GitHub Actions에서 오늘 마감 시황을 수집해 바로 반영합니다 (1~2분)" style="font-size:13px; font-weight:800; color:#fff; background:#1F1F2B; padding:11px 16px; border-radius:12px; cursor:pointer; white-space:nowrap;">⚡ 시황 업데이트</div>
 
             <div onclick="{{ openMarketPaste }}" style="font-size:13px; font-weight:800; color:#fff; background:#6B62F0; padding:11px 16px; border-radius:12px; cursor:pointer; white-space:nowrap; box-shadow:0 6px 18px rgba(107,98,240,.32);">📋 시황 붙여넣기</div>
           </div>
@@ -1438,7 +1442,7 @@ class Component extends DCLogic {
     editAnalysisCode: null, editAnalysisAiIdx: null,
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
-    refreshMsg: '', refreshBusy: false,
+    refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1563,52 +1567,69 @@ class Component extends DCLogic {
     return t;
   }
 
-  async refreshToday() {
-    if (this.state.refreshBusy) { this.setState({ refreshMsg: '이미 실행 중입니다' }); return; }
+  // 공통: GitHub 워크플로 실행 요청 → 30초마다 상태 확인 → 성공하면 1분 뒤 onDone(최신 파일 다시 불러오기)
+  async runWorkflow({ file, inputs, msgKey, busyKey, label, onDone }) {
+    if (this.state[busyKey]) { this.setState({ [msgKey]: '이미 실행 중입니다' }); return; }
     const token = this.ghToken();
     if (!token) return;
-    const scope = window.prompt('어느 종목을 오늘자로 분석할까요?\nall = 목록 전체 다시 분석\n또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다', 'all');
-    if (scope == null) return;
-    const tickers = scope.trim() || 'all';
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
     const auth = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
-    this.setState({ refreshBusy: true, refreshMsg: '워크플로 실행을 요청하는 중…' });
+    this.setState({ [busyKey]: true, [msgKey]: '워크플로 실행을 요청하는 중…' });
     try {
-      const res = await fetch(api + 'workflows/' + this.GH_WORKFLOW + '/dispatches', {
+      const res = await fetch(api + 'workflows/' + file + '/dispatches', {
         method: 'POST', headers: { ...auth, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ref: 'main', inputs: { tickers } }),
+        body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
       });
       if (res.status === 401 || res.status === 403) {
         try { localStorage.removeItem(this.LS_GH_TOKEN); } catch (e) {}
-        this.setState({ refreshBusy: false, refreshMsg: '토큰이 거부됐습니다(HTTP ' + res.status + '). 다시 누르면 새 토큰을 입력합니다' });
+        this.setState({ [busyKey]: false, [msgKey]: '토큰이 거부됐습니다(HTTP ' + res.status + '). 다시 누르면 새 토큰을 입력합니다' });
         return;
       }
-      if (res.status !== 204) { this.setState({ refreshBusy: false, refreshMsg: '실행 요청 실패 (HTTP ' + res.status + ')' }); return; }
+      if (res.status !== 204) { this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패 (HTTP ' + res.status + ')' }); return; }
     } catch (e) {
-      this.setState({ refreshBusy: false, refreshMsg: '실행 요청 실패: ' + ((e && e.message) || e) });
+      this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패: ' + ((e && e.message) || e) });
       return;
     }
     const started = Date.now();
-    this.setState({ refreshMsg: '실행 요청됨 (' + tickers + ') — 종목당 몇 분 걸립니다. 상태 확인 중…' });
+    this.setState({ [msgKey]: '실행 요청됨 (' + label + ') — 상태 확인 중…' });
     const poll = async () => {
       try {
-        const r = await fetch(api + 'workflows/' + this.GH_WORKFLOW + '/runs?event=workflow_dispatch&per_page=1&t=' + Date.now(), { headers: auth });
+        const r = await fetch(api + 'workflows/' + file + '/runs?event=workflow_dispatch&per_page=1&t=' + Date.now(), { headers: auth });
         const j = await r.json();
         const run = j && j.workflow_runs && j.workflow_runs[0];
         if (run && new Date(run.created_at).getTime() >= started - 60000) {
           if (run.status === 'completed') {
             const ok = run.conclusion === 'success';
-            this.setState({ refreshBusy: false, refreshMsg: ok ? '재분석 완료 — 1분 뒤 최신 분석을 불러옵니다 (안 바뀌면 새로고침)' : '재분석 실패(' + run.conclusion + ') — GitHub Actions 로그를 확인하세요' });
-            if (ok) setTimeout(() => this.reloadAnalyses(), 60000); // GitHub Pages 배포가 끝날 때까지 잠시 기다린다
+            this.setState({ [busyKey]: false, [msgKey]: ok ? '완료 — 1분 뒤 최신 내용을 불러옵니다 (안 바뀌면 새로고침)' : '실패(' + run.conclusion + ') — GitHub Actions 로그를 확인하세요' });
+            if (ok) setTimeout(onDone, 60000); // GitHub Pages 배포가 끝날 때까지 잠시 기다린다
             return;
           }
-          this.setState({ refreshMsg: '실행 중 (' + run.status + ', ' + Math.round((Date.now() - started) / 60000) + '분 경과)…' });
+          this.setState({ [msgKey]: '실행 중 (' + run.status + ', ' + Math.round((Date.now() - started) / 60000) + '분 경과)…' });
         }
       } catch (e) {}
       if (Date.now() - started < 3 * 3600 * 1000) setTimeout(poll, 30000);
-      else this.setState({ refreshBusy: false, refreshMsg: '3시간이 지나 상태 확인을 멈췄습니다 — GitHub Actions에서 확인하세요' });
+      else this.setState({ [busyKey]: false, [msgKey]: '3시간이 지나 상태 확인을 멈췄습니다 — GitHub Actions에서 확인하세요' });
     };
     setTimeout(poll, 15000);
+  }
+
+  refreshToday() {
+    const scope = window.prompt('어느 종목을 오늘자로 분석할까요?\nall = 목록 전체 다시 분석\n또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다', 'all');
+    if (scope == null) return;
+    const tickers = scope.trim() || 'all';
+    this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: tickers + ' — 종목당 몇 분', onDone: () => this.reloadAnalyses() });
+  }
+
+  // 시황: 오늘 마감 시황을 수집해 바로 반영(collect-market-data.yml). 이미 수집된 날이면 워크플로가 '변경 없음'으로 끝난다
+  refreshMarket() {
+    this.runWorkflow({ file: 'collect-market-data.yml', inputs: {}, msgKey: 'marketRefreshMsg', busyKey: 'marketRefreshBusy', label: '시황 수집, 1~2분', onDone: () => this.reloadMarket() });
+  }
+
+  async reloadMarket() {
+    this.setState({ marketRefreshMsg: '최신 시황을 불러오는 중…' });
+    await this.loadMarketSnapshot(Date.now());
+    const latest = (this.state.marketHistory || [])[0];
+    this.setState({ marketRefreshMsg: (latest && latest.krDate ? latest.krDate + ' 시황 반영됨' : '불러옴') + ' · ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) });
   }
 
   async loadBackupSnapshot(bust) {
@@ -1639,9 +1660,9 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
-  async loadMarketSnapshot() {
+  async loadMarketSnapshot(bust) {
     try {
-      const res = await fetch('./data/market/index.json', { cache: 'no-store' });
+      const res = await fetch('./data/market/index.json' + (bust ? '?t=' + bust : ''), { cache: 'no-store' });
       if (!res.ok) return;
       const payload = await res.json();
       const remote = payload && Array.isArray(payload.entries) ? payload.entries : [];
@@ -3501,6 +3522,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       marketOpen: this.state.marketOpen, marketText: this.state.mktPasteText || '', marketMsg: this.state.marketMsg,
       marketSaved: hist.length > 0,
       openMarketPaste: () => this.openMarketPaste(), closeMarketPaste: () => this.closeMarketPaste(),
+      onRefreshMarket: () => this.refreshMarket(), marketRefreshMsg: this.state.marketRefreshMsg, hasMarketRefreshMsg: !!this.state.marketRefreshMsg,
       onMarketText: e => this.setF('mktPasteText', e.target.value), submitMarketText: () => this.submitMarketText(),
       resetMarket: () => this.resetMarket(),
 

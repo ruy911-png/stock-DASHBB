@@ -25,7 +25,7 @@
 - 브랜치가 이미 머지된 상태면 `git fetch origin main && git checkout -B <branch> origin/main`로 재시작 후 이어서 작업 (머지된 브랜치에 새 커밋을 쌓지 않음)
 
 ### 자동머지 정책
-- **시황 자동수집 PR(`automation/market-data-*`)에 한해서만** 자동머지 허용 (`.github/workflows/collect-market-data.yml`)
+- **시황 자동수집**(`.github/workflows/collect-market-data.yml`, 사용자 결정 2026-10-05): 검증 통과 시 **PR 없이 main에 바로 커밋**한다. 예약(평일 20:20·21:20·22:20 KST) 또는 페이지의 '⚡ 시황 업데이트' 버튼으로 실행. (전에는 PR + `gh pr merge --auto`였으나 저장소의 "Allow auto-merge" 설정에 의존해 9/29부터 멈췄음 — #80) 미장이 열려 있으면 직전 정규장 종가를 야후·Cboe 이력에서 가져온다(직전 저장값 복사 금지)
 - **종목분석 오늘자 업데이트**(`.github/workflows/refresh-analyses.yml`, 사용자 결정 2026-10-05): 사용자가 페이지의 '오늘자로 업데이트' 버튼이나 Run workflow로 직접 실행한 것이므로, 검증(`npm run check` + `validate-analyses`) 통과 시 PR 없이 main에 바로 커밋한다. 절차는 `.claude/skills/refresh-analyses/SKILL.md`(PC에서도 `/refresh-analyses 005930,SCHW`로 같은 절차)
 - 그 외 모든 PR(종목분석 추가, 기능/레이아웃 수정 등)은 사용자가 명시적으로 요청할 때만 머지 — 임의로 자동머지하지 않음
 
