@@ -212,7 +212,7 @@
 
         <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
           <sc-if value="{{ isListWide }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid; grid-template-columns:minmax(130px,.8fr) 82px 66px minmax(90px,1.8fr) 164px; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
+          <div style="display:grid; grid-template-columns:minmax(150px,250px) 82px 66px minmax(100px,150px) 164px; gap:10px; justify-content:start; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div style="display:flex; align-items:center; gap:4px; position:relative;">
               시장
@@ -270,7 +270,7 @@
 
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
             <sc-if value="{{ a.isWide }}" hint-placeholder-val="{{ true }}">
-            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(130px,.8fr) 82px 66px minmax(90px,1.8fr) 164px; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(150px,250px) 82px 66px minmax(100px,150px) 164px; gap:10px; justify-content:start; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
               <div style="font-size:clamp(13px, 1.25vw, 15px); font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;">{{ a.name }}</div>
               <div><span style="font-size:clamp(10px, 0.95vw, 11.5px); font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
               <div style="font-size:clamp(11px, 1vw, 12.5px); font-weight:700; color:#56566A; white-space:nowrap;">{{ a.latestDate }}</div>
@@ -1202,7 +1202,7 @@
           </div>
         </sc-for>
         <div onclick="{{ peekPanel.onAddNew }}" style="font-size:13px; font-weight:800; padding:8px 16px; border-radius:11px; cursor:pointer; color:#6B62F0; background:#fff; border:1.5px dashed #C9C4FA;">+ 새 분석</div>
-        <div onclick="{{ peekPanel.onRefreshStock }}" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분). 끝나면 오늘 날짜 분석이 맨 앞에 생깁니다" style="font-size:13px; font-weight:800; padding:8px 16px; border-radius:11px; cursor:pointer; color:#fff; white-space:nowrap; {{ peekPanel.refreshBtnStyle }}">{{ peekPanel.refreshLabel }}</div>
+        <div onclick="{{ peekPanel.onRefreshStock }}" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분). 끝나면 오늘 날짜 분석이 맨 앞에 생깁니다" style="font-size:13px; font-weight:800; padding:8px 16px; border-radius:11px; cursor:pointer; white-space:nowrap; {{ peekPanel.refreshBtnStyle }}">{{ peekPanel.refreshLabel }}</div>
       </div>
 
       <div style="margin-top:16px; background:#FAFAFD; border:1px solid #EEEEF4; border-radius:16px; padding:15px 16px;">
@@ -1610,6 +1610,12 @@ class Component extends DCLogic {
   GH_REPO = 'ruy911-png/stock-DASHBB';
   GH_WORKFLOW = 'refresh-analyses.yml';
   LS_GH_TOKEN = 'stockking_gh_token';
+  // 종목별 새로고침 버튼 색: 보조 동작이라 ✏ ✕와 같은 연회색 계열(검정은 ⚡ 오늘자로 업데이트 하나만). running = 누른 종목, waiting = 다른 종목 실행 중
+  REFRESH_BTN = { idle: 'background:#F3F3F8; color:#4A4A5E;', running: 'background:#EFEDFE; color:#6B62F0;', waiting: 'background:#F3F3F8; color:#B0B0BE;' };
+  refreshBtnStyleFor(code) {
+    if (!this.state.refreshBusy) return this.REFRESH_BTN.idle;
+    return this.state.refreshingCode === code ? this.REFRESH_BTN.running : this.REFRESH_BTN.waiting;
+  }
 
   // 종목 특성(코드 계산, data/technical/profiles.json): 카드에 유형 태그와 근거 숫자를 보인다. 없으면 블록을 숨긴다
   async loadProfiles(bust) {
@@ -3023,7 +3029,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           onEditStock: () => this.openStockEdit(stock.code),
           onRefreshStock: () => this.refreshStock(stock.code),
           refreshLabel: (this.state.refreshBusy && this.state.refreshingCode === stock.code) ? '⏳ 분석 중…' : (this.state.refreshBusy ? '다른 종목 실행 중' : '새로고침'),
-          refreshBtnStyle: (this.state.refreshBusy && this.state.refreshingCode === stock.code) ? 'background:#6B62F0;' : (this.state.refreshBusy ? 'background:#9A9AAC;' : 'background:#1F1F2B;'),
+          refreshBtnStyle: this.refreshBtnStyleFor(stock.code),
           onAddNew: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openAddForStock(stock.code); },
           onDel: () => { if(window.confirm('삭제할까요?')) { this.deleteAnalysis(stock.code); this.closePeek(); } },
         };
@@ -3136,7 +3142,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         tags, hasTags: tags.length > 0, firstTag: tags[0] || '', // 목록에는 첫 태그 1개만(주로 업종), 카드에서 전부
         // 새로고침 버튼 피드백: 누른 종목은 '분석 중…', 다른 종목은 실행 중엔 흐리게 (2026-10-06 "눌러도 반응 없어 보임" 보고)
         refreshLabel: (this.state.refreshBusy && this.state.refreshingCode === a.code) ? '분석 중…' : '새로고침',
-        refreshBtnStyle: (this.state.refreshBusy && this.state.refreshingCode === a.code) ? 'background:#6B62F0; color:#fff;' : (this.state.refreshBusy ? 'background:#9A9AAC; color:#fff;' : 'background:#1F1F2B; color:#fff;'),
+        refreshBtnStyle: this.refreshBtnStyleFor(a.code),
         noMeta, countLabel: '분석 ' + a.ais.length + '건',
         aisEditBtns: a.ais.map((_, i) => ({ onClick: () => this.openEditAnalysis(a.code, i) })),
         onStockEdit: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); this.openStockEdit(a.code); },
@@ -3695,7 +3701,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
-      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onRefreshStock: ()=>{}, refreshLabel: '새로고침', refreshBtnStyle: 'background:#1F1F2B;', onDel: ()=>{} },
+      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onRefreshStock: ()=>{}, refreshLabel: '새로고침', refreshBtnStyle: '', onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
       isPeekChartReview: peekType === 'chartreview' && !!peekPanel,
