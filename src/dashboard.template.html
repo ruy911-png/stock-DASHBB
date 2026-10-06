@@ -37,6 +37,17 @@
 
   <!-- ===================== SIDEBAR ===================== -->
   <div style="width:{{ sidebarWidth }}; flex-shrink:0; background:#fff; border-right:1px solid #E7E7EE; display:flex; flex-direction:column; padding:{{ sidebarPad }}; position:sticky; top:0; height:100vh; overflow:hidden; transition:width .18s, padding .18s;">
+    <!-- 중복 실행 확인(화면 하단 고정): 돌고 있는 실행이 있을 때 "그래도 실행 / 아니오" -->
+    <sc-if value="{{ hasDupPending }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed; left:50%; bottom:22px; transform:translateX(-50%); z-index:1000; width:min(92vw, 540px); background:#fff; border:1.5px solid #E3E3EC; box-shadow:0 12px 34px rgba(20,20,50,.22); border-radius:16px; padding:14px 16px;">
+        <div style="font-size:14px; font-weight:800; color:#16161D;">이미 실행 중인 작업이 있습니다. 중복으로 실행할까요?</div>
+        <div style="font-size:12.5px; color:#6B6B7E; margin-top:4px; line-height:1.5;">{{ dupPendingText }}</div>
+        <div style="display:flex; gap:8px; margin-top:10px; justify-content:flex-end; flex-wrap:wrap;">
+          <div onclick="{{ dupWatch }}" style="padding:9px 14px; border-radius:10px; background:#F3F3F8; color:#4A4A5E; font-weight:800; font-size:13px; cursor:pointer; white-space:nowrap;">아니오 — 기존 실행 지켜보기</div>
+          <div onclick="{{ dupRunAnyway }}" style="padding:9px 14px; border-radius:10px; background:#1F1F2B; color:#fff; font-weight:800; font-size:13px; cursor:pointer; white-space:nowrap;">그래도 실행</div>
+        </div>
+      </div>
+    </sc-if>
     <div onclick="{{ toggleSidebar }}" style="position:fixed; left:{{ sidebarToggleLeft }}; top:24px; z-index:50; width:26px; height:26px; border-radius:50%; background:#fff; border:1px solid #E7E7EE; box-shadow:0 2px 8px rgba(0,0,0,.1); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:13px; color:#6B62F0; transition:left .18s;">{{ sidebarToggleIcon }}</div>
     <div style="display:flex; align-items:center; gap:11px; padding:4px 8px 22px; white-space:nowrap;">
       <img src="7e887a6b-38bc-43e7-a6f4-3affbbf87143" alt="주식킹" style="width:40px; height:40px; border-radius:12px; object-fit:cover; display:block;">
@@ -1502,7 +1513,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null, dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1678,27 +1689,38 @@ class Component extends DCLogic {
     this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null, [this.state.ghPanelMsgKey || 'refreshMsg']: '이 브라우저의 토큰을 지웠습니다. 다음 실행 때 다시 입력합니다' });
   }
   cancelGhToken() { this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null }); }
+  // 중복 실행 선택: 그래도 실행(force) / 아니오 → 먼저 시작된 실행만 지켜보기(attachStarted 유지)
+  dupRunAnyway() { const p = this.state.dupPending; if (!p) return; this.setState({ dupPending: null }); this.runWorkflow({ ...p, force: true, attachStarted: undefined }); }
+  dupWatch() { const p = this.state.dupPending; if (!p) return; this.setState({ dupPending: null }); this.runWorkflow(p); }
 
   // 공통: GitHub 워크플로 실행 요청 → 30초마다 상태 확인 → 성공하면 1분 뒤 onDone(최신 파일 다시 불러오기)
-  async runWorkflow({ file, inputs, msgKey, busyKey, label, onDone }) {
+  // opts.force: 중복이어도 실행 / opts.attachStarted: 새로 요청하지 않고 먼저 시작된 실행(생성 시각)만 지켜보기
+  async runWorkflow(opts) {
+    const { file, inputs, msgKey, busyKey, label, onDone, force, attachStarted } = opts;
     if (this.state[busyKey]) { this.setState({ [msgKey]: '이미 실행 중입니다' }); return; }
     const token = this.ghToken();
-    if (!token) { this.openGhTokenPanel({ file, inputs, msgKey, busyKey, label, onDone }, msgKey); return; }
+    if (!token) { this.openGhTokenPanel(opts, msgKey); return; }
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
     const auth = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
     this.setState({ [busyKey]: true, [msgKey]: '실행 상태를 확인하는 중…' });
-    // 중복 실행 방지(사용자 요청 2026-10-07): 다른 기기에서 시작했거나 대기 중인 실행이 있으면 새로 요청하지 않고 그 실행을 지켜본다
-    let started = Date.now();
-    let attached = false;
-    try {
-      const r0 = await fetch(api + 'workflows/' + file + '/runs?per_page=5&t=' + Date.now(), { headers: auth });
-      const j0 = await r0.json();
-      const active = ((j0 && j0.workflow_runs) || []).find(x => ['queued', 'in_progress', 'pending', 'waiting', 'requested'].includes(x.status));
-      if (active) { attached = true; started = new Date(active.created_at).getTime(); }
-    } catch (e) {}
-    if (attached) {
-      this.setState({ [msgKey]: '이미 실행 중인 작업이 있어 새로 시작하지 않습니다 — 끝나면 자동으로 불러옵니다' });
+    let started = attachStarted || Date.now();
+    if (attachStarted) {
+      this.setState({ [msgKey]: '먼저 시작된 실행을 지켜보는 중 — 끝나면 자동으로 불러옵니다' });
     } else {
+      // 중복 실행 확인(사용자 요청 2026-10-07): 돌고 있거나 대기 중인 실행이 있으면 바로 요청하지 않고 "그래도 실행 / 지켜보기"를 묻는다
+      if (!force) {
+        let active = null;
+        try {
+          const r0 = await fetch(api + 'workflows/' + file + '/runs?per_page=5&t=' + Date.now(), { headers: auth });
+          const j0 = await r0.json();
+          active = ((j0 && j0.workflow_runs) || []).find(x => ['queued', 'in_progress', 'pending', 'waiting', 'requested'].includes(x.status));
+        } catch (e) {}
+        if (active) {
+          this.setState({ [busyKey]: false, [msgKey]: '이미 실행 중인 작업이 있습니다 — 아래에서 선택하세요',
+            dupPending: { ...opts, force: false, attachStarted: new Date(active.created_at).getTime() } });
+          return;
+        }
+      }
       this.setState({ [msgKey]: '워크플로 실행을 요청하는 중…' });
       try {
         const res = await fetch(api + 'workflows/' + file + '/dispatches', {
@@ -3751,7 +3773,10 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       onGhTokenChipAi: () => this.openGhTokenPanel(null, 'refreshMsg'), onGhTokenChipMarket: () => this.openGhTokenPanel(null, 'marketRefreshMsg'),
       onGhTokenInput: e => this.setF('ghTokenDraft', e.target.value), saveGhToken: () => this.saveGhToken(), cancelGhToken: () => this.cancelGhToken(), clearGhToken: () => this.clearGhToken(),
       refreshMsg: this.state.refreshMsg, hasRefreshMsg: !!this.state.refreshMsg,
-      showRefreshToast: !!this.state.refreshBusy || /^(완료|실패|토큰|GitHub 토큰|실행 요청 실패)/.test(this.state.refreshMsg || ''),
+      showRefreshToast: !this.state.dupPending && (!!this.state.refreshBusy || /^(완료|실패|취소됨|토큰|GitHub 토큰|실행 요청 실패|먼저 시작된)/.test(this.state.refreshMsg || '')),
+      hasDupPending: !!this.state.dupPending,
+      dupPendingText: this.state.dupPending ? ('대상: ' + (this.state.dupPending.label || '') + '. 그래도 실행하면 중복으로 한 번 더 분석합니다(사용량 추가). 아니오를 누르면 먼저 시작된 실행이 끝나기를 기다렸다가 자동으로 불러옵니다.') : '',
+      dupRunAnyway: () => this.dupRunAnyway(), dupWatch: () => this.dupWatch(),
       refreshToastText: (this.state.refreshBusy ? '⏳ ' : '') + (this.state.refreshMsg || ''),
       caseEditOpen: this.state.caseEditOpen, closeCaseEdit: () => this.closeCaseEdit(), submitCaseEdit: () => this.submitCaseEdit(),
       caseEditIsNew: this.state.caseEditIdx == null,
