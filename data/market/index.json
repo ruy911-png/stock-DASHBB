@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.6",
+      "krDate": "2026-10-06",
+      "usDate": "2026-10-05",
+      "wtiDate": "2026-10-05",
+      "collectedAt": "2026-10-06T13:46:41.453Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,941.39",
+          "chg": -0.89
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "919.92",
+          "chg": 2.98
+        },
+        {
+          "name": "원/달러",
+          "value": "1,339.60",
+          "chg": -0.22
+        },
+        {
+          "name": "S&P500",
+          "value": "7,773.95",
+          "chg": 0.66
+        },
+        {
+          "name": "나스닥",
+          "value": "27,477.31",
+          "chg": 1.05
+        },
+        {
+          "name": "VIX",
+          "value": "15.52",
+          "chg": 1.37
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "13,172.74",
+          "chg": 0.27
+        },
+        {
+          "name": "WTI",
+          "value": "89.43",
+          "chg": -1.84
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -17575
+        },
+        {
+          "name": "기관",
+          "amount": -39
+        },
+        {
+          "name": "개인",
+          "amount": 7441
+        }
+      ],
+      "comment": "반도체 약세에 코스피 하락, 2차전지 강세에 코스닥 급등 마감",
+      "keywords": [
+        "금융권 해킹",
+        "코스피 하락",
+        "서울 아파트 매물",
+        "코스피",
+        "원·달러 환율",
+        "워너브라더스 인수"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-06T20:01:56+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5011"
+        }
+      }
+    },
+    {
       "date": "10.2",
       "krDate": "2026-10-02",
       "usDate": "2026-10-01",
