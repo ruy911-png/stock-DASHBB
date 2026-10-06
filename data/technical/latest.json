@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T16:21:09Z",
+  "generated_at": "2026-10-06T22:15:46Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -301,6 +301,33 @@
       "ret_3m_pct": 1.73,
       "ret_6m_pct": 98.46,
       "bars": 500
+    },
+    "298040": {
+      "name": "효성중공업",
+      "market": "kospi",
+      "symbol": "298040.KS",
+      "as_of": "2026-10-06",
+      "close": 2807000.0,
+      "chg_1d_pct": 0.79,
+      "ma5": 2798200.0,
+      "ma20": 2838300.0,
+      "ma60": 2774600.0,
+      "ma120": 3178591.6667,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -1.1,
+      "pct_vs_ma120": -11.69,
+      "rsi14": 48.34,
+      "volume": 34706.0,
+      "volume_avg20": 33930.0,
+      "volume_ratio20": 1.02,
+      "high52": 4601000.0,
+      "low52": 1328000.0,
+      "pct_from_high52": -38.99,
+      "pct_from_low52": 111.37,
+      "ret_1m_pct": 1.52,
+      "ret_3m_pct": -18.21,
+      "ret_6m_pct": 14.29,
+      "bars": 485
     }
   }
 }
