@@ -168,6 +168,7 @@
             <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">{{ aiCountText }}</div>
           </div>
           <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+            <div onclick="{{ onGhTokenChipAi }}" title="⚡ 버튼용 GitHub 토큰 — 이 브라우저에만 저장. 누르면 확인·입력·지우기" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">{{ ghTokenChip }}</div>
             <sc-if value="{{ hasRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:280px; text-align:right; line-height:1.4;">{{ refreshMsg }}</div>
             </sc-if>
@@ -889,6 +890,7 @@
             <sc-if value="{{ marketSaved }}" hint-placeholder-val="{{ false }}">
               <div onclick="{{ resetMarket }}" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">↺ 예시로</div>
             </sc-if>
+            <div onclick="{{ onGhTokenChipMarket }}" title="⚡ 버튼용 GitHub 토큰 — 이 브라우저에만 저장. 누르면 확인·입력·지우기" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">{{ ghTokenChip }}</div>
             <sc-if value="{{ hasMarketRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:260px; text-align:right; line-height:1.4;">{{ marketRefreshMsg }}</div>
             </sc-if>
@@ -1500,7 +1502,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, refreshPanelOpen: false, refreshTickers: 'all',
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all',
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1649,18 +1651,25 @@ class Component extends DCLogic {
   ghToken() {
     try { return (localStorage.getItem(this.LS_GH_TOKEN) || '').trim(); } catch (e) { return ''; }
   }
-  openGhTokenPanel(pending) {
-    this.setState({ ghTokenOpen: true, ghTokenDraft: '', ghPending: pending || null,
-      [pending.msgKey]: 'GitHub 토큰이 이 브라우저에 없습니다 — 아래 칸에 붙여넣고 저장을 누르세요' });
+  // pending: 토큰 때문에 멈춘 실행(있으면 저장 뒤 이어서). msgKey: 상태 글자를 보일 화면(refreshMsg=종목분석, marketRefreshMsg=시황)
+  openGhTokenPanel(pending, msgKey) {
+    const key = msgKey || (pending && pending.msgKey) || 'refreshMsg';
+    const has = !!this.ghToken();
+    this.setState({ ghTokenOpen: true, ghTokenDraft: '', ghPending: pending || null, ghPanelMsgKey: key,
+      [key]: has ? '이 브라우저에 토큰이 저장돼 있습니다' : 'GitHub 토큰이 이 브라우저에 없습니다 — 아래 칸에 붙여넣고 저장을 누르세요' });
   }
   saveGhToken() {
     const pending = this.state.ghPending;
-    const msgKey = (pending && pending.msgKey) || 'refreshMsg';
+    const msgKey = this.state.ghPanelMsgKey || 'refreshMsg';
     const t = (this.state.ghTokenDraft || '').trim();
     if (!t) { this.setState({ [msgKey]: '토큰이 비어 있습니다' }); return; }
     try { localStorage.setItem(this.LS_GH_TOKEN, t); } catch (e) {}
     this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null, [msgKey]: '토큰 저장됨 (이 브라우저에만)' });
     if (pending) this.runWorkflow(pending); // 토큰 때문에 멈췄던 실행을 이어서
+  }
+  clearGhToken() {
+    try { localStorage.removeItem(this.LS_GH_TOKEN); } catch (e) {}
+    this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null, [this.state.ghPanelMsgKey || 'refreshMsg']: '이 브라우저의 토큰을 지웠습니다. 다음 실행 때 다시 입력합니다' });
   }
   cancelGhToken() { this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null }); }
 
@@ -1668,7 +1677,7 @@ class Component extends DCLogic {
   async runWorkflow({ file, inputs, msgKey, busyKey, label, onDone }) {
     if (this.state[busyKey]) { this.setState({ [msgKey]: '이미 실행 중입니다' }); return; }
     const token = this.ghToken();
-    if (!token) { this.openGhTokenPanel({ file, inputs, msgKey, busyKey, label, onDone }); return; }
+    if (!token) { this.openGhTokenPanel({ file, inputs, msgKey, busyKey, label, onDone }, msgKey); return; }
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
     const auth = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
     this.setState({ [busyKey]: true, [msgKey]: '워크플로 실행을 요청하는 중…' });
@@ -3698,8 +3707,11 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       onReloadAnalyses: () => this.reloadAnalyses(), onRefreshToday: () => this.refreshToday(),
       refreshPanelOpen: this.state.refreshPanelOpen, refreshTickers: this.state.refreshTickers,
       onRefreshTickersInput: e => this.setF('refreshTickers', e.target.value), submitRefreshToday: () => this.submitRefreshToday(), cancelRefreshToday: () => this.setState({ refreshPanelOpen: false }),
-      ghTokenOpen: this.state.ghTokenOpen, ghTokenDraft: this.state.ghTokenDraft,
-      onGhTokenInput: e => this.setF('ghTokenDraft', e.target.value), saveGhToken: () => this.saveGhToken(), cancelGhToken: () => this.cancelGhToken(),
+      ghTokenOpen: this.state.ghTokenOpen, ghTokenDraft: this.state.ghTokenDraft, hasGhToken: !!this.ghToken(),
+      ghTokenChip: this.ghToken() ? '🔑 토큰 있음' : '🔑 토큰 없음',
+      ghTokenTitle: this.ghToken() ? '🔑 이 브라우저에 GitHub 토큰이 저장돼 있습니다 (바꾸려면 새 토큰 저장, 없애려면 지우기)' : '🔑 GitHub 토큰이 이 브라우저에 없습니다',
+      onGhTokenChipAi: () => this.openGhTokenPanel(null, 'refreshMsg'), onGhTokenChipMarket: () => this.openGhTokenPanel(null, 'marketRefreshMsg'),
+      onGhTokenInput: e => this.setF('ghTokenDraft', e.target.value), saveGhToken: () => this.saveGhToken(), cancelGhToken: () => this.cancelGhToken(), clearGhToken: () => this.clearGhToken(),
       refreshMsg: this.state.refreshMsg, hasRefreshMsg: !!this.state.refreshMsg,
       caseEditOpen: this.state.caseEditOpen, closeCaseEdit: () => this.closeCaseEdit(), submitCaseEdit: () => this.submitCaseEdit(),
       caseEditIsNew: this.state.caseEditIdx == null,
