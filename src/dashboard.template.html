@@ -1204,6 +1204,7 @@
           </div>
         </sc-for>
         <div onclick="{{ peekPanel.onAddNew }}" style="font-size:13px; font-weight:800; padding:8px 16px; border-radius:11px; cursor:pointer; color:#6B62F0; background:#fff; border:1.5px dashed #C9C4FA;">+ 새 분석</div>
+        <div onclick="{{ peekPanel.onRefreshStock }}" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분)" style="font-size:13px; font-weight:800; padding:8px 16px; border-radius:11px; cursor:pointer; color:#fff; background:#1F1F2B; white-space:nowrap;">↻ 오늘자 재분석</div>
       </div>
 
       <div style="margin-top:16px; background:#FAFAFD; border:1px solid #EEEEF4; border-radius:16px; padding:15px 16px;">
@@ -1263,7 +1264,6 @@
       </div>
 
       <div style="display:flex; gap:9px; margin-top:18px;">
-        <div onclick="{{ peekPanel.onRefreshStock }}" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분)" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#1F1F2B; color:#fff; font-weight:800; font-size:14px; cursor:pointer;">↻ 오늘자 재분석</div>
         <div onclick="{{ peekPanel.onEdit }}" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#F0EFFE; color:#6B62F0; font-weight:800; font-size:14px; cursor:pointer;">✏ 분석 수정</div>
         <div onclick="{{ peekPanel.onEditStock }}" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#F3F3F8; color:#56566A; font-weight:800; font-size:14px; cursor:pointer;">⚙ 종목 수정</div>
         <div onclick="{{ peekPanel.onDel }}" style="padding:12px 14px; border-radius:13px; background:#FDECEC; color:#C44; font-weight:800; font-size:14px; cursor:pointer;">🗑</div>
