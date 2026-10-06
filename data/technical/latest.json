@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T14:56:38Z",
+  "generated_at": "2026-10-06T15:25:19Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -220,6 +220,33 @@
       "ret_3m_pct": 30.96,
       "ret_6m_pct": 38.52,
       "bars": 485
+    },
+    "SHOP": {
+      "name": "쇼피파이",
+      "market": "us",
+      "symbol": "SHOP",
+      "as_of": "2026-10-05",
+      "close": 160.11,
+      "chg_1d_pct": 5.76,
+      "ma5": 151.43,
+      "ma20": 139.183,
+      "ma60": 138.2982,
+      "ma120": 126.4412,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 15.04,
+      "pct_vs_ma120": 26.63,
+      "rsi14": 67.61,
+      "volume": 8948900.0,
+      "volume_avg20": 10473465.0,
+      "volume_ratio20": 0.85,
+      "high52": 179.01,
+      "low52": 95.4,
+      "pct_from_high52": -10.56,
+      "pct_from_low52": 67.83,
+      "ret_1m_pct": 9.75,
+      "ret_3m_pct": 31.37,
+      "ret_6m_pct": 34.77,
+      "bars": 500
     }
   }
 }
