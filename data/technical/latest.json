@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T15:27:18Z",
+  "generated_at": "2026-10-06T15:44:07Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -247,6 +247,33 @@
       "ret_3m_pct": 31.37,
       "ret_6m_pct": 34.77,
       "bars": 500
+    },
+    "257720": {
+      "name": "실리콘투",
+      "market": "kospi",
+      "symbol": "257720.KS",
+      "as_of": "2026-10-02",
+      "close": 37100.0,
+      "chg_1d_pct": -3.13,
+      "ma5": 38080.0,
+      "ma20": 42315.0,
+      "ma60": 41425.8333,
+      "ma120": 40414.1667,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -12.32,
+      "pct_vs_ma120": -8.2,
+      "rsi14": 30.93,
+      "volume": 782305.0,
+      "volume_avg20": 786038.0,
+      "volume_ratio20": 1.0,
+      "high52": 54200.0,
+      "low52": 30400.0,
+      "pct_from_high52": -31.55,
+      "pct_from_low52": 22.04,
+      "ret_1m_pct": -28.52,
+      "ret_3m_pct": 4.36,
+      "ret_6m_pct": -0.8,
+      "bars": 484
     }
   }
 }
