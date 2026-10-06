@@ -172,7 +172,6 @@
             <sc-if value="{{ hasRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:280px; text-align:right; line-height:1.4;">{{ refreshMsg }}</div>
             </sc-if>
-            <div onclick="{{ onReloadAnalyses }}" title="저장된 최신 분석 파일을 다시 불러옵니다" style="background:#F3F3F8; color:#4A4A5E; height:44px; padding:0 16px; border-radius:13px; display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800; font-size:14px;">🔄 새로고침</div>
             <div onclick="{{ onRefreshToday }}" title="GitHub Actions에서 오늘 날짜 기준으로 다시 분석합니다 (종목당 몇 분)" style="background:#1F1F2B; color:#fff; height:44px; padding:0 16px; border-radius:13px; display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800; font-size:14px;">⚡ 오늘자로 업데이트</div>
             <div onclick="{{ openAdd }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px;">＋ 분석 추가</div>
           </div>
@@ -280,6 +279,7 @@
                 </sc-if>
               </div>
               <div style="display:flex; justify-content:flex-end; gap:6px; flex-shrink:0;" onclick="{{ a.stopProp }}">
+                <div onclick="{{ a.onStockRefresh }}" style="font-size:12px; color:#6B62F0; cursor:pointer; padding:5px 7px; background:#F0EFFE; border-radius:8px;" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분)">↻</div>
                 <div onclick="{{ a.onStockEdit }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:5px 7px; background:#F3F3F8; border-radius:8px;" title="수정">✏</div>
                 <div onclick="{{ a.onStockDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:5px 7px; background:#F3F3F8; border-radius:8px;" title="삭제">✕</div>
               </div>
@@ -293,6 +293,7 @@
                 <span style="font-size:11px; font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap; flex-shrink:0;">{{ a.mktLabel }}</span>
                 <span style="font-size:11.5px; font-weight:700; color:#56566A; white-space:nowrap; flex-shrink:0;">{{ a.latestDate }}</span>
                 <div style="display:flex; gap:5px; flex-shrink:0;" onclick="{{ a.stopProp }}">
+                  <div onclick="{{ a.onStockRefresh }}" style="font-size:11px; color:#6B62F0; cursor:pointer; padding:4px 6px; background:#F0EFFE; border-radius:7px;" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분)">↻</div>
                   <div onclick="{{ a.onStockEdit }}" style="font-size:11px; color:#9A9AAC; cursor:pointer; padding:4px 6px; background:#F3F3F8; border-radius:7px;" title="수정">✏</div>
                   <div onclick="{{ a.onStockDel }}" style="font-size:11px; color:#C4C4D2; cursor:pointer; padding:4px 6px; background:#F3F3F8; border-radius:7px;" title="삭제">✕</div>
                 </div>
@@ -1262,6 +1263,7 @@
       </div>
 
       <div style="display:flex; gap:9px; margin-top:18px;">
+        <div onclick="{{ peekPanel.onRefreshStock }}" title="이 종목만 오늘자로 다시 분석 (GitHub Actions, 몇 분)" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#1F1F2B; color:#fff; font-weight:800; font-size:14px; cursor:pointer;">↻ 오늘자 재분석</div>
         <div onclick="{{ peekPanel.onEdit }}" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#F0EFFE; color:#6B62F0; font-weight:800; font-size:14px; cursor:pointer;">✏ 분석 수정</div>
         <div onclick="{{ peekPanel.onEditStock }}" style="flex:1; text-align:center; padding:12px; border-radius:13px; background:#F3F3F8; color:#56566A; font-weight:800; font-size:14px; cursor:pointer;">⚙ 종목 수정</div>
         <div onclick="{{ peekPanel.onDel }}" style="padding:12px 14px; border-radius:13px; background:#FDECEC; color:#C44; font-weight:800; font-size:14px; cursor:pointer;">🗑</div>
@@ -1717,6 +1719,15 @@ class Component extends DCLogic {
       else this.setState({ [busyKey]: false, [msgKey]: '3시간이 지나 상태 확인을 멈췄습니다 — GitHub Actions에서 확인하세요' });
     };
     setTimeout(poll, 15000);
+  }
+
+  // 종목별 ↻: 그 종목 하나만 오늘자로 다시 분석(사용자 요청 2026-10-06 "새로고침은 종목별로"). 수동 등록 종목(코드 N…)은 종목코드가 없어 불가
+  refreshStock(code) {
+    const stock = (this.state.analyses || this.analyses || []).find(a => a.code === code);
+    const name = stock ? stock.name : code;
+    if (/^N\d+$/.test(String(code))) { this.setState({ refreshMsg: name + ': 수동 등록 종목은 종목코드가 없어 다시 분석할 수 없습니다' }); return; }
+    this.setState({ refreshPanelOpen: false, refreshTickers: code });
+    this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers: code }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: name + ' — 몇 분', onDone: () => this.reloadAnalyses() });
   }
 
   // 종목 선택도 prompt 창 대신 화면 안 입력칸으로 받는다
@@ -3012,6 +3023,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           ...this.profileView(stock.code),
           onEdit: () => this.openEditAnalysis(stock.code, aiTabIdx),
           onEditStock: () => this.openStockEdit(stock.code),
+          onRefreshStock: () => this.refreshStock(stock.code),
           onAddNew: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openAddForStock(stock.code); },
           onDel: () => { if(window.confirm('삭제할까요?')) { this.deleteAnalysis(stock.code); this.closePeek(); } },
         };
@@ -3125,6 +3137,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         noMeta, countLabel: '분석 ' + a.ais.length + '건',
         aisEditBtns: a.ais.map((_, i) => ({ onClick: () => this.openEditAnalysis(a.code, i) })),
         onStockEdit: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); this.openStockEdit(a.code); },
+        onStockRefresh: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); this.refreshStock(a.code); },
         onStockDel: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); if(window.confirm('종목 ' + a.name + ' 전체를 삭제할까요?')) this.deleteAnalysis(a.code); },
         stopProp: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); },
         ais: aisV, miniBadges,
@@ -3679,7 +3692,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
-      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
+      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onRefreshStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
       isPeekChartReview: peekType === 'chartreview' && !!peekPanel,
