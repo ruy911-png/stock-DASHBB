@@ -27,6 +27,7 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
 7. **git commit·push는 하지 않는다**(워크플로가 한다). 마지막에 요약만 쓴다: 처리한 종목, 건너뛴 종목(이유), 기술적분석을 미확인으로 둔 종목, 신뢰도 자가체크(5점 만점).
 
 ## 금지
+- **파일은 Read·Edit·Write 도구로만 읽고 고친다.** Bash는 `npm run build`, `npm run check`, `node scripts/validate-analyses.mjs`, `date`만 허용되며 그 밖의 명령(python/node 스크립트로 JSON 고치기, cat, git 등)은 권한 거부로 실패한다 — 시도하지 말고, 거부되더라도 멈추지 말고 Edit/Write로 이어서 끝낸다. (2026-10-06 첫 실행이 스크립트 거부 뒤 아무것도 쓰지 않고 끝난 적 있음)
 - 숫자를 지어내지 않는다. 기술적분석 숫자는 `data/technical/latest.json`만, 나머지 숫자는 서브에이전트가 출처와 함께 가져온 것만.
 - 매수·매도·보유 권유, "지금 사라/팔아라" 류 표현 금지. 애널리스트 의견은 "~로 집계된다(사실 보고)"로만.
 - `index.html`을 직접 고치지 않는다(`npm run build`가 만든다).
