@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:03:34Z",
+  "generated_at": "2026-10-06T23:27:59Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -354,6 +354,33 @@
       "ret_1m_pct": -12.59,
       "ret_3m_pct": -26.69,
       "ret_6m_pct": -29.06,
+      "bars": 501
+    },
+    "ISRG": {
+      "name": "인튜이티브 서지컬",
+      "market": "us",
+      "symbol": "ISRG",
+      "as_of": "2026-10-06",
+      "close": 404.76,
+      "chg_1d_pct": -0.42,
+      "ma5": 402.212,
+      "ma20": 392.094,
+      "ma60": 378.4222,
+      "ma120": 404.474,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 3.23,
+      "pct_vs_ma120": 0.07,
+      "rsi14": 57.97,
+      "volume": 1649924.0,
+      "volume_avg20": 2395450.0,
+      "volume_ratio20": 0.69,
+      "high52": 592.85,
+      "low52": 332.02,
+      "pct_from_high52": -31.73,
+      "pct_from_low52": 21.91,
+      "ret_1m_pct": 10.38,
+      "ret_3m_pct": -2.49,
+      "ret_6m_pct": -10.64,
       "bars": 501
     }
   }

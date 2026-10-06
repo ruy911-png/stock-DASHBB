@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:03:35Z",
+  "generated_at": "2026-10-06T23:28:00Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -1245,12 +1245,12 @@
       "name": "인튜이티브 서지컬",
       "market": "us",
       "symbol": "ISRG",
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-06",
       "window": "2y",
-      "bars": 500,
+      "bars": 501,
       "labels": [],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 3,
         "surge_per_year": 1.5,
         "crash_days": 1,
@@ -1264,21 +1264,21 @@
         "above_ma60_pct_1y": 0.31,
         "ma60_cross_count_1y": 11,
         "autocorr_1d_1y": -0.02,
-        "ret_1y_pct": -8.25,
+        "ret_1y_pct": -10.52,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 36.94,
+        "vol_annual_pct_1y": 36.88,
         "max_drawdown_1y_pct": -44.0,
         "gap3_days_rate_1y": 0.02,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 19.89
+        "top5_gain_share_pct_1y": 20.11
       },
       "notes": [
         "2년 급등일(+10%↑) 3회(연 1.5회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 -2.6%, 플러스 비율 33% · 20거래일 평균 +3.8% (표본 3회)",
-        "최근 1년 60일선 위 31%(교차 11회), 1년 수익률 -8.2%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 6일",
+        "최근 1년 60일선 위 31%(교차 11회), 1년 수익률 -10.5%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 6일",
         "연환산 변동성 37%, 1년 최대 낙폭 -44.0%, 3%↑ 갭 발생일 2%",
         "거래량 3배↑ 급증일 2회, 그날 상승 50%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 20%"
