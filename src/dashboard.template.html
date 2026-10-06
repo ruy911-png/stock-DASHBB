@@ -1221,6 +1221,9 @@
             </sc-for>
           </div>
         </sc-if>
+        <sc-if value="{{ peekPanel.hasProfileHint }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:12px; font-size:11.5px; color:#8C8C9E; line-height:1.5;">{{ peekPanel.profileHint }}</div>
+        </sc-if>
       </div>
 
       <div style="display:flex; gap:9px; margin-top:18px;">
@@ -1584,12 +1587,19 @@ class Component extends DCLogic {
 
   profileView(code) {
     const p = this.state.profiles && this.state.profiles[code];
-    if (!p) return { hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '' };
+    if (!p) {
+      // 특성 파일은 있는데 이 종목만 없는 경우: 언제 등록되는지 알려 준다(수동 등록 종목은 종목코드가 없어 계산 대상이 아님)
+      const loaded = !!this.state.profiles;
+      const hint = /^N\d+$/.test(String(code)) ? '종목 특성: 수동 등록 종목(종목코드 없음)은 계산 대상이 아닙니다'
+        : '종목 특성: 아직 없음 — ⚡ 오늘자로 업데이트에 이 종목을 넣으면(또는 토요일 자동 갱신 때) 등록됩니다';
+      return { hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '',
+        hasProfileHint: loaded, profileHint: loaded ? hint : '' };
+    }
     const why = this.state.profileThresholds || {};
     const tags = (p.labels && p.labels.length ? p.labels : ['뚜렷한 유형 없음']).map(label => ({ label, why: why[label] || '' }));
     const whyLines = tags.filter(t => t.why).map(t => ({ text: t.label + ' = ' + t.why })); // 터치 기기에선 툴팁이 안 보여 기준을 글로 적는다
     return { hasProfile: true, profileTags: tags, profileWhyLines: whyLines, hasProfileWhy: whyLines.length > 0,
-      profileLines: (p.notes || []).map(text => ({ text })), profileAsOf: p.as_of || '' };
+      profileLines: (p.notes || []).map(text => ({ text })), profileAsOf: p.as_of || '', hasProfileHint: false, profileHint: '' };
   }
 
   async reloadAnalyses() {
@@ -3614,7 +3624,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
-      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
+      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
       isPeekChartReview: peekType === 'chartreview' && !!peekPanel,
