@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T14:05:05Z",
+  "generated_at": "2026-10-06T14:40:46Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -87,7 +87,7 @@
       "name_hint": "NVIDIA Corporation"
     },
     "035720": {
-      "name": "",
+      "name": "카카오",
       "market": "kospi",
       "symbol": "035720.KS",
       "as_of": "2026-10-06",
@@ -101,9 +101,9 @@
       "pct_vs_ma20": -2.19,
       "pct_vs_ma120": -14.31,
       "rsi14": 40.05,
-      "volume": 1187823.0,
+      "volume": 1278102.0,
       "volume_avg20": 1392371.0,
-      "volume_ratio20": 0.85,
+      "volume_ratio20": 0.92,
       "high52": 67700.0,
       "low52": 33150.0,
       "pct_from_high52": -50.52,
@@ -111,9 +111,7 @@
       "ret_1m_pct": -4.56,
       "ret_3m_pct": -4.96,
       "ret_6m_pct": -26.86,
-      "bars": 485,
-      "new": true,
-      "name_hint": "Kakao Corp."
+      "bars": 485
     },
     "001450": {
       "name": "현대해상",
