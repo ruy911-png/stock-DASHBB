@@ -168,6 +168,7 @@
             <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">{{ aiCountText }}</div>
           </div>
           <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+            <div onclick="{{ onGhTokenChipAi }}" title="⚡ 버튼용 GitHub 토큰 — 이 브라우저에만 저장. 누르면 확인·입력·지우기" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">{{ ghTokenChip }}</div>
             <sc-if value="{{ hasRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:280px; text-align:right; line-height:1.4;">{{ refreshMsg }}</div>
             </sc-if>
@@ -176,6 +177,28 @@
             <div onclick="{{ openAdd }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px;">＋ 분석 추가</div>
           </div>
         </div>
+        <sc-if value="{{ refreshPanelOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff; border:1.5px solid #E6E6EE; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">어느 종목을 오늘자로 분석할까요?</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">all = 목록 전체 · 또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다</div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <input oninput="{{ onRefreshTickersInput }}" value="{{ refreshTickers }}" placeholder="all" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              <div onclick="{{ submitRefreshToday }}" style="background:#1F1F2B; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">실행</div>
+              <div onclick="{{ cancelRefreshToday }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ ghTokenOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FFF8E8; border:1.5px solid #F3DFB0; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">🔑 GitHub 토큰이 이 브라우저에 없습니다</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">fine-grained 토큰(이 저장소만, Actions: Read and write)을 붙여넣으세요. 이 브라우저에만 저장되고 페이지 파일에는 들어가지 않습니다. 저장하면 방금 누른 실행을 이어서 합니다.</div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <input type="password" oninput="{{ onGhTokenInput }}" value="{{ ghTokenDraft }}" placeholder="github_pat_…" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#fff;">
+              <div onclick="{{ saveGhToken }}" style="background:#1F1F2B; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">저장</div>
+              <div onclick="{{ cancelGhToken }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
 
         <div style="display:flex; gap:8px; margin-bottom:14px;">
           <sc-for list="{{ marketTabs }}" as="mt" hint-placeholder-count="2">
@@ -863,10 +886,11 @@
             <div style="font-size:28px; font-weight:800; letter-spacing:-.6px;">시황분석</div>
             <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">{{ marketDateLabel }} · 국장·미장 각각 정규장 마감 기준</div>
           </div>
-          <div style="display:flex; align-items:center; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
             <sc-if value="{{ marketSaved }}" hint-placeholder-val="{{ false }}">
               <div onclick="{{ resetMarket }}" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">↺ 예시로</div>
             </sc-if>
+            <div onclick="{{ onGhTokenChipMarket }}" title="⚡ 버튼용 GitHub 토큰 — 이 브라우저에만 저장. 누르면 확인·입력·지우기" style="font-size:12px; font-weight:700; color:#9A9AAC; cursor:pointer; white-space:nowrap;">{{ ghTokenChip }}</div>
             <sc-if value="{{ hasMarketRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:260px; text-align:right; line-height:1.4;">{{ marketRefreshMsg }}</div>
             </sc-if>
@@ -875,6 +899,17 @@
             <div onclick="{{ openMarketPaste }}" style="font-size:13px; font-weight:800; color:#fff; background:#6B62F0; padding:11px 16px; border-radius:12px; cursor:pointer; white-space:nowrap; box-shadow:0 6px 18px rgba(107,98,240,.32);">📋 시황 붙여넣기</div>
           </div>
         </div>
+        <sc-if value="{{ ghTokenOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FFF8E8; border:1.5px solid #F3DFB0; border-radius:16px; padding:14px 16px; margin-bottom:16px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">🔑 GitHub 토큰이 이 브라우저에 없습니다</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">fine-grained 토큰(이 저장소만, Actions: Read and write)을 붙여넣으세요. 이 브라우저에만 저장되고 페이지 파일에는 들어가지 않습니다. 저장하면 방금 누른 실행을 이어서 합니다.</div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <input type="password" oninput="{{ onGhTokenInput }}" value="{{ ghTokenDraft }}" placeholder="github_pat_…" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#fff;">
+              <div onclick="{{ saveGhToken }}" style="background:#1F1F2B; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">저장</div>
+              <div onclick="{{ cancelGhToken }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
 
         <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
           <sc-for list="{{ indices }}" as="i" hint-placeholder-count="8">
@@ -1467,6 +1502,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all',
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1610,21 +1646,38 @@ class Component extends DCLogic {
     this.setState({ refreshMsg: n + '종목 불러옴 · ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) });
   }
 
+  // 저장된 GitHub 토큰(이 브라우저의 localStorage). 없으면 ''. 입력은 window.prompt 대신 화면 안 입력칸으로 받는다
+  // (2026-10-06: 일부 브라우저에서 prompt 창이 안 떠 버튼을 눌러도 아무 반응이 없었음)
   ghToken() {
-    let t = '';
-    try { t = localStorage.getItem(this.LS_GH_TOKEN) || ''; } catch (e) {}
-    if (!t) {
-      t = (window.prompt('GitHub 개인 토큰을 입력하세요 (fine-grained, 이 저장소만, Actions: Read and write).\n이 브라우저에만 저장되며 페이지 파일에는 들어가지 않습니다.') || '').trim();
-      if (t) { try { localStorage.setItem(this.LS_GH_TOKEN, t); } catch (e) {} }
-    }
-    return t;
+    try { return (localStorage.getItem(this.LS_GH_TOKEN) || '').trim(); } catch (e) { return ''; }
   }
+  // pending: 토큰 때문에 멈춘 실행(있으면 저장 뒤 이어서). msgKey: 상태 글자를 보일 화면(refreshMsg=종목분석, marketRefreshMsg=시황)
+  openGhTokenPanel(pending, msgKey) {
+    const key = msgKey || (pending && pending.msgKey) || 'refreshMsg';
+    const has = !!this.ghToken();
+    this.setState({ ghTokenOpen: true, ghTokenDraft: '', ghPending: pending || null, ghPanelMsgKey: key,
+      [key]: has ? '이 브라우저에 토큰이 저장돼 있습니다' : 'GitHub 토큰이 이 브라우저에 없습니다 — 아래 칸에 붙여넣고 저장을 누르세요' });
+  }
+  saveGhToken() {
+    const pending = this.state.ghPending;
+    const msgKey = this.state.ghPanelMsgKey || 'refreshMsg';
+    const t = (this.state.ghTokenDraft || '').trim();
+    if (!t) { this.setState({ [msgKey]: '토큰이 비어 있습니다' }); return; }
+    try { localStorage.setItem(this.LS_GH_TOKEN, t); } catch (e) {}
+    this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null, [msgKey]: '토큰 저장됨 (이 브라우저에만)' });
+    if (pending) this.runWorkflow(pending); // 토큰 때문에 멈췄던 실행을 이어서
+  }
+  clearGhToken() {
+    try { localStorage.removeItem(this.LS_GH_TOKEN); } catch (e) {}
+    this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null, [this.state.ghPanelMsgKey || 'refreshMsg']: '이 브라우저의 토큰을 지웠습니다. 다음 실행 때 다시 입력합니다' });
+  }
+  cancelGhToken() { this.setState({ ghTokenOpen: false, ghTokenDraft: '', ghPending: null }); }
 
   // 공통: GitHub 워크플로 실행 요청 → 30초마다 상태 확인 → 성공하면 1분 뒤 onDone(최신 파일 다시 불러오기)
   async runWorkflow({ file, inputs, msgKey, busyKey, label, onDone }) {
     if (this.state[busyKey]) { this.setState({ [msgKey]: '이미 실행 중입니다' }); return; }
     const token = this.ghToken();
-    if (!token) return;
+    if (!token) { this.openGhTokenPanel({ file, inputs, msgKey, busyKey, label, onDone }, msgKey); return; }
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
     const auth = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
     this.setState({ [busyKey]: true, [msgKey]: '워크플로 실행을 요청하는 중…' });
@@ -1666,10 +1719,12 @@ class Component extends DCLogic {
     setTimeout(poll, 15000);
   }
 
-  refreshToday() {
-    const scope = window.prompt('어느 종목을 오늘자로 분석할까요?\nall = 목록 전체 다시 분석\n또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다', 'all');
-    if (scope == null) return;
-    const tickers = scope.trim() || 'all';
+  // 종목 선택도 prompt 창 대신 화면 안 입력칸으로 받는다
+  refreshToday() { this.setState({ refreshPanelOpen: true, refreshTickers: this.state.refreshTickers || 'all' }); }
+  submitRefreshToday() {
+    const raw = String(this.state.refreshTickers || '').replace(/\s+/g, '');
+    const tickers = (!raw || raw.toLowerCase() === 'all') ? 'all' : raw.toUpperCase();
+    this.setState({ refreshPanelOpen: false });
     this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: tickers + ' — 종목당 몇 분', onDone: () => this.reloadAnalyses() });
   }
 
@@ -3650,6 +3705,13 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       stockCsvSampleHref: 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF종목명,코드,현재가,태그\n삼성전자,005930,74200,반도체,HBM\nHOOD,HOOD,75,핀테크,CLARITY Act\n'),
       openAdd: () => this.openAdd(), closeAdd: () => this.closeAdd(), submitAdd: () => this.addAnalysis(),
       onReloadAnalyses: () => this.reloadAnalyses(), onRefreshToday: () => this.refreshToday(),
+      refreshPanelOpen: this.state.refreshPanelOpen, refreshTickers: this.state.refreshTickers,
+      onRefreshTickersInput: e => this.setF('refreshTickers', e.target.value), submitRefreshToday: () => this.submitRefreshToday(), cancelRefreshToday: () => this.setState({ refreshPanelOpen: false }),
+      ghTokenOpen: this.state.ghTokenOpen, ghTokenDraft: this.state.ghTokenDraft, hasGhToken: !!this.ghToken(),
+      ghTokenChip: this.ghToken() ? '🔑 토큰 있음' : '🔑 토큰 없음',
+      ghTokenTitle: this.ghToken() ? '🔑 이 브라우저에 GitHub 토큰이 저장돼 있습니다 (바꾸려면 새 토큰 저장, 없애려면 지우기)' : '🔑 GitHub 토큰이 이 브라우저에 없습니다',
+      onGhTokenChipAi: () => this.openGhTokenPanel(null, 'refreshMsg'), onGhTokenChipMarket: () => this.openGhTokenPanel(null, 'marketRefreshMsg'),
+      onGhTokenInput: e => this.setF('ghTokenDraft', e.target.value), saveGhToken: () => this.saveGhToken(), cancelGhToken: () => this.cancelGhToken(), clearGhToken: () => this.clearGhToken(),
       refreshMsg: this.state.refreshMsg, hasRefreshMsg: !!this.state.refreshMsg,
       caseEditOpen: this.state.caseEditOpen, closeCaseEdit: () => this.closeCaseEdit(), submitCaseEdit: () => this.submitCaseEdit(),
       caseEditIsNew: this.state.caseEditIdx == null,
