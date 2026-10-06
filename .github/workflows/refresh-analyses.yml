@@ -3,7 +3,8 @@
 # 검증(npm run check + validate-analyses)을 통과하면 실행한 브랜치(main)에 바로 커밋한다 — 버튼을 누른 것이 사용자의 명시 요청이다.
 # 코드가 계산한 기술지표·종목 특성(data/technical/*.json)은 Claude 단계 전에 먼저 커밋한다(사용자 요청 2026-10-06:
 # 새로고침·신규 등록 때 종목 특성이 등록되도록) — Secret이 없거나 Claude 단계가 실패해도 이 둘은 반영된다.
-# 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(사용자 Claude 구독 토큰, `claude setup-token`) — 추가 API 과금 없음. 시험 3회차(2026-10-05).
+# 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(사용자 Claude 구독 토큰, `claude setup-token`) — 추가 API 과금 없음.
+# 실제 작동 확인 2026-10-06(SCHW 1종목, NVDA·035720 신규 + 001450 3종목 모두 오늘자 분석 작성·커밋).
 name: refresh-analyses
 on:
   workflow_dispatch:
@@ -20,18 +21,12 @@ on:
         description: "한 번의 Claude 실행이 맡는 종목 수"
         default: "8"
         type: string
-  # 시험용: 이 파일을 feature 브랜치에 푸시하면 2종목(미장 1·국장 1)으로 돌려 실제로 되는지 본다. main에 합친 뒤에는 버튼으로만 실행
-  push:
-    branches: [feature/refresh-analyses]
-    paths: [".github/workflows/refresh-analyses.yml"]
 permissions:
   contents: write
   id-token: write
 concurrency:
   group: refresh-analyses
   cancel-in-progress: false
-env:
-  TEST_TICKERS: "SCHW,001450,NVDA,035720" # 기존 미장·국장 1개씩 + 목록에 없는 신규(엔비디아·카카오) — 신규 추가 경로까지 시험
 jobs:
   plan:
     runs-on: ubuntu-latest
@@ -45,11 +40,7 @@ jobs:
       - id: plan
         shell: bash
         run: |
-          if [ "${{ github.event_name }}" = "push" ]; then
-            TICKERS="$TEST_TICKERS"; MAX_AGE=0; CHUNK=8
-          else
-            TICKERS="${{ inputs.tickers }}"; MAX_AGE="${{ inputs.max_age_days }}"; CHUNK="${{ inputs.chunk_size }}"
-          fi
+          TICKERS="${{ inputs.tickers }}"; MAX_AGE="${{ inputs.max_age_days }}"; CHUNK="${{ inputs.chunk_size }}"
           CHUNKS="$(node scripts/plan-refresh.mjs --tickers "$TICKERS" --max-age-days "$MAX_AGE" --chunk-size "$CHUNK")"
           echo "chunks=$CHUNKS" >> "$GITHUB_OUTPUT"
           echo "계획: $CHUNKS"
