@@ -33,19 +33,19 @@ KR = ("kospi", "kosdaq")
 MIN_BARS = 120        # 이보다 짧으면 미확인
 YEAR = 252
 MIN_SURGES = 5        # 급등 뒤 행동 유형을 붙이는 최소 표본
-THRESHOLDS = {  # 임시값(2026-10-06) — 결과를 보고 조정. 카드 설명에도 그대로 쓴다
+THRESHOLDS = {  # 임시값. 1차(2026-10-06) 36종목 결과를 보고 2차 조정: 한 유형이 절반 넘게 붙지 않도록. 카드 설명에도 그대로 쓴다
     "급등 빈발형": "급등일(+10% 이상 마감) 연 6회 이상",
     "상한가 빈발형": "국장, 2년간 상한가(+29.5% 이상) 2회 이상",
     "급등 후 반전형": "급등 뒤 5거래일 수익률이 플러스인 비율 40% 미만(표본 5회 이상)",
     "급등 지속형": "급등 뒤 5거래일 수익률이 플러스인 비율 60% 이상(표본 5회 이상)",
     "추세 지속형": "최근 1년 60일선 위 70% 이상이고 1년 수익률 플러스",
     "하락 추세형": "최근 1년 60일선 위 30% 이하이고 1년 수익률 마이너스",
-    "되돌림형": "하루 수익률 자기상관 -0.10 이하(전날 오르면 다음 날 내리는 경향)",
-    "박스권형": "1년간 60일선 교차 8회 이상이고 1년 수익률 ±15% 안",
-    "고변동형": "연환산 변동성 60% 이상",
+    "박스권형": "추세 유형이 아니면서 1년 수익률 ±15% 안, 60일선 위 비율 35~65%",
+    "되돌림형": "하루 수익률 자기상관 -0.13 이하(전날 오르면 다음 날 내리는 경향, 1년치 기준 2σ)",
+    "고변동형": "연환산 변동성 70% 이상(하루 평균 ±4.4% 수준)",
     "저변동형": "연환산 변동성 25% 이하",
-    "거래량 동반 상승형": "거래량 20일 평균 3배 이상 급증일 5회 이상이고 그날 상승 비율 65% 이상",
-    "윗꼬리 빈발형": "윗꼬리가 몸통의 2배 이상(종가의 2% 이상)인 날 15% 이상 — 장중 되밀림",
+    "거래량 동반 상승형": "거래량 20일 평균 3배 이상 급증일 연 6회 이상이고 그날 상승 비율 75% 이상",
+    "윗꼬리 빈발형": "윗꼬리가 몸통의 2배 이상(종가의 2% 이상)인 날 18% 이상 — 장중 되밀림",
 }
 
 
@@ -151,22 +151,22 @@ def profile(df: pd.DataFrame, market: str) -> dict:
             labels.append("급등 후 반전형")
         elif after5_pos >= 0.60:
             labels.append("급등 지속형")
-    if above60_pct is not None:
+    if above60_pct is not None:  # 추세 묶음은 하나만: 지속 > 하락 > 박스권
         if above60_pct >= 0.70 and ret_1y > 0:
             labels.append("추세 지속형")
         elif above60_pct <= 0.30 and ret_1y < 0:
             labels.append("하락 추세형")
-    if ac1 is not None and ac1 <= -0.10:
+        elif abs(ret_1y) < 15 and 0.35 <= above60_pct <= 0.65:
+            labels.append("박스권형")
+    if ac1 is not None and ac1 <= -0.13:
         labels.append("되돌림형")
-    if cross60 is not None and cross60 >= 8 and abs(ret_1y) < 15:
-        labels.append("박스권형")
-    if vol_annual >= 60:
+    if vol_annual >= 70:
         labels.append("고변동형")
     elif vol_annual <= 25:
         labels.append("저변동형")
-    if spike_days >= 5 and spike_up is not None and spike_up >= 0.65:
+    if spike_days >= 6 and spike_up is not None and spike_up >= 0.75:
         labels.append("거래량 동반 상승형")
-    if upper_pct >= 0.15:
+    if upper_pct >= 0.18:
         labels.append("윗꼬리 빈발형")
 
     surge_note = f"2년 급등일(+10%↑) {surge_days}회(연 {surge_days / years:.1f}회), 급락일(−10%↓) {crash_days}회"
@@ -176,8 +176,8 @@ def profile(df: pd.DataFrame, market: str) -> dict:
                   if after_n else "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)")
     notes = [
         surge_note, after_note,
-        f"최근 1년 60일선 위 {_f(above60_pct * 100 if above60_pct is not None else None, 0, False)}, 1년 수익률 {_f(ret_1y)}, "
-        f"하루 수익률 자기상관 {_f(ac1, 2, True, '')}, 최장 연속 상승 {up_streak}일",
+        f"최근 1년 60일선 위 {_f(above60_pct * 100 if above60_pct is not None else None, 0, False)}(교차 {cross60 if cross60 is not None else '미확인'}회), "
+        f"1년 수익률 {_f(ret_1y)}, 하루 수익률 자기상관 {_f(ac1, 2, True, '')}, 최장 연속 상승 {up_streak}일",
         f"연환산 변동성 {vol_annual:.0f}%, 1년 최대 낙폭 {mdd:.1f}%, 3%↑ 갭 발생일 {gap_pct * 100:.0f}%",
         f"거래량 3배↑ 급증일 {spike_days}회" + (f", 그날 상승 {spike_up * 100:.0f}%" if spike_up is not None else ""),
         f"윗꼬리 긴 날 {upper_pct * 100:.0f}%, 종가의 일중 위치 평균 {close_pos:.2f}(0 저가~1 고가)"
@@ -219,7 +219,7 @@ def build(targets: list[dict], frames: dict[str, tuple[pd.DataFrame, str]], now:
             failed.append(t["code"])
             continue
         df, sym = got
-        market = t["market"] if t["market"] != "auto" else ti.market_of_symbol(sym)
+        market = ti.market_of_symbol(sym) if sym.endswith((".KS", ".KQ")) else (t["market"] if t["market"] != "auto" else "us")
         df = ti.drop_unfinished_session(df, market, now)
         if df.empty:
             failed.append(t["code"])
@@ -278,8 +278,12 @@ def selftest() -> int:
         vol.append(5e6 if boom else 1e6)
     pe = profile(make_ohlcv(e, [1e6] + vol), "us")
     assert "거래량 동반 상승형" in pe["labels"], pe["labels"]
+    # F. 80일 주기 사인파(±10%) → 박스권형만, 추세 유형과 겹치지 않음
+    f = 100 + 10 * np.sin(np.arange(500) * 2 * np.pi / 80) + rng.normal(0, 0.05, 500)
+    pf = profile(make_ohlcv(f), "us")
+    assert "박스권형" in pf["labels"] and not ({"추세 지속형", "하락 추세형"} & set(pf["labels"])), pf["labels"]
     # notes는 모두 문자열이고 권유 표현이 없다
-    for p in (pa, pb, pc, pe):
+    for p in (pa, pb, pc, pe, pf):
         assert all(isinstance(x, str) for x in p["notes"]) and not any(("매수" in x or "매도" in x) for x in p["notes"])
     built = build([{"code": "AAA", "name": "a", "market": "us"}, {"code": "ZZZ", "name": "z", "market": "us"}],
                   {"AAA": (make_ohlcv(b), "AAA")}, datetime(2026, 10, 6, 12, 0, tzinfo=timezone.utc))

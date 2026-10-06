@@ -11,10 +11,10 @@ on:
         description: "종목코드/티커 쉼표 구분, 또는 all"
         default: "all"
         type: string
-  # 시험용: 이 파일을 feature 브랜치에 푸시하면 전체 종목으로 돌려 결과를 그 브랜치에 커밋한다
+  # 시험용: 이 파일이나 계산 스크립트를 feature 브랜치에 푸시하면 전체 종목으로 돌려 결과를 그 브랜치에 커밋한다
   push:
     branches: [feature/stock-profiles]
-    paths: [".github/workflows/stock-profiles.yml"]
+    paths: [".github/workflows/stock-profiles.yml", "scripts/stock-profiles.py", "scripts/technical-indicators.py"]
 permissions:
   contents: write
 concurrency:

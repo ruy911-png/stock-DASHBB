@@ -27,14 +27,14 @@ MA_WINDOWS = (5, 20, 60, 120)
 
 
 def candidate_symbols(code: str, market: str) -> list[str]:
-    """야후 심볼 후보. market이 'auto'(목록에 없는 신규 종목)면 6자리 숫자는 코스피→코스닥 순으로, 그 외는 미국으로 본다."""
+    """야후 심볼 후보. 목록의 국장 종목은 적힌 시장을 먼저, 다른 쪽을 예비로 본다(코스닥→코스피 이전 상장 대비).
+    market이 'auto'(목록에 없는 신규 종목)면 6자리 숫자는 코스피→코스닥 순으로, 그 외는 미국으로 본다."""
     code = str(code).strip()
     if market == "us":
         return [code.replace(".", "-")]
-    if market == "kospi":
-        return [f"{code}.KS"]
-    if market == "kosdaq":
-        return [f"{code}.KQ"]
+    if market in ("kospi", "kosdaq"):
+        first, second = (".KS", ".KQ") if market == "kospi" else (".KQ", ".KS")
+        return [f"{code}{first}", f"{code}{second}"]
     if market == "auto":
         return [f"{code}.KS", f"{code}.KQ"] if code.isdigit() and len(code) == 6 else [code.replace(".", "-")]
     return []  # etc: 어느 거래소인지 몰라 조회하지 않는다
@@ -192,7 +192,8 @@ def build(targets: list[dict], frames: dict[str, tuple[pd.DataFrame, str]], now:
             failed.append(t["code"])
             continue
         df, sym = got
-        market = t["market"] if t["market"] != "auto" else market_of_symbol(sym)
+        # 국장은 실제로 데이터가 있던 심볼(.KS/.KQ)로 시장을 적는다 — 목록의 시장과 다르면 이전 상장일 수 있다
+        market = market_of_symbol(sym) if sym.endswith((".KS", ".KQ")) else (t["market"] if t["market"] != "auto" else "us")
         df = drop_unfinished_session(df, market, now)
         if len(df) < 30:
             failed.append(t["code"])
@@ -243,6 +244,7 @@ def selftest() -> int:
     assert yahoo_symbol("005930", "kospi") == "005930.KS" and yahoo_symbol("BRK.B", "us") == "BRK-B"
     assert yahoo_symbol("X", "etc") is None
     assert candidate_symbols("035720", "auto") == ["035720.KS", "035720.KQ"] and candidate_symbols("NVDA", "auto") == ["NVDA"]
+    assert candidate_symbols("090460", "kosdaq") == ["090460.KQ", "090460.KS"] and candidate_symbols("005930", "kospi")[0] == "005930.KS"
     assert market_of_symbol("035720.KQ") == "kosdaq" and market_of_symbol("NVDA") == "us"
     built = build([{"code": "AAA", "name": "a", "market": "us"}, {"code": "BBB", "name": "b", "market": "us"},
                    {"code": "035720", "name": "", "market": "auto", "new": True}],
