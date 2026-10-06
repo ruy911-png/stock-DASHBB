@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T14:40:46Z",
+  "generated_at": "2026-10-06T14:43:22Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -138,6 +138,33 @@
       "ret_1m_pct": -10.5,
       "ret_3m_pct": 30.28,
       "ret_6m_pct": 55.56,
+      "bars": 485
+    },
+    "096530": {
+      "name": "씨젠",
+      "market": "kosdaq",
+      "symbol": "096530.KQ",
+      "as_of": "2026-10-06",
+      "close": 37250.0,
+      "chg_1d_pct": 0.95,
+      "ma5": 36120.0,
+      "ma20": 33475.0,
+      "ma60": 30845.0,
+      "ma120": 29315.4167,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 11.28,
+      "pct_vs_ma120": 27.07,
+      "rsi14": 70.07,
+      "volume": 203687.0,
+      "volume_avg20": 275830.0,
+      "volume_ratio20": 0.74,
+      "high52": 37300.0,
+      "low52": 21850.0,
+      "pct_from_high52": -0.13,
+      "pct_from_low52": 70.48,
+      "ret_1m_pct": 16.04,
+      "ret_3m_pct": 28.67,
+      "ret_6m_pct": 70.48,
       "bars": 485
     }
   }
