@@ -1686,24 +1686,38 @@ class Component extends DCLogic {
     if (!token) { this.openGhTokenPanel({ file, inputs, msgKey, busyKey, label, onDone }, msgKey); return; }
     const api = 'https://api.github.com/repos/' + this.GH_REPO + '/actions/';
     const auth = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
-    this.setState({ [busyKey]: true, [msgKey]: '워크플로 실행을 요청하는 중…' });
+    this.setState({ [busyKey]: true, [msgKey]: '실행 상태를 확인하는 중…' });
+    // 중복 실행 방지(사용자 요청 2026-10-07): 다른 기기에서 시작했거나 대기 중인 실행이 있으면 새로 요청하지 않고 그 실행을 지켜본다
+    let started = Date.now();
+    let attached = false;
     try {
-      const res = await fetch(api + 'workflows/' + file + '/dispatches', {
-        method: 'POST', headers: { ...auth, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
-      });
-      if (res.status === 401 || res.status === 403) {
-        try { localStorage.removeItem(this.LS_GH_TOKEN); } catch (e) {}
-        this.setState({ [busyKey]: false, [msgKey]: '토큰이 거부됐습니다(HTTP ' + res.status + '). 다시 누르면 새 토큰을 입력합니다' });
+      const r0 = await fetch(api + 'workflows/' + file + '/runs?per_page=5&t=' + Date.now(), { headers: auth });
+      const j0 = await r0.json();
+      const active = ((j0 && j0.workflow_runs) || []).find(x => ['queued', 'in_progress', 'pending', 'waiting', 'requested'].includes(x.status));
+      if (active) { attached = true; started = new Date(active.created_at).getTime(); }
+    } catch (e) {}
+    if (attached) {
+      this.setState({ [msgKey]: '이미 실행 중인 작업이 있어 새로 시작하지 않습니다 — 끝나면 자동으로 불러옵니다' });
+    } else {
+      this.setState({ [msgKey]: '워크플로 실행을 요청하는 중…' });
+      try {
+        const res = await fetch(api + 'workflows/' + file + '/dispatches', {
+          method: 'POST', headers: { ...auth, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ref: 'main', inputs: inputs || {} }),
+        });
+        if (res.status === 401 || res.status === 403) {
+          try { localStorage.removeItem(this.LS_GH_TOKEN); } catch (e) {}
+          this.setState({ [busyKey]: false, [msgKey]: '토큰이 거부됐습니다(HTTP ' + res.status + '). 다시 누르면 새 토큰을 입력합니다' });
+          return;
+        }
+        if (res.status !== 204) { this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패 (HTTP ' + res.status + ')' }); return; }
+      } catch (e) {
+        this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패: ' + ((e && e.message) || e) });
         return;
       }
-      if (res.status !== 204) { this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패 (HTTP ' + res.status + ')' }); return; }
-    } catch (e) {
-      this.setState({ [busyKey]: false, [msgKey]: '실행 요청 실패: ' + ((e && e.message) || e) });
-      return;
+      started = Date.now();
+      this.setState({ [msgKey]: '실행 요청됨 (' + label + ') — 상태 확인 중…' });
     }
-    const started = Date.now();
-    this.setState({ [msgKey]: '실행 요청됨 (' + label + ') — 상태 확인 중…' });
     const poll = async () => {
       try {
         const r = await fetch(api + 'workflows/' + file + '/runs?event=workflow_dispatch&per_page=1&t=' + Date.now(), { headers: auth });
@@ -1712,8 +1726,10 @@ class Component extends DCLogic {
         if (run && new Date(run.created_at).getTime() >= started - 60000) {
           if (run.status === 'completed') {
             const ok = run.conclusion === 'success';
-            this.setState({ [busyKey]: false, [msgKey]: ok ? '완료 — 1분 뒤 최신 내용을 불러옵니다 (안 바뀌면 새로고침)' : '실패(' + run.conclusion + ') — GitHub Actions 로그를 확인하세요' });
-            if (ok) setTimeout(onDone, 60000); // GitHub Pages 배포가 끝날 때까지 잠시 기다린다
+            const cancelled = run.conclusion === 'cancelled';
+            this.setState({ [busyKey]: false, [msgKey]: ok ? '완료 — 1분 뒤 최신 내용을 불러옵니다 (안 바뀌면 새로고침)'
+              : cancelled ? '취소됨(중복 실행이거나 수동 취소) — 1분 뒤 최신 내용을 불러옵니다' : '실패(' + run.conclusion + ') — GitHub Actions 로그를 확인하세요' });
+            if (ok || cancelled) setTimeout(onDone, 60000); // GitHub Pages 배포가 끝날 때까지 잠시 기다린다
             return;
           }
           this.setState({ [msgKey]: '실행 중 (' + run.status + ', ' + Math.round((Date.now() - started) / 60000) + '분 경과)…' });
