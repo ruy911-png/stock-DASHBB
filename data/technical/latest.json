@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:31:48Z",
+  "generated_at": "2026-10-06T23:43:08Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -408,6 +408,33 @@
       "ret_1m_pct": -1.51,
       "ret_3m_pct": -14.01,
       "ret_6m_pct": -24.97,
+      "bars": 485
+    },
+    "090460": {
+      "name": "비에이치",
+      "market": "kospi",
+      "symbol": "090460.KS",
+      "as_of": "2026-10-06",
+      "close": 22500.0,
+      "chg_1d_pct": 8.17,
+      "ma5": 21000.0,
+      "ma20": 20250.5,
+      "ma60": 18097.0,
+      "ma120": 23417.8333,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 11.11,
+      "pct_vs_ma120": -3.92,
+      "rsi14": 64.63,
+      "volume": 1200403.0,
+      "volume_avg20": 1088291.0,
+      "volume_ratio20": 1.1,
+      "high52": 40200.0,
+      "low52": 13100.0,
+      "pct_from_high52": -44.03,
+      "pct_from_low52": 71.76,
+      "ret_1m_pct": 11.11,
+      "ret_3m_pct": 17.43,
+      "ret_6m_pct": 12.22,
       "bars": 485
     }
   }
