@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T14:52:44Z",
+  "generated_at": "2026-10-06T14:56:38Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -193,6 +193,33 @@
       "ret_3m_pct": 16.05,
       "ret_6m_pct": 123.76,
       "bars": 500
+    },
+    "241710": {
+      "name": "코스메카코리아",
+      "market": "kosdaq",
+      "symbol": "241710.KQ",
+      "as_of": "2026-10-06",
+      "close": 110400.0,
+      "chg_1d_pct": 0.36,
+      "ma5": 115840.0,
+      "ma20": 125285.0,
+      "ma60": 112036.6667,
+      "ma120": 94357.5,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -11.88,
+      "pct_vs_ma120": 17.0,
+      "rsi14": 38.21,
+      "volume": 314541.0,
+      "volume_avg20": 120214.0,
+      "volume_ratio20": 2.62,
+      "high52": 153900.0,
+      "low52": 61500.0,
+      "pct_from_high52": -28.27,
+      "pct_from_low52": 79.51,
+      "ret_1m_pct": -20.8,
+      "ret_3m_pct": 30.96,
+      "ret_6m_pct": 38.52,
+      "bars": 485
     }
   }
 }
