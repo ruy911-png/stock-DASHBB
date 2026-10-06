@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:27:59Z",
+  "generated_at": "2026-10-06T23:31:48Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -382,6 +382,33 @@
       "ret_3m_pct": -2.49,
       "ret_6m_pct": -10.64,
       "bars": 501
+    },
+    "139480": {
+      "name": "이마트",
+      "market": "kospi",
+      "symbol": "139480.KS",
+      "as_of": "2026-10-06",
+      "close": 71800.0,
+      "chg_1d_pct": -0.14,
+      "ma5": 71620.0,
+      "ma20": 73155.0,
+      "ma60": 76425.0,
+      "ma120": 85317.5,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -1.85,
+      "pct_vs_ma120": -15.84,
+      "rsi14": 41.8,
+      "volume": 46668.0,
+      "volume_avg20": 90813.0,
+      "volume_ratio20": 0.51,
+      "high52": 127600.0,
+      "low52": 70900.0,
+      "pct_from_high52": -43.73,
+      "pct_from_low52": 1.27,
+      "ret_1m_pct": -1.51,
+      "ret_3m_pct": -14.01,
+      "ret_6m_pct": -24.97,
+      "bars": 485
     }
   }
 }
