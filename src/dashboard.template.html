@@ -1200,6 +1200,30 @@
             <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
           </div>
         </sc-if>
+        <sc-if value="{{ peekPanel.hasProfile }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:14px; padding:12px 14px; border-radius:12px; background:#F4FAF7; border:1px solid #DCEFE4;">
+            <div style="font-size:14.5px; font-weight:800; color:#1F8A5B; margin-bottom:4px;">📈 종목 특성</div>
+            <div style="font-size:11px; color:#8C8C9E; margin-bottom:8px; line-height:1.5;">코드 계산 · 2년 일봉 통계 · 기준일 {{ peekPanel.profileAsOf }} · 과거 통계이며 예측·매수·매도 판단이 아닙니다</div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+              <sc-for list="{{ peekPanel.profileTags }}" as="pt" hint-placeholder-count="3">
+                <span title="{{ pt.why }}" style="font-size:12px; font-weight:800; color:#1F8A5B; background:#E3F3EA; padding:4px 10px; border-radius:8px;">{{ pt.label }}</span>
+              </sc-for>
+            </div>
+            <sc-if value="{{ peekPanel.hasProfileWhy }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:11px; color:#8C8C9E; line-height:1.55; margin-bottom:8px; padding-bottom:8px; border-bottom:1px dashed #DCEFE4;">
+                <sc-for list="{{ peekPanel.profileWhyLines }}" as="pw" hint-placeholder-count="3">
+                  <div>{{ pw.text }}</div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-for list="{{ peekPanel.profileLines }}" as="pl" hint-placeholder-count="4">
+              <div style="font-size:12.5px; color:#56566A; line-height:1.65;">• {{ pl.text }}</div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ peekPanel.hasProfileHint }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:12px; font-size:11.5px; color:#8C8C9E; line-height:1.5;">{{ peekPanel.profileHint }}</div>
+        </sc-if>
       </div>
 
       <div style="display:flex; gap:9px; margin-top:18px;">
@@ -1432,7 +1456,7 @@ class Component extends DCLogic {
   { id: 3, market: "kosdaq", name: "동진쎄미켐", code: "005290", tags: ["반도체", "소재", "HBM"], summary: "포토레지스트와 CMP 슬러리 모멘텀. 전자재료 단일사업화와 HBM 소재 확장.", ais: [{ ai: "claude", date: "6.30", overview: "• 1989년 국내 최초 포토레지스트 자체개발. KrF 세계1위, ArF/ArFi 독자개발. 2026.1.1 발포제부문 물적분할(동진이노켐) → 전자재료 단일사업화.", fundamental: "• SK하이닉스에 HBM용 CMP 슬러리 공급 개시 — 솔브레인 독점구조 붕괴, 신규 모멘텀\n• 4/10 외국인 272만주 순매수(골드만·메릴린치·모간스탠리 등 IB 매수)\n• Thesis: EUV 포토레지스트 국산화 + HBM 소재 확장 / 리스크: 반도체 업황 둔화 시 EPS 급감 가능", technical: "• 52주 신고가 72,200원(5/26) 기록 후 6/1 종가 53,500원(-2.19%)으로 급락 — 고점 대비 -26% 단기 조정, 변동성 매우 큼\n• 6월 이후 최신가 미확인 — 화면 확인 필요. 추격매수 금지, 눌림 후 거래량 확인 필요", valuation: "• PER 28.39배, PBR 2.59배(6/1 기준) / 자체추산 목표가 Bull 55,000~65,000원, Bear 22,000~27,000원\n• 증권사 공식 커버리지 희소(분석 공백) — 재개 시 기관자금 유입 가능성" }] },
   { id: 4, market: "kospi", name: "삼성물산", code: "028260", tags: ["지주", "삼성그룹", "배당"], summary: "삼성그룹 지주 성격. 지분가치 재평가와 배당 확대 기대.", ais: [{ ai: "claude", date: "6.30", overview: "• 건설·상사·패션·리조트·바이오(삼성바이오로직스 지분) 영위하는 삼성그룹 지주성격 회사. 삼성전자(64.5%)·삼바(16.5%)·삼성생명(11.3%) 등 지분가치 보유.", fundamental: "• 지분가치 165조원, 삼성전자·삼성생명 주가 급등 반영 / 2026 DPS 컨센서스 1,668원→5,171원 대폭 확대 전망(삼성전자 배당확대 재배당 구조)\n• Thesis: 지분가치 재평가 + 건설 회복·패션/레저/식음 EBIT 증익 동반\n• 리스크: 자회사(특히 삼성전자) 주가 변동에 연동된 지주형 리레이팅 — 고변동성", technical: "• 6/25 종가 553,000원(전일 481,500, +14.8% 급등), 52주 155,300~565,000원 — 신고가 근접, 단기 급등 과열 주의", valuation: "• 컨센서스 평균목표가 492,222원(범위 320,000~700,000) — 현재가가 이미 평균목표가 상회, 컨센서스 stale 가능성 높음\n• SK증권 목표가 5단계 연속 상향: 28만(25.10)→37만→39만→48만→59만(6월) — 추세상 추가 상향 여력 시사" }] }
 ], trades: null,
-    marketOpen: false, mktPasteText: '', marketHistory: null, marketSel: 0, marketMsg: '',
+    marketOpen: false, mktPasteText: '', marketHistory: null, marketSel: 0, marketMsg: '', profiles: null, profileThresholds: null,
     newsQuery: '', newsText: '', newsItems: null, newsMsg: '', newsCollapsed: {},
     noteOpen: false, noteKind: null, n_cat: '기본기', n_editIdx: null, n_title: '', n_body: '', n_src: '', n_err: '',
     studyAllNotes: null, caseAllNotes: null,
@@ -1533,6 +1557,7 @@ class Component extends DCLogic {
     });
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
+    this.loadProfiles();
     this.setState({ viewportWidth: window.innerWidth });
     let resizeTimer = null;
     window.addEventListener('resize', () => {
@@ -1550,9 +1575,37 @@ class Component extends DCLogic {
   GH_WORKFLOW = 'refresh-analyses.yml';
   LS_GH_TOKEN = 'stockking_gh_token';
 
+  // 종목 특성(코드 계산, data/technical/profiles.json): 카드에 유형 태그와 근거 숫자를 보인다. 없으면 블록을 숨긴다
+  async loadProfiles(bust) {
+    try {
+      const res = await fetch('./data/technical/profiles.json' + (bust ? '?t=' + bust : ''), { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      if (payload && payload.items) this.setState({ profiles: payload.items, profileThresholds: payload.thresholds || null });
+    } catch (e) {}
+  }
+
+  profileView(code) {
+    const p = this.state.profiles && this.state.profiles[code];
+    if (!p) {
+      // 특성 파일은 있는데 이 종목만 없는 경우: 언제 등록되는지 알려 준다(수동 등록 종목은 종목코드가 없어 계산 대상이 아님)
+      const loaded = !!this.state.profiles;
+      const hint = /^N\d+$/.test(String(code)) ? '종목 특성: 수동 등록 종목(종목코드 없음)은 계산 대상이 아닙니다'
+        : '종목 특성: 아직 없음 — ⚡ 오늘자로 업데이트에 이 종목을 넣으면(또는 토요일 자동 갱신 때) 등록됩니다';
+      return { hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '',
+        hasProfileHint: loaded, profileHint: loaded ? hint : '' };
+    }
+    const why = this.state.profileThresholds || {};
+    const tags = (p.labels && p.labels.length ? p.labels : ['뚜렷한 유형 없음']).map(label => ({ label, why: why[label] || '' }));
+    const whyLines = tags.filter(t => t.why).map(t => ({ text: t.label + ' = ' + t.why })); // 터치 기기에선 툴팁이 안 보여 기준을 글로 적는다
+    return { hasProfile: true, profileTags: tags, profileWhyLines: whyLines, hasProfileWhy: whyLines.length > 0,
+      profileLines: (p.notes || []).map(text => ({ text })), profileAsOf: p.as_of || '', hasProfileHint: false, profileHint: '' };
+  }
+
   async reloadAnalyses() {
     this.setState({ refreshMsg: '최신 분석을 불러오는 중…' });
     await this.loadBackupSnapshot(Date.now()); // 주소에 시각을 붙여 GitHub Pages 캐시(최대 10분)를 건너뛴다
+    this.loadProfiles(Date.now());
     const n = (this.state.analyses || []).length;
     this.setState({ refreshMsg: n + '종목 불러옴 · ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) });
   }
@@ -2901,6 +2954,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           hasTech: !!r.technical, hasValuation: !!r.valuation,
           hasTechOrValuation: !!(r.technical || r.valuation),
           valuationDividerStyle: (r.technical && r.valuation) ? 'border-top:1px dashed #F0D9B8; margin-top:8px; padding-top:8px;' : '',
+          ...this.profileView(stock.code),
           onEdit: () => this.openEditAnalysis(stock.code, aiTabIdx),
           onEditStock: () => this.openStockEdit(stock.code),
           onAddNew: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openAddForStock(stock.code); },
@@ -3570,7 +3624,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
-      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
+      peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onDel: ()=>{} },
       isPeekAnalysis: peekType === 'analysis' && !!peekPanel,
       isPeekStudy: peekType === 'study' && !!peekPanel,
       isPeekChartReview: peekType === 'chartreview' && !!peekPanel,
