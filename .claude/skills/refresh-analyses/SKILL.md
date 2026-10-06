@@ -18,7 +18,7 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
    - `overview` 기업개요 ← company-analyst
    - `moat` 경제적해자 ← company-analyst의 경쟁우위 + 그 우위를 위협하는 리스크 1개 이상(필요하면 웹검색 보강)
    - `fundamental` 기본적분석 ← fundamental-analyst (현금흐름 bullet 필수)
-   - `technical` 기술적분석 ← 2의 숫자로만 작성. 3개 bullet: ① 추세·이동평균(종가와 20/120일선 대비, 배열 상태) ② RSI(14)와 거래량(20일 평균 대비) ③ 52주 고저 대비 위치와 1/3/6개월 수익률. 각 bullet 끝에 `(코드 계산, yfinance 일봉, as_of 날짜)`를 붙인다. 과매수·과매도는 RSI 70/30 기준의 사실 서술만 하고 전망·권유는 쓰지 않는다
+   - `technical` 기술적분석 ← 2의 숫자로만 작성. 3개 bullet: ① 추세·이동평균(종가와 20/120일선 대비, 배열 상태) — `data/technical/profiles.json`의 `items[code].labels`(종목 특성 유형, 예: 급등 후 반전형·추세 지속형)가 있으면 이 bullet 끝에 "종목 특성: …" 으로 덧붙인다 ② RSI(14)와 거래량(20일 평균 대비) ③ 52주 고저 대비 위치와 1/3/6개월 수익률. 각 bullet 끝에 `(코드 계산, yfinance 일봉, as_of 날짜)`를 붙인다. 과매수·과매도는 RSI 70/30 기준의 사실 서술만 하고 전망·권유는 쓰지 않는다. 유형의 근거 숫자는 카드의 '종목 특성' 블록이 따로 보여 주므로 여기서 반복하지 않는다
    - `valuation` 밸류에이션 ← valuation-analyst (PER과 PBR·BPS bullet 필수)
 5. 항목을 넣는다: `{ "ai": "claude", "date": "<오늘 월.일, 예: 10.5 — 앞자리 0 없이, 한국 시간 기준>", overview, moat, fundamental, technical, valuation }`. 같은 `ai`·`date`가 이미 있으면 그 항목을 바꾸고, 아니면 `ais` 맨 앞에 넣고 최신 5개만 남긴다. `code`·`name`·`market`·`price`·`chg`는 그대로 두고, `tags`는 명백히 낡았을 때만 3개 이내로 고친다. 다른 종목 항목은 건드리지 않는다.
    - **신규 종목**은 배열 맨 앞에 새 항목을 만든다: `{ "code": "<입력한 코드 — 국장 6자리, 미국은 대문자 티커>", "name": "<확인한 회사명>", "price": 0, "chg": 0, "market": "<latest.json의 market>", "tags": ["핵심 키워드 3개 이내"], "ais": [<오늘 항목>] }`.
