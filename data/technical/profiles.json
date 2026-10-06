@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T22:15:46Z",
+  "generated_at": "2026-10-06T23:03:35Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -95,12 +95,12 @@
       "name": "퍼시픽 가스 & 일렉트릭",
       "market": "us",
       "symbol": "PCG",
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-06",
       "window": "2y",
-      "bars": 500,
+      "bars": 501,
       "labels": [],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 2,
@@ -111,24 +111,24 @@
         "after_surge_5d_pos_rate": null,
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
-        "above_ma60_pct_1y": 0.56,
+        "above_ma60_pct_1y": 0.55,
         "ma60_cross_count_1y": 21,
         "autocorr_1d_1y": -0.03,
-        "ret_1y_pct": -20.99,
+        "ret_1y_pct": -21.38,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 34.83,
+        "vol_annual_pct_1y": 34.81,
         "max_drawdown_1y_pct": -37.47,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 14.36
+        "top5_gain_share_pct_1y": 14.4
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 2회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 56%(교차 21회), 1년 수익률 -21.0%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 55%(교차 21회), 1년 수익률 -21.4%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 7일",
         "연환산 변동성 35%, 1년 최대 낙폭 -37.5%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 3회, 그날 상승 33%",
         "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"

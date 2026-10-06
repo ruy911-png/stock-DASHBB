@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T22:15:46Z",
+  "generated_at": "2026-10-06T23:03:34Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -328,6 +328,33 @@
       "ret_3m_pct": -18.21,
       "ret_6m_pct": 14.29,
       "bars": 485
+    },
+    "PCG": {
+      "name": "퍼시픽 가스 & 일렉트릭",
+      "market": "us",
+      "symbol": "PCG",
+      "as_of": "2026-10-06",
+      "close": 12.5,
+      "chg_1d_pct": 1.21,
+      "ma5": 12.318,
+      "ma20": 12.8655,
+      "ma60": 15.6475,
+      "ma120": 16.1629,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -2.84,
+      "pct_vs_ma120": -22.66,
+      "rsi14": 35.88,
+      "volume": 25102490.0,
+      "volume_avg20": 40564505.0,
+      "volume_ratio20": 0.62,
+      "high52": 19.11,
+      "low52": 11.95,
+      "pct_from_high52": -34.59,
+      "pct_from_low52": 4.6,
+      "ret_1m_pct": -12.59,
+      "ret_3m_pct": -26.69,
+      "ret_6m_pct": -29.06,
+      "bars": 501
     }
   }
 }
