@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T14:43:22Z",
+  "generated_at": "2026-10-06T14:52:44Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -166,6 +166,33 @@
       "ret_3m_pct": 28.67,
       "ret_6m_pct": 70.48,
       "bars": 485
+    },
+    "FTNT": {
+      "name": "포티넷",
+      "market": "us",
+      "symbol": "FTNT",
+      "as_of": "2026-10-05",
+      "close": 184.13,
+      "chg_1d_pct": 1.76,
+      "ma5": 179.704,
+      "ma20": 172.078,
+      "ma60": 163.4305,
+      "ma120": 144.6401,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 7.0,
+      "pct_vs_ma120": 27.3,
+      "rsi14": 66.96,
+      "volume": 3060200.0,
+      "volume_avg20": 3976270.0,
+      "volume_ratio20": 0.77,
+      "high52": 184.13,
+      "low52": 75.23,
+      "pct_from_high52": 0.0,
+      "pct_from_low52": 144.76,
+      "ret_1m_pct": 17.76,
+      "ret_3m_pct": 16.05,
+      "ret_6m_pct": 123.76,
+      "bars": 500
     }
   }
 }
