@@ -115,7 +115,30 @@ jobs:
           claude_args: |
             --max-turns 60
             --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(date *)"
-      # 2026-10-06 첫 실행이 아무것도 안 쓰고 끝나(21턴, 권한 거부 6회) 원인 확인용. 공개 저장소라 로그 대신 1일짜리 아티팩트로 보관
+      # 2026-10-06 첫 실행이 아무것도 안 쓰고 끝나(21턴, 권한 거부 6회) 원인 확인용. 공개 저장소라 도구 결과(웹 본문 등)는 빼고
+      # Claude의 말·도구 호출 이름·권한 거부만 로그에 남기고, 전체 기록은 1일짜리 아티팩트로 보관
+      - name: Claude 실행 요약 (말·도구 호출·권한 거부)
+        if: always()
+        env:
+          EXEC_FILE: ${{ steps.claude.outputs.execution_file || '/home/runner/work/_temp/claude-execution-output.json' }}
+        run: |
+          [ -f "$EXEC_FILE" ] || { echo "실행 기록 없음"; exit 0; }
+          node -e '
+            const fs = require("fs"); const raw = fs.readFileSync(process.env.EXEC_FILE, "utf8");
+            let msgs; try { msgs = JSON.parse(raw); } catch { msgs = raw.split("\n").filter(Boolean).map(l => JSON.parse(l)); }
+            const cut = (s, n) => String(s).replace(/\s+/g, " ").slice(0, n);
+            for (const m of msgs) {
+              if (m.type === "assistant") for (const c of m.message.content || []) {
+                if (c.type === "text") console.log("[말]", cut(c.text, 700));
+                else if (c.type === "tool_use") console.log("[도구]", c.name, cut(JSON.stringify(c.input), c.name === "Agent" ? 200 : 160));
+              } else if (m.type === "user" && Array.isArray(m.message.content)) for (const c of m.message.content) {
+                if (c.type === "tool_result" && c.is_error) console.log("  [도구 오류]", cut(typeof c.content === "string" ? c.content : JSON.stringify(c.content), 300));
+              } else if (m.type === "result") {
+                console.log("[결과]", JSON.stringify({ turns: m.num_turns, denials: m.permission_denials_count, cost: m.total_cost_usd, error: m.is_error }));
+                for (const d of m.permission_denials || []) console.log("  [권한 거부]", d.tool_name, cut(JSON.stringify(d.tool_input), 200));
+                if (m.result) console.log("[마지막 말]", cut(m.result, 1500));
+              }
+            }'
       - name: Claude 실행 기록 보관 (1일)
         if: always()
         uses: actions/upload-artifact@v4
