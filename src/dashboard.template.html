@@ -126,7 +126,6 @@
           <div>
             <div style="display:flex; align-items:center; justify-content:space-between; margin:0 4px 14px;">
               <div style="font-size:16px; font-weight:800; letter-spacing:-.3px;">뉴스 검색</div>
-              <div onclick="{{ goNews }}" style="font-size:12.5px; font-weight:700; color:#6B62F0; cursor:pointer;">전체보기 ›</div>
             </div>
             <div style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:18px;">
               <div style="display:flex; gap:8px;">
@@ -137,20 +136,7 @@
                 <div onclick="{{ searchGoogle }}" style="flex:1; text-align:center; border:1.5px solid #E6E6EE; color:#56566A; font-size:12.5px; font-weight:700; padding:9px 0; border-radius:11px; cursor:pointer;">구글뉴스</div>
                 <div onclick="{{ searchDaum }}" style="flex:1; text-align:center; border:1.5px solid #E6E6EE; color:#56566A; font-size:12.5px; font-weight:700; padding:9px 0; border-radius:11px; cursor:pointer;">다음뉴스</div>
               </div>
-              <div style="height:1px; background:#F1F1F6; margin:15px 0 12px;"></div>
-              <div style="font-size:11.5px; font-weight:700; color:#9A9AAC; margin-bottom:9px;">스크랩한 기사 · {{ newsCount }}건</div>
-              <sc-for list="{{ newsPreview }}" as="n" hint-placeholder-count="2">
-                <div onclick="{{ goNews }}" style="display:flex; gap:9px; align-items:flex-start; padding:7px 0; cursor:pointer;">
-                  <div style="width:6px; height:6px; border-radius:50%; background:#6B62F0; margin-top:6px; flex-shrink:0;"></div>
-                  <div style="flex:1; min-width:0;">
-                    <div style="font-size:13px; font-weight:600; line-height:1.45; color:#2E2E3C;">{{ n.title }}</div>
-                    <div style="font-size:11px; color:#A0A0B0; margin-top:1px;">{{ n.meta }}</div>
-                  </div>
-                </div>
-              </sc-for>
-              <sc-if value="{{ newsEmpty }}" hint-placeholder-val="{{ false }}">
-                <div onclick="{{ goNews }}" style="font-size:12.5px; color:#A0A0B0; line-height:1.5; cursor:pointer;">아직 스크랩한 기사가 없어요. 검색 후 기사 제목을 붙여넣어 모아두세요 ›</div>
-              </sc-if>
+              <!-- 홈은 검색만(사용자 결정 2026-10-07): 스크랩 미리보기·전체보기 링크는 뉴스 메뉴를 숨기면서 뺐다 -->
             </div>
           </div>
         </div>
