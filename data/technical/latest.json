@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T05:01:57Z",
+  "generated_at": "2026-10-07T05:27:51Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -517,6 +517,33 @@
       "ret_3m_pct": 17.2,
       "ret_6m_pct": -4.48,
       "bars": 501
+    },
+    "005290": {
+      "name": "동진쎄미켐",
+      "market": "kosdaq",
+      "symbol": "005290.KQ",
+      "as_of": "2026-10-06",
+      "close": 52300.0,
+      "chg_1d_pct": 0.58,
+      "ma5": 50330.0,
+      "ma20": 43940.0,
+      "ma60": 42534.1667,
+      "ma120": 49640.4167,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 19.03,
+      "pct_vs_ma120": 5.36,
+      "rsi14": 70.42,
+      "volume": 523868.0,
+      "volume_avg20": 409117.0,
+      "volume_ratio20": 1.28,
+      "high52": 66000.0,
+      "low52": 31600.0,
+      "pct_from_high52": -20.76,
+      "pct_from_low52": 65.51,
+      "ret_1m_pct": 29.46,
+      "ret_3m_pct": 3.16,
+      "ret_6m_pct": 18.19,
+      "bars": 485
     }
   }
 }
