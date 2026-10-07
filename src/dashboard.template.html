@@ -911,9 +911,11 @@
             <sc-if value="{{ hasMarketRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; min-width:180px; max-width:260px; text-align:right; line-height:1.4;">{{ marketRefreshMsg }}</div>
             </sc-if>
+            <!-- 두 버튼은 한 묶음: 폭이 모자라면 둘이 같이 다음 줄로 (사용자 지적 2026-10-07, 붙여넣기만 따로 내려가던 문제) -->
+            <div style="display:flex; gap:10px; flex-shrink:0;">
             <div onclick="{{ onRefreshMarket }}" title="GitHub Actions에서 오늘 마감 시황을 수집해 바로 반영합니다 (1~2분)" style="font-size:13px; font-weight:800; color:#fff; background:#1F1F2B; padding:11px 16px; border-radius:12px; cursor:pointer; white-space:nowrap;">⚡ 시황 업데이트</div>
-
             <div onclick="{{ openMarketPaste }}" style="font-size:13px; font-weight:800; color:#fff; background:#6B62F0; padding:11px 16px; border-radius:12px; cursor:pointer; white-space:nowrap; box-shadow:0 6px 18px rgba(107,98,240,.32);">📋 시황 붙여넣기</div>
+            </div>
           </div>
         </div>
         <sc-if value="{{ ghTokenOpen }}" hint-placeholder-val="{{ false }}">
