@@ -3032,7 +3032,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     // 종목분석 리스트의 5칸 표는 실제 본문에 남는 폭(뷰포트 - 왼쪽 사이드바 248px)으로 판단한다.
     // 갤럭시 폴드 펼친 화면(~670~720px)은 뷰포트만 보면 넉넉해 보이지만 사이드바가 기본으로
     // 열려있어 실제 본문 폭은 420px대로 좁아서, 뷰포트만 기준 삼으면 5칸 표가 여전히 찌부러진다.
-    const sidebarW = this.state.sidebarOpen === false ? 0 : 200; // 2026-10-07 사용자 요청: 왼쪽 메뉴 폭 축소(248 → 200)
+    const sidebarW = this.state.sidebarOpen === false ? 0 : 220; // 2026-10-07 사용자 요청: 왼쪽 메뉴 폭 248 → 200 → 220(조금 더 넓게)
     const mainContentWidth = (this.state.viewportWidth || 1200) - sidebarW;
     const isListCompact = mainContentWidth < 650;
     // 매매일지 "선택 종목 상세" 2단 구성은 minmax(320px)+minmax(520px)이라 본문 폭이
@@ -3669,9 +3669,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       goMarket: () => this.go('market'),
       goNews: () => this.go('news'),
       navItems,
-      sidebarWidth: this.state.sidebarOpen === false ? '0px' : '200px',
-      sidebarPad: this.state.sidebarOpen === false ? '20px 0px' : '20px 12px',
-      sidebarToggleLeft: this.state.sidebarOpen === false ? '10px' : '188px',
+      sidebarWidth: this.state.sidebarOpen === false ? '0px' : '220px',
+      sidebarPad: this.state.sidebarOpen === false ? '20px 0px' : '22px 14px',
+      sidebarToggleLeft: this.state.sidebarOpen === false ? '10px' : '208px',
       sidebarToggleIcon: this.state.sidebarOpen === false ? '›' : '‹',
       toggleSidebar: () => this.setState({ sidebarOpen: this.state.sidebarOpen === false ? true : false }),
 
