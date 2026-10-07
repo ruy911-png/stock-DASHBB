@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T12:08:33Z",
+  "generated_at": "2026-10-07T12:25:48Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -1431,13 +1431,13 @@
       "name": "알파벳 A",
       "market": "us",
       "symbol": "GOOGL",
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-06",
       "window": "2y",
-      "bars": 500,
+      "bars": 501,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 0,
@@ -1451,21 +1451,21 @@
         "above_ma60_pct_1y": 0.6,
         "ma60_cross_count_1y": 14,
         "autocorr_1d_1y": 0.08,
-        "ret_1y_pct": 41.02,
+        "ret_1y_pct": 41.71,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 31.73,
+        "vol_annual_pct_1y": 31.72,
         "max_drawdown_1y_pct": -21.09,
         "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 16.16
+        "top5_gain_share_pct_1y": 16.13
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 60%(교차 14회), 1년 수익률 +41.0%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 60%(교차 14회), 1년 수익률 +41.7%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 10일",
         "연환산 변동성 32%, 1년 최대 낙폭 -21.1%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 1회, 그날 상승 0%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"

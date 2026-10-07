@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T12:08:33Z",
+  "generated_at": "2026-10-07T12:25:47Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -651,6 +651,33 @@
       "ret_1m_pct": -13.7,
       "ret_3m_pct": -7.22,
       "ret_6m_pct": 7.58,
+      "bars": 501
+    },
+    "GOOGL": {
+      "name": "알파벳 A",
+      "market": "us",
+      "symbol": "GOOGL",
+      "as_of": "2026-10-06",
+      "close": 347.68,
+      "chg_1d_pct": 0.35,
+      "ma5": 343.994,
+      "ma20": 343.487,
+      "ma60": 345.0508,
+      "ma120": 356.3582,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 1.22,
+      "pct_vs_ma120": -2.44,
+      "rsi14": 53.39,
+      "volume": 18394700.0,
+      "volume_avg20": 27493775.0,
+      "volume_ratio20": 0.67,
+      "high52": 402.62,
+      "low52": 236.57,
+      "pct_from_high52": -13.65,
+      "pct_from_low52": 46.97,
+      "ret_1m_pct": 2.72,
+      "ret_3m_pct": -3.93,
+      "ret_6m_pct": 13.82,
       "bars": 501
     }
   }
