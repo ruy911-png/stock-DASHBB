@@ -25,9 +25,9 @@
 - 브랜치가 이미 머지된 상태면 `git fetch origin main && git checkout -B <branch> origin/main`로 재시작 후 이어서 작업 (머지된 브랜치에 새 커밋을 쌓지 않음)
 
 ### 화면 확인 (UI·템플릿 변경 시 필수, 사용자 결정 2026-10-07)
-- `src/dashboard.template.html`을 고쳤으면 푸시 전에 `npm run shot -- --screen <화면> --width 1180,940,600`(`scripts/ui-shot.cjs`)으로 실제 Chromium 렌더를 찍고, `.cache/ui-shots/`의 PNG를 **직접 열어 본 뒤** 사용자에게도 보여 준다. 화면을 안 보고 올려서 여러 번 지적받았음. 폭 3개 = PC·갤럭시 폴드 펼침·좁은 폭. 상호작용이 바뀌었으면 `--click "<글자>"`로 그 상태까지 들어가 찍는다(`--busy` 실행 중 상태, `--no-token` 토큰 없음 상태).
+- `src/dashboard.template.html`을 고쳤으면 푸시 전에 `npm run shot -- --screen <화면> --width 1180,940,600`(`scripts/ui-shot.cjs`)으로 실제 Chromium 렌더를 찍고, `.cache/ui-shots/`의 PNG를 **직접 열어 본 뒤** 사용자에게도 보여 준다. 화면을 안 보고 올려서 여러 번 지적받았음. 폭 3개 = PC·갤럭시 폴드 펼침·좁은 폭. 상호작용이 바뀌었으면 `--click "<글자>"`로 그 상태까지 들어가 찍는다(`--busy` 실행 중 상태, `--no-token` 토큰 없음 상태). 블록 순서·화면 하단은 `--full`(전체 높이)로 찍는다. 출력의 '주의'(화면 밖·상자 밖 글자·말줄임)는 자동 감지 결과이니 그 자리를 먼저 본다.
 - 이 역할은 **tester 에이전트**가 맡는다(`.claude/agents/tester.md`): implementer가 UI를 고치면 tester가 찍고 직접 본 뒤 문제를 보고한다. 메인은 그 캡처를 사용자에게 보여 준다.
-- 하네스는 CDN이 막힌 환경을 위해 npm 패키지 파일을 `npm pack`으로 받아 `.cache/ui-vendor/`에 끼워 넣고, Firebase·GitHub API는 스텁으로 대체한다. 클라우드 세션에는 Playwright·Chromium이 있고, PC는 `npm i -g playwright && npx playwright install chromium`이 필요하다. `.cache/`는 커밋하지 않는다.
+- 하네스는 CDN이 막힌 환경을 위해 npm 패키지 파일을 `npm pack`으로 받아 `.cache/ui-vendor/`에 끼워 넣고, Firebase·GitHub API는 스텁으로 대체한다. 클라우드 세션에는 Playwright·Chromium이 있고, PC는 `npm i -g playwright && npx playwright install chromium`이 필요하다. `.cache/`는 커밋하지 않는다. 글꼴은 Noto Sans KR을 템플릿 폰트 이름으로 끼워 넣어 갤럭시에 가깝게 그린다(`--font none`이면 환경 폰트). 아이패드·PC는 폰트가 달라 몇 px 차이의 줄바꿈·넘침은 실제 캡처로 재확인한다.
 
 ### 자동머지 정책
 - **시황 자동수집**(`.github/workflows/collect-market-data.yml`, 사용자 결정 2026-10-05): 검증 통과 시 **PR 없이 main에 바로 커밋**한다. 예약(평일 20:20·21:20·22:20 KST) 또는 페이지의 '⚡ 시황 업데이트' 버튼으로 실행. (전에는 PR + `gh pr merge --auto`였으나 저장소의 "Allow auto-merge" 설정에 의존해 9/29부터 멈췄음 — #80) 미장이 열려 있으면 직전 정규장 종가를 야후·Cboe 이력에서 가져온다(직전 저장값 복사 금지)
