@@ -197,6 +197,16 @@ function inspectLayout() {
       || (cs.borderTopStyle !== 'none' && parseFloat(cs.borderTopWidth) > 0)
       || cs.overflowX !== 'visible';
   };
+  // 접힌 메뉴(폭 0, overflow hidden)처럼 일부러 가린 요소는 건너뛴다: 가리는 조상 밖에 완전히 나가 있거나 조상 폭이 0이면 '의도된 숨김'
+  const hiddenByClip = (el, r) => {
+    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+      const acs = getComputedStyle(a);
+      if (acs.overflowX !== 'hidden' && acs.overflowX !== 'clip') continue;
+      const ar = a.getBoundingClientRect();
+      if (ar.width < 1 || r.left >= ar.right - 0.5 || r.right <= ar.left + 0.5) return true;
+    }
+    return false;
+  };
   const beyond = [], outOfBox = [], ellipsis = [];
   const docW = document.documentElement.scrollWidth;
   if (docW > vw + 1) beyond.push(`문서에 가로 스크롤이 생김 (+${docW - vw}px)`);
@@ -204,8 +214,9 @@ function inspectLayout() {
     const cs = getComputedStyle(el);
     if (cs.position === 'fixed' || cs.visibility === 'hidden' || cs.display === 'none') continue;
     const r = el.getBoundingClientRect();
-    if (r.width === 0 || r.height === 0) continue;
+    if (r.width === 0 || r.height === 0 || hiddenByClip(el, r)) continue;
     if (r.right > vw + 1 && beyond.length < 5) beyond.push(`${el.tagName.toLowerCase()} "${text(el)}" 화면 오른쪽 밖 ${Math.round(r.right - vw)}px`);
+    if (cs.textOverflow === 'ellipsis' && el.scrollWidth > el.clientWidth + 1 && ellipsis.length < 5) ellipsis.push(`"${text(el)}"`);
     if (el.children.length || !text(el)) continue;
     let p = el.parentElement;
     while (p && p !== document.body && !hasBox(p)) p = p.parentElement;
@@ -213,13 +224,28 @@ function inspectLayout() {
       const over = r.right - p.getBoundingClientRect().right;
       if (over > 1 && outOfBox.length < 5) outOfBox.push(`"${text(el)}" 상자 밖 ${Math.round(over)}px`);
     }
-    if (cs.textOverflow === 'ellipsis' && el.scrollWidth > el.clientWidth + 1 && ellipsis.length < 5) ellipsis.push(`"${text(el)}"`);
   }
   const out = [];
+  const bm = getComputedStyle(document.body);
+  if (parseFloat(bm.marginTop) || parseFloat(bm.marginLeft) || parseFloat(bm.marginRight)) out.push(`body 기본 여백 남음: margin ${bm.margin}`);
   if (beyond.length) out.push(`화면 밖: ${beyond.join(' / ')}`);
   if (outOfBox.length) out.push(`상자 밖 글자: ${outOfBox.join(' / ')}`);
   if (ellipsis.length) out.push(`말줄임: ${ellipsis.join(', ')}`);
   return out;
+}
+
+// 왼쪽 메뉴로 화면을 바꾼다. 좁은 폭(720px 미만)에서는 메뉴가 접혀 있으므로 토글(›)로 열고 누른 뒤 다시 접어 원래 상태로 찍는다.
+async function goScreen(page, def) {
+  const openBtn = page.locator('div').filter({ hasText: /^›$/ }).first();
+  const wasCollapsed = (await openBtn.count()) > 0 && await openBtn.isVisible();
+  if (wasCollapsed) { await openBtn.click({ timeout: 5000 }); await page.waitForTimeout(350); }
+  await page.locator('span').filter({ hasText: exact(def.label) }).first().click({ timeout: 8000 });
+  await page.waitForSelector(`[data-screen-label="${def.marker}"]`, { timeout: 8000 });
+  if (wasCollapsed) {
+    const closeBtn = page.locator('div').filter({ hasText: /^‹$/ }).first();
+    if ((await closeBtn.count()) > 0) { await closeBtn.click({ timeout: 5000 }); await page.waitForTimeout(350); }
+  }
+  await page.waitForTimeout(500);
 }
 
 // 본문이 height:100vh 안쪽 스크롤이라 fullPage로는 안 찍힌다 → 내용 높이만큼 뷰포트를 늘려 찍고 되돌린다.
@@ -282,9 +308,7 @@ async function main() {
       await page.waitForTimeout(500);
       for (const key of opts.screens) {
         const def = SCREENS[key];
-        await page.locator('span').filter({ hasText: exact(def.label) }).first().click({ timeout: 8000 });
-        await page.waitForSelector(`[data-screen-label="${def.marker}"]`, { timeout: 8000 });
-        await page.waitForTimeout(500);
+        await goScreen(page, def);
         for (const t of opts.clicks) {
           await page.getByText(t, { exact: true }).first().click({ timeout: 8000 })
             .catch(e => { throw new Error(`[${width}px ${def.label}] "${t}" 클릭 실패: ${String(e.message).split('\n')[0]}`); });
