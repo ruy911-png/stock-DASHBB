@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.7",
+      "krDate": "2026-10-07",
+      "usDate": "2026-10-06",
+      "wtiDate": "2026-10-06",
+      "collectedAt": "2026-10-07T12:25:54.514Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,803.90",
+          "chg": -1.98
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "898.43",
+          "chg": -2.34
+        },
+        {
+          "name": "원/달러",
+          "value": "1,340.40",
+          "chg": 0.03
+        },
+        {
+          "name": "S&P500",
+          "value": "7,818.93",
+          "chg": 0.58
+        },
+        {
+          "name": "나스닥",
+          "value": "27,599.89",
+          "chg": 0.45
+        },
+        {
+          "name": "VIX",
+          "value": "15.01",
+          "chg": -3.29
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "13,217.82",
+          "chg": 0.34
+        },
+        {
+          "name": "WTI",
+          "value": "89.44",
+          "chg": 0.01
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -26188
+        },
+        {
+          "name": "기관",
+          "amount": -7101
+        },
+        {
+          "name": "개인",
+          "amount": 26183
+        }
+      ],
+      "comment": "외국인·기관 동반 매도에 코스피 약세 마감",
+      "keywords": [
+        "AMD 게이머 데이",
+        "청년미래적금",
+        "코스피 하락",
+        "원·달러 환율",
+        "주택 공급",
+        "수소환원제철"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-07T20:01:24+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5035"
+        }
+      }
+    },
+    {
       "date": "10.6",
       "krDate": "2026-10-06",
       "usDate": "2026-10-05",
