@@ -3,3 +3,4 @@ run_analysis_output.log
 .claude/settings.local.json
 scratch/
 __pycache__/
+.cache/

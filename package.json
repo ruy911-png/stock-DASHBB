@@ -6,6 +6,7 @@
     "extract": "node scripts/dashboard-bundle.mjs extract",
     "build": "node scripts/dashboard-bundle.mjs build",
     "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs && node scripts/test-market-collector.mjs && node scripts/validate-analyses.mjs && node scripts/validate-profiles.mjs",
+    "shot": "node scripts/ui-shot.cjs",
     "check:profiles": "node scripts/validate-profiles.mjs",
     "profiles": "python3 scripts/stock-profiles.py",
     "check:market": "node scripts/validate-market-data.mjs",
