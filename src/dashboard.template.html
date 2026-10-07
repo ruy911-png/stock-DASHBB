@@ -1005,8 +1005,8 @@
         </div>
 
         <div style="display:flex; flex-direction:column; gap:18px;">
-          <!-- 위: 스크랩 뉴스 + 기사 스크랩 입력 (좌우 2열) -->
-          <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:18px; align-items:stretch;">
+          <!-- 위: 스크랩 뉴스, 아래: 기사 스크랩 입력 (한 열, 사용자 요청 2026-10-07) -->
+          <div style="display:grid; grid-template-columns:minmax(0,1fr); gap:18px;">
           <div style="display:flex; flex-direction:column;">
             <div style="display:flex; align-items:center; justify-content:space-between; margin:0 4px 12px;">
               <div style="font-size:16px; font-weight:800; letter-spacing:-.3px;">스크랩 뉴스 · {{ newsCount }}건</div>
