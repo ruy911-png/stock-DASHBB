@@ -20,16 +20,9 @@
 - tester 첫 시험(10/7)에서 나온 것 중 미수정: ① 940px 홈 카드 4개가 3+1로 꺾여 과거사례 카드만 둘째 줄, '39종목' 두 줄 ② 1180px에서 VIX 카드만 둘째 줄 ③ 420px(폴드 커버 폭)에서는 메뉴가 접혀도 종목 목록 종목명이 말줄임으로 빡빡함.
 - 먼저 꺼내지 말 것: stock-screening PRD 미결 질문(아래).
 
-## 작업 절차 (UI 수정)
-1. `git fetch origin main && git checkout -B <branch> origin/main`
-2. `src/dashboard.template.html`만 고친다(`index.html`은 `npm run build`가 생성). 숫자는 코드만 계산한다.
-3. `npm run build` → `npm run check`
-4. `npm run shot -- --screen <화면> --width 1180,940,600`(tester 에이전트 담당, `--help`에 옵션) → `.cache/ui-shots/`의 PNG를 Read로 직접 본 뒤 사용자에게 보여준다. 블록 순서·화면 하단은 `--full`.
-5. 커밋(세션 안내의 트레일러) → `git push -u origin <branch>` → PR 생성 → 머지는 사용자.
-
-## 렌더 하네스 메모
-- `scripts/ui-shot.cjs`. 클라우드 세션에는 Playwright·Chromium이 있고, CDN 차단은 `npm pack`으로 우회한다(`.cache/ui-vendor/`, 커밋 안 함). 폰트는 Noto Sans KR을 주입해 갤럭시에 가깝고, 아이패드·PC는 몇 px 차이의 줄바꿈이 다를 수 있다.
-- 출력의 '주의'(화면 밖·상자 밖 글자·말줄임·body 여백)는 자동 감지 결과 → 그 자리를 먼저 본다. 옵션: `--click "<글자>"`(카드 열기·버튼), `--full`, `--busy`(실행 중 상태), `--no-token`(토큰 없음 상태), `--font none`.
+## 작업 절차·하네스
+- CLAUDE.md의 '파이프라인'과 '화면 확인' 그대로 따른다(렌더 하네스 `npm run shot`은 저장소에 있고 tester 에이전트가 맡는다). 여기 다시 적지 않는다.
+- 커밋에는 세션 안내의 트레일러를 붙이고, PR 머지는 사용자가 한다.
 
 ## stock-screening (다른 저장소)
 - `docs/handoff.md`(브랜치 `setup/agent-team-prd` 또는 `test/backtest-sepa-buffett-bb`, main에는 없음, 2026-10-05 기준) 참고. PRD 미결 질문(Q40 실행 요청 방법 등)은 사용자가 "기다려"라고 해서 보류 — 사용자가 다시 꺼낼 때까지 먼저 꺼내지 않는다.
