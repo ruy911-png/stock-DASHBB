@@ -1494,7 +1494,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1280&quot;,&quot;height&quot;:&quot;832&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#6B62F0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#6B62F0&quot;,&quot;#2A6FDB&quot;,&quot;#1F8A5B&quot;,&quot;#E0567A&quot;]},&quot;upColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F23645&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#F23645&quot;,&quot;#E0392E&quot;,&quot;#FF5A3C&quot;]},&quot;downColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2F6FED&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#2F6FED&quot;,&quot;#2A6FDB&quot;,&quot;#3568D4&quot;]},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;ai&quot;,&quot;market&quot;,&quot;journal&quot;,&quot;news&quot;,&quot;study&quot;,&quot;predict&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;동작&quot;},&quot;showNews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;},&quot;showStudy&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;},&quot;showPredict&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1280&quot;,&quot;height&quot;:&quot;832&quot;},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#6B62F0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#6B62F0&quot;,&quot;#2A6FDB&quot;,&quot;#1F8A5B&quot;,&quot;#E0567A&quot;]},&quot;upColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#F23645&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#F23645&quot;,&quot;#E0392E&quot;,&quot;#FF5A3C&quot;]},&quot;downColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2F6FED&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;테마&quot;,&quot;options&quot;:[&quot;#2F6FED&quot;,&quot;#2A6FDB&quot;,&quot;#3568D4&quot;]},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;ai&quot;,&quot;market&quot;,&quot;journal&quot;,&quot;news&quot;,&quot;study&quot;,&quot;predict&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;동작&quot;},&quot;showNews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;},&quot;showStudy&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;},&quot;showPredict&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;메뉴 표시&quot;}}">
 class Component extends DCLogic {
   state = {
     tab: 'home',
@@ -3431,7 +3431,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     const csvSample = ['삼성전자,매도,30,74200,248000,12.4,😎,6.24,목표가 도달 분할 익절,외국인 순매수 유입', '에코프로비엠,매수,10,168000,,0,🤔,6.20,바닥 확인용 소량 진입,2차전지 거래량 급증'];
     const sampleCsvHref = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF' + csvHeader + '\n' + csvSample.join('\n'));
 
-    const showNews = this.props.showNews ?? true;
+    // 뉴스·차트 복기 노트는 메뉴에서 숨김(사용자 결정 2026-10-07). 화면·데이터는 그대로 — 다시 보이려면 true로
+    const showNews = this.props.showNews ?? false;
+    const showChartReview = this.props.showChartReview ?? false;
     const showStudy = this.props.showStudy ?? true;
     const showPredict = this.props.showPredict ?? true;
     const navDef = [
@@ -3441,7 +3443,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       { key: 'news', label: '뉴스', icon: '📰', show: showNews },
       { key: 'study', label: '주식공부', icon: '📚', show: showStudy },
       { key: 'journal', label: '매매일지', icon: '📒', show: true },
-      { key: 'chartreview', label: '차트 복기 노트', icon: '🖼️', show: true },
+      { key: 'chartreview', label: '차트 복기 노트', icon: '🖼️', show: showChartReview },
       { key: 'predict', label: '과거사례 Study', icon: '🔮', show: showPredict },
     ].filter(n => n.show);
     const navItems = navDef.map(n => {
@@ -3741,9 +3743,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       homeCards: [
         { icon: '🤖', bg: '#EFEDFE', title: '종목분석 모음', sub: '종목별 분석 모아보기', stat: analysesData.length + '종목', statLabel: '보관됨', statCol: '#6B62F0', onClick: () => this.go('ai') },
         { icon: '📒', bg: '#FFF0E8', title: '매매일지', sub: '보유 평가 + 매매 회고·특이사항', stat: new Set(tradesData.map(t => (t.name || '').trim())).size + '종목', statLabel: '이번 달 매매', statCol: '#E07B2B', onClick: () => this.go('journal') },
-        { icon: '🖼️', bg: '#FCEFFB', title: '차트 복기 노트', sub: '매매 기록을 차트와 함께 복기', stat: (this.state.chartReviews || []).length + '건', statLabel: '작성됨', statCol: '#B24FA0', onClick: () => this.go('chartreview') },
+        { icon: '🖼️', bg: '#FCEFFB', title: '차트 복기 노트', sub: '매매 기록을 차트와 함께 복기', stat: (this.state.chartReviews || []).length + '건', statLabel: '작성됨', statCol: '#B24FA0', onClick: () => this.go('chartreview'), show: showChartReview },
         { icon: '🔮', bg: '#E8F4FF', title: '과거사례 Study', sub: '비슷한 사례의 뉴스와 주가 흐름', stat: '3사례', statLabel: '참고용', statCol: '#3B72E0', onClick: () => this.go('predict') },
-      ],
+      ].filter(c => c.show !== false),
       homeAlert: '삼성전자에 대한 3개 AI 의견이 엇갈려요 (매수 2 · 관망 1). 카카오는 제미나이가 매도 의견을 냈어요.',
       recent: [
         { tag: '종목분석', tagCol: '#6B62F0', tagBg: '#EFEDFE', title: '삼성전자 — Claude 매수 의견 추가', meta: '목표가 88,000원 · 6.22', onClick: () => this.setState({ tab: 'ai', expandedAi: '005930', aiFilter: 'all' }) },
