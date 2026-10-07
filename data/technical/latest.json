@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T12:25:47Z",
+  "generated_at": "2026-10-07T13:22:35Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -678,6 +678,33 @@
       "ret_1m_pct": 2.72,
       "ret_3m_pct": -3.93,
       "ret_6m_pct": 13.82,
+      "bars": 501
+    },
+    "WMT": {
+      "name": "월마트",
+      "market": "us",
+      "symbol": "WMT",
+      "as_of": "2026-10-06",
+      "close": 107.2,
+      "chg_1d_pct": 2.03,
+      "ma5": 104.942,
+      "ma20": 107.04,
+      "ma60": 109.1767,
+      "ma120": 115.7245,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": 0.15,
+      "pct_vs_ma120": -7.37,
+      "rsi14": 50.08,
+      "volume": 22017700.0,
+      "volume_avg20": 22268925.0,
+      "volume_ratio20": 0.99,
+      "high52": 134.2,
+      "low52": 100.61,
+      "pct_from_high52": -20.12,
+      "pct_from_low52": 6.55,
+      "ret_1m_pct": 0.06,
+      "ret_3m_pct": -5.22,
+      "ret_6m_pct": -12.48,
       "bars": 501
     }
   }
