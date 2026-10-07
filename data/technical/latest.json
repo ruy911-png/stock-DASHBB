@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T04:53:24Z",
+  "generated_at": "2026-10-07T05:01:57Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -490,6 +490,33 @@
       "ret_3m_pct": -55.4,
       "ret_6m_pct": 8.65,
       "bars": 485
+    },
+    "DLB": {
+      "name": "돌비 래버러토리스",
+      "market": "us",
+      "symbol": "DLB",
+      "as_of": "2026-10-06",
+      "close": 58.46,
+      "chg_1d_pct": -1.52,
+      "ma5": 58.908,
+      "ma20": 59.2805,
+      "ma60": 58.653,
+      "ma120": 57.1896,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -1.38,
+      "pct_vs_ma120": 2.22,
+      "rsi14": 45.08,
+      "volume": 644400.0,
+      "volume_avg20": 966605.0,
+      "volume_ratio20": 0.67,
+      "high52": 72.67,
+      "low52": 48.51,
+      "pct_from_high52": -19.55,
+      "pct_from_low52": 20.51,
+      "ret_1m_pct": -5.65,
+      "ret_3m_pct": 17.2,
+      "ret_6m_pct": -4.48,
+      "bars": 501
     }
   }
 }
