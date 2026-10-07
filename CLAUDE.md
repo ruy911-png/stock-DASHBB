@@ -23,6 +23,7 @@
 ### 파이프라인
 - `data/analyses-backup.json` 수정 → `npm run build` (src/dashboard.template.html → index.html) → `npm run check` (빌드 동기화 + 시황데이터 검증 + 수집기 테스트) 순으로 검증 후 커밋
 - 브랜치가 이미 머지된 상태면 `git fetch origin main && git checkout -B <branch> origin/main`로 재시작 후 이어서 작업 (머지된 브랜치에 새 커밋을 쌓지 않음)
+- 세션 인수인계는 `docs/handoff.md`(현재 상태·남은 일·절차). 새 세션은 먼저 읽고, 세션 끝에 갱신해 PR로 올린다 (사용자 결정 2026-10-07: 시작문을 짧게)
 
 ### 화면 확인 (UI·템플릿 변경 시 필수, 사용자 결정 2026-10-07)
 - `src/dashboard.template.html`을 고쳤으면 푸시 전에 `npm run shot -- --screen <화면> --width 1180,940,600`(`scripts/ui-shot.cjs`)으로 실제 Chromium 렌더를 찍고, `.cache/ui-shots/`의 PNG를 **직접 열어 본 뒤** 사용자에게도 보여 준다. 화면을 안 보고 올려서 여러 번 지적받았음. 폭 3개 = PC·갤럭시 폴드 펼침·좁은 폭. 상호작용이 바뀌었으면 `--click "<글자>"`로 그 상태까지 들어가 찍는다(`--busy` 실행 중 상태, `--no-token` 토큰 없음 상태). 블록 순서·화면 하단은 `--full`(전체 높이)로 찍는다. 출력의 '주의'(화면 밖·상자 밖 글자·말줄임)는 자동 감지 결과이니 그 자리를 먼저 본다.
