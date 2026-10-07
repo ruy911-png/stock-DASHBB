@@ -1605,6 +1605,10 @@ class Component extends DCLogic {
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
     this.loadProfiles();
+    // 화면으로 돌아오면(탭 복귀·화면 켜짐) 멈춰 있던 실행 상태 확인을 즉시 재개 — 모바일은 뒤로 가면 타이머가 멈춘다(2026-10-07 보고)
+    const resume = () => { if (document.visibilityState === 'visible') this.resumeWatch(); };
+    document.addEventListener('visibilitychange', resume);
+    window.addEventListener('focus', resume);
     this.setState({ viewportWidth: window.innerWidth });
     let resizeTimer = null;
     window.addEventListener('resize', () => {
@@ -1692,6 +1696,11 @@ class Component extends DCLogic {
   // 중복 실행 선택: 그래도 실행(force) / 아니오 → 먼저 시작된 실행만 지켜보기(attachStarted 유지)
   dupRunAnyway() { const p = this.state.dupPending; if (!p) return; this.setState({ dupPending: null }); this.runWorkflow({ ...p, force: true, attachStarted: undefined }); }
   dupWatch() { const p = this.state.dupPending; if (!p) return; this.setState({ dupPending: null }); this.runWorkflow(p); }
+  // 탭 복귀·화면 켜짐 때: 끝난 실행의 불러오기가 밀려 있으면 바로 실행, 진행 중이면 상태 확인을 즉시 다시 시작
+  resumeWatch() {
+    if (this._pendingReload) { this._pendingReload(); return; }
+    if (this._poll) { clearTimeout(this._pollTimer); this._poll(); }
+  }
 
   // 공통: GitHub 워크플로 실행 요청 → 30초마다 상태 확인 → 성공하면 1분 뒤 onDone(최신 파일 다시 불러오기)
   // opts.force: 중복이어도 실행 / opts.attachStarted: 새로 요청하지 않고 먼저 시작된 실행(생성 시각)만 지켜보기
@@ -1751,16 +1760,23 @@ class Component extends DCLogic {
             const cancelled = run.conclusion === 'cancelled';
             this.setState({ [busyKey]: false, [msgKey]: ok ? '완료 — 1분 뒤 최신 내용을 불러옵니다 (안 바뀌면 새로고침)'
               : cancelled ? '취소됨(중복 실행이거나 수동 취소) — 1분 뒤 최신 내용을 불러옵니다' : '실패(' + run.conclusion + ') — GitHub Actions 로그를 확인하세요' });
-            if (ok || cancelled) setTimeout(onDone, 60000); // GitHub Pages 배포가 끝날 때까지 잠시 기다린다
+            this._poll = null;
+            if (ok || cancelled) { // GitHub Pages 배포가 끝날 때까지 1분 기다린다. 화면 복귀 때(resumeWatch) 바로 실행되기도 한다
+              this._pendingReload = () => { this._pendingReload = null; clearTimeout(this._reloadTimer); onDone(); };
+              this._reloadTimer = setTimeout(this._pendingReload, 60000);
+            }
             return;
           }
           this.setState({ [msgKey]: '실행 중 (' + run.status + ', ' + Math.round((Date.now() - started) / 60000) + '분 경과)…' });
         }
       } catch (e) {}
-      if (Date.now() - started < 3 * 3600 * 1000) setTimeout(poll, 30000);
-      else this.setState({ [busyKey]: false, [msgKey]: '3시간이 지나 상태 확인을 멈췄습니다 — GitHub Actions에서 확인하세요' });
+      clearTimeout(this._pollTimer);
+      if (Date.now() - started < 3 * 3600 * 1000) this._pollTimer = setTimeout(poll, 30000);
+      else { this._poll = null; this.setState({ [busyKey]: false, [msgKey]: '3시간이 지나 상태 확인을 멈췄습니다 — GitHub Actions에서 확인하세요' }); }
     };
-    setTimeout(poll, 15000);
+    this._poll = poll; // 화면 복귀 때 resumeWatch()가 바로 호출할 수 있게 보관
+    clearTimeout(this._pollTimer);
+    this._pollTimer = setTimeout(poll, 15000);
   }
 
   // 종목별 ↻: 그 종목 하나만 오늘자로 다시 분석(사용자 요청 2026-10-06 "새로고침은 종목별로"). 수동 등록 종목(코드 N…)은 종목코드가 없어 불가
@@ -3016,7 +3032,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     // 종목분석 리스트의 5칸 표는 실제 본문에 남는 폭(뷰포트 - 왼쪽 사이드바 248px)으로 판단한다.
     // 갤럭시 폴드 펼친 화면(~670~720px)은 뷰포트만 보면 넉넉해 보이지만 사이드바가 기본으로
     // 열려있어 실제 본문 폭은 420px대로 좁아서, 뷰포트만 기준 삼으면 5칸 표가 여전히 찌부러진다.
-    const sidebarW = this.state.sidebarOpen === false ? 0 : 248;
+    const sidebarW = this.state.sidebarOpen === false ? 0 : 200; // 2026-10-07 사용자 요청: 왼쪽 메뉴 폭 축소(248 → 200)
     const mainContentWidth = (this.state.viewportWidth || 1200) - sidebarW;
     const isListCompact = mainContentWidth < 650;
     // 매매일지 "선택 종목 상세" 2단 구성은 minmax(320px)+minmax(520px)이라 본문 폭이
@@ -3653,9 +3669,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       goMarket: () => this.go('market'),
       goNews: () => this.go('news'),
       navItems,
-      sidebarWidth: this.state.sidebarOpen === false ? '0px' : '248px',
-      sidebarPad: this.state.sidebarOpen === false ? '24px 0px' : '24px 16px',
-      sidebarToggleLeft: this.state.sidebarOpen === false ? '10px' : '236px',
+      sidebarWidth: this.state.sidebarOpen === false ? '0px' : '200px',
+      sidebarPad: this.state.sidebarOpen === false ? '20px 0px' : '20px 12px',
+      sidebarToggleLeft: this.state.sidebarOpen === false ? '10px' : '188px',
       sidebarToggleIcon: this.state.sidebarOpen === false ? '›' : '‹',
       toggleSidebar: () => this.setState({ sidebarOpen: this.state.sidebarOpen === false ? true : false }),
 
