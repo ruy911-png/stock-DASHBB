@@ -47,6 +47,16 @@ THRESHOLDS = {  # 임시값. 1차(2026-10-06) 36종목 결과를 보고 2차 조
     "거래량 동반 상승형": "거래량 20일 평균 3배 이상 급증일 연 6회 이상이고 그날 상승 비율 75% 이상",
     "윗꼬리 빈발형": "윗꼬리가 몸통의 2배 이상(종가의 2% 이상)인 날 18% 이상 — 장중 되밀림",
 }
+# 카드에 보일 대표 유형(사용자 결정 2026-10-07: 태그는 2개 이내). 추세 묶음 → 변동성 묶음 → 나머지는 원래 순서로 채운다
+TREND_LABELS = ("추세 지속형", "하락 추세형", "박스권형")
+VOL_LABELS = ("고변동형", "저변동형")
+MAIN_MAX = 2
+
+
+def main_labels(labels: list[str]) -> list[str]:
+    picked = [x for x in labels if x in TREND_LABELS] + [x for x in labels if x in VOL_LABELS]
+    picked += [x for x in labels if x not in picked]
+    return picked[:MAIN_MAX]
 
 
 def _f(x, digits=1, sign=True, suffix="%"):
@@ -72,7 +82,7 @@ def profile(df: pd.DataFrame, market: str) -> dict:
     df = df.dropna(subset=["Close"])
     n = len(df)
     if n < MIN_BARS:
-        return {"bars": n, "labels": [], "metrics": {}, "notes": [f"미확인 — 일봉 {n}개로 이력 부족(최소 {MIN_BARS}개)"]}
+        return {"bars": n, "labels": [], "main_labels": [], "metrics": {}, "notes": [f"미확인 — 일봉 {n}개로 이력 부족(최소 {MIN_BARS}개)"]}
     c, o, h, lo, v = (df[k].astype(float) for k in ("Close", "Open", "High", "Low", "Volume"))
     r = c.pct_change()
     ry = r.tail(YEAR)
@@ -183,7 +193,7 @@ def profile(df: pd.DataFrame, market: str) -> dict:
         f"윗꼬리 긴 날 {upper_pct * 100:.0f}%, 종가의 일중 위치 평균 {close_pos:.2f}(0 저가~1 고가)"
         + (f", 상승분의 상위 5일 집중도 {top5_share:.0f}%" if top5_share is not None else ""),
     ]
-    return {"bars": n, "labels": labels, "metrics": metrics, "notes": notes}
+    return {"bars": n, "labels": labels, "main_labels": main_labels(labels), "metrics": metrics, "notes": notes}
 
 
 def fetch_ohlcv(targets: list[dict], period: str = "2y") -> dict[str, tuple[pd.DataFrame, str]]:
@@ -288,6 +298,9 @@ def selftest() -> int:
     built = build([{"code": "AAA", "name": "a", "market": "us"}, {"code": "ZZZ", "name": "z", "market": "us"}],
                   {"AAA": (make_ohlcv(b), "AAA")}, datetime(2026, 10, 6, 12, 0, tzinfo=timezone.utc))
     assert built["failed"] == ["ZZZ"] and built["items"]["AAA"]["as_of"] and built["items"]["AAA"]["labels"]
+    assert main_labels(["급등 빈발형", "급등 지속형", "추세 지속형", "고변동형"]) == ["추세 지속형", "고변동형"]
+    assert main_labels(["급등 빈발형", "고변동형"]) == ["고변동형", "급등 빈발형"] and main_labels([]) == []
+    assert built["items"]["AAA"]["main_labels"] == main_labels(built["items"]["AAA"]["labels"])
     print("selftest ok")
     return 0
 
@@ -309,6 +322,8 @@ def main() -> int:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     merged = ti.merge_into(out_path, fresh)
     merged["thresholds"] = THRESHOLDS
+    for it in merged["items"].values():  # 예전 실행에서 남은 종목도 대표 유형을 맞춘다
+        it["main_labels"] = main_labels(it.get("labels", []))
     out_path.write_text(json.dumps(merged, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     labeled = sum(1 for it in fresh["items"].values() if it["labels"])
     print(f"계산 {len(fresh['items'])}종목(유형 붙은 종목 {labeled}), 실패 {len(fresh['failed'])}종목 {fresh['failed']} → {out_path}")

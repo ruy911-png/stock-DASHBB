@@ -1258,16 +1258,21 @@
                 <span title="{{ pt.why }}" style="font-size:12px; font-weight:800; color:#1F8A5B; background:#E3F3EA; padding:4px 10px; border-radius:8px;">{{ pt.label }}</span>
               </sc-for>
             </div>
-            <sc-if value="{{ peekPanel.hasProfileWhy }}" hint-placeholder-val="{{ false }}">
-              <div style="font-size:11px; color:#8C8C9E; line-height:1.55; margin-bottom:8px; padding-bottom:8px; border-bottom:1px dashed #DCEFE4;">
-                <sc-for list="{{ peekPanel.profileWhyLines }}" as="pw" hint-placeholder-count="3">
-                  <div>{{ pw.text }}</div>
+            <details>
+              <summary style="font-size:12px; font-weight:700; color:#1F8A5B; cursor:pointer;">근거 숫자 보기</summary>
+              <div style="margin-top:8px;">
+                <sc-if value="{{ peekPanel.hasProfileWhy }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:11px; color:#8C8C9E; line-height:1.55; margin-bottom:8px; padding-bottom:8px; border-bottom:1px dashed #DCEFE4;">
+                    <sc-for list="{{ peekPanel.profileWhyLines }}" as="pw" hint-placeholder-count="2">
+                      <div>{{ pw.text }}</div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-for list="{{ peekPanel.profileLines }}" as="pl" hint-placeholder-count="4">
+                  <div style="font-size:12.5px; color:#56566A; line-height:1.65;">• {{ pl.text }}</div>
                 </sc-for>
               </div>
-            </sc-if>
-            <sc-for list="{{ peekPanel.profileLines }}" as="pl" hint-placeholder-count="4">
-              <div style="font-size:12.5px; color:#56566A; line-height:1.65;">• {{ pl.text }}</div>
-            </sc-for>
+            </details>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasProfileHint }}" hint-placeholder-val="{{ false }}">
@@ -1664,7 +1669,9 @@ class Component extends DCLogic {
         hasProfileHint: loaded, profileHint: loaded ? hint : '' };
     }
     const why = this.state.profileThresholds || {};
-    const tags = (p.labels && p.labels.length ? p.labels : ['뚜렷한 유형 없음']).map(label => ({ label, why: why[label] || '' }));
+    // 태그는 대표 유형 2개 이내(사용자 결정 2026-10-07, 고르는 규칙은 stock-profiles.py main_labels). 근거 숫자·기준은 접어 둔다
+    const shown = Array.isArray(p.main_labels) ? p.main_labels : (p.labels || []).slice(0, 2);
+    const tags = (shown.length ? shown : ['뚜렷한 유형 없음']).map(label => ({ label, why: why[label] || '' }));
     const whyLines = tags.filter(t => t.why).map(t => ({ text: t.label + ' = ' + t.why })); // 터치 기기에선 툴팁이 안 보여 기준을 글로 적는다
     return { hasProfile: true, profileTags: tags, profileWhyLines: whyLines, hasProfileWhy: whyLines.length > 0,
       profileLines: (p.notes || []).map(text => ({ text })), profileAsOf: p.as_of || '', hasProfileHint: false, profileHint: '' };
