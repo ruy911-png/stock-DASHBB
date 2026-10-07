@@ -28,6 +28,8 @@ if (!fs.existsSync(dataPath)) {
     if (!Array.isArray(item.notes) || !item.notes.length || item.notes.some(x => typeof x !== 'string')) fail(`${at}.notes는 비어 있지 않은 문자열 배열이어야 합니다.`);
     if (!item.metrics || typeof item.metrics !== 'object') fail(`${at}.metrics가 객체가 아닙니다.`);
     if (!Number.isInteger(item.bars) || item.bars < 0) fail(`${at}.bars가 올바르지 않습니다.`);
+    if (item.main_labels !== undefined && (!Array.isArray(item.main_labels) || item.main_labels.length > 2
+      || item.main_labels.some(x => !item.labels.includes(x)))) fail(`${at}.main_labels는 labels 안의 2개 이내여야 합니다.`);
     if (payload.thresholds) item.labels.forEach(label => { if (!(label in payload.thresholds)) fail(`${at}: 설명 없는 유형 "${label}"`); });
     [...item.labels, ...item.notes].forEach(text => { if (recommendRe.test(text)) fail(`${at}: 권유 표현 "${text}"`); });
   });

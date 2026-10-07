@@ -13,6 +13,9 @@
       "labels": [
         "추세 지속형"
       ],
+      "main_labels": [
+        "추세 지속형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 3,
@@ -56,6 +59,7 @@
       "window": "2y",
       "bars": 500,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.98,
         "surge_days": 2,
@@ -99,6 +103,7 @@
       "window": "2y",
       "bars": 501,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.99,
         "surge_days": 0,
@@ -144,6 +149,10 @@
       "labels": [
         "급등 빈발형",
         "고변동형"
+      ],
+      "main_labels": [
+        "고변동형",
+        "급등 빈발형"
       ],
       "metrics": {
         "years": 1.98,
@@ -193,6 +202,10 @@
         "고변동형",
         "윗꼬리 빈발형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 23,
@@ -239,6 +252,10 @@
         "급등 지속형",
         "박스권형"
       ],
+      "main_labels": [
+        "박스권형",
+        "급등 지속형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 6,
@@ -282,6 +299,9 @@
       "window": "2y",
       "bars": 485,
       "labels": [
+        "박스권형"
+      ],
+      "main_labels": [
         "박스권형"
       ],
       "metrics": {
@@ -330,6 +350,10 @@
         "급등 지속형",
         "추세 지속형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "급등 지속형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 5,
@@ -376,6 +400,10 @@
         "급등 빈발형",
         "급등 지속형",
         "고변동형"
+      ],
+      "main_labels": [
+        "고변동형",
+        "급등 빈발형"
       ],
       "metrics": {
         "years": 1.92,
@@ -425,6 +453,10 @@
         "추세 지속형",
         "고변동형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 19,
@@ -468,6 +500,10 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "추세 지속형",
+        "저변동형"
+      ],
+      "main_labels": [
         "추세 지속형",
         "저변동형"
       ],
@@ -516,6 +552,9 @@
       "labels": [
         "박스권형"
       ],
+      "main_labels": [
+        "박스권형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 0,
@@ -561,6 +600,9 @@
       "labels": [
         "추세 지속형"
       ],
+      "main_labels": [
+        "추세 지속형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 2,
@@ -604,6 +646,10 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "추세 지속형",
+        "저변동형"
+      ],
+      "main_labels": [
         "추세 지속형",
         "저변동형"
       ],
@@ -654,6 +700,10 @@
         "급등 후 반전형",
         "고변동형"
       ],
+      "main_labels": [
+        "고변동형",
+        "급등 빈발형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 18,
@@ -697,6 +747,9 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "추세 지속형"
+      ],
+      "main_labels": [
         "추세 지속형"
       ],
       "metrics": {
@@ -743,6 +796,10 @@
       "bars": 485,
       "labels": [
         "급등 후 반전형",
+        "추세 지속형",
+        "고변동형"
+      ],
+      "main_labels": [
         "추세 지속형",
         "고변동형"
       ],
@@ -796,6 +853,10 @@
         "되돌림형",
         "고변동형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 23,
@@ -842,6 +903,10 @@
         "급등 후 반전형",
         "박스권형",
         "거래량 동반 상승형"
+      ],
+      "main_labels": [
+        "박스권형",
+        "급등 후 반전형"
       ],
       "metrics": {
         "years": 1.92,
@@ -891,6 +956,10 @@
         "고변동형",
         "거래량 동반 상승형"
       ],
+      "main_labels": [
+        "고변동형",
+        "급등 후 반전형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 8,
@@ -934,6 +1003,9 @@
       "window": "2y",
       "bars": 485,
       "labels": [
+        "고변동형"
+      ],
+      "main_labels": [
         "고변동형"
       ],
       "metrics": {
@@ -983,6 +1055,10 @@
         "추세 지속형",
         "고변동형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 14,
@@ -1028,6 +1104,9 @@
       "labels": [
         "박스권형"
       ],
+      "main_labels": [
+        "박스권형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 2,
@@ -1071,6 +1150,7 @@
       "window": "2y",
       "bars": 500,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.98,
         "surge_days": 3,
@@ -1114,6 +1194,9 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "추세 지속형"
+      ],
+      "main_labels": [
         "추세 지속형"
       ],
       "metrics": {
@@ -1161,6 +1244,9 @@
       "labels": [
         "급등 후 반전형"
       ],
+      "main_labels": [
+        "급등 후 반전형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 8,
@@ -1206,6 +1292,9 @@
       "labels": [
         "하락 추세형"
       ],
+      "main_labels": [
+        "하락 추세형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 2,
@@ -1249,6 +1338,7 @@
       "window": "2y",
       "bars": 501,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.99,
         "surge_days": 3,
@@ -1298,6 +1388,10 @@
         "고변동형",
         "거래량 동반 상승형"
       ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 23,
@@ -1341,6 +1435,7 @@
       "window": "2y",
       "bars": 500,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.98,
         "surge_days": 0,
@@ -1384,6 +1479,10 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "고변동형",
+        "거래량 동반 상승형"
+      ],
+      "main_labels": [
         "고변동형",
         "거래량 동반 상승형"
       ],
@@ -1433,6 +1532,10 @@
         "급등 빈발형",
         "거래량 동반 상승형"
       ],
+      "main_labels": [
+        "급등 빈발형",
+        "거래량 동반 상승형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 12,
@@ -1476,6 +1579,10 @@
       "window": "2y",
       "bars": 485,
       "labels": [
+        "되돌림형",
+        "거래량 동반 상승형"
+      ],
+      "main_labels": [
         "되돌림형",
         "거래량 동반 상승형"
       ],
@@ -1525,6 +1632,10 @@
         "박스권형",
         "되돌림형"
       ],
+      "main_labels": [
+        "박스권형",
+        "되돌림형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 11,
@@ -1571,6 +1682,10 @@
         "급등 후 반전형",
         "박스권형"
       ],
+      "main_labels": [
+        "박스권형",
+        "급등 후 반전형"
+      ],
       "metrics": {
         "years": 1.98,
         "surge_days": 6,
@@ -1614,6 +1729,9 @@
       "window": "2y",
       "bars": 500,
       "labels": [
+        "박스권형"
+      ],
+      "main_labels": [
         "박스권형"
       ],
       "metrics": {
@@ -1663,6 +1781,10 @@
         "고변동형",
         "거래량 동반 상승형"
       ],
+      "main_labels": [
+        "고변동형",
+        "급등 후 반전형"
+      ],
       "metrics": {
         "years": 1.92,
         "surge_days": 11,
@@ -1706,6 +1828,7 @@
       "window": "2y",
       "bars": 500,
       "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.98,
         "surge_days": 1,
@@ -1749,6 +1872,9 @@
       "window": "2y",
       "bars": 485,
       "labels": [
+        "하락 추세형"
+      ],
+      "main_labels": [
         "하락 추세형"
       ],
       "metrics": {
