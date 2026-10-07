@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-06T23:43:08Z",
+  "generated_at": "2026-10-07T04:30:05Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -18,9 +18,9 @@
       "pct_vs_ma20": 2.09,
       "pct_vs_ma120": 0.1,
       "rsi14": 53.32,
-      "volume": 14243311.0,
+      "volume": 12913819.0,
       "volume_avg20": 16612227.0,
-      "volume_ratio20": 0.86,
+      "volume_ratio20": 0.78,
       "high52": 362500.0,
       "low52": 80300.0,
       "pct_from_high52": -24.97,
