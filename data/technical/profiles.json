@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T23:39:53Z",
+  "generated_at": "2026-10-07T23:56:34Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -787,9 +787,9 @@
       "name": "삼성전자",
       "market": "kospi",
       "symbol": "005930.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-07",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 후 반전형",
         "추세 지속형",
@@ -800,7 +800,7 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 6,
         "surge_per_year": 3.1,
         "crash_days": 5,
@@ -814,21 +814,21 @@
         "above_ma60_pct_1y": 0.79,
         "ma60_cross_count_1y": 4,
         "autocorr_1d_1y": -0.12,
-        "ret_1y_pct": 247.83,
+        "ret_1y_pct": 234.37,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 75.2,
+        "vol_annual_pct_1y": 75.19,
         "max_drawdown_1y_pct": -42.9,
         "gap3_days_rate_1y": 0.37,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.07,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 15.15
+        "top5_gain_share_pct_1y": 15.23
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.1회), 급락일(−10%↓) 5회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -0.8%, 플러스 비율 33% · 20거래일 평균 +5.7% (표본 6회)",
-        "최근 1년 60일선 위 79%(교차 4회), 1년 수익률 +247.8%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 9일",
+        "최근 1년 60일선 위 79%(교차 4회), 1년 수익률 +234.4%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 9일",
         "연환산 변동성 75%, 1년 최대 낙폭 -42.9%, 3%↑ 갭 발생일 37%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 7%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
