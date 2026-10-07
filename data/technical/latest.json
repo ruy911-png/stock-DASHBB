@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T07:57:12Z",
+  "generated_at": "2026-10-07T12:08:33Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -624,6 +624,33 @@
       "ret_1m_pct": -5.58,
       "ret_3m_pct": 12.66,
       "ret_6m_pct": 19.0,
+      "bars": 501
+    },
+    "BAC": {
+      "name": "뱅크오브아메리카",
+      "market": "us",
+      "symbol": "BAC",
+      "as_of": "2026-10-06",
+      "close": 54.09,
+      "chg_1d_pct": 0.17,
+      "ma5": 54.0,
+      "ma20": 57.202,
+      "ma60": 60.6852,
+      "ma120": 57.4577,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -5.44,
+      "pct_vs_ma120": -5.86,
+      "rsi14": 25.46,
+      "volume": 25370300.0,
+      "volume_avg20": 39363065.0,
+      "volume_ratio20": 0.64,
+      "high52": 64.81,
+      "low52": 46.72,
+      "pct_from_high52": -16.54,
+      "pct_from_low52": 15.77,
+      "ret_1m_pct": -13.7,
+      "ret_3m_pct": -7.22,
+      "ret_6m_pct": 7.58,
       "bars": 501
     }
   }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T07:57:12Z",
+  "generated_at": "2026-10-07T12:08:33Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -642,9 +642,9 @@
       "name": "뱅크오브아메리카",
       "market": "us",
       "symbol": "BAC",
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-06",
       "window": "2y",
-      "bars": 500,
+      "bars": 501,
       "labels": [
         "추세 지속형",
         "저변동형"
@@ -654,7 +654,7 @@
         "저변동형"
       ],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 1,
@@ -668,7 +668,7 @@
         "above_ma60_pct_1y": 0.71,
         "ma60_cross_count_1y": 13,
         "autocorr_1d_1y": 0.01,
-        "ret_1y_pct": 6.97,
+        "ret_1y_pct": 6.81,
         "longest_up_streak": 8,
         "vol_annual_pct_1y": 22.24,
         "max_drawdown_1y_pct": -18.39,
@@ -677,12 +677,12 @@
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.0,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 12.24
+        "top5_gain_share_pct_1y": 12.25
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 1회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 71%(교차 13회), 1년 수익률 +7.0%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 71%(교차 13회), 1년 수익률 +6.8%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 8일",
         "연환산 변동성 22%, 1년 최대 낙폭 -18.4%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 0%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 12%"
