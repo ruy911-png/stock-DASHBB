@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T13:22:36Z",
+  "generated_at": "2026-10-07T23:39:53Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -594,17 +594,13 @@
       "name": "모건스탠리",
       "market": "us",
       "symbol": "MS",
-      "as_of": "2026-10-05",
+      "as_of": "2026-10-07",
       "window": "2y",
-      "bars": 500,
-      "labels": [
-        "추세 지속형"
-      ],
-      "main_labels": [
-        "추세 지속형"
-      ],
+      "bars": 501,
+      "labels": [],
+      "main_labels": [],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 0,
@@ -615,24 +611,24 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": 4.11,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.71,
+        "above_ma60_pct_1y": 0.7,
         "ma60_cross_count_1y": 13,
         "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 22.47,
+        "ret_1y_pct": 20.0,
         "longest_up_streak": 11,
-        "vol_annual_pct_1y": 28.43,
+        "vol_annual_pct_1y": 28.41,
         "max_drawdown_1y_pct": -19.28,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 13.08
+        "top5_gain_share_pct_1y": 13.18
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 -1.2%, 플러스 비율 50% · 20거래일 평균 +4.1% (표본 2회)",
-        "최근 1년 60일선 위 71%(교차 13회), 1년 수익률 +22.5%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
+        "최근 1년 60일선 위 70%(교차 13회), 1년 수익률 +20.0%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
         "연환산 변동성 28%, 1년 최대 낙폭 -19.3%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 13%"

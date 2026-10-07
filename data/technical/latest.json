@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T13:22:35Z",
+  "generated_at": "2026-10-07T23:39:52Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -705,6 +705,33 @@
       "ret_1m_pct": 0.06,
       "ret_3m_pct": -5.22,
       "ret_6m_pct": -12.48,
+      "bars": 501
+    },
+    "MS": {
+      "name": "모건스탠리",
+      "market": "us",
+      "symbol": "MS",
+      "as_of": "2026-10-07",
+      "close": 189.71,
+      "chg_1d_pct": -0.69,
+      "ma5": 189.848,
+      "ma20": 198.473,
+      "ma60": 209.4395,
+      "ma120": 207.3576,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -4.42,
+      "pct_vs_ma120": -8.51,
+      "rsi14": 30.35,
+      "volume": 5030247.0,
+      "volume_avg20": 5703775.0,
+      "volume_ratio20": 0.88,
+      "high52": 228.55,
+      "low52": 151.86,
+      "pct_from_high52": -16.99,
+      "pct_from_low52": 24.92,
+      "ret_1m_pct": -12.27,
+      "ret_3m_pct": -14.6,
+      "ret_6m_pct": 7.78,
       "bars": 501
     }
   }
