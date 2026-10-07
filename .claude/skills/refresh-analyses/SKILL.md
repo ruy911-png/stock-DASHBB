@@ -18,6 +18,7 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
    - `overview` 기업개요 ← company-analyst
    - `moat` 경제적해자 ← company-analyst의 경쟁우위 + 그 우위를 위협하는 리스크 1개 이상(필요하면 웹검색 보강)
    - `fundamental` 기본적분석 ← fundamental-analyst (현금흐름 bullet 필수)
+   - 용어: NII는 `순이자이익(NII)`, CET1은 쓰지 않음, TTM은 `최근 12개월` (CLAUDE.md 작성 규칙)
    - `technical` 기술적분석 ← 2의 숫자로만 작성. 3개 bullet: ① 추세·이동평균(종가와 20/120일선 대비, 배열 상태) — `data/technical/profiles.json`의 `items[code].main_labels`(카드에 보이는 대표 유형 2개 이내, 없으면 `labels` 앞 2개. 예: 추세 지속형·고변동형)가 있으면 이 bullet 끝에 "종목 특성: …" 으로 덧붙인다 ② RSI(14)와 거래량(20일 평균 대비) ③ 52주 고저 대비 위치와 1/3/6개월 수익률. 각 bullet 끝에 `(코드 계산, yfinance 일봉, as_of 날짜)`를 붙인다. 과매수·과매도는 RSI 70/30 기준의 사실 서술만 하고 전망·권유는 쓰지 않는다. 유형의 근거 숫자는 카드의 '종목 특성' 블록이 따로 보여 주므로 여기서 반복하지 않는다
    - `valuation` 밸류에이션 ← valuation-analyst (PER과 PBR·BPS bullet 필수)
 5. 항목을 넣는다: `{ "ai": "claude", "date": "<오늘 월.일, 예: 10.5 — 앞자리 0 없이, 한국 시간 기준>", overview, moat, fundamental, technical, valuation }`. 같은 `ai`·`date`가 이미 있으면 그 항목을 바꾸고, 아니면 `ais` 맨 앞에 넣고 최신 5개만 남긴다. `code`·`name`·`market`·`price`·`chg`는 그대로 두고, `tags`는 명백히 낡았을 때만 3개 이내로 고친다. 목록 화면에는 **첫 번째 태그 1개만** 보이므로 첫 태그는 업종(예: 반도체, 소프트웨어, 손해보험)으로 둔다(사용자 결정 2026-10-06). 다른 종목 항목은 건드리지 않는다.
