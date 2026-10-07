@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T04:48:30Z",
+  "generated_at": "2026-10-07T04:53:24Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -462,6 +462,33 @@
       "ret_1m_pct": 19.64,
       "ret_3m_pct": -13.03,
       "ret_6m_pct": 311.04,
+      "bars": 485
+    },
+    "004170": {
+      "name": "신세계",
+      "market": "kospi",
+      "symbol": "004170.KS",
+      "as_of": "2026-10-06",
+      "close": 326500.0,
+      "chg_1d_pct": -1.66,
+      "ma5": 333700.0,
+      "ma20": 361875.0,
+      "ma60": 431550.0,
+      "ma120": 489412.5,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -9.78,
+      "pct_vs_ma120": -33.29,
+      "rsi14": 28.23,
+      "volume": 51671.0,
+      "volume_avg20": 74023.0,
+      "volume_ratio20": 0.7,
+      "high52": 776000.0,
+      "low52": 171500.0,
+      "pct_from_high52": -57.93,
+      "pct_from_low52": 90.38,
+      "ret_1m_pct": -15.52,
+      "ret_3m_pct": -55.4,
+      "ret_6m_pct": 8.65,
       "bars": 485
     }
   }
