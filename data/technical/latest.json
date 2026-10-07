@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T05:55:52Z",
+  "generated_at": "2026-10-07T07:57:12Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -598,6 +598,33 @@
       "ret_3m_pct": 20.53,
       "ret_6m_pct": 105.87,
       "bars": 485
+    },
+    "MRK": {
+      "name": "머크",
+      "market": "us",
+      "symbol": "MRK",
+      "as_of": "2026-10-06",
+      "close": 141.94,
+      "chg_1d_pct": 1.72,
+      "ma5": 142.98,
+      "ma20": 146.093,
+      "ma60": 140.0677,
+      "ma120": 128.8592,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -2.84,
+      "pct_vs_ma120": 10.15,
+      "rsi14": 43.38,
+      "volume": 8072700.0,
+      "volume_avg20": 10084540.0,
+      "volume_ratio20": 0.8,
+      "high52": 156.45,
+      "low52": 82.49,
+      "pct_from_high52": -9.27,
+      "pct_from_low52": 72.07,
+      "ret_1m_pct": -5.58,
+      "ret_3m_pct": 12.66,
+      "ret_6m_pct": 19.0,
+      "bars": 501
     }
   }
 }
