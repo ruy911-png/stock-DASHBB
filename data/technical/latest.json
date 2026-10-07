@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T04:30:05Z",
+  "generated_at": "2026-10-07T04:48:30Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -435,6 +435,33 @@
       "ret_1m_pct": 11.11,
       "ret_3m_pct": 17.43,
       "ret_6m_pct": 12.22,
+      "bars": 485
+    },
+    "009150": {
+      "name": "삼성전기",
+      "market": "kospi",
+      "symbol": "009150.KS",
+      "as_of": "2026-10-06",
+      "close": 1675000.0,
+      "chg_1d_pct": 5.95,
+      "ma5": 1571600.0,
+      "ma20": 1448050.0,
+      "ma60": 1368350.0,
+      "ma120": 1379625.0,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 15.67,
+      "pct_vs_ma120": 21.41,
+      "rsi14": 68.38,
+      "volume": 784457.0,
+      "volume_avg20": 573808.0,
+      "volume_ratio20": 1.37,
+      "high52": 2270000.0,
+      "low52": 191700.0,
+      "pct_from_high52": -26.21,
+      "pct_from_low52": 773.76,
+      "ret_1m_pct": 19.64,
+      "ret_3m_pct": -13.03,
+      "ret_6m_pct": 311.04,
       "bars": 485
     }
   }
