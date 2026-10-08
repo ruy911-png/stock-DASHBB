@@ -1225,6 +1225,12 @@
           <div style="flex:1;"></div>
           <span style="font-size:11px; color:#A8A8B6;">{{ peekPanel.date }}</span>
         </div>
+        <!-- 한 줄 요약(사용자 결정 2026-10-08): 분석 글을 쓸 때 같이 쓴 summary. 숫자는 아래 섹션에 있는 값만 -->
+        <sc-if value="{{ peekPanel.hasSummary }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-bottom:14px; padding:10px 13px; border-radius:11px; background:#FFF8DB; border:1px solid #F3E3A0;">
+            <div class="md-content" style="font-size:13.5px; color:#2A2A3C; font-weight:700; line-height:1.6;" id="__analysis_peek_summary"></div>
+          </div>
+        </sc-if>
         <sc-if value="{{ peekPanel.hasOverview }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:12px;">
             <div style="font-size:14.5px; font-weight:800; color:#1E8E5A; margin-bottom:6px;">🏢 기업개요</div>
@@ -2505,6 +2511,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         const aiTabIdx = Math.min(this.state.peekAiTab, stock.ais.length - 1);
         const r = stock.ais[aiTabIdx] || {};
         const mdFields = [
+          ['__analysis_peek_summary', r.summary || ''],
           ['__analysis_peek_overview', r.overview || ''],
           ['__analysis_peek_moat', r.moat || ''],
           ['__analysis_peek_fundamental', r.fundamental || r.reason || ''],
@@ -3121,7 +3128,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           brandLabel: brand.label, brandCol: brand.color, date: r.date || '',
           overview: r.overview || '', moat: r.moat || '', fundamental: r.fundamental || r.reason || '',
           technical: r.technical || '', valuation: r.valuation || '',
-          hasOverview: !!r.overview, hasMoat: !!r.moat, hasFund: !!(r.fundamental || r.reason),
+          hasSummary: !!r.summary, hasOverview: !!r.overview, hasMoat: !!r.moat, hasFund: !!(r.fundamental || r.reason),
           hasTech: !!r.technical, hasValuation: !!r.valuation,
           hasTechOrValuation: !!(r.technical || r.valuation),
           valuationDividerStyle: (r.technical && r.valuation) ? 'border-top:1px dashed #F0D9B8; margin-top:8px; padding-top:8px;' : '',
