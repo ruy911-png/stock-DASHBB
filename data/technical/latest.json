@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T12:04:51Z",
+  "generated_at": "2026-10-08T12:08:46Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI"
@@ -1046,9 +1046,9 @@
       "pct_vs_ma20": 3.44,
       "pct_vs_ma120": -19.68,
       "rsi14": 49.98,
-      "volume": 217666.0,
+      "volume": 254013.0,
       "volume_avg20": 208600.0,
-      "volume_ratio20": 1.04,
+      "volume_ratio20": 1.22,
       "high52": 1530000.0,
       "low52": 183600.0,
       "pct_from_high52": -62.61,
