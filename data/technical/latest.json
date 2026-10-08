@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T00:44:36Z",
+  "generated_at": "2026-10-08T00:58:49Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -760,6 +760,33 @@
       "ret_3m_pct": -26.13,
       "ret_6m_pct": -36.91,
       "bars": 485
+    },
+    "KO": {
+      "name": "코카콜라",
+      "market": "us",
+      "symbol": "KO",
+      "as_of": "2026-10-06",
+      "close": 86.17,
+      "chg_1d_pct": -0.39,
+      "ma5": 86.102,
+      "ma20": 87.5085,
+      "ma60": 87.151,
+      "ma120": 83.5446,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -1.53,
+      "pct_vs_ma120": 3.14,
+      "rsi14": 42.04,
+      "volume": 16061400.0,
+      "volume_avg20": 16033595.0,
+      "volume_ratio20": 1.0,
+      "high52": 91.99,
+      "low52": 66.1,
+      "pct_from_high52": -6.33,
+      "pct_from_low52": 30.36,
+      "ret_1m_pct": -2.16,
+      "ret_3m_pct": 3.32,
+      "ret_6m_pct": 13.52,
+      "bars": 500
     }
   }
 }
