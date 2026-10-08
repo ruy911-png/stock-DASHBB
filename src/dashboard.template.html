@@ -1201,12 +1201,15 @@
   <div style="position:fixed; right:0; top:0; height:100vh; width:{{ peekPanelWidth }}; z-index:60; display:flex; flex-direction:column; background:#fff; box-shadow:-8px 0 40px rgba(20,20,50,.14); border-left:1px solid #EAEAF0;">
     <div style="display:flex; align-items:center; padding:18px 20px 14px; border-bottom:1px solid #F0F0F6; flex-shrink:0;">
       <div style="font-size:13px; font-weight:700; color:#9A9AAC; flex:1;">{{ peekPanel.name }}{{ peekPanel.title }}</div>
+      <sc-if value="{{ showPeekFull }}" hint-placeholder-val="{{ false }}">
+        <div onclick="{{ onTogglePeekFull }}" title="{{ peekFullTitle }}" style="font-size:16px; color:#B0B0BE; cursor:pointer; padding:5px 9px; border-radius:8px; background:#F3F3F8; line-height:1; margin-right:8px;">{{ peekFullIcon }}</div>
+      </sc-if>
       <div onclick="{{ closePeek }}" style="font-size:18px; color:#B0B0BE; cursor:pointer; padding:4px 8px; border-radius:8px; background:#F3F3F8; line-height:1;">✕</div>
     </div>
 
     <!-- analysis peek -->
     <sc-if value="{{ isPeekAnalysis }}" hint-placeholder-val="{{ false }}">
-    <div style="flex:1; overflow:auto; padding:18px 20px 24px;">
+    <div style="flex:1; overflow:auto; padding:18px 20px 24px; {{ peekScrollStyle }}">
       <div>
         <div style="font-size:24px; font-weight:800; letter-spacing:-.5px;">{{ peekPanel.name }}</div>
         <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -1537,7 +1540,7 @@ class Component extends DCLogic {
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
     ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null, selCodes: [], dupPending: null,
-    peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
+    peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null, peekFull: (() => { try { return localStorage.getItem("stockking_peek_full") === "1"; } catch (e) { return false; } })(),
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
     chartReviews: null,
@@ -2721,6 +2724,11 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
   openPeekAnalysis(code) { this.setState({ peekType: 'analysis', peekCode: code, peekAiTab: 0 }); }
   openPeekStudy(idx) { this.setState({ peekType: 'study', peekStudyIdx: idx }); }
   openPeekChartReview(id) { this.setState({ peekType: 'chartreview', peekChartReviewId: id }); }
+  togglePeekFull() {
+    const next = !this.state.peekFull;
+    try { localStorage.setItem('stockking_peek_full', next ? '1' : '0'); } catch (e) {}
+    this.setState({ peekFull: next });
+  }
   closePeek() { this.setState({ peekType: null, peekCode: null, peekStudyIdx: null, peekChartReviewId: null }); }
 
   openStockEdit(code) {
@@ -3122,8 +3130,10 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     // 화면폭의 28%(최대 560px)까지 넓어진다 — 화면이 넓어져도 분석 텍스트가 늘 같은
     // 좁은 칸에 줄바꿈되던 문제 대응.
     const peekPanelWidthPx = Math.max(440, Math.min(560, Math.round((this.state.viewportWidth || 1200) * 0.28)));
-    const mainPadRight = peekOpen ? (isNarrow ? '0' : peekPanelWidthPx + 'px') : '0';
-    const peekPanelWidth = isNarrow ? '100%' : peekPanelWidthPx + 'px';
+    // ⤢ 전체화면(사용자 요청 2026-10-08, 아이패드 가로): 넓은 화면에서도 패널을 화면 전체로. 선택은 이 브라우저에 기억
+    const peekFull = !isNarrow && !!this.state.peekFull;
+    const mainPadRight = peekOpen ? ((isNarrow || peekFull) ? '0' : peekPanelWidthPx + 'px') : '0';
+    const peekPanelWidth = (isNarrow || peekFull) ? '100%' : peekPanelWidthPx + 'px';
     let peekPanel = null;
     const opC = op => op === '매수' ? UP : (op === '매도' || op === '손절') ? DOWN : '#8A8AA0';
     const opB = op => op === '매수' ? '#FDECEC' : (op === '매도' || op === '손절') ? '#EAF0FD' : '#F0F0F4';
@@ -3842,6 +3852,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       isSaved: !!(this.state.analyses || this.state.trades),
       onReset: () => this.resetAll(),
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
+      showPeekFull: !isNarrow, peekFullIcon: peekFull ? '⤡' : '⤢', peekFullTitle: peekFull ? '사이드 패널로' : '전체화면으로',
+      peekScrollStyle: peekFull ? 'padding-left:max(20px, calc((100% - 800px) / 2)); padding-right:max(20px, calc((100% - 800px) / 2));' : '', // 전체화면이면 본문을 가운데 800px 안에
+      onTogglePeekFull: () => this.togglePeekFull(),
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
       peekPanel: peekPanel || { name: '', title: '', tags: [], aiTabs: [], hasProfile: false, profileTags: [], profileWhyLines: [], hasProfileWhy: false, profileLines: [], profileAsOf: '', hasProfileHint: false, profileHint: '', hasFund: false, hasTech: false, hasMoat: false, hasTechOrValuation: false, valuationDividerStyle: '', fundamental: '', technical: '', hasSrc: false, date: '', catCol: '', catBg: '', cat: '', src: '', body: '', mktLabel: '', mktCol: '', mktBg: '', priceFmt: '', chgFmt: '', chgCol: '', onEdit: ()=>{}, onEditStock: ()=>{}, onRefreshStock: ()=>{}, refreshLabel: '새로고침', refreshBtnStyle: '', onDel: ()=>{} },
