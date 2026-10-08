@@ -192,7 +192,7 @@
         <sc-if value="{{ refreshPanelOpen }}" hint-placeholder-val="{{ false }}">
           <div style="background:#fff; border:1.5px solid #E6E6EE; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
             <div style="font-size:14px; font-weight:800; color:#16161D;">어느 종목을 오늘자로 분석할까요?</div>
-            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">all = 목록 전체 · 또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">all = 목록 전체 · KOSPI / KOSDAQ / US = 그 시장 전체 · 또는 종목코드/티커를 쉼표로 (예: 005930,NVDA) — 목록에 없는 종목은 새로 추가됩니다</div>
             <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
               <input oninput="{{ onRefreshTickersInput }}" value="{{ refreshTickers }}" placeholder="all" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
               <div onclick="{{ submitRefreshToday }}" style="background:#1F1F2B; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">실행</div>
