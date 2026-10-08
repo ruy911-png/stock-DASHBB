@@ -185,7 +185,7 @@
             <sc-if value="{{ hasRefreshMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; min-width:180px; max-width:280px; text-align:right; line-height:1.4;">{{ refreshMsg }}</div>
             </sc-if>
-            <div onclick="{{ onRefreshToday }}" title="GitHub Actions에서 오늘 날짜 기준으로 다시 분석합니다 (종목당 몇 분)" style="background:#1F1F2B; color:#fff; height:44px; padding:0 16px; border-radius:13px; display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800; font-size:14px;">⚡ 오늘자로 업데이트</div>
+            <div onclick="{{ onRefreshToday }}" title="GitHub Actions에서 오늘 날짜 기준으로 다시 분석합니다 (종목당 몇 분)" style="background:#1F1F2B; color:#fff; height:44px; padding:0 16px; border-radius:13px; display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">{{ refreshTodayLabel }}</div>
             <div onclick="{{ openAdd }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px;">＋ 분석 추가</div>
           </div>
         </div>
@@ -221,8 +221,11 @@
 
         <div style="background:#fff; border-radius:16px; border:1px solid #EFEFF5; box-shadow:0 4px 16px rgba(40,40,90,.04); overflow:hidden;">
           <sc-if value="{{ isListWide }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.2fr) 164px; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
-            <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
+          <div style="display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,.75fr) minmax(0,.75fr) minmax(0,1.1fr) 164px; gap:10px; align-items:center; padding:9px 18px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:11px; font-weight:800; color:#A8A8B6; letter-spacing:.02em;">
+            <div style="display:flex; align-items:center; gap:9px;">
+              <div onclick="{{ onToggleSelAll }}" title="보이는 종목 전체 선택/해제" style="width:18px; height:18px; flex-shrink:0; border-radius:5px; border:1.5px solid {{ selAllBorder }}; background:{{ selAllBg }}; color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; cursor:pointer;">{{ selAllMark }}</div>
+              <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:4px; cursor:pointer;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
+            </div>
             <div style="display:flex; align-items:center; justify-content:center; gap:4px; position:relative;">
               시장
               <sc-if value="{{ showAiMarketFilter }}" hint-placeholder-val="{{ true }}">
@@ -252,6 +255,7 @@
 
           <sc-if value="{{ isListCompact }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:10px 14px; background:#FAFAFD; border-bottom:1px solid #EFEFF5; font-size:12px; font-weight:800; color:#8C8C9E;">
+            <div onclick="{{ onToggleSelAll }}" title="보이는 종목 전체 선택/해제" style="width:18px; height:18px; flex-shrink:0; border-radius:5px; border:1.5px solid {{ selAllBorder }}; background:{{ selAllBg }}; color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; cursor:pointer;">{{ selAllMark }}</div>
             <div onclick="{{ onSortAiName }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">종목명 <span style="font-size:10px; color:{{ aiSortNameCol }};">{{ aiSortNameIcon }}</span></div>
             <div onclick="{{ onSortAiDate }}" style="display:flex; align-items:center; gap:3px; cursor:pointer; padding:5px 9px; border-radius:8px; background:#fff; border:1px solid #E6E6EE;">날짜 <span style="font-size:10px; color:{{ aiSortDateCol }};">{{ aiSortDateIcon }}</span></div>
             <sc-if value="{{ showAiMarketFilter }}" hint-placeholder-val="{{ true }}">
@@ -279,8 +283,11 @@
 
           <sc-for list="{{ analyses }}" as="a" hint-placeholder-count="4">
             <sc-if value="{{ a.isWide }}" hint-placeholder-val="{{ true }}">
-            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.2fr) 164px; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
-              <div style="font-size:clamp(13px, 1.25vw, 15px); font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;">{{ a.name }}</div>
+            <div onclick="{{ a.onPeek }}" style="display:grid; grid-template-columns:minmax(0,1.7fr) minmax(0,.75fr) minmax(0,.75fr) minmax(0,1.1fr) 164px; gap:10px; align-items:center; padding:12px 18px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
+              <div style="display:flex; align-items:center; gap:9px; min-width:0;">
+                <div onclick="{{ a.onToggleSel }}" title="선택해서 한 번에 오늘자로 업데이트" style="width:18px; height:18px; flex-shrink:0; border-radius:5px; border:1.5px solid {{ a.selBorder }}; background:{{ a.selBg }}; color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; cursor:pointer;">{{ a.selMark }}</div>
+                <div style="font-size:clamp(13px, 1.25vw, 15px); font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;">{{ a.name }}</div>
+              </div>
               <div style="display:flex; justify-content:center;"><span style="font-size:clamp(10px, 0.95vw, 11.5px); font-weight:800; color:{{ a.mktBadgeCol }}; background:{{ a.mktBadgeBg }}; padding:3px 8px; border-radius:7px; white-space:nowrap;">{{ a.mktLabel }}</span></div>
               <div style="font-size:clamp(11px, 1vw, 12.5px); font-weight:700; color:#56566A; white-space:nowrap; text-align:center;">{{ a.latestDate }}</div>
               <div style="display:flex; align-items:center; justify-content:center; white-space:nowrap; overflow:hidden; min-width:0;">
@@ -299,6 +306,7 @@
             <sc-if value="{{ a.isNarrow }}" hint-placeholder-val="{{ false }}">
             <div onclick="{{ a.onPeek }}" style="padding:12px 14px; border-bottom:1px solid #F3F3F8; cursor:pointer; background:{{ a.rowBg }};">
               <div style="display:flex; align-items:center; gap:8px;">
+                <div onclick="{{ a.onToggleSel }}" title="선택해서 한 번에 오늘자로 업데이트" style="width:18px; height:18px; flex-shrink:0; border-radius:5px; border:1.5px solid {{ a.selBorder }}; background:{{ a.selBg }}; color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; cursor:pointer;">{{ a.selMark }}</div>
                 <!-- 종목명 옆에 태그를 붙여 한 줄로(사용자 요청 2026-10-07). 폭이 모자라면 태그가 먼저 줄어든다 -->
                 <div style="flex:1; min-width:0; display:flex; align-items:center; gap:6px;">
                   <div style="flex:0 1 auto; min-width:0; font-size:14.5px; font-weight:800; letter-spacing:-.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ a.name }}</div>
@@ -1528,7 +1536,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null, dupPending: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null, selCodes: [], dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null,
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1813,8 +1821,25 @@ class Component extends DCLogic {
     this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers: code }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: name + ' — 몇 분', onDone: () => this.reloadAnalyses() });
   }
 
+  // 체크 선택 → 한 번에 오늘자로(사용자 요청 2026-10-08). 수동 등록 종목(N…)은 종목코드가 없어 뺀다
+  toggleSel(code) {
+    const cur = this.state.selCodes || [];
+    this.setState({ selCodes: cur.includes(code) ? cur.filter(c => c !== code) : [...cur, code] });
+  }
+  refreshSelected() {
+    const all = this.state.selCodes || [];
+    const codes = all.filter(c => !/^N\d+$/.test(String(c)));
+    if (!codes.length) { this.setState({ refreshMsg: '선택한 종목에 종목코드가 없습니다(수동 등록 종목은 다시 분석할 수 없습니다)' }); return; }
+    const tickers = codes.join(',');
+    this.setState({ refreshPanelOpen: false, refreshTickers: tickers, selCodes: [] });
+    this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: codes.length + '종목 — 종목당 몇 분', onDone: () => this.reloadAnalyses() });
+  }
+
   // 종목 선택도 prompt 창 대신 화면 안 입력칸으로 받는다
-  refreshToday() { this.setState({ refreshPanelOpen: true, refreshTickers: this.state.refreshTickers || 'all' }); }
+  refreshToday() {
+    if ((this.state.selCodes || []).length) { this.refreshSelected(); return; } // 체크한 종목이 있으면 입력창 없이 바로
+    this.setState({ refreshPanelOpen: true, refreshTickers: this.state.refreshTickers || 'all' });
+  }
   submitRefreshToday() {
     const raw = String(this.state.refreshTickers || '').replace(/\s+/g, '');
     const tickers = (!raw || raw.toLowerCase() === 'all') ? 'all' : raw.toUpperCase();
@@ -3200,6 +3225,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       : aiSortKey === 'date'
         ? [...filteredByMarket].sort((x, y) => (dateKeyOf(x) - dateKeyOf(y)) * (aiSortDir === 'asc' ? 1 : -1))
         : filteredByMarket;
+    const selSet = new Set(this.state.selCodes || []);
+    const visibleCodes = sortedByMarket.map(a => a.code);
+    const allSel = visibleCodes.length > 0 && visibleCodes.every(c => selSet.has(c));
     const analyses = sortedByMarket.map(a => {
       const am = a.market || (this.isUS(a.code) ? 'us' : 'kospi');
       const isUS = am === 'us';
@@ -3263,6 +3291,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         // 좁은 행: 태그를 종목명 옆 한 줄에(사용자 요청 2026-10-07). 폴드 커버(약 420px)처럼 더 좁으면 이름이 안 보여 둘째 줄로
         tagInline: isListCompact && mainContentWidth >= 520 && tags.length > 0, tagBelow: isListCompact && mainContentWidth < 520 && tags.length > 0,
         onPeek: () => this.openPeekAnalysis(a.code),
+        // 체크 선택(사용자 요청 2026-10-08): 여러 종목을 골라 한 번에 오늘자로 업데이트
+        selMark: selSet.has(a.code) ? '✓' : '', selBg: selSet.has(a.code) ? '#6B62F0' : '#fff', selBorder: selSet.has(a.code) ? '#6B62F0' : '#C9C9D6',
+        onToggleSel: (ev) => { if(ev&&ev.stopPropagation)ev.stopPropagation(); this.toggleSel(a.code); },
       };
     });
     const aiMarketCounts = { kospi: 0, kosdaq: 0, us: 0, etc: 0 };
@@ -3839,6 +3870,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       stockCsvSampleHref: 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF종목명,코드,현재가,태그\n삼성전자,005930,74200,반도체,HBM\nHOOD,HOOD,75,핀테크,CLARITY Act\n'),
       openAdd: () => this.openAdd(), closeAdd: () => this.closeAdd(), submitAdd: () => this.addAnalysis(),
       onReloadAnalyses: () => this.reloadAnalyses(), onRefreshToday: () => this.refreshToday(),
+      refreshTodayLabel: selSet.size ? '⚡ 선택 ' + selSet.size + '종목 업데이트' : '⚡ 오늘자로 업데이트', // 체크가 있으면 같은 버튼이 그 종목들을 바로 실행(사용자 결정 2026-10-08: 버튼 추가 없이 체크박스만)
+      selAllMark: allSel ? '✓' : '', selAllBg: allSel ? '#6B62F0' : '#fff', selAllBorder: allSel ? '#6B62F0' : '#C9C9D6',
+      onToggleSelAll: () => this.setState({ selCodes: allSel ? (this.state.selCodes || []).filter(c => !visibleCodes.includes(c)) : [...new Set([...(this.state.selCodes || []), ...visibleCodes])] }),
       refreshPanelOpen: this.state.refreshPanelOpen, refreshTickers: this.state.refreshTickers,
       onRefreshTickersInput: e => this.setF('refreshTickers', e.target.value), submitRefreshToday: () => this.submitRefreshToday(), cancelRefreshToday: () => this.setState({ refreshPanelOpen: false }),
       ghTokenOpen: this.state.ghTokenOpen, ghTokenDraft: this.state.ghTokenDraft, hasGhToken: !!this.ghToken(),
