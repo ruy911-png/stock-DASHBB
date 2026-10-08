@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T14:38:43Z",
+  "generated_at": "2026-10-08T14:52:52Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI"
@@ -1057,6 +1057,35 @@
       "ret_3m_pct": -33.1,
       "ret_6m_pct": 74.12,
       "bars": 486
+    },
+    "010950": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "010950.KS",
+      "as_of": "2026-10-08",
+      "close": 168700.0,
+      "chg_1d_pct": -1.11,
+      "ma5": 163920.0,
+      "ma20": 156920.0,
+      "ma60": 146058.3333,
+      "ma120": 129812.5,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 7.51,
+      "pct_vs_ma120": 29.96,
+      "rsi14": 60.4,
+      "volume": 349416.0,
+      "volume_avg20": 395092.0,
+      "volume_ratio20": 0.88,
+      "high52": 170600.0,
+      "low52": 57900.0,
+      "pct_from_high52": -1.11,
+      "pct_from_low52": 191.36,
+      "ret_1m_pct": 7.25,
+      "ret_3m_pct": 44.31,
+      "ret_6m_pct": 58.4,
+      "bars": 486,
+      "new": true,
+      "name_hint": "S-Oil Corporation"
     }
   }
 }
