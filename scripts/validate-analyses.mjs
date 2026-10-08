@@ -49,7 +49,18 @@ entries.forEach((entry, i) => {
     SECTIONS.forEach(s => {
       if (typeof a[s] !== 'string') fail(`${at3}: ${s} 섹션이 문자열이 아닙니다.`);
     });
-    const extra = Object.keys(a).filter(k => !['ai', 'date', ...SECTIONS].includes(k));
+    // summary(한 줄 요약, 선택): 한 줄, 권유 표현 금지, 숫자는 같은 분석의 5개 섹션에 있는 값만(새 숫자 금지)
+    if (a.summary !== undefined) {
+      if (typeof a.summary !== 'string' || !a.summary.trim() || /\n/.test(a.summary)) fail(`${at3}: summary는 한 줄 문자열이어야 합니다.`);
+      if (a.summary.length > 160) fail(`${at3}: summary가 너무 깁니다(160자 이내).`);
+      const m = a.summary.match(recommendRe);
+      if (m) fail(`${at3}.summary: 매수·매도 권유 표현 "${m[0]}"`);
+      const body = SECTIONS.map(s => a[s]).join('\n').replace(/[,\s]/g, '');
+      (a.summary.match(/\d[\d,]*(?:\.\d+)?/g) || []).forEach(n => {
+        if (!body.includes(n.replace(/,/g, ''))) fail(`${at3}.summary: 섹션에 없는 숫자 "${n}"`);
+      });
+    }
+    const extra = Object.keys(a).filter(k => !['ai', 'date', 'summary', ...SECTIONS].includes(k));
     if (extra.length) fail(`${at3}: 모르는 항목 ${extra.join(', ')}`);
     SECTIONS.forEach(s => {
       const m = a[s].match(recommendRe);

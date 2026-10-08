@@ -1225,6 +1225,12 @@
           <div style="flex:1;"></div>
           <span style="font-size:11px; color:#A8A8B6;">{{ peekPanel.date }}</span>
         </div>
+        <!-- 한 줄 요약(사용자 결정 2026-10-08): 분석 글을 쓸 때 같이 쓴 summary. 숫자는 아래 섹션에 있는 값만 -->
+        <sc-if value="{{ peekPanel.hasSummary }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-bottom:14px; padding:10px 13px; border-radius:11px; background:#FFF8DB; border:1px solid #F3E3A0;">
+            <div class="md-content" style="font-size:13.5px; color:#2A2A3C; font-weight:700; line-height:1.6;" id="__analysis_peek_summary"></div>
+          </div>
+        </sc-if>
         <sc-if value="{{ peekPanel.hasOverview }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:12px;">
             <div style="font-size:14.5px; font-weight:800; color:#1E8E5A; margin-bottom:6px;">🏢 기업개요</div>
@@ -2505,6 +2511,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         const aiTabIdx = Math.min(this.state.peekAiTab, stock.ais.length - 1);
         const r = stock.ais[aiTabIdx] || {};
         const mdFields = [
+          ['__analysis_peek_summary', r.summary || ''],
           ['__analysis_peek_overview', r.overview || ''],
           ['__analysis_peek_moat', r.moat || ''],
           ['__analysis_peek_fundamental', r.fundamental || r.reason || ''],
@@ -2662,21 +2669,27 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
   // 종목분석 글 하이라이트(사용자 결정 2026-10-07): 부호 있는 %는 빨강/파랑, 금액·배수는 굵게, 강세/약세 표지, '미확인'은 회색.
   // 줄 끝 출처 괄호(연도나 '코드 계산'이 든 것)는 ⓘ로 접고 누르면 펼친다. 글(데이터)은 바꾸지 않고 보여 줄 때만 칠한다
   analysisHighlight(text) {
+    // 최소 강조(사용자 결정 2026-10-08): 금액은 굵게 하지 않는다. 항목 맨 앞 머리말("현금흐름:" 등)만 굵게,
+    // 부호 있는 %(범위 포함)는 +빨강/−파랑, 강세/약세 표지 색, '미확인' 회색. 줄 끝 출처 괄호는 ⓘ로 접는다
     const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const tokenRe = /([+\-−]\d[\d,]*(?:\.\d+)?%p?)|(\$\d[\d,]*(?:\.\d+)?[BMKT]?|\d[\d,]*(?:\.\d+)?(?:조|억|만)*(?:원|달러)|\d[\d,]*(?:\.\d+)?배)|(강세 근거:|강세:)|(약세 리스크:|약세:|리스크:)|(미확인)/g;
-    const paint = t => esc(t).replace(tokenRe, (m, pct, num, up, down, unk) => {
+    const tokenRe = /([+\-−]\d[\d,]*(?:\.\d+)?(?:~\d[\d,]*(?:\.\d+)?)?%p?)|(강세 근거:|강세:)|(약세 리스크:|약세:|리스크:)|(미확인)/g;
+    const paint = t => esc(t).replace(tokenRe, (m, pct, up, down) => {
       if (pct) return '<span class="' + (m[0] === '+' ? 'hl-up' : 'hl-down') + '">' + m + '</span>';
-      if (num) return '<span class="hl-num">' + m + '</span>';
       if (up) return '<span class="hl-up">' + m + '</span>';
       if (down) return '<span class="hl-down">' + m + '</span>';
       return '<span class="hl-unk">' + m + '</span>';
     });
+    const lead = t => {
+      const m = t.match(/^(\s*•\s*)([^:：(]{1,10}?)([:：])(\s.*)$/);
+      if (!m || /강세|약세|리스크/.test(m[2])) return paint(t);
+      return esc(m[1]) + '<span class="hl-num">' + esc(m[2] + m[3]) + '</span>' + paint(m[4]);
+    };
     return String(text || '').split('\n').map(line => {
       const m = line.match(/^(.*?)\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)\s*$/);
       if (m && /20\d\d|코드 계산/.test(m[2])) {
-        return paint(m[1]) + '&#8288;<span class="src-i" title="출처 보기" onclick="this.classList.toggle(\'open\')">ⓘ<span class="src-t">' + esc(m[2]) + '</span></span>';
+        return lead(m[1]) + '&#8288;<span class="src-i" title="출처 보기" onclick="this.classList.toggle(\'open\')">ⓘ<span class="src-t">' + esc(m[2]) + '</span></span>';
       }
-      return paint(line);
+      return lead(line);
     }).join('\n');
   }
 
@@ -3115,7 +3128,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           brandLabel: brand.label, brandCol: brand.color, date: r.date || '',
           overview: r.overview || '', moat: r.moat || '', fundamental: r.fundamental || r.reason || '',
           technical: r.technical || '', valuation: r.valuation || '',
-          hasOverview: !!r.overview, hasMoat: !!r.moat, hasFund: !!(r.fundamental || r.reason),
+          hasSummary: !!r.summary, hasOverview: !!r.overview, hasMoat: !!r.moat, hasFund: !!(r.fundamental || r.reason),
           hasTech: !!r.technical, hasValuation: !!r.valuation,
           hasTechOrValuation: !!(r.technical || r.valuation),
           valuationDividerStyle: (r.technical && r.valuation) ? 'border-top:1px dashed #F0D9B8; margin-top:8px; padding-top:8px;' : '',
