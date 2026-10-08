@@ -38,7 +38,10 @@ export function plan(list, { tickers: want, maxAgeDays: maxAge, chunkSize: size,
   if (want && want.toLowerCase() !== 'all') {
     // 목록에 없는 코드/티커는 신규 종목으로 넣는다(사용자 요청 2026-10-05: 신규 종목분석도 웹에서)
     const known = new Map(list.map(e => [String(e.code).toUpperCase(), e]));
-    const wanted = [...new Set(want.split(',').map(t => t.trim().toUpperCase()).filter(Boolean))];
+    // 시장 이름(KOSPI·KOSDAQ·US·미국·기타)은 그 시장 종목 전체로 푼다 — 2026-10-08 사용자가 "KOSPI"를 넣었는데 종목 하나로 취급해 건너뛰었던 문제
+    const MARKET = { KOSPI: 'kospi', 코스피: 'kospi', KOSDAQ: 'kosdaq', 코스닥: 'kosdaq', US: 'us', USA: 'us', 미국: 'us', 미국주식: 'us', ETC: 'etc', 기타: 'etc' };
+    const wanted = [...new Set(want.split(',').map(t => t.trim().toUpperCase()).filter(Boolean)
+      .flatMap(t => MARKET[t] ? list.filter(e => (e.market || '') === MARKET[t]).map(e => String(e.code).toUpperCase()) : [t]))];
     targets = wanted.map(c => known.get(c) || { code: c, ais: [], isNew: true });
   }
   if (maxAge > 0) {
