@@ -2663,10 +2663,16 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
   // 줄 끝 출처 괄호(연도나 '코드 계산'이 든 것)는 ⓘ로 접고 누르면 펼친다. 글(데이터)은 바꾸지 않고 보여 줄 때만 칠한다
   analysisHighlight(text) {
     const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const tokenRe = /([+\-−]\d[\d,]*(?:\.\d+)?%p?)|(\$\d[\d,]*(?:\.\d+)?[BMKT]?|\d[\d,]*(?:\.\d+)?(?:조|억|만)*(?:원|달러)|\d[\d,]*(?:\.\d+)?배)|(강세 근거:|강세:)|(약세 리스크:|약세:|리스크:)|(미확인)/g;
+    // 금액·배수는 바로 앞 항목 이름(한 단어)과 부호까지 같이 굵게(사용자 결정 2026-10-08: "금액만 굵으면 무슨 금액인지 안 보임"). 부호 %는 범위(+40~45%)도 칠함
+    const tokenRe = /([+\-−]\d[\d,]*(?:\.\d+)?(?:~\d[\d,]*(?:\.\d+)?)?%p?)|((?:[A-Za-z가-힣][A-Za-z0-9가-힣/·]*\s)?(?:약\s?)?[+\-−]?(?:\$\d[\d,]*(?:\.\d+)?[BMKT]?|\d[\d,]*(?:\.\d+)?(?:조|억|만)*(?:원|달러)|\d[\d,]*(?:\.\d+)?배))|(강세 근거:|강세:)|(약세 리스크:|약세:|리스크:)|(미확인)/g;
     const paint = t => esc(t).replace(tokenRe, (m, pct, num, up, down, unk) => {
       if (pct) return '<span class="' + (m[0] === '+' ? 'hl-up' : 'hl-down') + '">' + m + '</span>';
-      if (num) return '<span class="hl-num">' + m + '</span>';
+      if (num) {
+        // 앞 단어가 항목 이름이 아니면(대비·기준·조사로 끝나는 말) 그 단어는 빼고 굵게
+        const sp = m.match(/^([A-Za-z가-힣][A-Za-z0-9가-힣/·]*)\s(.*)$/);
+        if (sp && (/^(대비|기준|약|및|등|중|전년|동기|평균)$/.test(sp[1]) || /(은|는|이|가|을|를|의|에|로|와|과|서)$/.test(sp[1]))) return sp[1] + ' <span class="hl-num">' + sp[2] + '</span>';
+        return '<span class="hl-num">' + m + '</span>';
+      }
       if (up) return '<span class="hl-up">' + m + '</span>';
       if (down) return '<span class="hl-down">' + m + '</span>';
       return '<span class="hl-unk">' + m + '</span>';
