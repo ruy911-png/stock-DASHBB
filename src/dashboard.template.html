@@ -128,6 +128,13 @@
               </div>
             </sc-for>
           </div>
+          <!-- 홈에도 시황 코멘트(사용자 요청 2026-10-08): 수급 띠 바로 아래, 누르면 시황분석으로 -->
+          <sc-if value="{{ marketComment }}" hint-placeholder-val="">
+            <div onclick="{{ goMarket }}" style="background:#fff; border:1px solid #EFEFF5; border-radius:16px; padding:15px 18px; margin-top:10px; cursor:pointer; box-shadow:0 4px 16px rgba(40,40,90,.04);">
+              <div style="font-size:12px; font-weight:800; color:#8C8C9E;">📰 오늘의 시황 코멘트</div>
+              <div style="font-size:14.5px; font-weight:700; color:#2A2A3C; line-height:1.6; margin-top:6px; word-break:keep-all;">{{ marketComment }}</div>
+            </div>
+          </sc-if>
         </div>
 
         <!-- 뉴스 검색을 시황 요약과 카드 묶음 사이로 (사용자 결정 2026-10-07) -->
