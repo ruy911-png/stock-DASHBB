@@ -18,7 +18,7 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
    - `overview` 기업개요 ← company-analyst
    - `moat` 경제적해자 ← company-analyst의 경쟁우위 + 그 우위를 위협하는 리스크 1개 이상(필요하면 웹검색 보강)
    - `fundamental` 기본적분석 ← fundamental-analyst (현금흐름 bullet 필수)
-   - 용어: NII는 `순이자이익(NII)`, CET1은 쓰지 않음, TTM은 `최근 12개월` (CLAUDE.md 작성 규칙)
+   - 용어: NII는 `순이자이익(NII)`, CET1은 쓰지 않음, TTM은 `최근 12개월`, GMV는 `총거래액(GMV)` (CLAUDE.md 작성 규칙)
    - `technical` 기술적분석 ← 2의 숫자로만 작성. 3개 bullet: ① 추세·이동평균(종가와 20/120일선 대비, 배열 상태) — `data/technical/profiles.json`의 `items[code].main_labels`(카드에 보이는 대표 유형 2개 이내, 없으면 `labels` 앞 2개. 예: 추세 지속형·고변동형)가 있으면 이 bullet 끝에 "종목 특성: …" 으로 덧붙인다 ② RSI(14)와 거래량(20일 평균 대비) ③ 52주 고저 대비 위치와 1/3/6개월 수익률. 각 bullet 끝에 `(코드 계산, yfinance 일봉, as_of 날짜)`를 붙인다. 과매수·과매도는 RSI 70/30 기준의 사실 서술만 하고 전망·권유는 쓰지 않는다. 유형의 근거 숫자는 카드의 '종목 특성' 블록이 따로 보여 주므로 여기서 반복하지 않는다
    - `valuation` 밸류에이션 ← valuation-analyst (PER과 PBR·BPS bullet 필수)
    - `summary` 한 줄 요약(사용자 결정 2026-10-08, 카드 맨 위 노란 줄) ← 5개 섹션을 다 쓴 뒤 메인이 쓴다. **고정 기준**: 「이 종목의 실적·주가를 지금 가장 크게 움직이는 사실 1문장」 + 숫자 2~3개(① 최근 분기 실적 또는 그 증감 ② PER 또는 PBR 1개 ③ 52주 고점 대비 위치). 숫자는 위 섹션에 쓴 값을 그대로 옮기고 새로 만들지 않는다(검증기가 섹션에 없는 숫자를 막는다). 160자 이내 한 줄, 출처 괄호 없음, 매수·매도·전망 표현 금지. 확인 안 된 값은 넣지 않는다
