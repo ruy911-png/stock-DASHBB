@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T00:58:49Z",
+  "generated_at": "2026-10-08T01:03:44Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -786,6 +786,33 @@
       "ret_1m_pct": -2.16,
       "ret_3m_pct": 3.32,
       "ret_6m_pct": 13.52,
+      "bars": 500
+    },
+    "CVS": {
+      "name": "CVS Health",
+      "market": "us",
+      "symbol": "CVS",
+      "as_of": "2026-10-06",
+      "close": 86.43,
+      "chg_1d_pct": -0.67,
+      "ma5": 86.158,
+      "ma20": 89.334,
+      "ma60": 96.2968,
+      "ma120": 94.8352,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -3.25,
+      "pct_vs_ma120": -8.86,
+      "rsi14": 37.63,
+      "volume": 11038700.0,
+      "volume_avg20": 8316975.0,
+      "volume_ratio20": 1.33,
+      "high52": 110.6,
+      "low52": 70.08,
+      "pct_from_high52": -21.85,
+      "pct_from_low52": 23.33,
+      "ret_1m_pct": -10.66,
+      "ret_3m_pct": -17.27,
+      "ret_6m_pct": 10.5,
       "bars": 500
     }
   }
