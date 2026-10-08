@@ -1,7 +1,9 @@
 {
-  "generated_at": "2026-10-08T10:38:39Z",
+  "generated_at": "2026-10-08T10:43:18Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
-  "failed": [],
+  "failed": [
+    "KOSPI"
+  ],
   "items": {
     "001450": {
       "name": "현대해상",

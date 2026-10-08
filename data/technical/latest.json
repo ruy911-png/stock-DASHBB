@@ -1,7 +1,9 @@
 {
-  "generated_at": "2026-10-08T10:38:38Z",
+  "generated_at": "2026-10-08T10:43:17Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
-  "failed": [],
+  "failed": [
+    "KOSPI"
+  ],
   "items": {
     "005930": {
       "name": "삼성전자",
