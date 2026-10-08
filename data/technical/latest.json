@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T23:56:33Z",
+  "generated_at": "2026-10-08T00:30:33Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -28,7 +28,7 @@
       "ret_1m_pct": 7.4,
       "ret_3m_pct": -13.25,
       "ret_6m_pct": 41.58,
-      "bars": 486
+      "bars": 485
     },
     "SCHW": {
       "name": "찰스 슈왑",

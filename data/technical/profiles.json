@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T23:56:34Z",
+  "generated_at": "2026-10-08T00:30:34Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [],
   "items": {
@@ -789,7 +789,7 @@
       "symbol": "005930.KS",
       "as_of": "2026-10-07",
       "window": "2y",
-      "bars": 486,
+      "bars": 485,
       "labels": [
         "급등 후 반전형",
         "추세 지속형",
@@ -800,7 +800,7 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.93,
+        "years": 1.92,
         "surge_days": 6,
         "surge_per_year": 3.1,
         "crash_days": 5,
