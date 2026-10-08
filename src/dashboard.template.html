@@ -193,9 +193,21 @@
               <div style="font-size:12px; color:#8C8C9E; min-width:180px; max-width:280px; text-align:right; line-height:1.4;">{{ refreshMsg }}</div>
             </sc-if>
             <div onclick="{{ onRefreshToday }}" title="GitHub Actions에서 오늘 날짜 기준으로 다시 분석합니다 (종목당 몇 분)" style="background:#1F1F2B; color:#fff; height:44px; padding:0 16px; border-radius:13px; display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">{{ refreshTodayLabel }}</div>
-            <div onclick="{{ openAdd }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px;">＋ 분석 추가</div>
+            <div onclick="{{ onOpenNewStock }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">＋ 종목 추가</div>
           </div>
         </div>
+        <!-- ＋ 종목 추가(사용자 요청 2026-10-08): 코드/티커만 넣으면 브라우저에서 바로 자동 분석 요청(오늘자 업데이트 경로). 수동 붙여넣기 입구는 뺌 -->
+        <sc-if value="{{ newStockOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff; border:1.5px solid #D9D5FB; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">새 종목을 자동 분석으로 추가할까요?</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">종목코드(예: 000660) 또는 미국 티커(예: TSLA). 여러 개는 쉼표로 — 몇 분 뒤 목록에 생깁니다</div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <input oninput="{{ onNewStockInput }}" value="{{ newStockCode }}" placeholder="000660" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              <div onclick="{{ submitNewStock }}" style="background:#6B62F0; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">분석 요청</div>
+              <div onclick="{{ cancelNewStock }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
         <sc-if value="{{ refreshPanelOpen }}" hint-placeholder-val="{{ false }}">
           <div style="background:#fff; border:1.5px solid #E6E6EE; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
             <div style="font-size:14px; font-weight:800; color:#16161D;">어느 종목을 오늘자로 분석할까요?</div>
@@ -1546,7 +1558,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', refreshingCode: null, selCodes: [], dupPending: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null, peekFull: (() => { try { return localStorage.getItem("stockking_peek_full") === "1"; } catch (e) { return false; } })(),
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1843,6 +1855,14 @@ class Component extends DCLogic {
     const tickers = codes.join(',');
     this.setState({ refreshPanelOpen: false, refreshTickers: tickers, selCodes: [] });
     this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: codes.length + '종목 — 종목당 몇 분', onDone: () => this.reloadAnalyses() });
+  }
+
+  // ＋ 종목 추가 → 코드/티커로 바로 자동 분석 요청(목록에 없는 코드는 워크플로가 신규 종목으로 만든다)
+  submitNewStock() {
+    const tickers = String(this.state.newStockCode || '').replace(/\s+/g, '').toUpperCase();
+    if (!tickers) { this.setState({ refreshMsg: '종목코드나 티커를 넣어 주세요' }); return; }
+    this.setState({ newStockOpen: false, newStockCode: '' });
+    this.runWorkflow({ file: this.GH_WORKFLOW, inputs: { tickers }, msgKey: 'refreshMsg', busyKey: 'refreshBusy', label: tickers + ' 신규 분석 — 몇 분', onDone: () => this.reloadAnalyses() });
   }
 
   // 종목 선택도 prompt 창 대신 화면 안 입력칸으로 받는다
@@ -2572,7 +2592,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     if (!stock) return;
     this.setState({ addOpen: true, editAnalysisCode: null, editAnalysisAiIdx: null, f_err: '', f_name: stock.name, f_tags: (stock.tags || []).join(', '), f_ai: 'claude', f_market: stock.market || 'kospi', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '', f_valuation: '' });
   }
-  closeAdd() { this.setState({ addOpen: false, editAnalysisCode: null, editAnalysisAiIdx: null }); }
+  closeAdd() { this.setState({ newStockOpen: false, addOpen: false, editAnalysisCode: null, editAnalysisAiIdx: null }); }
   setF(k, v) { this.setState({ [k]: v }); }
 
   catInfo(key) { return this.CATS.find(c => c.key === key) || this.CATS[this.CATS.length - 1]; }
@@ -3900,6 +3920,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       selAllMark: allSel ? '✓' : '', selAllBg: allSel ? '#6B62F0' : '#fff', selAllBorder: allSel ? '#6B62F0' : '#C9C9D6',
       onToggleSelAll: () => this.setState({ selCodes: allSel ? (this.state.selCodes || []).filter(c => !visibleCodes.includes(c)) : [...new Set([...(this.state.selCodes || []), ...visibleCodes])] }),
       refreshPanelOpen: this.state.refreshPanelOpen, refreshTickers: this.state.refreshTickers,
+      newStockOpen: this.state.newStockOpen, newStockCode: this.state.newStockCode,
+      onOpenNewStock: () => this.setState({ newStockOpen: true, refreshPanelOpen: false }), cancelNewStock: () => this.setState({ newStockOpen: false }),
+      onNewStockInput: e => this.setF('newStockCode', e.target.value), submitNewStock: () => this.submitNewStock(),
       onRefreshTickersInput: e => this.setF('refreshTickers', e.target.value), submitRefreshToday: () => this.submitRefreshToday(), cancelRefreshToday: () => this.setState({ refreshPanelOpen: false }),
       ghTokenOpen: this.state.ghTokenOpen, ghTokenDraft: this.state.ghTokenDraft, hasGhToken: !!this.ghToken(),
       ghTokenChip: this.ghToken() ? '🔑 토큰 있음' : '🔑 토큰 없음',
