@@ -1228,32 +1228,32 @@
         <!-- 한 줄 요약(사용자 결정 2026-10-08): 분석 글을 쓸 때 같이 쓴 summary. 숫자는 아래 섹션에 있는 값만 -->
         <sc-if value="{{ peekPanel.hasSummary }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:14px; padding:10px 13px; border-radius:11px; background:#FFF8DB; border:1px solid #F3E3A0;">
-            <div class="md-content" style="font-size:13.5px; color:#2A2A3C; font-weight:700; line-height:1.6;" id="__analysis_peek_summary"></div>
+            <div class="md-content" style="font-size:15.5px; color:#2A2A3C; font-weight:700; line-height:1.6; max-width:40em;" id="__analysis_peek_summary"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasOverview }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:12px;">
-            <div style="font-size:14.5px; font-weight:800; color:#1E8E5A; margin-bottom:6px;">🏢 기업개요</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_overview"></div>
+            <div style="font-size:16px; font-weight:800; color:#1E8E5A; margin-bottom:6px;">🏢 기업개요</div>
+            <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_overview"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasMoat }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:12px;">
-            <div style="font-size:14.5px; font-weight:800; color:#2C6FB0; margin-bottom:6px;">🏰 경제적 해자</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_moat"></div>
+            <div style="font-size:16px; font-weight:800; color:#2C6FB0; margin-bottom:6px;">🏰 경제적 해자</div>
+            <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_moat"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasFund }}" hint-placeholder-val="{{ true }}">
           <div style="margin-bottom:12px;">
-            <div style="font-size:14.5px; font-weight:800; color:#6B62F0; margin-bottom:6px;">📊 기본적 분석</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_fundamental"></div>
+            <div style="font-size:16px; font-weight:800; color:#6B62F0; margin-bottom:6px;">📊 기본적 분석</div>
+            <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_fundamental"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasTechOrValuation }}" hint-placeholder-val="{{ false }}">
           <div>
-            <div style="font-size:14.5px; font-weight:800; color:#E0922B; margin-bottom:6px;">🎯 기술적 분석 및 목표가</div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;" id="__analysis_peek_technical"></div>
-            <div class="md-content" style="font-size:13px; color:#56566A; line-height:1.7;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
+            <div style="font-size:16px; font-weight:800; color:#E0922B; margin-bottom:6px;">🎯 기술적 분석 및 목표가</div>
+            <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_technical"></div>
+            <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasProfile }}" hint-placeholder-val="{{ false }}">
