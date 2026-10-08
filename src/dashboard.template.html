@@ -1209,7 +1209,7 @@
 
     <!-- analysis peek -->
     <sc-if value="{{ isPeekAnalysis }}" hint-placeholder-val="{{ false }}">
-    <div style="flex:1; overflow:auto; padding:18px 20px 24px; {{ peekScrollStyle }}">
+    <div style="flex:1; overflow:auto; padding-top:18px; padding-bottom:24px; {{ peekScrollStyle }}">
       <div>
         <div style="font-size:24px; font-weight:800; letter-spacing:-.5px;">{{ peekPanel.name }}</div>
         <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
@@ -3853,7 +3853,8 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       onReset: () => this.resetAll(),
       peekOpen, peekType, mainPadRight, peekPanelWidth, isNarrow, isWide: !isNarrow,
       showPeekFull: !isNarrow, peekFullIcon: peekFull ? '⤡' : '⤢', peekFullTitle: peekFull ? '사이드 패널로' : '전체화면으로',
-      peekScrollStyle: peekFull ? 'padding-left:max(20px, calc((100% - 800px) / 2)); padding-right:max(20px, calc((100% - 800px) / 2));' : '', // 전체화면이면 본문을 가운데 800px 안에
+      // 좌우 여백은 두 모드 모두 명시한다 — 전체화면에서 돌아올 때 padding-left/right만 지워져 shorthand의 20px이 사라지던 버그(2026-10-08 사용자 보고, 아이패드)
+      peekScrollStyle: peekFull ? 'padding-left:max(20px, calc((100% - 800px) / 2)); padding-right:max(20px, calc((100% - 800px) / 2));' : 'padding-left:20px; padding-right:20px;',
       onTogglePeekFull: () => this.togglePeekFull(),
       isListCompact, isListWide: !isListCompact,
       journalDetailGridCols,
