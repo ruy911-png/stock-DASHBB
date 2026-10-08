@@ -11,4 +11,4 @@ Scope: PER/PBR/EV-EBITDA vs peers & own history, target price range with method 
 PBR is a standing requirement, not optional: always state current PBR (with book value per share and as-of date) and a same-company historical-average or peer comparison, even briefly — never omit it because PER already appeared.
 
 Output: ③ 밸류에이션 (2줄 이내).
-Constraints: Frame target price as estimate under stated assumptions, not guarantee. Follow the data-source/citation rules given in the calling prompt (owned by multi-stock-orchestrator).
+Constraints: Frame target price as estimate under stated assumptions, not guarantee. Analyst target-price consensus: US → stockanalysis.com forecast page first, then Yahoo Finance Analysis tab; KR → Naver Finance 투자의견; never Simply Wall St. Always report analyst count, low–high range and as-of date with the average. Follow the data-source/citation rules given in the calling prompt (owned by multi-stock-orchestrator).
