@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T19:58:57Z",
+  "generated_at": "2026-10-10T05:59:07Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI"
@@ -57,7 +57,7 @@
       "name": "포티넷",
       "market": "us",
       "symbol": "FTNT",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -74,24 +74,24 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": 15.9,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.67,
-        "ma60_cross_count_1y": 29,
+        "above_ma60_pct_1y": 0.68,
+        "ma60_cross_count_1y": 28,
         "autocorr_1d_1y": 0.0,
-        "ret_1y_pct": 119.12,
+        "ret_1y_pct": 125.25,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 42.51,
+        "vol_annual_pct_1y": 42.52,
         "max_drawdown_1y_pct": -14.34,
         "gap3_days_rate_1y": 0.04,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.57,
-        "top5_gain_share_pct_1y": 18.33
+        "top5_gain_share_pct_1y": 18.25
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 +4.5%, 플러스 비율 50% · 20거래일 평균 +15.9% (표본 2회)",
-        "최근 1년 60일선 위 67%(교차 29회), 1년 수익률 +119.1%, 하루 수익률 자기상관 +0.00, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 68%(교차 28회), 1년 수익률 +125.2%, 하루 수익률 자기상관 +0.00, 최장 연속 상승 8일",
         "연환산 변동성 43%, 1년 최대 낙폭 -14.3%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 2회, 그날 상승 100%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.57(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
@@ -101,7 +101,7 @@
       "name": "퍼시픽 가스 & 일렉트릭",
       "market": "us",
       "symbol": "PCG",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -118,24 +118,24 @@
         "after_surge_5d_pos_rate": null,
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
-        "above_ma60_pct_1y": 0.55,
+        "above_ma60_pct_1y": 0.54,
         "ma60_cross_count_1y": 21,
         "autocorr_1d_1y": -0.03,
-        "ret_1y_pct": -20.26,
+        "ret_1y_pct": -21.47,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 34.88,
+        "vol_annual_pct_1y": 34.91,
         "max_drawdown_1y_pct": -37.47,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 14.28
+        "top5_gain_share_pct_1y": 14.33
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 2회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 55%(교차 21회), 1년 수익률 -20.3%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 54%(교차 21회), 1년 수익률 -21.5%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 7일",
         "연환산 변동성 35%, 1년 최대 낙폭 -37.5%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 3회, 그날 상승 33%",
         "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
@@ -145,16 +145,17 @@
       "name": "코인베이스",
       "market": "us",
       "symbol": "COIN",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
         "급등 빈발형",
+        "하락 추세형",
         "고변동형"
       ],
       "main_labels": [
-        "고변동형",
-        "급등 빈발형"
+        "하락 추세형",
+        "고변동형"
       ],
       "metrics": {
         "years": 1.99,
@@ -169,24 +170,24 @@
         "after_surge_20d_mean_pct": 14.76,
         "after_surge_20d_pos_rate": 0.58,
         "above_ma60_pct_1y": 0.3,
-        "ma60_cross_count_1y": 20,
+        "ma60_cross_count_1y": 22,
         "autocorr_1d_1y": -0.08,
-        "ret_1y_pct": -53.78,
+        "ret_1y_pct": -53.68,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 72.14,
-        "max_drawdown_1y_pct": -63.57,
+        "vol_annual_pct_1y": 72.25,
+        "max_drawdown_1y_pct": -63.54,
         "gap3_days_rate_1y": 0.23,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.15,
         "close_position_mean_1y": 0.45,
-        "top5_gain_share_pct_1y": 16.68
+        "top5_gain_share_pct_1y": 16.64
       },
       "notes": [
         "2년 급등일(+10%↑) 13회(연 6.5회), 급락일(−10%↓) 8회",
         "급등 뒤 5거래일 평균 +3.2%, 플러스 비율 54% · 20거래일 평균 +14.8% (표본 13회)",
-        "최근 1년 60일선 위 30%(교차 20회), 1년 수익률 -53.8%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
-        "연환산 변동성 72%, 1년 최대 낙폭 -63.6%, 3%↑ 갭 발생일 23%",
+        "최근 1년 60일선 위 30%(교차 22회), 1년 수익률 -53.7%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
+        "연환산 변동성 72%, 1년 최대 낙폭 -63.5%, 3%↑ 갭 발생일 23%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 15%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
@@ -195,9 +196,9 @@
       "name": "대덕전자",
       "market": "kosdaq",
       "symbol": "353200.KQ",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 빈발형",
         "추세 지속형",
@@ -209,9 +210,9 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 23,
-        "surge_per_year": 12.0,
+        "surge_per_year": 11.9,
         "crash_days": 7,
         "limit_up_days": 1,
         "limit_down_days": 0,
@@ -223,21 +224,21 @@
         "above_ma60_pct_1y": 0.76,
         "ma60_cross_count_1y": 8,
         "autocorr_1d_1y": -0.12,
-        "ret_1y_pct": 459.33,
+        "ret_1y_pct": 457.24,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 100.63,
+        "vol_annual_pct_1y": 100.62,
         "max_drawdown_1y_pct": -60.97,
         "gap3_days_rate_1y": 0.29,
         "volume_spike_days_1y": 5,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.22,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 15.46
+        "top5_gain_share_pct_1y": 15.47
       },
       "notes": [
-        "2년 급등일(+10%↑) 23회(연 12.0회), 급락일(−10%↓) 7회, 상한가 1회·하한가 0회",
+        "2년 급등일(+10%↑) 23회(연 11.9회), 급락일(−10%↓) 7회, 상한가 1회·하한가 0회",
         "급등 뒤 5거래일 평균 +0.1%, 플러스 비율 41% · 20거래일 평균 +7.9% (표본 22회)",
-        "최근 1년 60일선 위 76%(교차 8회), 1년 수익률 +459.3%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 6일",
+        "최근 1년 60일선 위 76%(교차 8회), 1년 수익률 +457.2%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 6일",
         "연환산 변동성 101%, 1년 최대 낙폭 -61.0%, 3%↑ 갭 발생일 29%",
         "거래량 3배↑ 급증일 5회, 그날 상승 100%",
         "윗꼬리 긴 날 22%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
@@ -247,7 +248,7 @@
       "name": "팔란티어",
       "market": "us",
       "symbol": "PLTR",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -272,34 +273,34 @@
         "after_surge_20d_pos_rate": 0.83,
         "above_ma60_pct_1y": 0.4,
         "ma60_cross_count_1y": 22,
-        "autocorr_1d_1y": 0.03,
-        "ret_1y_pct": 8.13,
+        "autocorr_1d_1y": 0.04,
+        "ret_1y_pct": 13.89,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 59.98,
+        "vol_annual_pct_1y": 60.22,
         "max_drawdown_1y_pct": -48.22,
         "gap3_days_rate_1y": 0.06,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.06,
-        "close_position_mean_1y": 0.51,
-        "top5_gain_share_pct_1y": 19.64
+        "close_position_mean_1y": 0.52,
+        "top5_gain_share_pct_1y": 19.33
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.0회), 급락일(−10%↓) 7회",
         "급등 뒤 5거래일 평균 +5.5%, 플러스 비율 83% · 20거래일 평균 +13.3% (표본 6회)",
-        "최근 1년 60일선 위 40%(교차 22회), 1년 수익률 +8.1%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 40%(교차 22회), 1년 수익률 +13.9%, 하루 수익률 자기상관 +0.04, 최장 연속 상승 7일",
         "연환산 변동성 60%, 1년 최대 낙폭 -48.2%, 3%↑ 갭 발생일 6%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
-        "윗꼬리 긴 날 6%, 종가의 일중 위치 평균 0.51(0 저가~1 고가), 상승분의 상위 5일 집중도 20%"
+        "윗꼬리 긴 날 6%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
       ]
     },
     "139480": {
       "name": "이마트",
       "market": "kospi",
       "symbol": "139480.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "박스권형"
       ],
@@ -307,7 +308,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 2,
@@ -321,22 +322,22 @@
         "above_ma60_pct_1y": 0.46,
         "ma60_cross_count_1y": 8,
         "autocorr_1d_1y": -0.06,
-        "ret_1y_pct": -8.54,
+        "ret_1y_pct": -9.56,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 47.5,
-        "max_drawdown_1y_pct": -44.44,
+        "vol_annual_pct_1y": 47.35,
+        "max_drawdown_1y_pct": -45.14,
         "gap3_days_rate_1y": 0.04,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.67,
         "upper_shadow_days_rate_1y": 0.07,
         "close_position_mean_1y": 0.46,
-        "top5_gain_share_pct_1y": 18.67
+        "top5_gain_share_pct_1y": 18.84
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -10.9%, 플러스 비율 0% · 20거래일 평균 -15.0% (표본 2회)",
-        "최근 1년 60일선 위 46%(교차 8회), 1년 수익률 -8.5%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 9일",
-        "연환산 변동성 48%, 1년 최대 낙폭 -44.4%, 3%↑ 갭 발생일 4%",
+        "최근 1년 60일선 위 46%(교차 8회), 1년 수익률 -9.6%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 9일",
+        "연환산 변동성 47%, 1년 최대 낙폭 -45.1%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 6회, 그날 상승 67%",
         "윗꼬리 긴 날 7%, 종가의 일중 위치 평균 0.46(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
       ]
@@ -345,9 +346,9 @@
       "name": "신세계",
       "market": "kospi",
       "symbol": "004170.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 지속형",
         "추세 지속형"
@@ -357,7 +358,7 @@
         "급등 지속형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 5,
         "surge_per_year": 2.6,
         "crash_days": 4,
@@ -368,25 +369,25 @@
         "after_surge_5d_pos_rate": 0.6,
         "after_surge_20d_mean_pct": 21.52,
         "after_surge_20d_pos_rate": 1.0,
-        "above_ma60_pct_1y": 0.74,
+        "above_ma60_pct_1y": 0.73,
         "ma60_cross_count_1y": 15,
         "autocorr_1d_1y": -0.06,
-        "ret_1y_pct": 70.67,
+        "ret_1y_pct": 52.37,
         "longest_up_streak": 13,
-        "vol_annual_pct_1y": 66.82,
-        "max_drawdown_1y_pct": -57.93,
+        "vol_annual_pct_1y": 66.95,
+        "max_drawdown_1y_pct": -60.63,
         "gap3_days_rate_1y": 0.13,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.13,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 15.15
+        "top5_gain_share_pct_1y": 15.32
       },
       "notes": [
         "2년 급등일(+10%↑) 5회(연 2.6회), 급락일(−10%↓) 4회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 +4.2%, 플러스 비율 60% · 20거래일 평균 +21.5% (표본 5회)",
-        "최근 1년 60일선 위 74%(교차 15회), 1년 수익률 +70.7%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 13일",
-        "연환산 변동성 67%, 1년 최대 낙폭 -57.9%, 3%↑ 갭 발생일 13%",
+        "최근 1년 60일선 위 73%(교차 15회), 1년 수익률 +52.4%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 13일",
+        "연환산 변동성 67%, 1년 최대 낙폭 -60.6%, 3%↑ 갭 발생일 13%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
         "윗꼬리 긴 날 13%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
@@ -446,9 +447,9 @@
       "name": "삼성전기",
       "market": "kospi",
       "symbol": "009150.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 빈발형",
         "급등 지속형",
@@ -460,7 +461,7 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 19,
         "surge_per_year": 9.9,
         "crash_days": 7,
@@ -474,31 +475,31 @@
         "above_ma60_pct_1y": 0.81,
         "ma60_cross_count_1y": 2,
         "autocorr_1d_1y": 0.02,
-        "ret_1y_pct": 771.94,
+        "ret_1y_pct": 646.86,
         "longest_up_streak": 11,
-        "vol_annual_pct_1y": 93.0,
+        "vol_annual_pct_1y": 93.12,
         "max_drawdown_1y_pct": -61.28,
         "gap3_days_rate_1y": 0.36,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.12,
-        "close_position_mean_1y": 0.55,
-        "top5_gain_share_pct_1y": 15.15
+        "close_position_mean_1y": 0.54,
+        "top5_gain_share_pct_1y": 15.33
       },
       "notes": [
         "2년 급등일(+10%↑) 19회(연 9.9회), 급락일(−10%↓) 7회, 상한가 1회·하한가 0회",
         "급등 뒤 5거래일 평균 +10.4%, 플러스 비율 68% · 20거래일 평균 +21.7% (표본 19회)",
-        "최근 1년 60일선 위 81%(교차 2회), 1년 수익률 +771.9%, 하루 수익률 자기상관 +0.02, 최장 연속 상승 11일",
+        "최근 1년 60일선 위 81%(교차 2회), 1년 수익률 +646.9%, 하루 수익률 자기상관 +0.02, 최장 연속 상승 11일",
         "연환산 변동성 93%, 1년 최대 낙폭 -61.3%, 3%↑ 갭 발생일 36%",
         "거래량 3배↑ 급증일 0회",
-        "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.55(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
+        "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.54(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
     },
     "KO": {
       "name": "코카콜라",
       "market": "us",
       "symbol": "KO",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -521,24 +522,24 @@
         "after_surge_5d_pos_rate": null,
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
-        "above_ma60_pct_1y": 0.84,
-        "ma60_cross_count_1y": 14,
+        "above_ma60_pct_1y": 0.85,
+        "ma60_cross_count_1y": 15,
         "autocorr_1d_1y": -0.04,
-        "ret_1y_pct": 29.83,
+        "ret_1y_pct": 33.17,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 18.87,
+        "vol_annual_pct_1y": 18.94,
         "max_drawdown_1y_pct": -8.5,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 15.87
+        "top5_gain_share_pct_1y": 15.67
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 84%(교차 14회), 1년 수익률 +29.8%, 하루 수익률 자기상관 -0.04, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 85%(교차 15회), 1년 수익률 +33.2%, 하루 수익률 자기상관 -0.04, 최장 연속 상승 7일",
         "연환산 변동성 19%, 1년 최대 낙폭 -8.5%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
@@ -548,7 +549,7 @@
       "name": "월마트",
       "market": "us",
       "symbol": "WMT",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -570,23 +571,23 @@
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
         "above_ma60_pct_1y": 0.59,
-        "ma60_cross_count_1y": 19,
-        "autocorr_1d_1y": 0.08,
-        "ret_1y_pct": 5.32,
+        "ma60_cross_count_1y": 20,
+        "autocorr_1d_1y": 0.09,
+        "ret_1y_pct": 8.21,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 26.37,
+        "vol_annual_pct_1y": 26.46,
         "max_drawdown_1y_pct": -23.52,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.0,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 15.06
+        "top5_gain_share_pct_1y": 14.83
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 59%(교차 19회), 1년 수익률 +5.3%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 59%(교차 20회), 1년 수익률 +8.2%, 하루 수익률 자기상관 +0.09, 최장 연속 상승 8일",
         "연환산 변동성 26%, 1년 최대 낙폭 -23.5%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 4회, 그날 상승 50%",
         "윗꼬리 긴 날 0%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
@@ -596,7 +597,7 @@
       "name": "모건스탠리",
       "market": "us",
       "symbol": "MS",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -613,24 +614,24 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": 4.11,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.7,
+        "above_ma60_pct_1y": 0.69,
         "ma60_cross_count_1y": 13,
         "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 20.0,
+        "ret_1y_pct": 22.08,
         "longest_up_streak": 11,
-        "vol_annual_pct_1y": 28.41,
+        "vol_annual_pct_1y": 28.43,
         "max_drawdown_1y_pct": -19.28,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 13.18
+        "top5_gain_share_pct_1y": 13.08
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 -1.2%, 플러스 비율 50% · 20거래일 평균 +4.1% (표본 2회)",
-        "최근 1년 60일선 위 70%(교차 13회), 1년 수익률 +20.0%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
+        "최근 1년 60일선 위 69%(교차 13회), 1년 수익률 +22.1%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
         "연환산 변동성 28%, 1년 최대 낙폭 -19.3%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 13%"
@@ -640,15 +641,13 @@
       "name": "뱅크오브아메리카",
       "market": "us",
       "symbol": "BAC",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
-        "추세 지속형",
         "저변동형"
       ],
       "main_labels": [
-        "추세 지속형",
         "저변동형"
       ],
       "metrics": {
@@ -663,34 +662,34 @@
         "after_surge_5d_pos_rate": null,
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
-        "above_ma60_pct_1y": 0.7,
+        "above_ma60_pct_1y": 0.69,
         "ma60_cross_count_1y": 13,
         "autocorr_1d_1y": 0.01,
-        "ret_1y_pct": 6.21,
+        "ret_1y_pct": 8.99,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 22.26,
+        "vol_annual_pct_1y": 22.28,
         "max_drawdown_1y_pct": -18.39,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.0,
-        "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 12.25
+        "close_position_mean_1y": 0.5,
+        "top5_gain_share_pct_1y": 12.12
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 1회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 70%(교차 13회), 1년 수익률 +6.2%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 69%(교차 13회), 1년 수익률 +9.0%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 8일",
         "연환산 변동성 22%, 1년 최대 낙폭 -18.4%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 0회",
-        "윗꼬리 긴 날 0%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 12%"
+        "윗꼬리 긴 날 0%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 12%"
       ]
     },
     "ARM": {
       "name": "ARM홀딩스",
       "market": "us",
       "symbol": "ARM",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -715,23 +714,23 @@
         "after_surge_20d_mean_pct": 13.12,
         "after_surge_20d_pos_rate": 0.53,
         "above_ma60_pct_1y": 0.56,
-        "ma60_cross_count_1y": 10,
+        "ma60_cross_count_1y": 11,
         "autocorr_1d_1y": 0.1,
-        "ret_1y_pct": 88.43,
+        "ret_1y_pct": 59.67,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 79.62,
+        "vol_annual_pct_1y": 79.86,
         "max_drawdown_1y_pct": -48.83,
         "gap3_days_rate_1y": 0.27,
         "volume_spike_days_1y": 5,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.15,
         "close_position_mean_1y": 0.47,
-        "top5_gain_share_pct_1y": 16.64
+        "top5_gain_share_pct_1y": 16.86
       },
       "notes": [
         "2년 급등일(+10%↑) 18회(연 9.1회), 급락일(−10%↓) 6회",
         "급등 뒤 5거래일 평균 +1.6%, 플러스 비율 39% · 20거래일 평균 +13.1% (표본 18회)",
-        "최근 1년 60일선 위 56%(교차 10회), 1년 수익률 +88.4%, 하루 수익률 자기상관 +0.10, 최장 연속 상승 9일",
+        "최근 1년 60일선 위 56%(교차 11회), 1년 수익률 +59.7%, 하루 수익률 자기상관 +0.10, 최장 연속 상승 9일",
         "연환산 변동성 80%, 1년 최대 낙폭 -48.8%, 3%↑ 갭 발생일 27%",
         "거래량 3배↑ 급증일 5회, 그날 상승 100%",
         "윗꼬리 긴 날 15%, 종가의 일중 위치 평균 0.47(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
@@ -741,7 +740,7 @@
       "name": "AMAT",
       "market": "us",
       "symbol": "AMAT",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -764,23 +763,23 @@
         "after_surge_20d_pos_rate": 0.4,
         "above_ma60_pct_1y": 0.83,
         "ma60_cross_count_1y": 10,
-        "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 132.53,
+        "autocorr_1d_1y": -0.06,
+        "ret_1y_pct": 133.11,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 59.68,
+        "vol_annual_pct_1y": 59.4,
         "max_drawdown_1y_pct": -42.55,
         "gap3_days_rate_1y": 0.18,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.06,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 14.52
+        "top5_gain_share_pct_1y": 14.62
       },
       "notes": [
         "2년 급등일(+10%↑) 5회(연 2.5회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 -4.2%, 플러스 비율 40% · 20거래일 평균 -9.3% (표본 5회)",
-        "최근 1년 60일선 위 83%(교차 10회), 1년 수익률 +132.5%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 9일",
-        "연환산 변동성 60%, 1년 최대 낙폭 -42.5%, 3%↑ 갭 발생일 18%",
+        "최근 1년 60일선 위 83%(교차 10회), 1년 수익률 +133.1%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 9일",
+        "연환산 변동성 59%, 1년 최대 낙폭 -42.5%, 3%↑ 갭 발생일 18%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
         "윗꼬리 긴 날 6%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
@@ -789,9 +788,9 @@
       "name": "삼성전자",
       "market": "kospi",
       "symbol": "005930.KS",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 후 반전형",
         "추세 지속형",
@@ -802,7 +801,7 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 6,
         "surge_per_year": 3.1,
         "crash_days": 5,
@@ -816,21 +815,21 @@
         "above_ma60_pct_1y": 0.79,
         "ma60_cross_count_1y": 4,
         "autocorr_1d_1y": -0.12,
-        "ret_1y_pct": 234.37,
+        "ret_1y_pct": 213.77,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 75.19,
+        "vol_annual_pct_1y": 75.18,
         "max_drawdown_1y_pct": -42.9,
         "gap3_days_rate_1y": 0.37,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.07,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 15.23
+        "top5_gain_share_pct_1y": 15.35
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.1회), 급락일(−10%↓) 5회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -0.8%, 플러스 비율 33% · 20거래일 평균 +5.7% (표본 6회)",
-        "최근 1년 60일선 위 79%(교차 4회), 1년 수익률 +234.4%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 9일",
+        "최근 1년 60일선 위 79%(교차 4회), 1년 수익률 +213.8%, 하루 수익률 자기상관 -0.12, 최장 연속 상승 9일",
         "연환산 변동성 75%, 1년 최대 낙폭 -42.9%, 3%↑ 갭 발생일 37%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 7%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
@@ -894,9 +893,9 @@
       "name": "에스티팜",
       "market": "kosdaq",
       "symbol": "237690.KQ",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 후 반전형",
         "박스권형",
@@ -907,7 +906,7 @@
         "급등 후 반전형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 7,
         "surge_per_year": 3.6,
         "crash_days": 4,
@@ -918,24 +917,24 @@
         "after_surge_5d_pos_rate": 0.29,
         "after_surge_20d_mean_pct": -13.94,
         "after_surge_20d_pos_rate": 0.14,
-        "above_ma60_pct_1y": 0.5,
+        "above_ma60_pct_1y": 0.49,
         "ma60_cross_count_1y": 9,
         "autocorr_1d_1y": -0.11,
-        "ret_1y_pct": 6.52,
+        "ret_1y_pct": -2.0,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 67.32,
+        "vol_annual_pct_1y": 67.26,
         "max_drawdown_1y_pct": -49.79,
         "gap3_days_rate_1y": 0.09,
         "volume_spike_days_1y": 9,
         "volume_spike_up_rate": 0.89,
         "upper_shadow_days_rate_1y": 0.16,
         "close_position_mean_1y": 0.46,
-        "top5_gain_share_pct_1y": 17.67
+        "top5_gain_share_pct_1y": 17.89
       },
       "notes": [
         "2년 급등일(+10%↑) 7회(연 3.6회), 급락일(−10%↓) 4회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -1.4%, 플러스 비율 29% · 20거래일 평균 -13.9% (표본 7회)",
-        "최근 1년 60일선 위 50%(교차 9회), 1년 수익률 +6.5%, 하루 수익률 자기상관 -0.11, 최장 연속 상승 6일",
+        "최근 1년 60일선 위 49%(교차 9회), 1년 수익률 -2.0%, 하루 수익률 자기상관 -0.11, 최장 연속 상승 6일",
         "연환산 변동성 67%, 1년 최대 낙폭 -49.8%, 3%↑ 갭 발생일 9%",
         "거래량 3배↑ 급증일 9회, 그날 상승 89%",
         "윗꼬리 긴 날 16%, 종가의 일중 위치 평균 0.46(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
@@ -997,9 +996,9 @@
       "name": "삼성물산",
       "market": "kospi",
       "symbol": "028260.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "고변동형"
       ],
@@ -1007,9 +1006,9 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 8,
-        "surge_per_year": 4.2,
+        "surge_per_year": 4.1,
         "crash_days": 6,
         "limit_up_days": 0,
         "limit_down_days": 0,
@@ -1018,47 +1017,46 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": 7.29,
         "after_surge_20d_pos_rate": 0.75,
-        "above_ma60_pct_1y": 0.67,
+        "above_ma60_pct_1y": 0.66,
         "ma60_cross_count_1y": 13,
         "autocorr_1d_1y": -0.01,
-        "ret_1y_pct": 77.2,
+        "ret_1y_pct": 60.6,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 74.3,
+        "vol_annual_pct_1y": 74.54,
         "max_drawdown_1y_pct": -46.64,
         "gap3_days_rate_1y": 0.26,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.1,
-        "close_position_mean_1y": 0.51,
-        "top5_gain_share_pct_1y": 16.63
+        "close_position_mean_1y": 0.5,
+        "top5_gain_share_pct_1y": 16.72
       },
       "notes": [
-        "2년 급등일(+10%↑) 8회(연 4.2회), 급락일(−10%↓) 6회, 상한가 0회·하한가 0회",
+        "2년 급등일(+10%↑) 8회(연 4.1회), 급락일(−10%↓) 6회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -0.4%, 플러스 비율 50% · 20거래일 평균 +7.3% (표본 8회)",
-        "최근 1년 60일선 위 67%(교차 13회), 1년 수익률 +77.2%, 하루 수익률 자기상관 -0.01, 최장 연속 상승 8일",
-        "연환산 변동성 74%, 1년 최대 낙폭 -46.6%, 3%↑ 갭 발생일 26%",
+        "최근 1년 60일선 위 66%(교차 13회), 1년 수익률 +60.6%, 하루 수익률 자기상관 -0.01, 최장 연속 상승 8일",
+        "연환산 변동성 75%, 1년 최대 낙폭 -46.6%, 3%↑ 갭 발생일 26%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
-        "윗꼬리 긴 날 10%, 종가의 일중 위치 평균 0.51(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
+        "윗꼬리 긴 날 10%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "298040": {
       "name": "효성중공업",
       "market": "kospi",
       "symbol": "298040.KS",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-08",
       "window": "2y",
-      "bars": 485,
+      "bars": 486,
       "labels": [
         "급등 빈발형",
-        "추세 지속형",
         "고변동형"
       ],
       "main_labels": [
-        "추세 지속형",
-        "고변동형"
+        "고변동형",
+        "급등 빈발형"
       ],
       "metrics": {
-        "years": 1.92,
+        "years": 1.93,
         "surge_days": 14,
         "surge_per_year": 7.3,
         "crash_days": 5,
@@ -1069,26 +1067,26 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": 7.93,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.71,
-        "ma60_cross_count_1y": 16,
+        "above_ma60_pct_1y": 0.7,
+        "ma60_cross_count_1y": 17,
         "autocorr_1d_1y": 0.07,
-        "ret_1y_pct": 104.15,
+        "ret_1y_pct": 77.13,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 78.12,
+        "vol_annual_pct_1y": 78.64,
         "max_drawdown_1y_pct": -58.84,
         "gap3_days_rate_1y": 0.26,
-        "volume_spike_days_1y": 0,
-        "volume_spike_up_rate": null,
+        "volume_spike_days_1y": 1,
+        "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.16,
         "close_position_mean_1y": 0.46,
-        "top5_gain_share_pct_1y": 14.79
+        "top5_gain_share_pct_1y": 14.86
       },
       "notes": [
         "2년 급등일(+10%↑) 14회(연 7.3회), 급락일(−10%↓) 5회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 +1.2%, 플러스 비율 50% · 20거래일 평균 +7.9% (표본 14회)",
-        "최근 1년 60일선 위 71%(교차 16회), 1년 수익률 +104.1%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 8일",
-        "연환산 변동성 78%, 1년 최대 낙폭 -58.8%, 3%↑ 갭 발생일 26%",
-        "거래량 3배↑ 급증일 0회",
+        "최근 1년 60일선 위 70%(교차 17회), 1년 수익률 +77.1%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 8일",
+        "연환산 변동성 79%, 1년 최대 낙폭 -58.8%, 3%↑ 갭 발생일 26%",
+        "거래량 3배↑ 급증일 1회, 그날 상승 0%",
         "윗꼬리 긴 날 16%, 종가의 일중 위치 평균 0.46(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
     },
@@ -1096,7 +1094,7 @@
       "name": "CVS Health",
       "market": "us",
       "symbol": "CVS",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1117,24 +1115,24 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": -1.85,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.6,
+        "above_ma60_pct_1y": 0.59,
         "ma60_cross_count_1y": 17,
         "autocorr_1d_1y": -0.04,
-        "ret_1y_pct": 14.46,
+        "ret_1y_pct": 12.0,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 31.14,
+        "vol_annual_pct_1y": 31.2,
         "max_drawdown_1y_pct": -23.1,
         "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 14.68
+        "top5_gain_share_pct_1y": 14.71
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 -4.5%, 플러스 비율 50% · 20거래일 평균 -1.9% (표본 2회)",
-        "최근 1년 60일선 위 60%(교차 17회), 1년 수익률 +14.5%, 하루 수익률 자기상관 -0.04, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 59%(교차 17회), 1년 수익률 +12.0%, 하루 수익률 자기상관 -0.04, 최장 연속 상승 7일",
         "연환산 변동성 31%, 1년 최대 낙폭 -23.1%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
@@ -1144,7 +1142,7 @@
       "name": "On Holding",
       "market": "us",
       "symbol": "ONON",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -1161,34 +1159,34 @@
         "after_surge_5d_pos_rate": 0.67,
         "after_surge_20d_mean_pct": 9.56,
         "after_surge_20d_pos_rate": 0.67,
-        "above_ma60_pct_1y": 0.39,
+        "above_ma60_pct_1y": 0.4,
         "ma60_cross_count_1y": 29,
-        "autocorr_1d_1y": 0.02,
-        "ret_1y_pct": -21.96,
-        "longest_up_streak": 7,
-        "vol_annual_pct_1y": 49.18,
+        "autocorr_1d_1y": 0.03,
+        "ret_1y_pct": -19.56,
+        "longest_up_streak": 8,
+        "vol_annual_pct_1y": 49.09,
         "max_drawdown_1y_pct": -47.15,
         "gap3_days_rate_1y": 0.06,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.09,
-        "close_position_mean_1y": 0.47,
-        "top5_gain_share_pct_1y": 16.46
+        "close_position_mean_1y": 0.48,
+        "top5_gain_share_pct_1y": 16.4
       },
       "notes": [
         "2년 급등일(+10%↑) 3회(연 1.5회), 급락일(−10%↓) 3회",
         "급등 뒤 5거래일 평균 +0.4%, 플러스 비율 67% · 20거래일 평균 +9.6% (표본 3회)",
-        "최근 1년 60일선 위 39%(교차 29회), 1년 수익률 -22.0%, 하루 수익률 자기상관 +0.02, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 40%(교차 29회), 1년 수익률 -19.6%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 8일",
         "연환산 변동성 49%, 1년 최대 낙폭 -47.1%, 3%↑ 갭 발생일 6%",
         "거래량 3배↑ 급증일 6회, 그날 상승 33%",
-        "윗꼬리 긴 날 9%, 종가의 일중 위치 평균 0.47(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
+        "윗꼬리 긴 날 9%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]
     },
     "MRK": {
       "name": "머크",
       "market": "us",
       "symbol": "MRK",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1211,22 +1209,22 @@
         "after_surge_20d_pos_rate": 0.0,
         "above_ma60_pct_1y": 0.85,
         "ma60_cross_count_1y": 12,
-        "autocorr_1d_1y": -0.04,
-        "ret_1y_pct": 60.8,
+        "autocorr_1d_1y": -0.05,
+        "ret_1y_pct": 68.52,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 29.18,
+        "vol_annual_pct_1y": 29.17,
         "max_drawdown_1y_pct": -11.9,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 17.32
+        "top5_gain_share_pct_1y": 17.12
       },
       "notes": [
         "2년 급등일(+10%↑) 1회(연 0.5회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 +0.6%, 플러스 비율 100% · 20거래일 평균 -3.3% (표본 1회)",
-        "최근 1년 60일선 위 85%(교차 12회), 1년 수익률 +60.8%, 하루 수익률 자기상관 -0.04, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 85%(교차 12회), 1년 수익률 +68.5%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 8일",
         "연환산 변동성 29%, 1년 최대 낙폭 -11.9%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 3회, 그날 상승 33%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
@@ -1236,7 +1234,7 @@
       "name": "크리스퍼 테라퓨틱스",
       "market": "us",
       "symbol": "CRSP",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1260,22 +1258,22 @@
         "above_ma60_pct_1y": 0.44,
         "ma60_cross_count_1y": 27,
         "autocorr_1d_1y": -0.08,
-        "ret_1y_pct": -25.42,
+        "ret_1y_pct": -30.46,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 58.82,
-        "max_drawdown_1y_pct": -42.25,
+        "vol_annual_pct_1y": 58.57,
+        "max_drawdown_1y_pct": -40.82,
         "gap3_days_rate_1y": 0.07,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.14,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 15.97
+        "top5_gain_share_pct_1y": 16.14
       },
       "notes": [
         "2년 급등일(+10%↑) 8회(연 4.0회), 급락일(−10%↓) 3회",
         "급등 뒤 5거래일 평균 -2.5%, 플러스 비율 25% · 20거래일 평균 -9.8% (표본 8회)",
-        "최근 1년 60일선 위 44%(교차 27회), 1년 수익률 -25.4%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
-        "연환산 변동성 59%, 1년 최대 낙폭 -42.3%, 3%↑ 갭 발생일 7%",
+        "최근 1년 60일선 위 44%(교차 27회), 1년 수익률 -30.5%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
+        "연환산 변동성 59%, 1년 최대 낙폭 -40.8%, 3%↑ 갭 발생일 7%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 14%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]
@@ -1284,7 +1282,7 @@
       "name": "돌비 래버러토리스",
       "market": "us",
       "symbol": "DLB",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1307,23 +1305,23 @@
         "after_surge_20d_pos_rate": 0.5,
         "above_ma60_pct_1y": 0.27,
         "ma60_cross_count_1y": 16,
-        "autocorr_1d_1y": -0.03,
-        "ret_1y_pct": -19.71,
+        "autocorr_1d_1y": -0.02,
+        "ret_1y_pct": -17.28,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 29.71,
-        "max_drawdown_1y_pct": -31.69,
+        "vol_annual_pct_1y": 29.44,
+        "max_drawdown_1y_pct": -30.79,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 19.03
+        "top5_gain_share_pct_1y": 19.14
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 +0.2%, 플러스 비율 50% · 20거래일 평균 -0.5% (표본 2회)",
-        "최근 1년 60일선 위 27%(교차 16회), 1년 수익률 -19.7%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 8일",
-        "연환산 변동성 30%, 1년 최대 낙폭 -31.7%, 3%↑ 갭 발생일 1%",
+        "최근 1년 60일선 위 27%(교차 16회), 1년 수익률 -17.3%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 8일",
+        "연환산 변동성 29%, 1년 최대 낙폭 -30.8%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
       ]
@@ -1332,7 +1330,7 @@
       "name": "인튜이티브 서지컬",
       "market": "us",
       "symbol": "ISRG",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -1349,24 +1347,24 @@
         "after_surge_5d_pos_rate": 0.33,
         "after_surge_20d_mean_pct": 3.76,
         "after_surge_20d_pos_rate": 1.0,
-        "above_ma60_pct_1y": 0.32,
+        "above_ma60_pct_1y": 0.33,
         "ma60_cross_count_1y": 11,
         "autocorr_1d_1y": -0.02,
-        "ret_1y_pct": -7.82,
+        "ret_1y_pct": -5.39,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 36.96,
+        "vol_annual_pct_1y": 36.93,
         "max_drawdown_1y_pct": -44.0,
         "gap3_days_rate_1y": 0.02,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 19.86
+        "top5_gain_share_pct_1y": 19.8
       },
       "notes": [
         "2년 급등일(+10%↑) 3회(연 1.5회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 -2.6%, 플러스 비율 33% · 20거래일 평균 +3.8% (표본 3회)",
-        "최근 1년 60일선 위 32%(교차 11회), 1년 수익률 -7.8%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 6일",
+        "최근 1년 60일선 위 33%(교차 11회), 1년 수익률 -5.4%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 6일",
         "연환산 변동성 37%, 1년 최대 낙폭 -44.0%, 3%↑ 갭 발생일 2%",
         "거래량 3배↑ 급증일 2회, 그날 상승 50%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 20%"
@@ -1429,7 +1427,7 @@
       "name": "알파벳 A",
       "market": "us",
       "symbol": "GOOGL",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -1449,21 +1447,21 @@
         "above_ma60_pct_1y": 0.6,
         "ma60_cross_count_1y": 14,
         "autocorr_1d_1y": 0.08,
-        "ret_1y_pct": 39.96,
+        "ret_1y_pct": 43.76,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 31.67,
+        "vol_annual_pct_1y": 31.62,
         "max_drawdown_1y_pct": -21.09,
         "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 16.23
+        "top5_gain_share_pct_1y": 16.15
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 60%(교차 14회), 1년 수익률 +40.0%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 60%(교차 14회), 1년 수익률 +43.8%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 10일",
         "연환산 변동성 32%, 1년 최대 낙폭 -21.1%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 1회, 그날 상승 0%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
@@ -1473,7 +1471,7 @@
       "name": "제이프로그",
       "market": "us",
       "symbol": "FROG",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1499,21 +1497,21 @@
         "above_ma60_pct_1y": 0.67,
         "ma60_cross_count_1y": 20,
         "autocorr_1d_1y": 0.08,
-        "ret_1y_pct": 102.54,
+        "ret_1y_pct": 112.62,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 73.28,
+        "vol_annual_pct_1y": 73.4,
         "max_drawdown_1y_pct": -49.62,
         "gap3_days_rate_1y": 0.09,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.83,
         "upper_shadow_days_rate_1y": 0.12,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 19.03
+        "top5_gain_share_pct_1y": 18.87
       },
       "notes": [
         "2년 급등일(+10%↑) 10회(연 5.0회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 +0.0%, 플러스 비율 50% · 20거래일 평균 +3.2% (표본 10회)",
-        "최근 1년 60일선 위 67%(교차 20회), 1년 수익률 +102.5%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 67%(교차 20회), 1년 수익률 +112.6%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 7일",
         "연환산 변동성 73%, 1년 최대 낙폭 -49.6%, 3%↑ 갭 발생일 9%",
         "거래량 3배↑ 급증일 6회, 그날 상승 83%",
         "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
@@ -1672,7 +1670,7 @@
       "name": "쇼피파이",
       "market": "us",
       "symbol": "SHOP",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1698,21 +1696,21 @@
         "above_ma60_pct_1y": 0.54,
         "ma60_cross_count_1y": 24,
         "autocorr_1d_1y": 0.1,
-        "ret_1y_pct": 0.93,
+        "ret_1y_pct": 2.66,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 58.82,
+        "vol_annual_pct_1y": 58.83,
         "max_drawdown_1y_pct": -46.71,
         "gap3_days_rate_1y": 0.09,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 0.25,
         "upper_shadow_days_rate_1y": 0.09,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 14.76
+        "top5_gain_share_pct_1y": 14.73
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 -2.4%, 플러스 비율 33% · 20거래일 평균 +4.4% (표본 6회)",
-        "최근 1년 60일선 위 54%(교차 24회), 1년 수익률 +0.9%, 하루 수익률 자기상관 +0.10, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 54%(교차 24회), 1년 수익률 +2.7%, 하루 수익률 자기상관 +0.10, 최장 연속 상승 8일",
         "연환산 변동성 59%, 1년 최대 낙폭 -46.7%, 3%↑ 갭 발생일 9%",
         "거래량 3배↑ 급증일 4회, 그날 상승 25%",
         "윗꼬리 긴 날 9%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
@@ -1722,7 +1720,7 @@
       "name": "찰스 슈왑",
       "market": "us",
       "symbol": "SCHW",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1745,22 +1743,22 @@
         "after_surge_20d_pos_rate": null,
         "above_ma60_pct_1y": 0.48,
         "ma60_cross_count_1y": 18,
-        "autocorr_1d_1y": 0.01,
-        "ret_1y_pct": 1.68,
+        "autocorr_1d_1y": 0.0,
+        "ret_1y_pct": 3.1,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 25.11,
+        "vol_annual_pct_1y": 25.14,
         "max_drawdown_1y_pct": -20.39,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 11.48
+        "top5_gain_share_pct_1y": 11.38
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 48%(교차 18회), 1년 수익률 +1.7%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 48%(교차 18회), 1년 수익률 +3.1%, 하루 수익률 자기상관 +0.00, 최장 연속 상승 10일",
         "연환산 변동성 25%, 1년 최대 낙폭 -20.4%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 11%"
@@ -1822,7 +1820,7 @@
       "name": "엔비디아 (NVIDIA)",
       "market": "us",
       "symbol": "NVDA",
-      "as_of": "2026-10-07",
+      "as_of": "2026-10-09",
       "window": "2y",
       "bars": 501,
       "labels": [],
@@ -1842,21 +1840,21 @@
         "above_ma60_pct_1y": 0.65,
         "ma60_cross_count_1y": 28,
         "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 27.99,
+        "ret_1y_pct": 21.24,
         "longest_up_streak": 11,
-        "vol_annual_pct_1y": 37.68,
+        "vol_annual_pct_1y": 37.75,
         "max_drawdown_1y_pct": -20.22,
         "gap3_days_rate_1y": 0.04,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 13.78
+        "top5_gain_share_pct_1y": 13.9
       },
       "notes": [
         "2년 급등일(+10%↑) 1회(연 0.5회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 -8.6%, 플러스 비율 0% · 20거래일 평균 +2.7% (표본 1회)",
-        "최근 1년 60일선 위 65%(교차 28회), 1년 수익률 +28.0%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
+        "최근 1년 60일선 위 65%(교차 28회), 1년 수익률 +21.2%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
         "연환산 변동성 38%, 1년 최대 낙폭 -20.2%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
@@ -1911,7 +1909,7 @@
       ]
     },
     "010950": {
-      "name": "",
+      "name": "S-Oil",
       "market": "kospi",
       "symbol": "010950.KS",
       "as_of": "2026-10-08",
