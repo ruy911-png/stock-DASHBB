@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T14:04:17Z",
+  "generated_at": "2026-10-12T14:17:51Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI"
@@ -599,11 +599,11 @@
       "symbol": "MS",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 0,
@@ -643,7 +643,7 @@
       "symbol": "BAC",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "저변동형"
       ],
@@ -651,7 +651,7 @@
         "저변동형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 1,
@@ -1722,7 +1722,7 @@
       "symbol": "SCHW",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "박스권형"
       ],
@@ -1730,7 +1730,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 0,
