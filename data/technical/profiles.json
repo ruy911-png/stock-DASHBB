@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T09:18:39Z",
+  "generated_at": "2026-10-12T14:04:17Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI"
@@ -501,7 +501,7 @@
       "symbol": "KO",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "추세 지속형",
         "저변동형"
@@ -511,7 +511,7 @@
         "저변동형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 0,
@@ -1096,7 +1096,7 @@
       "symbol": "CVS",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "박스권형"
       ],
@@ -1104,7 +1104,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 1,
@@ -1144,11 +1144,11 @@
       "symbol": "ONON",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 3,
         "surge_per_year": 1.5,
         "crash_days": 3,
@@ -1188,7 +1188,7 @@
       "symbol": "MRK",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "추세 지속형"
       ],
@@ -1196,7 +1196,7 @@
         "추세 지속형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 1,
         "surge_per_year": 0.5,
         "crash_days": 0,
@@ -1332,11 +1332,11 @@
       "symbol": "ISRG",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 3,
         "surge_per_year": 1.5,
         "crash_days": 1,
@@ -1473,7 +1473,7 @@
       "symbol": "FROG",
       "as_of": "2026-10-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "고변동형",
         "거래량 동반 상승형"
@@ -1483,9 +1483,9 @@
         "거래량 동반 상승형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 10,
-        "surge_per_year": 5.0,
+        "surge_per_year": 5.1,
         "crash_days": 1,
         "limit_up_days": null,
         "limit_down_days": null,
@@ -1509,7 +1509,7 @@
         "top5_gain_share_pct_1y": 18.87
       },
       "notes": [
-        "2년 급등일(+10%↑) 10회(연 5.0회), 급락일(−10%↓) 1회",
+        "2년 급등일(+10%↑) 10회(연 5.1회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 +0.0%, 플러스 비율 50% · 20거래일 평균 +3.2% (표본 10회)",
         "최근 1년 60일선 위 67%(교차 20회), 1년 수익률 +112.6%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 7일",
         "연환산 변동성 73%, 1년 최대 낙폭 -49.6%, 3%↑ 갭 발생일 9%",
