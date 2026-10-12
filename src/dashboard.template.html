@@ -796,70 +796,106 @@
             <div style="font-size:28px; font-weight:800; letter-spacing:-.6px; white-space:nowrap;">과거사례 Study</div>
             <div style="font-size:13px; color:#8C8C9E; margin-top:5px;">비슷했던 과거의 뉴스와 그 뒤 주가 흐름</div>
           </div>
-          <div onclick="{{ openCaseNote }}" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px;">＋ 사례 추가</div>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+            <sc-if value="{{ hasCaseMsg }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12px; color:#8C8C9E; max-width:280px; text-align:right; line-height:1.4;">{{ caseMsg }}</div>
+            </sc-if>
+            <div onclick="{{ onOpenCaseAdd }}" title="제목·기간을 넣으면 코드가 지수 통계를 계산하고 Claude가 웹검색으로 타임라인을 씁니다 (GitHub Actions, 몇 분)" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">＋ 사례 추가</div>
+          </div>
         </div>
+        <sc-if value="{{ ghTokenOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FFF8E8; border:1.5px solid #F3DFB0; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">🔑 GitHub 토큰이 이 브라우저에 없습니다</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">fine-grained 토큰(이 저장소만, Actions: Read and write)을 붙여넣으세요. 이 브라우저에만 저장되고 페이지 파일에는 들어가지 않습니다. 저장하면 방금 누른 실행을 이어서 합니다.</div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <input type="password" oninput="{{ onGhTokenInput }}" value="{{ ghTokenDraft }}" placeholder="github_pat_…" style="flex:1; min-width:180px; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#fff;">
+              <div onclick="{{ saveGhToken }}" style="background:#1F1F2B; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">저장</div>
+              <div onclick="{{ cancelGhToken }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
+        <!-- ＋ 사례 추가(사용자 결정 2026-10-12): 제목·기간만 넣으면 case-study.yml이 코드 통계 + Claude 웹검색 타임라인을 만들어 data/cases.json에 커밋 -->
+        <sc-if value="{{ caseAddOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff; border:1.5px solid #D9D5FB; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
+            <div style="font-size:14px; font-weight:800; color:#16161D;">사례를 자동으로 만들까요?</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">제목과 기간을 넣으면 코드가 KOSPI·S&amp;P500의 최대 낙폭·저점·회복 기간을 계산하고, Claude가 웹검색으로 뉴스 타임라인(출처 링크 포함)을 씁니다. 몇 분 걸리고, 끝나면 목록에 생깁니다.</div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px; margin-top:10px;">
+              <input oninput="{{ onCsTitle }}" value="{{ cs_title }}" placeholder="제목 (예: 10년물 미국채 5% 이상 고금리 환경)" style="grid-column:1 / -1; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              <input oninput="{{ onCsStart }}" value="{{ cs_start }}" placeholder="시작일 2026-08-18" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              <input oninput="{{ onCsEnd }}" value="{{ cs_end }}" placeholder="끝 (비우면 진행 중)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              <input oninput="{{ onCsEvent }}" value="{{ cs_event }}" placeholder="사건일 (비우면 시작일)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <div onclick="{{ submitCaseStudy }}" style="background:#6B62F0; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">사례 요청</div>
+              <div onclick="{{ cancelCaseAdd }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
+            </div>
+          </div>
+        </sc-if>
 
-        <div style="font-size:14px; font-weight:800; color:#56566A; margin:0 4px 12px;">전체 사례 목록</div>
+        <div style="font-size:14px; font-weight:800; color:#56566A; margin:0 4px 12px;">전체 사례 목록 <span style="font-weight:600; color:#A0A0B0;">· 누르면 아래에 자세히</span></div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
           <sc-for list="{{ caseCards }}" as="n" hint-placeholder-count="3">
-            <div style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:18px 18px; position:relative;">
-              <div style="position:absolute; top:12px; right:14px; display:flex; gap:8px;">
+            <div onclick="{{ n.onClick }}" style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1.5px solid {{ n.border }}; padding:18px 18px; position:relative; cursor:pointer;">
+              <sc-if value="{{ n.legacy }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute; top:12px; right:14px; display:flex; gap:8px;" onclick="{{ n.stopProp }}">
                 <div onclick="{{ n.onEdit }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:2px 5px; background:#F0F0F4; border-radius:7px;">✏</div>
                 <div onclick="{{ n.onDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:2px 4px;">✕</div>
               </div>
-              <div style="font-size:11px; font-weight:800; color:#2F6FED; background:#EAF0FD; padding:4px 9px; border-radius:8px; display:inline-block;">{{ n.tag }}</div>
+              </sc-if>
+              <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+                <div style="font-size:11px; font-weight:800; color:#2F6FED; background:#EAF0FD; padding:4px 9px; border-radius:8px; display:inline-block;">{{ n.tag }}</div>
+                <sc-if value="{{ n.isOngoing }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:11px; font-weight:800; color:#E0922B; background:#FFF3E0; padding:4px 9px; border-radius:8px;">진행 중</div>
+                </sc-if>
+              </div>
               <div style="font-size:15.5px; font-weight:800; letter-spacing:-.3px; margin-top:10px; padding-right:40px;">{{ n.title }}</div>
+              <div style="font-size:11px; color:#A0A0B0; margin-top:3px;">{{ n.sub }}</div>
               <div style="font-size:12px; color:#6A6A7C; line-height:1.55; margin-top:6px;">{{ n.summary }}</div>
-              <div style="display:flex; gap:14px; margin-top:12px;">
+              <div style="display:flex; gap:14px; margin-top:12px; flex-wrap:wrap;">
                 <div>
-                  <div style="font-size:10px; color:#A0A0B0;">최대낙폭</div>
-                  <div style="font-size:14px; font-weight:800; color:#2F6FED;">{{ n.drop }}</div>
+                  <div style="font-size:10px; color:#A0A0B0; white-space:nowrap;">최대낙폭 <span style="color:#C4C4D2;">{{ n.statName }}</span></div>
+                  <div style="font-size:14px; font-weight:800; color:#2F6FED; white-space:nowrap;">{{ n.drop }}</div>
                 </div>
                 <div>
                   <div style="font-size:10px; color:#A0A0B0;">저점</div>
-                  <div style="font-size:14px; font-weight:800;">{{ n.bottom }}</div>
+                  <div style="font-size:14px; font-weight:800; white-space:nowrap;">{{ n.bottom }}</div>
                 </div>
                 <div>
                   <div style="font-size:10px; color:#A0A0B0;">회복</div>
-                  <div style="font-size:14px; font-weight:800; color:#F23645;">{{ n.recover }}</div>
+                  <div style="font-size:14px; font-weight:800; color:#F23645; white-space:nowrap;">{{ n.recover }}</div>
                 </div>
               </div>
             </div>
           </sc-for>
         </div>
 
-        <div style="display:flex; gap:10px; margin-bottom:20px;">
-          <sc-for list="{{ caseChips }}" as="c" hint-placeholder-count="3">
-            <div onclick="{{ c.onClick }}" style="cursor:pointer; padding:12px 18px; border-radius:14px; background:{{ c.bg }}; border:1.5px solid {{ c.border }};">
-              <div style="font-size:14px; font-weight:800; color:{{ c.titleCol }};">{{ c.title }}</div>
-              <div style="font-size:11px; color:{{ c.subCol }}; margin-top:2px;">{{ c.sub }}</div>
-            </div>
-          </sc-for>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1.25fr 1fr; gap:18px; align-items:start;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px; align-items:start;">
           <div style="background:#fff; border-radius:22px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1px solid #EFEFF5; padding:22px;">
             <div style="display:flex; align-items:center; gap:8px;">
               <div style="font-size:11px; font-weight:800; color:#fff; background:{{ caseTagCol }}; padding:4px 10px; border-radius:8px;">{{ caseTag }}</div>
-              <div style="font-size:14px; font-weight:800; color:#16161D;">{{ caseSub }}</div>
+              <div style="font-size:15px; font-weight:800; color:#16161D;">{{ caseTitle }}</div>
             </div>
+            <div style="font-size:12px; color:#A0A0B0; margin-top:6px;">{{ caseSub }}</div>
             <div style="font-size:13.5px; color:#56566A; line-height:1.65; margin-top:12px;">{{ caseSummary }}</div>
 
             <div style="margin-top:18px; background:#FBFBFE; border:1px solid #F0F0F6; border-radius:16px; padding:16px 16px 10px;">
-              <div style="display:flex; gap:24px; margin-bottom:10px;">
+              <sc-for list="{{ caseStats }}" as="st" hint-placeholder-count="2">
+              <div style="display:grid; grid-template-columns:52px repeat(3, minmax(0,1fr)); gap:8px; margin-bottom:10px; align-items:end;">
+                <div style="font-size:12px; font-weight:800; color:{{ st.col }}; padding-bottom:3px;">{{ st.name }}</div>
                 <div>
-                  <div style="font-size:11px; color:#A0A0B0; font-weight:600;">최대 낙폭</div>
-                  <div style="font-size:22px; font-weight:800; color:#2F6FED;">{{ caseDrop }}</div>
+                  <div style="font-size:10.5px; color:#A0A0B0; font-weight:600; white-space:nowrap;">최대 낙폭</div>
+                  <div style="font-size:17px; font-weight:800; color:#2F6FED; white-space:nowrap;">{{ st.drop }}</div>
                 </div>
                 <div>
-                  <div style="font-size:11px; color:#A0A0B0; font-weight:600;">저점까지</div>
-                  <div style="font-size:22px; font-weight:800; color:#16161D;">{{ caseBottom }}</div>
+                  <div style="font-size:10.5px; color:#A0A0B0; font-weight:600; white-space:nowrap;">저점까지</div>
+                  <div style="font-size:17px; font-weight:800; color:#16161D; white-space:nowrap;">{{ st.bottom }}</div>
                 </div>
                 <div>
-                  <div style="font-size:11px; color:#A0A0B0; font-weight:600;">회복 기간</div>
-                  <div style="font-size:22px; font-weight:800; color:#F23645;">{{ caseRecover }}</div>
+                  <div style="font-size:10.5px; color:#A0A0B0; font-weight:600; white-space:nowrap;">회복 기간</div>
+                  <div style="font-size:17px; font-weight:800; color:#F23645; white-space:nowrap;">{{ st.recover }}</div>
                 </div>
               </div>
+              </sc-for>
               <svg viewBox="0 0 300 120" width="100%" height="150" preserveAspectRatio="none" style="display:block;">
                 <defs>
                   <linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1">
@@ -868,6 +904,7 @@
                   </linearGradient>
                 </defs>
                 <path d="{{ caseArea }}" fill="url(#cg2)"></path>
+                <path d="{{ caseLine2 }}" fill="none" stroke="#B7B7C6" stroke-width="1.6" stroke-dasharray="4 3" stroke-linejoin="round" stroke-linecap="round"></path>
                 <path d="{{ caseLine }}" fill="none" stroke="#6B62F0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"></path>
                 <line x1="{{ caseEventX }}" y1="6" x2="{{ caseEventX }}" y2="114" stroke="#F2A23B" stroke-width="1.4" stroke-dasharray="3 3"></line>
                 <circle cx="{{ caseEventX }}" cy="{{ caseEventY }}" r="4.5" fill="#F2A23B" stroke="#fff" stroke-width="2"></circle>
@@ -875,21 +912,14 @@
               <div style="display:flex; justify-content:space-between; font-size:10.5px; color:#B7B7C6; margin-top:3px;">
                 <span>{{ caseStart }}</span><span style="color:#E0922B; font-weight:700;">⚑ 사건 발생</span><span>{{ caseEnd }}</span>
               </div>
+              <div style="font-size:10.5px; color:#B7B7C6; margin-top:6px; line-height:1.5;">{{ caseLegend }}</div>
             </div>
+            <div style="font-size:11.5px; color:#8C8C9E; margin-top:12px; line-height:1.55;">기준: {{ caseBasis }}</div>
+            <sc-if value="{{ hasCaseCompare }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12.5px; color:#56566A; margin-top:8px; line-height:1.55; padding:10px 12px; background:#F7F7FB; border-radius:10px;">{{ caseCompare }}</div>
+            </sc-if>
 
-            <div style="background:linear-gradient(150deg,#5C54E8 0%,#7E6CF0 100%); border-radius:18px; padding:20px; color:#fff; margin-top:18px;">
-              <div style="font-size:15px; font-weight:800;">🧭 그래서 지금은?</div>
-              <div style="font-size:13.5px; line-height:1.7; margin-top:10px; opacity:.95;">{{ caseNow }}</div>
-              <div style="display:flex; gap:10px; margin-top:16px;">
-                <sc-for list="{{ caseScenarios }}" as="s" hint-placeholder-count="3">
-                  <div style="background:rgba(255,255,255,.14); border-radius:13px; padding:11px 14px; flex:1;">
-                    <div style="font-size:11.5px; opacity:.8;">{{ s.label }}</div>
-                    <div style="font-size:18px; font-weight:800; margin-top:3px;">{{ s.prob }}</div>
-                  </div>
-                </sc-for>
-              </div>
-              <div style="font-size:10.5px; opacity:.7; margin-top:13px; line-height:1.5;">※ 과거 패턴 참고용이며 투자 판단은 본인 책임이에요.</div>
-            </div>
+            <div style="font-size:10.5px; color:#B7B7C6; margin-top:14px; line-height:1.5;">※ 과거 통계이며 예측·매수·매도 판단이 아닙니다.</div>
           </div>
 
           <div>
@@ -908,6 +938,9 @@
                     </div>
                     <div style="font-size:15px; font-weight:800; letter-spacing:-.2px; margin-top:8px;">{{ e.label }}</div>
                     <div style="font-size:12.5px; color:#6A6A7C; margin-top:5px; line-height:1.55;">{{ e.desc }}</div>
+                    <sc-if value="{{ e.hasUrl }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ e.url }}" target="_blank" rel="noopener" style="display:inline-block; font-size:11.5px; font-weight:700; color:#6B62F0; margin-top:6px; text-decoration:none;">출처 보기 ›</a>
+                    </sc-if>
                   </div>
                 </div>
               </sc-for>
@@ -1465,14 +1498,6 @@
         <textarea oninput="{{ onCeTimeline }}" value="{{ ce_timeline }}" placeholder="22.06.10 | 악재 | CPI 8.6% 쇼크 | 예상치 상회, 증시 급락
 22.10.13 | 호재 | CPI 둔화 확인 | 피크아웃 기대감" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:11px 13px; font-size:13px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:100px; resize:vertical; line-height:1.65;">{{ ce_timeline }}</textarea>
       </div>
-      <div style="margin-bottom:14px;">
-        <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">그래서 지금은?</div>
-        <textarea oninput="{{ onCeNow }}" value="{{ ce_now }}" placeholder="현재 상황과 비교하는 인사이트를 적어주세요." style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:11px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px; min-height:72px; resize:vertical; line-height:1.6;">{{ ce_now }}</textarea>
-      </div>
-      <div style="margin-bottom:6px;">
-        <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">시나리오 <span style="font-weight:500; color:#B0B0BE;">레이블 확률%, 레이블 확률% …</span></div>
-        <input oninput="{{ onCeScenarios }}" value="{{ ce_scenarios }}" placeholder="낙관 45%, 중립 38%, 비관 17%" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:11px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:7px;">
-      </div>
       <div onclick="{{ submitCaseEdit }}" style="margin-top:18px; background:#6B62F0; color:#fff; text-align:center; padding:15px; border-radius:14px; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 8px 22px rgba(107,98,240,.35);">저장하기</div>
     </div>
   </div>
@@ -1531,7 +1556,7 @@ class Component extends DCLogic {
     aiFilter: 'all',
     expandedAi: '005930',
     expandedTrade: 0,
-    caseId: 'rate2022',
+    caseId: null, // null = 목록 첫 사례(최신 코드 계산 사례)
     addOpen: false,
     f_ai: 'claude', f_market: 'kospi',
     f_name: '', f_tags: '', f_overview: '', f_moat: '', f_fundamental: '', f_technical: '', f_valuation: '',
@@ -1557,7 +1582,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', casesData: null, caseAddOpen: false, cs_title: '', cs_start: '', cs_end: '', cs_event: '', caseMsg: '', caseBusy: false, refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null, peekFull: (() => { try { return localStorage.getItem("stockking_peek_full") === "1"; } catch (e) { return false; } })(),
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1649,6 +1674,7 @@ class Component extends DCLogic {
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
     this.loadProfiles();
+    this.loadCases();
     // 화면으로 돌아오면(탭 복귀·화면 켜짐) 멈춰 있던 실행 상태 확인을 즉시 재개 — 모바일은 뒤로 가면 타이머가 멈춘다(2026-10-07 보고)
     const resume = () => { if (document.visibilityState === 'visible') this.resumeWatch(); };
     document.addEventListener('visibilitychange', resume);
@@ -1694,6 +1720,24 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  // 과거사례(코드 계산 통계 + Claude 글, data/cases.json). 없으면 손으로 적은 예시 사례만 보인다
+  async loadCases(bust) {
+    try {
+      const res = await fetch('./data/cases.json' + (bust ? '?t=' + bust : ''), { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      if (payload && payload.items) this.setState({ casesData: payload.items });
+    } catch (e) {}
+  }
+  submitCaseStudy() {
+    const s = this.state, d = /^\d{4}-\d{2}-\d{2}$/;
+    const title = String(s.cs_title || '').trim(), start = String(s.cs_start || '').trim(), end = String(s.cs_end || '').trim(), event = String(s.cs_event || '').trim();
+    if (!title || !d.test(start)) { this.setState({ caseMsg: '제목과 시작일(YYYY-MM-DD)을 넣어 주세요' }); return; }
+    if ((end && !d.test(end)) || (event && !d.test(event))) { this.setState({ caseMsg: '날짜는 YYYY-MM-DD 형식으로' }); return; }
+    this.setState({ caseAddOpen: false });
+    this.runWorkflow({ file: 'case-study.yml', inputs: { title, start, end, event }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: title + ' — 몇 분', onDone: () => this.loadCases(Date.now()) });
+  }
+
   profileView(code) {
     const p = this.state.profiles && this.state.profiles[code];
     if (!p) {
@@ -1717,6 +1761,7 @@ class Component extends DCLogic {
     this.setState({ refreshMsg: '최신 분석을 불러오는 중…' });
     await this.loadBackupSnapshot(Date.now()); // 주소에 시각을 붙여 GitHub Pages 캐시(최대 10분)를 건너뛴다
     this.loadProfiles(Date.now());
+    this.loadCases(Date.now());
     const n = (this.state.analyses || []).length;
     this.setState({ refreshMsg: n + '종목 불러옴 · ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) });
   }
@@ -2223,8 +2268,6 @@ class Component extends DCLogic {
         { date: "22.07.13", sentiment: '악재', label: 'CPI 9.1% 정점', desc: '인플레 고점 신호와 공포가 혼재' },
         { date: "22.10.13", sentiment: '호재', label: 'CPI 둔화 확인', desc: '피크아웃 기대감으로 바닥 통과 시작' },
       ],
-      now: '지금은 금리 \'인하\' 사이클 초입이라 당시와 방향은 반대예요. 다만 지표 발표마다 변동성이 커지는 구간이라는 점은 유사해요. 급락 때 패닉셀보다 분할 대응이 유효했던 패턴.',
-      scenarios: [{ label: '낙관', prob: '45%' }, { label: '중립', prob: '38%' }, { label: '비관', prob: '17%' }],
     },
     {
       id: 'semi2019', title: '반도체 한파', sub: '2019년 메모리 다운사이클', tag: '바닥 통과', tagCol: '#F2A23B',
@@ -2239,12 +2282,10 @@ class Component extends DCLogic {
         { date: "19.06.20", sentiment: '중립', label: '재고 정점 통과', desc: '가격 하락폭 둔화, 바닥 논쟁 시작' },
         { date: "19.09.10", sentiment: '호재', label: '업황 반등 기대', desc: '데이터센터 수요 회복 신호 포착' },
       ],
-      now: '현재 메모리는 \'회복\' 국면이라 당시 바닥과는 위치가 달라요. 다만 \'어닝쇼크 → 바닥 다지기 → 수요 회복\'의 순서는 반복되는 패턴이라, AI 의견이 매수로 모일 때 추세가 살아났던 점을 참고하세요.',
-      scenarios: [{ label: '낙관', prob: '52%' }, { label: '중립', prob: '33%' }, { label: '비관', prob: '15%' }],
     },
     {
       id: 'covid2020', title: '코로나 충격', sub: '2020년 3월 팬데믹', tag: 'V자 반등', tagCol: '#F23645',
-      summary: '팬데믹 공포로 한 달 만에 급락했지만, 유동성 공급과 함께 역사적인 V자 반등이 나왔어요. 공포 정점이 매수 기회였던 사례.',
+      summary: '팬데믹 공포로 한 달 만에 급락했지만, 유동성 공급과 함께 역사적인 V자 반등이 나왔어요. 공포 정점 뒤 반등이 빨랐던 사례.',
       drop: '-34%', bottom: '약 1개월', recover: '약 5개월',
       shape: [100, 99, 96, 86, 74, 66, 70, 78, 86, 93, 99, 104, 108, 111, 114, 116, 118, 120, 122, 124],
       eventIdx: 4,
@@ -2255,8 +2296,6 @@ class Component extends DCLogic {
         { date: "20.03.24", sentiment: '호재', label: '무제한 양적완화', desc: '연준 유동성 공급, 반등 시작' },
         { date: "20.05.15", sentiment: '호재', label: '경제 재개 기대', desc: '봉쇄 완화·실적 회복 기대 확산' },
       ],
-      now: '지금은 시스템 위기 같은 외부 충격 상황은 아니에요. 다만 \'공포 정점\'에서 분할 매수했을 때 회복이 가장 빨랐던 점, 그리고 유동성 환경이 추세를 좌우했던 점은 늘 유효한 교훈이에요.',
-      scenarios: [{ label: '낙관', prob: '40%' }, { label: '중립', prob: '35%' }, { label: '비관', prob: '25%' }],
     },
   ];
 
@@ -2877,12 +2916,11 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     const c = cur[i];
     if (!c) return;
     const tlText = (c.timeline || []).map(e => e.date + ' | ' + e.sentiment + ' | ' + e.label + ' | ' + (e.desc || '')).join('\n');
-    const scText = (c.scenarios || []).map(s => s.label + ' ' + s.prob).join(', ');
     this.setState({
       caseEditOpen: true, caseEditIdx: i,
       ce_title: c.title || '', ce_tag: c.tag || '', ce_summary: c.summary || '',
       ce_drop: c.drop || '', ce_bottom: c.bottom || '', ce_recover: c.recover || '',
-      ce_timeline: tlText, ce_now: c.now || '', ce_scenarios: scText,
+      ce_timeline: tlText,
     });
   }
   closeCaseEdit() { this.setState({ caseEditOpen: false, caseEditIdx: null }); }
@@ -2895,18 +2933,13 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       const p = l.split('|').map(x => x.trim());
       return { date: p[0] || '', sentiment: p[1] || '중립', label: p[2] || '', desc: p[3] || '' };
     });
-    const scParts = s.ce_scenarios.split(',').map(x => x.trim()).filter(Boolean);
-    const scenarios = scParts.map(x => {
-      const m = x.match(/^(.+?)\s+(\d+%)$/);
-      return m ? { label: m[1], prob: m[2] } : { label: x, prob: '' };
-    });
     const updated = {
       ...orig,
       id: orig.id || ('case_' + Date.now()),
       title: s.ce_title.trim(), tag: s.ce_tag.trim(), tagCol: orig.tagCol || '#6B62F0',
       sub: orig.sub || s.ce_title.trim(), summary: s.ce_summary.trim(),
       drop: s.ce_drop.trim(), bottom: s.ce_bottom.trim(), recover: s.ce_recover.trim(),
-      timeline, now: s.ce_now.trim(), scenarios,
+      timeline,
       shape: orig.shape || [100,98,95,90,84,80,76,74,73,72,72,73,75,78,81,84,87,90,93,95],
       eventIdx: orig.eventIdx || 3, start: orig.start || '', end: orig.end || '',
     };
@@ -2920,7 +2953,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     this.setState({
       caseEditOpen: true, caseEditIdx: null,
       ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '',
-      ce_timeline: '', ce_now: '', ce_scenarios: '낙관 40%, 중립 35%, 비관 25%',
+      ce_timeline: '',
     });
   }
 
@@ -2994,6 +3027,19 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       e.target.value = '';
     };
     reader.readAsText(file, 'utf-8');
+  }
+
+  buildCaseChart(s1, s2) {
+    const W = 300, H = 120, pad = 8;
+    const all = [...s1, ...(s2 || [])];
+    const min = Math.min(...all), max = Math.max(...all);
+    const sxOf = n => i => pad + (i / Math.max(1, n - 1)) * (W - 2 * pad);
+    const sy = v => pad + (1 - (v - min) / (max - min || 1)) * (H - 2 * pad);
+    const toLine = (arr) => { const sx = sxOf(arr.length); return 'M' + arr.map((v, i) => sx(i).toFixed(1) + ' ' + sy(v).toFixed(1)).join(' L'); };
+    const sx = sxOf(s1.length);
+    const line = toLine(s1);
+    const area = line + ' L' + sx(s1.length - 1).toFixed(1) + ' ' + H + ' L' + sx(0).toFixed(1) + ' ' + H + ' Z';
+    return { line, area, line2: s2 && s2.length > 1 ? toLine(s2) : '', sx, sy };
   }
 
   buildCasePath(shape) {
@@ -3503,28 +3549,49 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     const lossBoxBorder = activePnlFilter === 'loss' ? '#CFE0FF' : '#EFEFF5';
     const trades = tradesData.map((t, i) => makeTradeView(t, 'all-' + i, i));
 
-    const allCases = this.state.caseAllNotes || this.cases.map(c => ({ ...c }));
-    const cs = allCases.find(c => c.id === this.state.caseId) || allCases[0] || this.cases[0];
-    const cp = this.buildCasePath((cs && cs.shape) || this.cases[0].shape);
+    // 사례 목록 = data/cases.json(코드 통계 + Claude 글, 최신 시작일 순) + 손으로 적은 예시(builtin/localStorage, legacy)
+    const fmtDays = d => d == null ? '미확인' : (d >= 45 ? '약 ' + (d / 30.4).toFixed(1).replace(/\.0$/, '') + '개월' : d + '일');
+    const dataCases = Object.values(this.state.casesData || {}).sort((a, b) => String(b.start || '').localeCompare(String(a.start || ''))).map(c => {
+      const ix = c.indices || {};
+      const stat = (name, col, x) => {
+        x = x || { error: '없음' };
+        const rec = x.error ? '미확인' : (x.recovery_date ? fmtDays(x.days_to_recover) : (c.status === 'ongoing' ? '진행 중' : '미회복'));
+        return { name, col, drop: x.error ? '미확인' : x.drawdown_pct.toFixed(1) + '%', bottom: x.error ? '미확인' : fmtDays(x.days_to_bottom), recover: rec };
+      };
+      const K = ix.KOSPI || {}, S = ix.SP500 || {};
+      return { id: c.id, title: c.title, sub: c.start + ' ~ ' + (c.end || '진행 중'), tag: c.tag || (c.status === 'ongoing' ? '진행 중' : '사례'), tagCol: '#2F6FED',
+        summary: c.summary || '통계만 등록됨 — 글은 작성 중이거나 실패', legacy: false, isOngoing: c.status === 'ongoing',
+        stats: [stat('KOSPI', '#6B62F0', ix.KOSPI), stat('S&P500', '#8C8C9E', ix.SP500)],
+        series: (!K.error && K.series) ? K.series.map(p => p.v) : null, series2: (!S.error && S.series) ? S.series.map(p => p.v) : null,
+        eventIdx: K.event_idx || 0, start: c.start, end: c.end || '진행 중', timeline: c.timeline || [], compare: c.compare || '',
+        basis: 'KOSPI·S&P500 지수 종가 ' + c.start + ' ~ ' + (c.end || '오늘') + ' · 코드 계산(yfinance) · 과거 통계이며 예측이 아님' };
+    });
+    const legacyCases = (this.state.caseAllNotes || this.cases.map(c => ({ ...c }))).map((c, i) => ({
+      id: c.id || ('legacy' + i), title: c.title, sub: c.sub || c.title, tag: c.tag || '', tagCol: c.tagCol || '#6B62F0', summary: c.summary || '',
+      legacy: true, legacyIdx: i, isOngoing: false,
+      stats: [{ name: '예시', col: '#A0A0B0', drop: c.drop || '', bottom: c.bottom || '', recover: c.recover || '' }],
+      series: c.shape || [100, 100], series2: null, eventIdx: c.eventIdx || 0, start: c.start || '', end: c.end || '', timeline: c.timeline || [], compare: '',
+      basis: '손으로 적은 예시(출처·실데이터 없음). ＋ 사례 추가로 같은 제목을 만들면 코드 계산 값으로 바뀝니다' }));
+    const allCases = [...dataCases, ...legacyCases];
+    const cs = allCases.find(c => c.id === this.state.caseId) || allCases[0] || { title: '', sub: '', tag: '', tagCol: '#6B62F0', summary: '', stats: [], series: [100, 100], eventIdx: 0, start: '', end: '', timeline: [], compare: '', basis: '' };
+    const cp = this.buildCaseChart(cs.series || [100, 100], cs.series2);
     const sentMap = {
       '악재': { col: '#2F6FED', bg: '#EAF0FD', dot: '#2F6FED', ring: '#D5E2FB' },
       '호재': { col: '#F23645', bg: '#FDECEC', dot: '#F23645', ring: '#FAD7D9' },
       '중립': { col: '#8A8AA0', bg: '#F0F0F4', dot: '#9A9AAC', ring: '#E6E6EE' },
     };
-    const caseChips = allCases.map(c => {
-      const active = c.id === this.state.caseId;
-      return {
-        title: c.title, sub: c.sub,
-        bg: active ? '#16161D' : '#fff',
-        border: active ? '#16161D' : '#E6E6EE',
-        titleCol: active ? '#fff' : '#16161D',
-        subCol: active ? 'rgba(255,255,255,.6)' : '#A0A0B0',
-        onClick: () => this.setState({ caseId: c.id }),
-      };
-    });
-    const caseTimeline = cs.timeline.map(e => {
-      const s = sentMap[e.sentiment];
-      return { date: e.date, sentiment: e.sentiment, label: e.label, desc: e.desc, sCol: s.col, sBg: s.bg, dotCol: s.dot, dotRing: s.ring };
+    const caseCards = allCases.map(c => ({
+      id: c.id, title: c.title, sub: c.sub, tag: c.tag, tagCol: c.tagCol, summary: c.summary, legacy: c.legacy, isOngoing: c.isOngoing,
+      statName: c.legacy ? '' : 'KOSPI', drop: c.stats[0].drop, bottom: c.stats[0].bottom, recover: c.stats[0].recover,
+      border: c.id === cs.id ? '#6B62F0' : '#EFEFF5',
+      onClick: () => this.setState({ caseId: c.id }),
+      stopProp: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); },
+      onEdit: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openCaseEdit(c.legacyIdx); },
+      onDel: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.delCaseNote(c.legacyIdx); },
+    }));
+    const caseTimeline = (cs.timeline || []).map(e => {
+      const s = sentMap[e.sentiment] || sentMap['중립'];
+      return { date: e.date, sentiment: e.sentiment, label: e.label, desc: e.desc || '', sCol: s.col, sBg: s.bg, dotCol: s.dot, dotRing: s.ring, hasUrl: !!e.url, url: e.url || '' };
     });
 
     const seg = (label, active, col, bg, on) => ({ label, active, col: active ? '#fff' : col, bg: active ? col : bg, onClick: on });
@@ -3620,12 +3687,6 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       onPeek: () => this.openPeekStudy(i),
       onEdit: () => this.editStudyNote(i),
       onDel: () => this.delStudyNote(i),
-    }));
-    const caseAll = this.state.caseAllNotes || this.cases.map(c => ({ ...c }));
-    const caseCards = caseAll.map((c, i) => ({
-      id: c.id || i, title: c.title, sub: c.sub || c.title, tag: c.tag || '', tagCol: c.tagCol || '#6B62F0',
-      summary: c.summary || '', drop: c.drop || '', bottom: c.bottom || '', recover: c.recover || '',
-      onEdit: () => this.openCaseEdit(i), onDel: () => this.delCaseNote(i),
     }));
     const caseUser = caseCards; // legacy compat
     const studyNotes = allNotes;
@@ -3846,7 +3907,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         { icon: '🤖', bg: '#EFEDFE', title: '종목분석 모음', sub: '종목별 분석 모아보기', stat: analysesData.length + '종목', statLabel: '보관됨', statCol: '#6B62F0', onClick: () => this.go('ai') },
         { icon: '📒', bg: '#FFF0E8', title: '매매일지', sub: '보유 평가 + 매매 회고·특이사항', stat: new Set(tradesData.map(t => (t.name || '').trim())).size + '종목', statLabel: '이번 달 매매', statCol: '#E07B2B', onClick: () => this.go('journal') },
         { icon: '🖼️', bg: '#FCEFFB', title: '차트 복기 노트', sub: '매매 기록을 차트와 함께 복기', stat: (this.state.chartReviews || []).length + '건', statLabel: '작성됨', statCol: '#B24FA0', onClick: () => this.go('chartreview'), show: showChartReview },
-        { icon: '🔮', bg: '#E8F4FF', title: '과거사례 Study', sub: '비슷한 사례의 뉴스와 주가 흐름', stat: '3사례', statLabel: '참고용', statCol: '#3B72E0', onClick: () => this.go('predict') },
+        { icon: '🔮', bg: '#E8F4FF', title: '과거사례 Study', sub: '비슷한 사례의 뉴스와 주가 흐름', stat: allCases.length + '사례', statLabel: '참고용', statCol: '#3B72E0', onClick: () => this.go('predict') },
       ].filter(c => c.show !== false),
       homeAlert: '삼성전자에 대한 3개 AI 의견이 엇갈려요 (매수 2 · 관망 1). 카카오는 제미나이가 매도 의견을 냈어요.',
       recent: [
@@ -3864,14 +3925,17 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       moodInsight: '여유로울 때(😎) 거래는 평균 +9.2%, 패닉(😱)에 판 거래는 −5.2%. 마음이 급할수록 한 박자 쉬어가는 게 좋아요.',
       holdings, stockPnls, stockPnlCount, totalProfitFmt, totalLossFmt, profitMeta, lossMeta, profitFoldText, lossFoldText, smallPnlToggleLabel, profitBoxBg, profitBoxBorder, lossBoxBg, lossBoxBorder, showProfitStocks: () => this.setState({ pnlFilter: 'profit', selectedPnlStock: null, expandedTrade: null, showSmallPnl: false }), showLossStocks: () => this.setState({ pnlFilter: 'loss', selectedPnlStock: null, expandedTrade: null, showSmallPnl: false }), toggleSmallPnl: () => this.setState(s => ({ showSmallPnl: !s.showSmallPnl, selectedPnlStock: null, expandedTrade: null })), selectedPnl, relatedTrades, relatedTradeCount, trades,
 
-      caseChips,
-      caseTag: cs.tag, caseTagCol: cs.tagCol, caseSub: cs.sub, caseSummary: cs.summary,
-      caseDrop: cs.drop, caseBottom: cs.bottom, caseRecover: cs.recover,
-      caseLine: cp.line, caseArea: cp.area,
-      caseEventX: cp.sx(cs.eventIdx).toFixed(1), caseEventY: cp.sy(cs.shape[cs.eventIdx]).toFixed(1),
+      caseTag: cs.tag, caseTagCol: cs.tagCol, caseTitle: cs.title, caseSub: cs.sub, caseSummary: cs.summary,
+      caseStats: cs.stats, caseLine: cp.line, caseArea: cp.area, caseLine2: cp.line2,
+      caseEventX: cp.sx(Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)).toFixed(1),
+      caseEventY: cp.sy((cs.series || [100])[Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)]).toFixed(1),
       caseStart: cs.start, caseEnd: cs.end,
-      caseTimeline, caseNow: cs.now,
-      caseScenarios: cs.scenarios,
+      caseTimeline, caseBasis: cs.basis, caseCompare: cs.compare, hasCaseCompare: !!cs.compare,
+      caseLegend: cs.legacy ? '선: 예시 모양' : '보라 실선 KOSPI · 회색 점선 S&P500 (기간 첫 주 = 100, 주봉 종가)',
+      caseAddOpen: this.state.caseAddOpen, cs_title: this.state.cs_title, cs_start: this.state.cs_start, cs_end: this.state.cs_end, cs_event: this.state.cs_event,
+      onCsTitle: e => this.setF('cs_title', e.target.value), onCsStart: e => this.setF('cs_start', e.target.value), onCsEnd: e => this.setF('cs_end', e.target.value), onCsEvent: e => this.setF('cs_event', e.target.value),
+      onOpenCaseAdd: () => this.setState({ caseAddOpen: true }), cancelCaseAdd: () => this.setState({ caseAddOpen: false }), submitCaseStudy: () => this.submitCaseStudy(),
+      caseMsg: this.state.caseMsg, hasCaseMsg: !!this.state.caseMsg,
 
       addOpen: this.state.addOpen, fErr: this.state.f_err, csvMsg: this.state.csvMsg,
       csvMsgCol: /저장됨/.test(this.state.csvMsg) ? '#1E8E5A' : '#C0392B',
@@ -3938,12 +4002,11 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       caseEditIsNew: this.state.caseEditIdx == null,
       ce_title: this.state.ce_title, ce_tag: this.state.ce_tag, ce_summary: this.state.ce_summary,
       ce_drop: this.state.ce_drop, ce_bottom: this.state.ce_bottom, ce_recover: this.state.ce_recover,
-      ce_timeline: this.state.ce_timeline, ce_now: this.state.ce_now, ce_scenarios: this.state.ce_scenarios,
+      ce_timeline: this.state.ce_timeline,
       onCeTitle: e=>this.setF('ce_title',e.target.value), onCeTag: e=>this.setF('ce_tag',e.target.value),
       onCeSummary: e=>this.setF('ce_summary',e.target.value), onCeDrop: e=>this.setF('ce_drop',e.target.value),
       onCeBottom: e=>this.setF('ce_bottom',e.target.value), onCeRecover: e=>this.setF('ce_recover',e.target.value),
-      onCeTimeline: e=>this.setF('ce_timeline',e.target.value), onCeNow: e=>this.setF('ce_now',e.target.value),
-      onCeScenarios: e=>this.setF('ce_scenarios',e.target.value),
+      onCeTimeline: e=>this.setF('ce_timeline',e.target.value),
       marketSeg: [
         { key: 'kospi', label: 'KOSPI' }, { key: 'kosdaq', label: 'KOSDAQ' },
         { key: 'us', label: '미국주식' }, { key: 'etc', label: '기타' },
