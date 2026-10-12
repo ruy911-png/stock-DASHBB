@@ -1,0 +1,135 @@
+# 과거사례 Study 자동 생성 — 사용자 결정(2026-10-12): 페이지의 '＋ 사례 추가'에 토픽 한 줄만 넣으면 이 워크플로가
+# ① Claude Code(.claude/skills/case-study)가 웹검색으로 기간(시작·끝·사건일)을 정해 근거 링크를 기록하고 scripts/case-stats.py를 돌려
+#    KOSPI·S&P500 일봉 통계(최대 낙폭·저점/회복 기간·주봉 시리즈)를 계산(숫자는 코드만) ② 같은 단계에서 뉴스 타임라인(출처 링크 필수)·요약·태그를 쓰고
+# ③ 검증 통과 시 main에 바로 커밋. 날짜(선택)를 직접 넣으면 Claude 전에 코드가 통계를 먼저 계산해 커밋한다(기간이 틀렸을 때 다시 지정하는 용도).
+# 권유·전망 표현은 검증기가 막는다. 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(refresh-analyses와 같음).
+name: case-study
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "토픽 (예: 10년물 미국채 5% 이상 고금리 환경) — 기간은 Claude가 웹검색으로 정함"
+        required: true
+        type: string
+      start:
+        description: "기간 시작 YYYY-MM-DD (선택 — 넣으면 Claude가 기간을 정하지 않고 이 날짜로 계산)"
+        default: ""
+        type: string
+      end:
+        description: "기간 끝 YYYY-MM-DD (비우면 진행 중 = 오늘까지)"
+        default: ""
+        type: string
+      event:
+        description: "사건 발생일 YYYY-MM-DD (비우면 시작일)"
+        default: ""
+        type: string
+permissions:
+  contents: write
+  id-token: write
+concurrency:
+  group: case-study
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install yfinance==1.7.0 pandas==3.0.6 numpy==2.4.6
+      - run: python3 scripts/case-stats.py --selftest
+      - name: 사례 통계 계산 (코드, 날짜를 직접 넣었을 때만)
+        id: stats
+        if: inputs.start != ''
+        shell: bash
+        env: # 입력은 env로 받아 따옴표 등 특수문자가 셸을 깨지 않게
+          TITLE: ${{ inputs.topic }}
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          EVENT: ${{ inputs.event }}
+        run: |
+          CASE_ID="$(python3 -c "import os, importlib.util as u; s=u.spec_from_file_location('cs','scripts/case-stats.py'); m=u.module_from_spec(s); s.loader.exec_module(m); print(m.make_id(os.environ['TITLE'], os.environ['START']))")"
+          echo "case_id=$CASE_ID" >> "$GITHUB_OUTPUT"
+          python3 scripts/case-stats.py --id "$CASE_ID" --title "$TITLE" --start "$START" --end "$END" --event "$EVENT"
+          node scripts/validate-cases.mjs
+      - name: 통계 먼저 커밋 (날짜를 직접 넣었을 때 — Claude 단계와 무관하게 등록)
+        if: inputs.start != ''
+        shell: bash
+        env:
+          TITLE: ${{ inputs.topic }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cases.json
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "과거사례 통계: $TITLE"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "푸시 완료"; exit 0; fi
+            sleep 5
+          done
+          echo "푸시 실패"; exit 1
+      - name: Secret 확인
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Secret CLAUDE_CODE_OAUTH_TOKEN이 없습니다"
+            exit 1
+          fi
+      - name: Claude 글 작성 (웹검색 타임라인·요약)
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: "/case-study topic=${{ inputs.topic }} | id=${{ steps.stats.outputs.case_id }} | start=${{ inputs.start }} | end=${{ inputs.end }} | event=${{ inputs.event }}"
+          claude_args: |
+            --max-turns 50
+            --allowedTools "Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(python3 scripts/case-stats.py *),Bash(npm run build),Bash(node scripts/validate-cases.mjs),Bash(date *)"
+      - name: Claude 실행 요약 (말·도구 호출·권한 거부)
+        if: always()
+        env:
+          EXEC_FILE: ${{ steps.claude.outputs.execution_file || '/home/runner/work/_temp/claude-execution-output.json' }}
+        run: |
+          [ -f "$EXEC_FILE" ] || { echo "실행 기록 없음"; exit 0; }
+          node -e '
+            const fs = require("fs"); const raw = fs.readFileSync(process.env.EXEC_FILE, "utf8");
+            let msgs; try { msgs = JSON.parse(raw); } catch { msgs = raw.split("\n").filter(Boolean).map(l => JSON.parse(l)); }
+            const cut = (s, n) => String(s).replace(/\s+/g, " ").slice(0, n);
+            for (const m of msgs) {
+              if (m.type === "assistant") for (const c of m.message.content || []) {
+                if (c.type === "text") console.log("[말]", cut(c.text, 700));
+                else if (c.type === "tool_use") console.log("[도구]", c.name, cut(JSON.stringify(c.input), 160));
+              } else if (m.type === "result") {
+                console.log("[결과]", JSON.stringify({ turns: m.num_turns, denials: m.permission_denials_count, cost: m.total_cost_usd, error: m.is_error }));
+                for (const d of m.permission_denials || []) console.log("  [권한 거부]", d.tool_name, cut(JSON.stringify(d.tool_input), 200));
+                if (m.result) console.log("[마지막 말]", cut(m.result, 1500));
+              }
+            }'
+      - name: 검증
+        run: |
+          node scripts/validate-cases.mjs
+          npm run check
+          git status --short
+      - name: 커밋 (검증 통과 시, 실행한 브랜치에 바로)
+        shell: bash
+        env:
+          TITLE: ${{ inputs.topic }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cases.json index.html
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "과거사례 글 작성: $TITLE"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "푸시 완료"; exit 0; fi
+            sleep 5
+          done
+          echo "푸시 실패"; exit 1
