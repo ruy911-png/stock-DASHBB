@@ -800,7 +800,7 @@
             <sc-if value="{{ hasCaseMsg }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12px; color:#8C8C9E; max-width:280px; text-align:right; line-height:1.4;">{{ caseMsg }}</div>
             </sc-if>
-            <div onclick="{{ onOpenCaseAdd }}" title="제목·기간을 넣으면 코드가 지수 통계를 계산하고 Claude가 웹검색으로 타임라인을 씁니다 (GitHub Actions, 몇 분)" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">＋ 사례 추가</div>
+            <div onclick="{{ onOpenCaseAdd }}" title="토픽을 넣으면 Claude가 웹검색으로 기간을 정하고 코드가 지수 통계를 계산한 뒤 타임라인을 씁니다 (GitHub Actions, 몇 분)" style="background:#6B62F0; color:#fff; height:44px; padding:0 20px; border-radius:13px; display:flex; align-items:center; gap:6px; box-shadow:0 6px 18px rgba(107,98,240,.32); cursor:pointer; font-weight:800; font-size:14px; white-space:nowrap;">＋ 사례 추가</div>
           </div>
         </div>
         <sc-if value="{{ ghTokenOpen }}" hint-placeholder-val="{{ false }}">
@@ -814,17 +814,21 @@
             </div>
           </div>
         </sc-if>
-        <!-- ＋ 사례 추가(사용자 결정 2026-10-12): 제목·기간만 넣으면 case-study.yml이 코드 통계 + Claude 웹검색 타임라인을 만들어 data/cases.json에 커밋 -->
+        <!-- ＋ 사례 추가(사용자 결정 2026-10-12): 토픽 한 줄만 넣으면 case-study.yml이 Claude 웹검색으로 기간을 정하고(근거 링크 기록) 코드 통계 + 타임라인을 만들어 data/cases.json에 커밋. 날짜는 '접어 둔' 선택 칸(기간이 틀렸을 때 직접 지정) -->
         <sc-if value="{{ caseAddOpen }}" hint-placeholder-val="{{ false }}">
           <div style="background:#fff; border:1.5px solid #D9D5FB; border-radius:16px; padding:14px 16px; margin-bottom:14px;">
-            <div style="font-size:14px; font-weight:800; color:#16161D;">사례를 자동으로 만들까요?</div>
-            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">제목과 기간을 넣으면 코드가 KOSPI·S&amp;P500의 최대 낙폭·저점·회복 기간을 계산하고, Claude가 웹검색으로 뉴스 타임라인(출처 링크 포함)을 씁니다. 몇 분 걸리고, 끝나면 목록에 생깁니다.</div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px; margin-top:10px;">
-              <input oninput="{{ onCsTitle }}" value="{{ cs_title }}" placeholder="제목 (예: 10년물 미국채 5% 이상 고금리 환경)" style="grid-column:1 / -1; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
-              <input oninput="{{ onCsStart }}" value="{{ cs_start }}" placeholder="시작일 2026-08-18" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
-              <input oninput="{{ onCsEnd }}" value="{{ cs_end }}" placeholder="끝 (비우면 진행 중)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
-              <input oninput="{{ onCsEvent }}" value="{{ cs_event }}" placeholder="사건일 (비우면 시작일)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
-            </div>
+            <div style="font-size:14px; font-weight:800; color:#16161D;">토픽을 던지면 사례를 만듭니다</div>
+            <div style="font-size:12px; color:#8C8C9E; margin-top:4px; line-height:1.5;">Claude가 웹검색으로 기간을 정하고(근거 기사 기록), 코드가 KOSPI·S&amp;P500의 최대 낙폭·저점·회복 기간을 계산한 뒤 뉴스 타임라인(출처 링크 포함)을 씁니다. 몇 분 걸리고, 끝나면 목록에 생깁니다.</div>
+            <input oninput="{{ onCsTitle }}" value="{{ cs_title }}" placeholder="토픽 (예: 10년물 미국채 5% 이상 고금리 환경)" style="display:block; width:100%; box-sizing:border-box; margin-top:10px; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+            <div onclick="{{ toggleCsDates }}" style="font-size:12px; color:#6B62F0; font-weight:700; margin-top:8px; cursor:pointer; user-select:none;">{{ csDatesLabel }}</div>
+            <sc-if value="{{ csDatesOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:8px; margin-top:8px;">
+                <input oninput="{{ onCsStart }}" value="{{ cs_start }}" placeholder="시작일 2026-08-18" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+                <input oninput="{{ onCsEnd }}" value="{{ cs_end }}" placeholder="끝 (비우면 진행 중)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+                <input oninput="{{ onCsEvent }}" value="{{ cs_event }}" placeholder="사건일 (비우면 시작일)" style="box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:11px; padding:10px 13px; font-size:14px; font-family:inherit; background:#FAFAFD;">
+              </div>
+              <div style="font-size:11px; color:#A0A0B0; margin-top:6px; line-height:1.5;">시작일을 넣으면 Claude가 기간을 정하지 않고 이 날짜로 계산합니다.</div>
+            </sc-if>
             <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
               <div onclick="{{ submitCaseStudy }}" style="background:#6B62F0; color:#fff; padding:10px 16px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">사례 요청</div>
               <div onclick="{{ cancelCaseAdd }}" style="background:#F3F3F8; color:#4A4A5E; padding:10px 14px; border-radius:11px; cursor:pointer; font-weight:800; font-size:13.5px; white-space:nowrap;">취소</div>
@@ -914,6 +918,9 @@
               </div>
               <div style="font-size:10.5px; color:#B7B7C6; margin-top:6px; line-height:1.5;">{{ caseLegend }}</div>
             </div>
+            <sc-if value="{{ hasCasePeriod }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:12px; color:#56566A; margin-top:12px; line-height:1.55;">기간 근거: {{ casePeriod }} <a href="{{ casePeriodUrl }}" target="_blank" rel="noopener" style="color:#6B62F0; font-weight:700; text-decoration:none; white-space:nowrap;">출처 보기 ›</a></div>
+            </sc-if>
             <div style="font-size:11.5px; color:#8C8C9E; margin-top:12px; line-height:1.55;">기준: {{ caseBasis }}</div>
             <sc-if value="{{ hasCaseCompare }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:12.5px; color:#56566A; margin-top:8px; line-height:1.55; padding:10px 12px; background:#F7F7FB; border-radius:10px;">{{ caseCompare }}</div>
@@ -1582,7 +1589,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', casesData: null, caseAddOpen: false, cs_title: '', cs_start: '', cs_end: '', cs_event: '', caseMsg: '', caseBusy: false, refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', casesData: null, caseAddOpen: false, csDatesOpen: false, cs_title: '', cs_start: '', cs_end: '', cs_event: '', caseMsg: '', caseBusy: false, refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null, peekFull: (() => { try { return localStorage.getItem("stockking_peek_full") === "1"; } catch (e) { return false; } })(),
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -1730,12 +1737,14 @@ class Component extends DCLogic {
     } catch (e) {}
   }
   submitCaseStudy() {
+    // 사용자 결정 2026-10-12: 토픽만 필수. 날짜는 접어 둔 선택 칸 — 시작일을 넣으면 그 기간으로, 비우면 Claude가 웹검색으로 기간을 정한다
     const s = this.state, d = /^\d{4}-\d{2}-\d{2}$/;
-    const title = String(s.cs_title || '').trim(), start = String(s.cs_start || '').trim(), end = String(s.cs_end || '').trim(), event = String(s.cs_event || '').trim();
-    if (!title || !d.test(start)) { this.setState({ caseMsg: '제목과 시작일(YYYY-MM-DD)을 넣어 주세요' }); return; }
-    if ((end && !d.test(end)) || (event && !d.test(event))) { this.setState({ caseMsg: '날짜는 YYYY-MM-DD 형식으로' }); return; }
+    const topic = String(s.cs_title || '').trim(), start = String(s.cs_start || '').trim(), end = String(s.cs_end || '').trim(), event = String(s.cs_event || '').trim();
+    if (!topic) { this.setState({ caseMsg: '토픽을 넣어 주세요' }); return; }
+    if ((start && !d.test(start)) || (end && !d.test(end)) || (event && !d.test(event))) { this.setState({ caseMsg: '날짜는 YYYY-MM-DD 형식으로' }); return; }
+    if (!start && (end || event)) { this.setState({ caseMsg: '끝·사건일을 넣으려면 시작일도 넣어 주세요' }); return; }
     this.setState({ caseAddOpen: false });
-    this.runWorkflow({ file: 'case-study.yml', inputs: { title, start, end, event }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: title + ' — 몇 분', onDone: () => this.loadCases(Date.now()) });
+    this.runWorkflow({ file: 'case-study.yml', inputs: { topic, start, end, event }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: topic + ' — 몇 분', onDone: () => this.loadCases(Date.now()) });
   }
 
   profileView(code) {
@@ -3563,7 +3572,7 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         summary: c.summary || '통계만 등록됨 — 글은 작성 중이거나 실패', legacy: false, isOngoing: c.status === 'ongoing',
         stats: [stat('KOSPI', '#6B62F0', ix.KOSPI), stat('S&P500', '#8C8C9E', ix.SP500)],
         series: (!K.error && K.series) ? K.series.map(p => p.v) : null, series2: (!S.error && S.series) ? S.series.map(p => p.v) : null,
-        eventIdx: K.event_idx || 0, start: c.start, end: c.end || '진행 중', timeline: c.timeline || [], compare: c.compare || '',
+        eventIdx: K.event_idx || 0, start: c.start, end: c.end || '진행 중', timeline: c.timeline || [], compare: c.compare || '', periodBasis: c.period_basis || '', periodUrl: c.period_url || '',
         basis: 'KOSPI·S&P500 지수 종가 ' + c.start + ' ~ ' + (c.end || '오늘') + ' · 코드 계산(yfinance) · 과거 통계이며 예측이 아님' };
     });
     const legacyCases = (this.state.caseAllNotes || this.cases.map(c => ({ ...c }))).map((c, i) => ({
@@ -3930,9 +3939,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       caseEventX: cp.sx(Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)).toFixed(1),
       caseEventY: cp.sy((cs.series || [100])[Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)]).toFixed(1),
       caseStart: cs.start, caseEnd: cs.end,
-      caseTimeline, caseBasis: cs.basis, caseCompare: cs.compare, hasCaseCompare: !!cs.compare,
+      caseTimeline, caseBasis: cs.basis, caseCompare: cs.compare, hasCaseCompare: !!cs.compare, casePeriod: cs.periodBasis || '', casePeriodUrl: cs.periodUrl || '', hasCasePeriod: !!cs.periodBasis,
       caseLegend: cs.legacy ? '선: 예시 모양' : '보라 실선 KOSPI · 회색 점선 S&P500 (기간 첫 주 = 100, 주봉 종가)',
-      caseAddOpen: this.state.caseAddOpen, cs_title: this.state.cs_title, cs_start: this.state.cs_start, cs_end: this.state.cs_end, cs_event: this.state.cs_event,
+      caseAddOpen: this.state.caseAddOpen, csDatesOpen: this.state.csDatesOpen, csDatesLabel: (this.state.csDatesOpen ? '▾' : '▸') + ' 날짜 직접 지정 (선택)', toggleCsDates: () => this.setState({ csDatesOpen: !this.state.csDatesOpen }), cs_title: this.state.cs_title, cs_start: this.state.cs_start, cs_end: this.state.cs_end, cs_event: this.state.cs_event,
       onCsTitle: e => this.setF('cs_title', e.target.value), onCsStart: e => this.setF('cs_start', e.target.value), onCsEnd: e => this.setF('cs_end', e.target.value), onCsEvent: e => this.setF('cs_event', e.target.value),
       onOpenCaseAdd: () => this.setState({ caseAddOpen: true }), cancelCaseAdd: () => this.setState({ caseAddOpen: false }), submitCaseStudy: () => this.submitCaseStudy(),
       caseMsg: this.state.caseMsg, hasCaseMsg: !!this.state.caseMsg,

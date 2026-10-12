@@ -1,18 +1,19 @@
-# 과거사례 Study 자동 생성 — 사용자 결정(2026-10-12): 페이지의 '＋ 사례 추가'(제목·기간 입력)가 이 워크플로를 실행하면
-# ① 코드(scripts/case-stats.py)가 KOSPI·S&P500 일봉으로 최대 낙폭·저점/회복 기간·주봉 시리즈를 계산해 data/cases.json에 먼저 커밋하고
-# ② Claude Code(.claude/skills/case-study)가 웹검색으로 그 기간의 뉴스 타임라인(출처 링크 필수)·요약·태그를 쓴다 ③ 검증 통과 시 main에 바로 커밋.
-# 숫자는 코드만, 글은 Claude. 권유·전망 표현은 검증기가 막는다. 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(refresh-analyses와 같음).
+# 과거사례 Study 자동 생성 — 사용자 결정(2026-10-12): 페이지의 '＋ 사례 추가'에 토픽 한 줄만 넣으면 이 워크플로가
+# ① Claude Code(.claude/skills/case-study)가 웹검색으로 기간(시작·끝·사건일)을 정해 근거 링크를 기록하고 scripts/case-stats.py를 돌려
+#    KOSPI·S&P500 일봉 통계(최대 낙폭·저점/회복 기간·주봉 시리즈)를 계산(숫자는 코드만) ② 같은 단계에서 뉴스 타임라인(출처 링크 필수)·요약·태그를 쓰고
+# ③ 검증 통과 시 main에 바로 커밋. 날짜(선택)를 직접 넣으면 Claude 전에 코드가 통계를 먼저 계산해 커밋한다(기간이 틀렸을 때 다시 지정하는 용도).
+# 권유·전망 표현은 검증기가 막는다. 인증: Secret CLAUDE_CODE_OAUTH_TOKEN(refresh-analyses와 같음).
 name: case-study
 on:
   workflow_dispatch:
     inputs:
-      title:
-        description: "사례 제목 (예: 10년물 미국채 5% 이상 고금리 환경)"
+      topic:
+        description: "토픽 (예: 10년물 미국채 5% 이상 고금리 환경) — 기간은 Claude가 웹검색으로 정함"
         required: true
         type: string
       start:
-        description: "기간 시작 YYYY-MM-DD"
-        required: true
+        description: "기간 시작 YYYY-MM-DD (선택 — 넣으면 Claude가 기간을 정하지 않고 이 날짜로 계산)"
+        default: ""
         type: string
       end:
         description: "기간 끝 YYYY-MM-DD (비우면 진행 중 = 오늘까지)"
@@ -43,24 +44,26 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install yfinance==1.7.0 pandas==3.0.6 numpy==2.4.6
-      - name: 사례 통계 계산 (코드)
+      - run: python3 scripts/case-stats.py --selftest
+      - name: 사례 통계 계산 (코드, 날짜를 직접 넣었을 때만)
         id: stats
+        if: inputs.start != ''
         shell: bash
         env: # 입력은 env로 받아 따옴표 등 특수문자가 셸을 깨지 않게
-          TITLE: ${{ inputs.title }}
+          TITLE: ${{ inputs.topic }}
           START: ${{ inputs.start }}
           END: ${{ inputs.end }}
           EVENT: ${{ inputs.event }}
         run: |
-          python3 scripts/case-stats.py --selftest
           CASE_ID="$(python3 -c "import os, importlib.util as u; s=u.spec_from_file_location('cs','scripts/case-stats.py'); m=u.module_from_spec(s); s.loader.exec_module(m); print(m.make_id(os.environ['TITLE'], os.environ['START']))")"
           echo "case_id=$CASE_ID" >> "$GITHUB_OUTPUT"
           python3 scripts/case-stats.py --id "$CASE_ID" --title "$TITLE" --start "$START" --end "$END" --event "$EVENT"
           node scripts/validate-cases.mjs
-      - name: 통계 먼저 커밋 (Claude 단계와 무관하게 등록)
+      - name: 통계 먼저 커밋 (날짜를 직접 넣었을 때 — Claude 단계와 무관하게 등록)
+        if: inputs.start != ''
         shell: bash
         env:
-          TITLE: ${{ inputs.title }}
+          TITLE: ${{ inputs.topic }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -86,10 +89,10 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ github.token }}
-          prompt: "/case-study ${{ steps.stats.outputs.case_id }}"
+          prompt: "/case-study topic=${{ inputs.topic }} | id=${{ steps.stats.outputs.case_id }} | start=${{ inputs.start }} | end=${{ inputs.end }} | event=${{ inputs.event }}"
           claude_args: |
-            --max-turns 40
-            --allowedTools "Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(node scripts/validate-cases.mjs),Bash(date *)"
+            --max-turns 50
+            --allowedTools "Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(python3 scripts/case-stats.py *),Bash(npm run build),Bash(node scripts/validate-cases.mjs),Bash(date *)"
       - name: Claude 실행 요약 (말·도구 호출·권한 거부)
         if: always()
         env:
@@ -118,7 +121,7 @@ jobs:
       - name: 커밋 (검증 통과 시, 실행한 브랜치에 바로)
         shell: bash
         env:
-          TITLE: ${{ inputs.title }}
+          TITLE: ${{ inputs.topic }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -25,7 +25,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "cases.json"
 INDICES = {"KOSPI": "^KS11", "SP500": "^GSPC"}  # 사용자 결정 2026-10-12: 둘 다 계산
-TEXT_FIELDS = ("summary", "tag", "timeline", "compare", "written_at")  # Claude가 쓰는 칸 — 재계산 때 보존
+TEXT_FIELDS = ("summary", "tag", "timeline", "compare", "period_basis", "period_url", "written_at")  # Claude가 쓰는 칸 — 재계산 때 보존
 
 
 def make_id(title: str, start: str) -> str:

@@ -44,6 +44,11 @@ if (!fs.existsSync(dataPath)) {
       texts.push(it.summary); written++;
     }
     if (it.tag != null && (typeof it.tag !== 'string' || it.tag.length > 12)) fail(`${at}.tag는 12자 이내여야 합니다.`);
+    if (it.period_basis != null) { // 토픽만 받았을 때 Claude가 정한 기간의 근거(한 줄 + 기사 링크, 사용자 결정 2026-10-12)
+      if (typeof it.period_basis !== 'string' || !it.period_basis.trim() || it.period_basis.length > 160) fail(`${at}.period_basis는 160자 이내여야 합니다.`);
+      if (typeof it.period_url !== 'string' || !/^https?:\/\//.test(it.period_url)) fail(`${at}.period_url(기간 근거 링크)이 필요합니다.`);
+      texts.push(it.period_basis);
+    }
     if (it.compare != null) { if (typeof it.compare !== 'string' || it.compare.length > 160) fail(`${at}.compare는 160자 이내여야 합니다.`); texts.push(it.compare); }
     if (it.timeline != null) {
       if (!Array.isArray(it.timeline) || !it.timeline.length || it.timeline.length > 8) fail(`${at}.timeline은 1~8개여야 합니다.`);
