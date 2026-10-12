@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.12",
+      "krDate": "2026-10-12",
+      "usDate": "2026-10-09",
+      "wtiDate": "2026-10-09",
+      "collectedAt": "2026-10-12T08:19:55.836Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,384.24",
+          "chg": -3.65
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "849.19",
+          "chg": -4.83
+        },
+        {
+          "name": "원/달러",
+          "value": "1,332.70",
+          "chg": -0.84
+        },
+        {
+          "name": "S&P500",
+          "value": "7,811.54",
+          "chg": 0.59
+        },
+        {
+          "name": "나스닥",
+          "value": "27,366.17",
+          "chg": 0.64
+        },
+        {
+          "name": "VIX",
+          "value": "14.84",
+          "chg": -3.7
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,572.42",
+          "chg": -0.41
+        },
+        {
+          "name": "WTI",
+          "value": "91.85",
+          "chg": 0.39
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -20154
+        },
+        {
+          "name": "기관",
+          "amount": -1216
+        },
+        {
+          "name": "개인",
+          "amount": 14749
+        }
+      ],
+      "comment": "외국인 대규모 순매도에 반도체까지 밀리며 낙폭 확대",
+      "keywords": [
+        "코스피 하락",
+        "한국은행 총재",
+        "자동출입국심사",
+        "코스피 급락",
+        "탑승객 1000만",
+        "제주항공 탑승객"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-12T16:00:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5092"
+        }
+      }
+    },
+    {
       "date": "10.8",
       "krDate": "2026-10-08",
       "usDate": "2026-10-07",
