@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.13",
+      "krDate": "2026-10-13",
+      "usDate": "2026-10-12",
+      "wtiDate": "2026-10-12",
+      "collectedAt": "2026-10-13T06:51:03.254Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,035.35",
+          "chg": -5.46
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "837.03",
+          "chg": -1.43
+        },
+        {
+          "name": "원/달러",
+          "value": "1,343.00",
+          "chg": 0.52
+        },
+        {
+          "name": "S&P500",
+          "value": "7,807.24",
+          "chg": -0.06
+        },
+        {
+          "name": "나스닥",
+          "value": "27,245.90",
+          "chg": -0.44
+        },
+        {
+          "name": "VIX",
+          "value": "15.21",
+          "chg": 2.49
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,236.79",
+          "chg": -2.67
+        },
+        {
+          "name": "WTI",
+          "value": "93.74",
+          "chg": 2.06
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -43836
+        },
+        {
+          "name": "기관",
+          "amount": 15333
+        },
+        {
+          "name": "개인",
+          "amount": 22522
+        }
+      ],
+      "comment": "중국 CXMT발 메모리 경쟁 우려 확산, 외국인 매도에 코스피 6000선 붕괴",
+      "keywords": [
+        "코스피 급락",
+        "로봇 퍼포먼스",
+        "코스피 하락",
+        "코스피 6000선",
+        "휴머노이드",
+        "포켓몬 카드"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-13T15:00:29+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5115"
+        }
+      }
+    },
+    {
       "date": "10.12",
       "krDate": "2026-10-12",
       "usDate": "2026-10-09",
