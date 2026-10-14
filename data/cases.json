@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T10:24:15Z",
+  "generated_at": "2026-10-14T10:08:32Z",
   "items": {
     "c20231019-7148d8": {
       "id": "c20231019-7148d8",
@@ -154,6 +154,79 @@
             {
               "d": "2023-12-15",
               "v": 111.43
+            }
+          ],
+          "event_idx": 0
+        }
+      }
+    },
+    "c20240731-cc4bee": {
+      "id": "c20240731-cc4bee",
+      "title": "엔캐리 트레이드",
+      "start": "2024-07-31",
+      "end": "2024-08-07",
+      "event": "2024-08-05",
+      "tag": "엔캐리 청산",
+      "summary": "2024-07-31 일본은행 금리 인상과 미국 7월 고용 부진이 겹치며 엔화가 급등했다. 8-05 닛케이 12%대, 코스피 8%대 급락 뒤 8-07 일본은행 부총재의 금리 인상 보류 발언으로 엔 강세가 되돌려졌다.",
+      "compare": "현재: 2026년에도 일본은행 금리 인상에 따른 엔캐리 청산 우려가 거론되나 사례로 만들지 않음",
+      "period_basis": "2024-07-31 BOJ 0.25% 인상 → 8-05 글로벌 급락 → 8-07 우치다 부총재 '시장 불안 시 인상 안 한다' 발언으로 엔 강세 진정",
+      "period_url": "https://benzinga.com/z/40209754",
+      "written_at": "2026-10-14",
+      "timeline": [
+        {"date": "2024-07-31", "sentiment": "악재", "label": "일본은행 기준금리 0.25%로 인상", "desc": "위원 7-2로 인상, 국채 매입 축소 계획도 발표. 엔화가 달러 대비 급등.", "url": "https://abcnews.go.com/US/wireStory/japans-central-bank-raises-benchmark-rate-025-aiming-112427813"},
+        {"date": "2024-08-02", "sentiment": "악재", "label": "미국 7월 고용 11.4만 명, 실업률 4.3%", "desc": "예상(18.5만 명)을 크게 밑돌아 경기침체 우려 확산, 증시 하락.", "url": "https://abc7news.com/post/disappointing-jobs-report-fuels-recession-worries-calls-interest-rate-cut/15136729/"},
+        {"date": "2024-08-05", "sentiment": "악재", "label": "닛케이 12% 급락, 코스피 사이드카", "desc": "엔화 강세로 캐리 포지션 청산이 번지며 글로벌 증시 급락. 코스피 -8.77%.", "url": "https://csmonitor.com/World/2024/0806/stock-market-recession-carry-trade"},
+        {"date": "2024-08-06", "sentiment": "호재", "label": "코스피 3.3% 반등, 매수 사이드카", "desc": "전날 역대 최대 하락폭 뒤 기술적 반등. 오후 들어 상승폭은 축소.", "url": "https://mobile.newsis.com/view/NISX20240806_0002839378"},
+        {"date": "2024-08-07", "sentiment": "호재", "label": "우치다 부총재 \"불안한 시장에선 인상 안 해\"", "desc": "발언 직후 엔화 2% 넘게 약세, 일본 증시 반등. 추가 인상 기대 후퇴.", "url": "https://benzinga.com/z/40209754"}
+      ],
+      "status": "closed",
+      "source": "yfinance 지수 일봉(^KS11·^GSPC), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
+      "computed_at": "2026-10-14T10:08:32Z",
+      "indices": {
+        "KOSPI": {
+          "bars": 6,
+          "first_date": "2024-07-31",
+          "last_date": "2024-08-07",
+          "peak_date": "2024-08-01",
+          "peak": 2777.68,
+          "bottom_date": "2024-08-05",
+          "bottom": 2441.55,
+          "drawdown_pct": -12.1,
+          "days_to_bottom": 4,
+          "recovery_date": null,
+          "days_to_recover": null,
+          "series": [
+            {
+              "d": "2024-08-02",
+              "v": 100.0
+            },
+            {
+              "d": "2024-08-09",
+              "v": 95.97
+            }
+          ],
+          "event_idx": 0
+        },
+        "SP500": {
+          "bars": 6,
+          "first_date": "2024-07-31",
+          "last_date": "2024-08-07",
+          "peak_date": "2024-07-31",
+          "peak": 5522.3,
+          "bottom_date": "2024-08-05",
+          "bottom": 5186.33,
+          "drawdown_pct": -6.08,
+          "days_to_bottom": 5,
+          "recovery_date": null,
+          "days_to_recover": null,
+          "series": [
+            {
+              "d": "2024-08-02",
+              "v": 100.0
+            },
+            {
+              "d": "2024-08-09",
+              "v": 97.25
             }
           ],
           "event_idx": 0
