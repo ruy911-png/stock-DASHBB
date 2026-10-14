@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.14",
+      "krDate": "2026-10-14",
+      "usDate": "2026-10-13",
+      "wtiDate": "2026-10-13",
+      "collectedAt": "2026-10-14T10:06:15.453Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,008.81",
+          "chg": -0.44
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "823.88",
+          "chg": -1.57
+        },
+        {
+          "name": "원/달러",
+          "value": "1,336.00",
+          "chg": -0.52
+        },
+        {
+          "name": "S&P500",
+          "value": "7,805.45",
+          "chg": -0.02
+        },
+        {
+          "name": "나스닥",
+          "value": "27,204.38",
+          "chg": -0.15
+        },
+        {
+          "name": "VIX",
+          "value": "15.27",
+          "chg": 0.39
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "12,208.80",
+          "chg": -0.23
+        },
+        {
+          "name": "WTI",
+          "value": "94.14",
+          "chg": 0.43
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -11723
+        },
+        {
+          "name": "기관",
+          "amount": 7939
+        },
+        {
+          "name": "개인",
+          "amount": -3098
+        }
+      ],
+      "comment": "ASML 실적 눈높이 조정에 반도체가 밀리며 6000선 흔들림",
+      "keywords": [
+        "반도체대전",
+        "HBM4E",
+        "코스피",
+        "메모리 기술",
+        "부동산 거래량",
+        "메모리 혁신"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-14T18:01:02+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5142"
+        }
+      }
+    },
+    {
       "date": "10.13",
       "krDate": "2026-10-13",
       "usDate": "2026-10-12",
