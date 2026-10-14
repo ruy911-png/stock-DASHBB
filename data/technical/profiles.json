@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T03:45:04Z",
+  "generated_at": "2026-10-14T10:08:49Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -146,7 +146,7 @@
       "name": "코인베이스",
       "market": "us",
       "symbol": "COIN",
-      "as_of": "2026-10-09",
+      "as_of": "2026-10-13",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -160,37 +160,37 @@
       ],
       "metrics": {
         "years": 1.99,
-        "surge_days": 13,
-        "surge_per_year": 6.5,
+        "surge_days": 12,
+        "surge_per_year": 6.0,
         "crash_days": 8,
         "limit_up_days": null,
         "limit_down_days": null,
-        "after_surge_n": 13,
-        "after_surge_5d_mean_pct": 3.19,
-        "after_surge_5d_pos_rate": 0.54,
-        "after_surge_20d_mean_pct": 14.76,
-        "after_surge_20d_pos_rate": 0.58,
+        "after_surge_n": 12,
+        "after_surge_5d_mean_pct": 2.72,
+        "after_surge_5d_pos_rate": 0.5,
+        "after_surge_20d_mean_pct": 10.18,
+        "after_surge_20d_pos_rate": 0.55,
         "above_ma60_pct_1y": 0.3,
         "ma60_cross_count_1y": 22,
         "autocorr_1d_1y": -0.08,
-        "ret_1y_pct": -53.68,
+        "ret_1y_pct": -49.08,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 72.25,
-        "max_drawdown_1y_pct": -63.54,
+        "vol_annual_pct_1y": 71.86,
+        "max_drawdown_1y_pct": -60.96,
         "gap3_days_rate_1y": 0.23,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
-        "upper_shadow_days_rate_1y": 0.15,
+        "upper_shadow_days_rate_1y": 0.16,
         "close_position_mean_1y": 0.45,
-        "top5_gain_share_pct_1y": 16.64
+        "top5_gain_share_pct_1y": 16.58
       },
       "notes": [
-        "2년 급등일(+10%↑) 13회(연 6.5회), 급락일(−10%↓) 8회",
-        "급등 뒤 5거래일 평균 +3.2%, 플러스 비율 54% · 20거래일 평균 +14.8% (표본 13회)",
-        "최근 1년 60일선 위 30%(교차 22회), 1년 수익률 -53.7%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
-        "연환산 변동성 72%, 1년 최대 낙폭 -63.5%, 3%↑ 갭 발생일 23%",
+        "2년 급등일(+10%↑) 12회(연 6.0회), 급락일(−10%↓) 8회",
+        "급등 뒤 5거래일 평균 +2.7%, 플러스 비율 50% · 20거래일 평균 +10.2% (표본 12회)",
+        "최근 1년 60일선 위 30%(교차 22회), 1년 수익률 -49.1%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
+        "연환산 변동성 72%, 1년 최대 낙폭 -61.0%, 3%↑ 갭 발생일 23%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
-        "윗꼬리 긴 날 15%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
+        "윗꼬리 긴 날 16%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "353200": {
