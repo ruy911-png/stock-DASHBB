@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.15",
+      "krDate": "2026-10-15",
+      "usDate": "2026-10-14",
+      "wtiDate": "2026-10-14",
+      "collectedAt": "2026-10-15T07:15:32.588Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,554.22",
+          "chg": -7.57
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "760.82",
+          "chg": -7.65
+        },
+        {
+          "name": "원/달러",
+          "value": "1,341.70",
+          "chg": -0.1
+        },
+        {
+          "name": "S&P500",
+          "value": "7,718.94",
+          "chg": -1.11
+        },
+        {
+          "name": "나스닥",
+          "value": "26,692.87",
+          "chg": -1.88
+        },
+        {
+          "name": "VIX",
+          "value": "16.87",
+          "chg": 10.48
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,684.38",
+          "chg": -4.3
+        },
+        {
+          "name": "WTI",
+          "value": "95.09",
+          "chg": 1.01
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -36254
+        },
+        {
+          "name": "기관",
+          "amount": 16907
+        },
+        {
+          "name": "개인",
+          "amount": 12923
+        }
+      ],
+      "comment": "미국발 AI 투자 우려에 반도체 투매, 서킷브레이커 동시 발동",
+      "keywords": [
+        "서킷 브레이커",
+        "K-뷰티엑스포",
+        "서울 아파트값",
+        "가계대출",
+        "개인정보 유출",
+        "코스피 급락"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-15T16:00:58+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5164"
+        }
+      }
+    },
+    {
       "date": "10.14",
       "krDate": "2026-10-14",
       "usDate": "2026-10-13",
