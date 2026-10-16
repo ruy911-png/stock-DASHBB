@@ -1,0 +1,79 @@
+# 과거사례 수정·삭제·재계산 — 사용자 결정(2026-10-15): 페이지의 ✏/✕는 브라우저가 아니라 저장소(data/cases.json)에 커밋한다.
+# 페이지 → workflow_dispatch(id, action, payload) → scripts/case-edit.mjs가 글·날짜만 고치고, 날짜가 바뀌었거나 action=recalc면
+# scripts/case-stats.py로 KOSPI·S&P500 숫자를 다시 계산(숫자는 코드만) → 검증 통과 시 main에 바로 커밋. Claude·Secret 불필요.
+name: case-edit
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "사례 id (data/cases.json items 키, 예: c20240731-cc4bee)"
+        required: true
+        type: string
+      action:
+        description: "update | delete | recalc"
+        required: true
+        default: update
+        type: string
+      payload:
+        description: "update일 때 JSON: {title, tag, summary, compare, period_basis, period_url, timeline:[{date,sentiment,label,desc,url}], start, end, event}"
+        default: "{}"
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: case-study
+  cancel-in-progress: false
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 글·날짜 수정 (또는 삭제·재계산 표시)
+        id: edit
+        env: # 입력은 env로 받아 따옴표 등 특수문자가 셸을 깨지 않게
+          CASE_ID: ${{ inputs.id }}
+          ACTION: ${{ inputs.action }}
+          PAYLOAD: ${{ inputs.payload }}
+        run: node scripts/case-edit.mjs
+      - uses: actions/setup-python@v5
+        if: steps.edit.outputs.recalc == 'true'
+        with:
+          python-version: "3.11"
+      - name: 숫자 재계산 (날짜가 바뀌었거나 recalc)
+        if: steps.edit.outputs.recalc == 'true'
+        shell: bash
+        env:
+          CASE_ID: ${{ inputs.id }}
+          TITLE: ${{ steps.edit.outputs.title }}
+          START: ${{ steps.edit.outputs.start }}
+          END: ${{ steps.edit.outputs.end }}
+          EVENT: ${{ steps.edit.outputs.event }}
+        run: |
+          pip install -q yfinance==1.7.0 pandas==3.0.6 numpy==2.4.6
+          python3 scripts/case-stats.py --selftest
+          python3 scripts/case-stats.py --id "$CASE_ID" --title "$TITLE" --start "$START" --end "$END" --event "$EVENT"
+      - name: 검증·빌드
+        run: |
+          node scripts/validate-cases.mjs
+          npm run build
+          npm run check
+      - name: 커밋 (검증 통과 시, 실행한 브랜치에 바로)
+        shell: bash
+        env:
+          ACTION: ${{ inputs.action }}
+          CASE_ID: ${{ inputs.id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cases.json index.html
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "과거사례 $ACTION: $CASE_ID"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "푸시 완료"; exit 0; fi
+            sleep 5
+          done
+          echo "푸시 실패"; exit 1

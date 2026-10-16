@@ -2,8 +2,9 @@
 """과거사례 Study — 사례 기간의 지수 통계를 코드로 계산한다 (사용자 결정 2026-10-12: 숫자는 코드만, 글은 Claude).
 
 KOSPI(^KS11)·S&P500(^GSPC) 일봉(야후, 분할 보정 없음 = 지수)으로 사례 기간 안의 최대 낙폭(고점→저점), 고점→저점 일수,
-저점→고점 회복 일수(회복 전이면 null = 진행 중), 주봉 종가 시리즈(차트용, 시작=100)를 계산해 data/cases.json의 items[id]에
-넣는다. 글(summary·tag·timeline·compare)은 Claude 단계(.claude/skills/case-study)가 채우며 이 스크립트는 건드리지 않는다.
+저점→고점 회복 일수를 계산해 data/cases.json의 items[id]에 넣는다. 회복은 사례 기간이 끝난 뒤에도 오늘까지 추적한다
+(사용자 지적 2026-10-15: 기간을 1주일로 잡은 사례가 "미회복"으로 나옴). 주봉 종가 시리즈(차트용, 시작=100)는 회복일
+(미회복이면 기간 끝 + 60일)까지 그린다. 글(summary·tag·timeline·compare)은 Claude 단계(.claude/skills/case-study)가 채우며 이 스크립트는 건드리지 않는다.
 
 사용: python3 scripts/case-stats.py --id c20220501-rate --title "금리 인상기" --start 2022-05-01 [--end 2023-01-31] [--event 2022-06-15]
       python3 scripts/case-stats.py --selftest   (네트워크 없이 가짜 일봉으로 검사)
@@ -43,7 +44,7 @@ def parse_day(s: str | None) -> date | None:
 
 
 def index_stats(close: pd.Series, start: date, end: date | None, event: date | None) -> dict:
-    """close: 날짜 오름차순 종가(사례 기간 전후 포함). 기간 안 running-max 기준 최대 낙폭과 회복을 계산한다."""
+    """close: 날짜 오름차순 종가(사례 시작 전부터 오늘까지). 낙폭은 기간 안 running-max 기준, 회복은 기간 뒤 오늘까지 추적."""
     win = close[(close.index.date >= start) & (close.index.date <= (end or date.max))]
     if len(win) < 5:
         return {"error": "기간 안 일봉 부족", "bars": int(len(win))}
@@ -55,11 +56,16 @@ def index_stats(close: pd.Series, start: date, end: date | None, event: date | N
     peak = float(run_max.iloc[bottom_i])
     peak_date = win[:bottom_date][win[:bottom_date] == peak].index[0]
     drawdown = float(dd.iloc[bottom_i] * 100)
-    after = win[win.index > bottom_date]
+    after = close[close.index > bottom_date]  # 기간이 끝난 뒤 데이터까지 포함
     rec = after[after >= peak]
     recovery_date = rec.index[0] if len(rec) else None
-    # 차트: 주봉 종가(금요일 기준 마지막 값), 기간 첫 종가 = 100
-    weekly = win.resample("W-FRI").last().dropna()
+    period_end = end or close.index[-1].date()
+    recovered_after_end = bool(recovery_date is not None and recovery_date.date() > period_end)
+    # 차트: 주봉 종가(금요일 기준 마지막 값), 기간 첫 종가 = 100. 회복일(미회복이면 기간 끝 + 60일)까지 연장
+    chart_end = recovery_date.date() if recovery_date is not None else period_end + timedelta(days=60)
+    chart_end = max(chart_end, period_end)
+    span = close[(close.index.date >= start) & (close.index.date <= chart_end)]
+    weekly = span.resample("W-FRI").last().dropna()
     base = float(weekly.iloc[0])  # 첫 주 = 100
     series = [{"d": d.strftime("%Y-%m-%d"), "v": round(float(v) / base * 100, 2)} for d, v in weekly.items()]
     ev = event or start
@@ -73,6 +79,8 @@ def index_stats(close: pd.Series, start: date, end: date | None, event: date | N
         "days_to_bottom": int((bottom_date - peak_date).days),
         "recovery_date": recovery_date.strftime("%Y-%m-%d") if recovery_date is not None else None,
         "days_to_recover": int((recovery_date - bottom_date).days) if recovery_date is not None else None,
+        "recovered_after_end": recovered_after_end,
+        "chart_end": span.index[-1].strftime("%Y-%m-%d"),
         "series": series, "event_idx": ev_idx,
     }
 
@@ -81,7 +89,7 @@ def fetch_closes(start: date, end: date | None) -> dict[str, pd.Series]:
     import yfinance as yf
 
     s = (start - timedelta(days=10)).isoformat()
-    e = ((end or date.today()) + timedelta(days=1)).isoformat()
+    e = (date.today() + timedelta(days=1)).isoformat()  # 회복 추적을 위해 기간 끝과 무관하게 오늘까지 받는다
     raw = yf.download(list(INDICES.values()), start=s, end=e, auto_adjust=False, group_by="ticker",
                       threads=True, progress=False, multi_level_index=True)
     out = {}
@@ -145,10 +153,16 @@ def selftest() -> int:
     assert -35 < k["drawdown_pct"] < -20, k["drawdown_pct"]
     assert k["days_to_bottom"] > 0 and k["recovery_date"] is not None and k["days_to_recover"] > 0
     assert k["series"][0]["v"] == 100.0 and len(k["series"]) > 20 and 0 <= k["event_idx"] < len(k["series"])
-    # 회복 전 구간만 자르면 진행 중(회복 null)
+    # 회복 전 구간만 자르면 회복 null(미회복)
     short = {n: s[s.index.date <= date(2022, 9, 1)] for n, s in closes.items()}
     item2 = build_item("x", "진행 중", start, date(2022, 9, 1), None, short)
     assert item2["indices"]["SP500"]["recovery_date"] is None and item2["status"] == "closed"
+    assert item2["indices"]["SP500"]["chart_end"] == item2["indices"]["SP500"]["last_date"]  # 데이터가 거기까지뿐
+    # 기간을 짧게 잡아도 회복은 기간 뒤 데이터로 추적한다(2026-10-15)
+    item3 = build_item("y", "짧은 기간", start, date(2022, 6, 15), None, closes)
+    k3 = item3["indices"]["KOSPI"]
+    assert k3["recovery_date"] is not None and k3["recovered_after_end"] and k3["recovery_date"] > "2022-06-15", k3
+    assert k3["chart_end"] >= k3["recovery_date"] and k3["series"][-1]["v"] >= 99, (k3["chart_end"], k3["series"][-1])
     # 글 보존
     tmp = ROOT / ".cache" / "cases-selftest.json"
     tmp.parent.mkdir(exist_ok=True)
