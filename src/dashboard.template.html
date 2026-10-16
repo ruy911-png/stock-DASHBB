@@ -811,12 +811,11 @@
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px;">
           <sc-for list="{{ caseCards }}" as="n" hint-placeholder-count="3">
             <div onclick="{{ n.onClick }}" style="background:#fff; border-radius:18px; box-shadow:0 6px 22px rgba(40,40,90,.05); border:1.5px solid {{ n.border }}; padding:18px 18px; position:relative; cursor:pointer;">
-              <sc-if value="{{ n.legacy }}" hint-placeholder-val="{{ false }}">
+              <!-- ✏/✕: 예시 사례는 브라우저 저장, 코드 계산 사례는 case-edit.yml로 저장소에 커밋(사용자 결정 2026-10-15) -->
               <div style="position:absolute; top:12px; right:14px; display:flex; gap:8px;" onclick="{{ n.stopProp }}">
-                <div onclick="{{ n.onEdit }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:2px 5px; background:#F0F0F4; border-radius:7px;">✏</div>
-                <div onclick="{{ n.onDel }}" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:2px 4px;">✕</div>
+                <div onclick="{{ n.onEdit }}" title="{{ n.editTitle }}" style="font-size:12px; color:#9A9AAC; cursor:pointer; padding:2px 5px; background:#F0F0F4; border-radius:7px;">✏</div>
+                <div onclick="{{ n.onDel }}" title="삭제" style="font-size:12px; color:#C4C4D2; cursor:pointer; padding:2px 4px;">✕</div>
               </div>
-              </sc-if>
               <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
                 <div style="font-size:11px; font-weight:800; color:#2F6FED; background:#EAF0FD; padding:4px 9px; border-radius:8px; display:inline-block;">{{ n.tag }}</div>
                 <sc-if value="{{ n.isOngoing }}" hint-placeholder-val="{{ false }}">
@@ -1438,6 +1437,75 @@
   </sc-if>
 
   <!-- ===================== CASE EDIT MODAL ===================== -->
+  <!-- 코드 계산 사례 수정(사용자 결정 2026-10-15): 글·날짜만 고치고 case-edit.yml이 저장소에 커밋. 숫자(낙폭·기간)는 코드가 계산하므로 칸이 없다 -->
+  <sc-if value="{{ dcOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; inset:0; z-index:80; background:rgba(18,18,32,.5); display:flex; align-items:center; justify-content:center; padding:32px;">
+    <div onclick="{{ closeDataCaseEdit }}" style="position:absolute; inset:0;"></div>
+    <div style="position:relative; background:#fff; border-radius:24px; padding:26px 28px 24px; width:620px; max-width:100%; max-height:90vh; overflow:auto; box-shadow:0 30px 80px rgba(20,20,50,.4);">
+      <div style="display:flex; align-items:center; margin-bottom:6px;">
+        <div style="font-size:20px; font-weight:800; flex:1;">사례 수정</div>
+        <div onclick="{{ closeDataCaseEdit }}" style="font-size:14px; color:#9A9AAC; cursor:pointer; font-weight:700;">닫기</div>
+      </div>
+      <div style="font-size:12px; color:#8C8C9E; line-height:1.5; margin-bottom:16px;">저장하면 GitHub에 커밋돼 모든 기기에 반영됩니다(1~2분). 낙폭·기간 숫자는 코드가 계산하므로 여기서 고치지 않고, 날짜를 바꾸면 다시 계산됩니다.</div>
+      <div style="display:grid; grid-template-columns:2fr 1fr; gap:12px; margin-bottom:12px;">
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">제목 *</div>
+          <input oninput="{{ onDcTitle }}" value="{{ dc_title }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">태그 <span style="font-weight:500; color:#B0B0BE;">(12자)</span></div>
+          <input oninput="{{ onDcTag }}" value="{{ dc_tag }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:12px;">
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">시작일 *</div>
+          <input oninput="{{ onDcStart }}" value="{{ dc_start }}" placeholder="YYYY-MM-DD" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">끝 <span style="font-weight:500; color:#B0B0BE;">(비우면 진행 중)</span></div>
+          <input oninput="{{ onDcEnd }}" value="{{ dc_end }}" placeholder="YYYY-MM-DD" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">사건일</div>
+          <input oninput="{{ onDcEvent }}" value="{{ dc_event }}" placeholder="YYYY-MM-DD" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">요약 <span style="font-weight:500; color:#B0B0BE;">(220자, 사실만·권유 금지)</span></div>
+        <textarea oninput="{{ onDcSummary }}" value="{{ dc_summary }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px; min-height:84px; resize:vertical; line-height:1.55;"></textarea>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr; gap:12px; margin-bottom:12px;">
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">비교·현재 <span style="font-weight:500; color:#B0B0BE;">(160자, 선택)</span></div>
+          <input oninput="{{ onDcCompare }}" value="{{ dc_compare }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:2fr 1fr; gap:12px; margin-bottom:12px;">
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">기간 근거 <span style="font-weight:500; color:#B0B0BE;">(160자)</span></div>
+          <input oninput="{{ onDcBasis }}" value="{{ dc_basis }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+        <div>
+          <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">근거 링크</div>
+          <input oninput="{{ onDcUrl }}" value="{{ dc_url }}" placeholder="https://…" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:14px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px;">
+        </div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12.5px; font-weight:700; color:#7A7A8C;">뉴스 타임라인 <span style="font-weight:500; color:#B0B0BE;">날짜 | 악재/호재/중립 | 제목 | 설명 | 출처 링크 (한 줄 = 한 이벤트, 1~8개)</span></div>
+        <textarea oninput="{{ onDcTimeline }}" value="{{ dc_timeline }}" style="width:100%; box-sizing:border-box; border:1.5px solid #E6E6EE; border-radius:12px; padding:10px 13px; font-size:13px; font-family:inherit; color:#16161D; background:#FAFAFD; margin-top:6px; min-height:120px; resize:vertical; line-height:1.55;"></textarea>
+      </div>
+      <sc-if value="{{ hasDcErr }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:12.5px; color:#C0392B; font-weight:700; margin-bottom:10px;">{{ dc_err }}</div>
+      </sc-if>
+      <div style="display:flex; gap:8px; margin-top:14px;">
+        <div onclick="{{ submitDataCaseEdit }}" style="flex:1; background:#6B62F0; color:#fff; text-align:center; padding:14px; border-radius:14px; font-weight:800; font-size:15px; cursor:pointer; box-shadow:0 8px 22px rgba(107,98,240,.35);">저장(커밋)</div>
+        <div onclick="{{ recalcDataCase }}" title="날짜는 그대로 두고 KOSPI·S&P500 숫자만 다시 계산" style="background:#F3F3F8; color:#4A4A5E; padding:14px 16px; border-radius:14px; font-weight:800; font-size:14px; cursor:pointer; white-space:nowrap;">숫자 재계산</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
   <sc-if value="{{ caseEditOpen }}" hint-placeholder-val="{{ false }}">
   <div style="position:fixed; inset:0; z-index:80; background:rgba(18,18,32,.5); display:flex; align-items:center; justify-content:center; padding:32px;">
     <div onclick="{{ closeCaseEdit }}" style="position:absolute; inset:0;"></div>
@@ -1563,7 +1631,7 @@ class Component extends DCLogic {
     stockEditOpen: false, stockEditCode: null, se_market: 'kospi', se_price: '', se_tags: '', se_err: '',
     stockCsvMsg: '',
     refreshMsg: '', refreshBusy: false, marketRefreshMsg: '', marketRefreshBusy: false,
-    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', casesData: null, caseAddOpen: false, csDatesOpen: false, cs_title: '', cs_start: '', cs_end: '', cs_event: '', caseMsg: '', caseBusy: false, refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
+    ghTokenOpen: false, ghTokenDraft: '', ghPending: null, ghPanelMsgKey: 'refreshMsg', casesData: null, caseAddOpen: false, csDatesOpen: false, dcOpen: false, dcId: null, dc_title: '', dc_tag: '', dc_start: '', dc_end: '', dc_event: '', dc_summary: '', dc_compare: '', dc_basis: '', dc_url: '', dc_timeline: '', dc_err: '', cs_title: '', cs_start: '', cs_end: '', cs_event: '', caseMsg: '', caseBusy: false, refreshPanelOpen: false, refreshTickers: 'all', newStockOpen: false, newStockCode: '', refreshingCode: null, selCodes: [], dupPending: null,
     peekType: null, peekCode: null, peekStudyIdx: null, peekAiTab: 0, peekChartReviewId: null, peekFull: (() => { try { return localStorage.getItem("stockking_peek_full") === "1"; } catch (e) { return false; } })(),
     caseEditOpen: false, caseEditIdx: null,
     ce_title: '', ce_tag: '', ce_summary: '', ce_drop: '', ce_bottom: '', ce_recover: '', ce_timeline: '', ce_now: '', ce_scenarios: '',
@@ -2694,6 +2762,46 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     try { localStorage.setItem(this.LS_STUDY, JSON.stringify(next)); } catch (e) {}
     this.setState({ studyAllNotes: next });
   }
+  // 코드 계산 사례 수정·삭제·재계산(사용자 결정 2026-10-15): 글·날짜만 보내고 case-edit.yml이 data/cases.json에 커밋한다
+  openDataCaseEdit(id) {
+    const c = (this.state.casesData || {})[id];
+    if (!c) return;
+    const tl = (c.timeline || []).map(e => [e.date, e.sentiment, e.label, e.desc || '', e.url || ''].join(' | ')).join('\n');
+    this.setState({ dcOpen: true, dcId: id, dc_title: c.title || '', dc_tag: c.tag || '', dc_start: c.start || '', dc_end: c.end || '', dc_event: c.event || '',
+      dc_summary: c.summary || '', dc_compare: c.compare || '', dc_basis: c.period_basis || '', dc_url: c.period_url || '', dc_timeline: tl, dc_err: '' });
+  }
+  submitDataCaseEdit() {
+    const s = this.state, d = /^\d{4}-\d{2}-\d{2}$/, id = s.dcId;
+    if (!id) return;
+    const title = s.dc_title.trim(), start = s.dc_start.trim(), end = s.dc_end.trim(), event = s.dc_event.trim();
+    if (!title) { this.setState({ dc_err: '제목을 넣어 주세요' }); return; }
+    if (!d.test(start) || (end && !d.test(end)) || (event && !d.test(event))) { this.setState({ dc_err: '날짜는 YYYY-MM-DD 형식으로(시작일 필수)' }); return; }
+    if (end && end < start) { this.setState({ dc_err: '끝이 시작일보다 앞입니다' }); return; }
+    if (s.dc_summary.trim().length > 220 || s.dc_compare.trim().length > 160 || s.dc_basis.trim().length > 160 || s.dc_tag.trim().length > 12) { this.setState({ dc_err: '글자 수 제한: 요약 220·비교 160·기간 근거 160·태그 12' }); return; }
+    const timeline = s.dc_timeline.split(/\n/).map(l => l.trim()).filter(Boolean).map(l => {
+      const p = l.split('|').map(x => x.trim());
+      return { date: p[0] || '', sentiment: p[1] || '중립', label: p[2] || '', desc: p[3] || '', url: p[4] || '' };
+    });
+    const bad = timeline.find(e => !d.test(e.date) || !['악재', '호재', '중립'].includes(e.sentiment) || !e.label || !/^https?:\/\//.test(e.url));
+    if (bad) { this.setState({ dc_err: '타임라인 줄 형식: 날짜 | 악재/호재/중립 | 제목 | 설명 | 출처 링크(https://…) — 문제 줄: ' + (bad.label || bad.date || '?') }); return; }
+    if (timeline.length > 8) { this.setState({ dc_err: '타임라인은 8개까지' }); return; }
+    if (s.dc_basis.trim() && !/^https?:\/\//.test(s.dc_url.trim())) { this.setState({ dc_err: '기간 근거를 쓰면 근거 링크(https://…)도 필요' }); return; }
+    const payload = { title, tag: s.dc_tag.trim(), summary: s.dc_summary.trim(), compare: s.dc_compare.trim(), period_basis: s.dc_basis.trim(), period_url: s.dc_url.trim(), timeline, start, end, event };
+    this.setState({ dcOpen: false, dcId: null, dc_err: '' });
+    this.runWorkflow({ file: 'case-edit.yml', inputs: { id, action: 'update', payload: JSON.stringify(payload) }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: title + ' 수정 — 1~2분', onDone: () => this.loadCases(Date.now()) });
+  }
+  recalcDataCase() {
+    const id = this.state.dcId, c = (this.state.casesData || {})[id];
+    if (!c) return;
+    this.setState({ dcOpen: false, dcId: null });
+    this.runWorkflow({ file: 'case-edit.yml', inputs: { id, action: 'recalc', payload: '{}' }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: c.title + ' 숫자 재계산 — 1~2분', onDone: () => this.loadCases(Date.now()) });
+  }
+  delDataCase(id) {
+    const c = (this.state.casesData || {})[id];
+    if (!c) return;
+    if (!window.confirm("'" + c.title + "' 사례를 저장소에서 삭제할까요? (GitHub에 커밋됨)")) return;
+    this.runWorkflow({ file: 'case-edit.yml', inputs: { id, action: 'delete', payload: '{}' }, msgKey: 'caseMsg', busyKey: 'caseBusy', label: c.title + ' 삭제 — 1~2분', onDone: () => this.loadCases(Date.now()) });
+  }
   delCaseNote(i) {
     const cur = this.state.caseAllNotes || this.cases.map(c => ({ ...c }));
     const next = cur.filter((_, j) => j !== i);
@@ -3549,8 +3657,8 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
         summary: c.summary || '통계만 등록됨 — 글은 작성 중이거나 실패', legacy: false, isOngoing: c.status === 'ongoing',
         stats: [stat('KOSPI', '#6B62F0', ix.KOSPI), stat('S&P500', '#8C8C9E', ix.SP500)],
         series: (!K.error && K.series) ? K.series.map(p => p.v) : null, series2: (!S.error && S.series) ? S.series.map(p => p.v) : null,
-        eventIdx: K.event_idx || 0, start: c.start, end: c.end || '진행 중', timeline: c.timeline || [], compare: c.compare || '', periodBasis: c.period_basis || '', periodUrl: c.period_url || '',
-        basis: 'KOSPI·S&P500 지수 종가 ' + c.start + ' ~ ' + (c.end || '오늘') + ' · 코드 계산(yfinance) · 과거 통계이며 예측이 아님' };
+        eventIdx: K.event_idx || 0, start: c.start, end: c.end || '진행 중', chartEnd: K.chart_end || '', timeline: c.timeline || [], compare: c.compare || '', periodBasis: c.period_basis || '', periodUrl: c.period_url || '',
+        basis: 'KOSPI·S&P500 지수 종가 ' + c.start + ' ~ ' + (c.end || '오늘') + ' 안의 낙폭, 회복은 기간 뒤 오늘까지 추적 · 코드 계산(yfinance) · 과거 통계이며 예측이 아님' };
     });
     const legacyCases = (this.state.caseAllNotes || this.cases.map(c => ({ ...c }))).map((c, i) => ({
       id: c.id || ('legacy' + i), title: c.title, sub: c.sub || c.title, tag: c.tag || '', tagCol: c.tagCol || '#6B62F0', summary: c.summary || '',
@@ -3572,8 +3680,9 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       border: c.id === cs.id ? '#6B62F0' : '#EFEFF5',
       onClick: () => this.setState({ caseId: c.id }),
       stopProp: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); },
-      onEdit: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.openCaseEdit(c.legacyIdx); },
-      onDel: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); this.delCaseNote(c.legacyIdx); },
+      editTitle: c.legacy ? '수정(브라우저에 저장)' : '수정(저장소에 커밋, 숫자는 코드가 다시 계산)',
+      onEdit: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); if (c.legacy) this.openCaseEdit(c.legacyIdx); else this.openDataCaseEdit(c.id); },
+      onDel: (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); if (c.legacy) this.delCaseNote(c.legacyIdx); else this.delDataCase(c.id); },
     }));
     const caseTimeline = (cs.timeline || []).map(e => {
       const s = sentMap[e.sentiment] || sentMap['중립'];
@@ -3915,9 +4024,12 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       caseStats: cs.stats, caseLine: cp.line, caseArea: cp.area, caseLine2: cp.line2,
       caseEventX: cp.sx(Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)).toFixed(1),
       caseEventY: cp.sy((cs.series || [100])[Math.min(cs.eventIdx || 0, (cs.series || [100]).length - 1)]).toFixed(1),
-      caseStart: cs.start, caseEnd: cs.end,
+      caseStart: cs.start, caseEnd: cs.chartEnd || cs.end,
       caseTimeline, caseBasis: cs.basis, caseCompare: cs.compare, hasCaseCompare: !!cs.compare, casePeriod: cs.periodBasis || '', casePeriodUrl: cs.periodUrl || '', hasCasePeriod: !!cs.periodBasis,
-      caseLegend: cs.legacy ? '선: 예시 모양' : '보라 실선 KOSPI · 회색 점선 S&P500 (기간 첫 주 = 100, 주봉 종가)',
+      caseLegend: cs.legacy ? '선: 예시 모양' : '보라 실선 KOSPI · 회색 점선 S&P500 (기간 첫 주 = 100, 주봉 종가, 회복일까지 연장)',
+      dcOpen: this.state.dcOpen, dc_title: this.state.dc_title, dc_tag: this.state.dc_tag, dc_start: this.state.dc_start, dc_end: this.state.dc_end, dc_event: this.state.dc_event, dc_summary: this.state.dc_summary, dc_compare: this.state.dc_compare, dc_basis: this.state.dc_basis, dc_url: this.state.dc_url, dc_timeline: this.state.dc_timeline, dc_err: this.state.dc_err, hasDcErr: !!this.state.dc_err,
+      onDcTitle: e => this.setF('dc_title', e.target.value), onDcTag: e => this.setF('dc_tag', e.target.value), onDcStart: e => this.setF('dc_start', e.target.value), onDcEnd: e => this.setF('dc_end', e.target.value), onDcEvent: e => this.setF('dc_event', e.target.value), onDcSummary: e => this.setF('dc_summary', e.target.value), onDcCompare: e => this.setF('dc_compare', e.target.value), onDcBasis: e => this.setF('dc_basis', e.target.value), onDcUrl: e => this.setF('dc_url', e.target.value), onDcTimeline: e => this.setF('dc_timeline', e.target.value),
+      closeDataCaseEdit: () => this.setState({ dcOpen: false, dcId: null }), submitDataCaseEdit: () => this.submitDataCaseEdit(), recalcDataCase: () => this.recalcDataCase(),
       caseAddOpen: this.state.caseAddOpen, csDatesOpen: this.state.csDatesOpen, csDatesLabel: (this.state.csDatesOpen ? '▾' : '▸') + ' 날짜 직접 지정 (선택)', toggleCsDates: () => this.setState({ csDatesOpen: !this.state.csDatesOpen }), cs_title: this.state.cs_title, cs_start: this.state.cs_start, cs_end: this.state.cs_end, cs_event: this.state.cs_event,
       onCsTitle: e => this.setF('cs_title', e.target.value), onCsStart: e => this.setF('cs_start', e.target.value), onCsEnd: e => this.setF('cs_end', e.target.value), onCsEvent: e => this.setF('cs_event', e.target.value),
       onOpenCaseAdd: () => this.setState({ caseAddOpen: true }), cancelCaseAdd: () => this.setState({ caseAddOpen: false }), submitCaseStudy: () => this.submitCaseStudy(),
