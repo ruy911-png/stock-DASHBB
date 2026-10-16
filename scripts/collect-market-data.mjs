@@ -13,8 +13,9 @@ const requestHeaders = {
 
 export const urls = {
   home: 'https://m.stock.naver.com/',
-  briefingList: 'https://m.stock.naver.com/front-api/market/briefing/list?pageSize=50',
-  briefingDetail: 'https://m.stock.naver.com/front-api/market/briefing/detail',
+  // 2026-10-16 네이버가 경로 순서를 바꿈(front-api/market/briefing/* → front-api/briefing/market/*, 옛 주소 404). 10/15 밤 예약 실행부터 수집 실패
+  briefingList: 'https://m.stock.naver.com/front-api/briefing/market/list?pageSize=50',
+  briefingDetail: 'https://m.stock.naver.com/front-api/briefing/market/detail',
   kospi: 'https://m.stock.naver.com/api/index/KOSPI/basic',
   kosdaq: 'https://m.stock.naver.com/api/index/KOSDAQ/basic',
   fx: 'https://api.stock.naver.com/marketindex/exchange/FX_USDKRW/prices?page=1&pageSize=5',

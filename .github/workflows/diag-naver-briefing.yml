@@ -3,7 +3,7 @@ name: Diag naver briefing
 on:
   push:
     branches: [ccr-f5563461-oo41yi]
-    paths: [".github/diag/**", ".github/workflows/diag-naver-briefing.yml"]
+    paths: [".github/diag/**", ".github/workflows/diag-naver-briefing.yml", "scripts/collect-market-data.mjs"]
 permissions:
   contents: read
 jobs:
@@ -15,3 +15,5 @@ jobs:
         with:
           node-version: 22
       - run: node .github/diag/naver-briefing.mjs
+      # 실제 수집기를 저장 없이(--dry-run) 돌려 새 주소로 끝까지 되는지 확인
+      - run: node scripts/collect-market-data.mjs --dry-run
