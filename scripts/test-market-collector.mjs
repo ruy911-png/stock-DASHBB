@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory } from './collect-market-data.mjs';
+import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings } from './collect-market-data.mjs';
 
 // 야후 일봉 → 직전에 끝난 정규장: 뉴욕 16시 전의 '오늘' 봉은 장중이라 빼고, now 뒤의 봉은 보지 않는다
 const chartOf = (dates, closes) => ({ chart: { result: [{
@@ -164,5 +164,33 @@ assert.throws(
   () => carryForwardUsIndices([{ krDate: '2026-08-01', indices: [{ name: 'KOSPI', value: '1', chg: 0 }] }], usIndexNames),
   /참고할 이전 미장 데이터가 없습니다/,
 );
+
+
+// 새 목록은 '오늘' 글만 준다(2026-10-17 토요일 아침 실행 #102 실패) → 마감일 글을 id를 거슬러 올라가며 보탠다
+{
+  const details = {
+    5194: { id: 5194, title: '미국 개장 전', briefingDate: '2026-10-16', briefingHour: '23' },
+    5193: { id: 5193, title: '저녁 시황', briefingDate: '2026-10-16', briefingHour: '21' },
+    5192: { id: 5192, title: '외국인 매수 전환에 코스피 반등 마감', briefingDate: '2026-10-16', briefingHour: '20' },
+    5191: { id: 5191, title: '오후 시황', briefingDate: '2026-10-16', briefingHour: '19' },
+    5150: { id: 5150, title: '전날', briefingDate: '2026-10-15', briefingHour: '20' },
+  };
+  const fetched = [];
+  const fetchDetail = async id => { fetched.push(id); if (id === 5190) return { result: details[5150] }; if (!details[id]) throw new Error('404'); return { result: details[id] }; };
+  const todayOnly = { result: { items: [
+    { id: 5196, title: '나스닥 약세', briefingDate: '2026-10-17', briefingHour: '01' },
+    { id: 5195, title: '나스닥 하락', briefingDate: '2026-10-17', briefingHour: '00' },
+  ] } };
+  const merged = await withEarlierBriefings(todayOnly, '2026-10-16', fetchDetail);
+  assert.deepEqual(fetched, [5194, 5193, 5192, 5191, 5190]); // 마감일보다 앞선 날짜(5190 → 10/15)를 만나면 멈춘다
+  assert.equal(selectClosingBriefing(merged, '2026-10-16')[0].id, 5192); // 20시 글이 1순위
+  // 마감일 글이 이미 목록에 있으면 상세를 더 읽지 않는다
+  const before = fetched.length;
+  assert.equal(await withEarlierBriefings(merged, '2026-10-16', fetchDetail), merged);
+  assert.equal(fetched.length, before);
+  // 지워진 id(404)는 건너뛰고, 최대 횟수에서 멈춘다
+  const gaps = await withEarlierBriefings({ result: { items: [{ id: 10, briefingDate: '2026-10-17', briefingHour: '01' }] } }, '2026-10-16', async () => { throw new Error('404'); }, 5);
+  assert.equal(gaps.result.items.length, 1);
+}
 
 console.log('시황 자동수집 파서 검증 완료');

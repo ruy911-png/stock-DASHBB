@@ -3,7 +3,7 @@ name: Diag naver briefing
 on:
   push:
     branches: [ccr-f5563461-oo41yi]
-    paths: [".github/diag/**", ".github/workflows/diag-naver-briefing.yml"]
+    paths: [".github/workflows/diag-naver-briefing.yml", "scripts/collect-market-data.mjs"]
 permissions:
   contents: read
 jobs:
@@ -14,4 +14,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node .github/diag/naver-briefing.mjs
+      # 실제 수집기를 저장 없이(--dry-run) 돌려 지난 마감일 브리핑을 찾아오는지 확인
+      - run: node scripts/collect-market-data.mjs --dry-run
