@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T01:50:39Z",
+  "generated_at": "2026-10-17T01:53:06Z",
   "items": {
     "c20231019-7148d8": {
       "id": "c20231019-7148d8",
@@ -7,52 +7,9 @@
       "start": "2023-10-19",
       "end": "2023-12-13",
       "event": "2023-10-19",
-      "tag": "고금리",
-      "summary": "2023-10-19 미국 10년물 금리가 장중 5%를 넘어 2007년 7월 이후 처음 5%대를 찍었다. 재무부가 11월 국채 발행 확대폭을 시장 예상(1140억달러)보다 낮춘 1120억달러로 발표했고, 12월 FOMC에서 연준이 2024년 금리 인하를 예고하며 4%선으로 내려왔다.",
-      "timeline": [
-        {
-          "date": "2023-10-19",
-          "sentiment": "악재",
-          "label": "10년물 금리 장중 5% 터치",
-          "desc": "2007년 7월 이후 처음 5%에 도달, 8월 4% 아래에서 두 달 만에 급등",
-          "url": "https://seekingalpha.com/news/4022170-longer-term-yields-power-on-us10y-hits-5-for-first-time-since-july-2007"
-        },
-        {
-          "date": "2023-10-19",
-          "sentiment": "중립",
-          "label": "5.02% 고점 뒤 상승분 반납",
-          "desc": "장중 5.02%까지 오른 뒤 4.83%까지 되밀려, 5% 위 마감은 없었음",
-          "url": "https://ceomorningbrief.theedgemalaysia.com/article/2023/0658/World/18/687340"
-        },
-        {
-          "date": "2023-11-01",
-          "sentiment": "호재",
-          "label": "재무부 분기 국채 발행계획",
-          "desc": "3·10·30년물 합계 1120억달러, 시장 예상 1140억달러보다 작게 발표",
-          "url": "https://newsquawk.com/headlines/treasury-quarterly-refunding-us-to-sell-usd-48bln-of-3yr-notes-prev-46bln-on-nov-7th-usd-40bln-of-10yr-notes-prev-38bln-on-nov-8th-and-usd-24bln-of-30yr-bonds-prev-23bln-on-nov-9th-boosts-refunding-by-usd-9bln-to-usd-112bln-exp-01-11-2023"
-        },
-        {
-          "date": "2023-12-13",
-          "sentiment": "호재",
-          "label": "FOMC 동결, 2024년 인하 3회 전망",
-          "desc": "기준금리 5.25~5.5% 동결, 파월 \"이번 사이클 정점 근처\", 10년물 4%선",
-          "url": "https://www.axios.com/2023/12/13/federal-reserve-interest-rates-meeting-decision"
-        },
-        {
-          "date": "2023-12-13",
-          "sentiment": "호재",
-          "label": "다우지수 사상 최고 마감",
-          "desc": "다우 37,090.24로 종전 최고(36,799.65) 경신, S&P500·나스닥 각 1.4% 상승",
-          "url": "https://www.pbs.org/newshour/economy/dow-hits-a-record-after-the-fed-signals-rate-cuts-in-2024"
-        }
-      ],
-      "compare": "현재: 2026-09-14 10년물 장중 5.012% 재돌파 후 진행 중",
-      "period_basis": "2023-10-19 10년물 장중 5.02% 터치 → 2023-12-13 FOMC가 2024년 인하 3회를 예고하며 4%선 복귀",
-      "period_url": "https://www.pbs.org/newshour/economy/dow-hits-a-record-after-the-fed-signals-rate-cuts-in-2024",
-      "written_at": "2026-10-12",
       "status": "closed",
       "source": "yfinance 지수 일봉(^KS11·^GSPC), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
-      "computed_at": "2026-10-12T10:24:15Z",
+      "computed_at": "2026-10-17T01:53:06Z",
       "indices": {
         "KOSPI": {
           "bars": 40,
@@ -66,10 +23,12 @@
           "days_to_bottom": 12,
           "recovery_date": "2023-11-06",
           "days_to_recover": 6,
+          "recovered_after_end": false,
+          "chart_end": "2023-12-13",
           "series": [
             {
               "d": "2023-10-20",
-              "v": 100
+              "v": 100.0
             },
             {
               "d": "2023-10-27",
@@ -111,17 +70,19 @@
           "first_date": "2023-10-19",
           "last_date": "2023-12-13",
           "peak_date": "2023-10-19",
-          "peak": 4278,
+          "peak": 4278.0,
           "bottom_date": "2023-10-27",
           "bottom": 4117.37,
           "drawdown_pct": -3.75,
           "days_to_bottom": 8,
           "recovery_date": "2023-11-02",
           "days_to_recover": 6,
+          "recovered_after_end": false,
+          "chart_end": "2023-12-13",
           "series": [
             {
               "d": "2023-10-20",
-              "v": 100
+              "v": 100.0
             },
             {
               "d": "2023-10-27",
@@ -149,7 +110,7 @@
             },
             {
               "d": "2023-12-08",
-              "v": 109
+              "v": 109.0
             },
             {
               "d": "2023-12-15",
@@ -158,7 +119,50 @@
           ],
           "event_idx": 0
         }
-      }
+      },
+      "summary": "2023-10-19 미국 10년물 금리가 장중 5%를 넘어 2007년 7월 이후 처음 5%대를 찍었다. 재무부가 11월 국채 발행 확대폭을 시장 예상(1140억달러)보다 낮춘 1120억달러로 발표했고, 12월 FOMC에서 연준이 2024년 금리 인하를 예고하며 4%선으로 내려왔다.",
+      "tag": "고금리",
+      "timeline": [
+        {
+          "date": "2023-10-19",
+          "sentiment": "악재",
+          "label": "10년물 금리 장중 5% 터치",
+          "desc": "2007년 7월 이후 처음 5%에 도달, 8월 4% 아래에서 두 달 만에 급등",
+          "url": "https://seekingalpha.com/news/4022170-longer-term-yields-power-on-us10y-hits-5-for-first-time-since-july-2007"
+        },
+        {
+          "date": "2023-10-19",
+          "sentiment": "중립",
+          "label": "5.02% 고점 뒤 상승분 반납",
+          "desc": "장중 5.02%까지 오른 뒤 4.83%까지 되밀려, 5% 위 마감은 없었음",
+          "url": "https://ceomorningbrief.theedgemalaysia.com/article/2023/0658/World/18/687340"
+        },
+        {
+          "date": "2023-11-01",
+          "sentiment": "호재",
+          "label": "재무부 분기 국채 발행계획",
+          "desc": "3·10·30년물 합계 1120억달러, 시장 예상 1140억달러보다 작게 발표",
+          "url": "https://newsquawk.com/headlines/treasury-quarterly-refunding-us-to-sell-usd-48bln-of-3yr-notes-prev-46bln-on-nov-7th-usd-40bln-of-10yr-notes-prev-38bln-on-nov-8th-and-usd-24bln-of-30yr-bonds-prev-23bln-on-nov-9th-boosts-refunding-by-usd-9bln-to-usd-112bln-exp-01-11-2023"
+        },
+        {
+          "date": "2023-12-13",
+          "sentiment": "호재",
+          "label": "FOMC 동결, 2024년 인하 3회 전망",
+          "desc": "기준금리 5.25~5.5% 동결, 파월 \"이번 사이클 정점 근처\", 10년물 4%선",
+          "url": "https://www.axios.com/2023/12/13/federal-reserve-interest-rates-meeting-decision"
+        },
+        {
+          "date": "2023-12-13",
+          "sentiment": "호재",
+          "label": "다우지수 사상 최고 마감",
+          "desc": "다우 37,090.24로 종전 최고(36,799.65) 경신, S&P500·나스닥 각 1.4% 상승",
+          "url": "https://www.pbs.org/newshour/economy/dow-hits-a-record-after-the-fed-signals-rate-cuts-in-2024"
+        }
+      ],
+      "compare": "현재: 2026-09-14 10년물 장중 5.012% 재돌파 후 진행 중",
+      "period_basis": "2023-10-19 10년물 장중 5.02% 터치 → 2023-12-13 FOMC가 2024년 인하 3회를 예고하며 4%선 복귀",
+      "period_url": "https://www.pbs.org/newshour/economy/dow-hits-a-record-after-the-fed-signals-rate-cuts-in-2024",
+      "written_at": "2026-10-12"
     },
     "c20240731-cc4bee": {
       "id": "c20240731-cc4bee",
@@ -187,7 +191,7 @@
           "series": [
             {
               "d": "2024-08-02",
-              "v": 100.0
+              "v": 100
             },
             {
               "d": "2024-08-09",
@@ -239,7 +243,7 @@
             },
             {
               "d": "2024-11-01",
-              "v": 95.0
+              "v": 95
             },
             {
               "d": "2024-11-08",
@@ -385,7 +389,7 @@
           "series": [
             {
               "d": "2024-08-02",
-              "v": 100.0
+              "v": 100
             },
             {
               "d": "2024-08-09",
