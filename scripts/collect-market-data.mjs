@@ -108,6 +108,26 @@ export function selectClosingBriefing(payload, targetDate) {
   throw new Error(`${targetDate} 국내 마감 AI 브리핑을 찾지 못했습니다. (${targetDate}, ${candidateDates[1]} 모두 확인, 목록에서 확인된 날짜: ${availableDates || '없음'}, 총 ${items.length}건)`);
 }
 
+// 2026-10-17: 새 목록 주소(front-api/briefing/market/list)는 '오늘' 글만 돌려준다. 다음 날 아침(주말·휴일 포함)에
+// 실행하면 국장 마감일 브리핑이 목록에 없어 실패했다(#102). 그 날짜 글이 목록에 없으면 목록의 가장 작은 id부터
+// 하나씩 거슬러 올라가며 상세를 읽어(브리핑 id는 1씩 증가) 마감일 글을 목록에 보탠다. 마감일보다 앞선 날짜를 만나면 멈춘다.
+export async function withEarlierBriefings(payload, targetDate, fetchDetail, maxSteps = 80) {
+  const items = payload?.result?.items;
+  if (!Array.isArray(items)) throw new Error('네이버페이 증권 AI 브리핑 목록을 읽지 못했습니다.');
+  if (items.some(item => item.briefingDate === targetDate)) return payload;
+  const ids = items.map(item => Number(item.id)).filter(Number.isFinite);
+  if (!ids.length) return payload;
+  const extra = [];
+  for (let id = Math.min(...ids) - 1, step = 0; id > 0 && step < maxSteps; id--, step++) {
+    let result;
+    try { result = (await fetchDetail(id))?.result; } catch { continue; } // 지워진 글 등은 건너뜀
+    if (!result?.briefingDate) continue;
+    if (result.briefingDate < targetDate) break;
+    extra.push({ id: result.id ?? id, title: result.title, summary: result.summary, briefingDate: result.briefingDate, briefingHour: result.briefingHour });
+  }
+  return { ...payload, result: { ...payload.result, items: [...items, ...extra] } };
+}
+
 export function extractBriefing(payload, targetDate) {
   const result = payload?.result;
   if (!result || result.briefingDate !== targetDate) throw new Error('AI 브리핑 기준일이 국장 기준일과 다릅니다.');
@@ -258,7 +278,8 @@ async function main() {
     console.log(`${krDate} 시황 데이터가 이미 있어 변경하지 않았습니다.`);
     return;
   }
-  const briefingCandidates = selectClosingBriefing(briefingList, krDate);
+  const briefingItems = await withEarlierBriefings(briefingList, krDate, id => request(`${urls.briefingDetail}?id=${id}`));
+  const briefingCandidates = selectClosingBriefing(briefingItems, krDate);
   let briefing = null;
   let briefingError = null;
   for (const candidate of briefingCandidates) {
