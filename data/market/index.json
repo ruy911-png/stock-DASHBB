@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.16",
+      "krDate": "2026-10-16",
+      "usDate": "2026-10-16",
+      "wtiDate": "2026-10-16",
+      "collectedAt": "2026-10-17T01:19:28.775Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,668.05",
+          "chg": 2.05
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "794.78",
+          "chg": 4.46
+        },
+        {
+          "name": "원/달러",
+          "value": "1,337.50",
+          "chg": -0.37
+        },
+        {
+          "name": "S&P500",
+          "value": "7,659.44",
+          "chg": -1.09
+        },
+        {
+          "name": "나스닥",
+          "value": "26,140.03",
+          "chg": -2.15
+        },
+        {
+          "name": "VIX",
+          "value": "19.99",
+          "chg": 21.45
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,137.29",
+          "chg": -3.83
+        },
+        {
+          "name": "WTI",
+          "value": "101.41",
+          "chg": 3.51
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 3637
+        },
+        {
+          "name": "기관",
+          "amount": -6815
+        },
+        {
+          "name": "개인",
+          "amount": -5126
+        }
+      ],
+      "comment": "외국인 매수 전환과 원화 강세에 코스피 반등 마감",
+      "keywords": [
+        "주택 공급",
+        "청년 고용",
+        "석유 최고가격제",
+        "지수 상승",
+        "시장 반등",
+        "증시 상승"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-16T20:01:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5192"
+        }
+      }
+    },
+    {
       "date": "10.15",
       "krDate": "2026-10-15",
       "usDate": "2026-10-14",
