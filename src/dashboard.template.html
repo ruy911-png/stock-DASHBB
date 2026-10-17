@@ -62,18 +62,18 @@
     <div style="display:flex; align-items:center; gap:11px; padding:4px 8px 22px; white-space:nowrap;">
       <img src="7e887a6b-38bc-43e7-a6f4-3affbbf87143" alt="주식킹" style="width:40px; height:40px; border-radius:12px; object-fit:cover; display:block;">
       <div>
-        <div style="font-size:15.5px; font-weight:800; letter-spacing:-.3px;">주식킹</div>
-        <div style="font-size:11px; color:#9A9AAC; margin-top:1px;">나만의 투자 노트</div>
+        <div style="font-size:{{ logoTitleSize }}; font-weight:800; letter-spacing:-.3px;">주식킹</div>
+        <div style="font-size:{{ logoSubSize }}; color:#9A9AAC; margin-top:1px;">나만의 투자 노트</div>
       </div>
     </div>
 
     <div style="display:flex; flex-direction:column; gap:4px;">
       <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
-        <div onclick="{{ n.onClick }}" style="display:flex; align-items:center; gap:12px; padding:11px 13px; border-radius:13px; cursor:pointer; background:{{ n.bg }};">
-          <div style="width:22px; height:22px; flex-shrink:0; color:{{ n.col }};">
-            <div style="font-size:18px; line-height:22px; text-align:center;">{{ n.icon }}</div>
+        <div onclick="{{ n.onClick }}" style="display:flex; align-items:center; gap:12px; padding:{{ navPad }}; border-radius:13px; cursor:pointer; background:{{ n.bg }};">
+          <div style="width:{{ navIconBox }}; height:{{ navIconBox }}; flex-shrink:0; color:{{ n.col }};">
+            <div style="font-size:{{ navIconSize }}; line-height:{{ navIconBox }}; text-align:center;">{{ n.icon }}</div>
           </div>
-          <span style="font-size:14.5px; font-weight:{{ n.weight }}; color:{{ n.col }};">{{ n.label }}</span>
+          <span style="font-size:{{ navFont }}; font-weight:{{ n.weight }}; color:{{ n.col }}; white-space:nowrap;">{{ n.label }}</span>
         </div>
       </sc-for>
     </div>
@@ -1728,7 +1728,10 @@ class Component extends DCLogic {
     const resume = () => { if (document.visibilityState === 'visible') this.resumeWatch(); };
     document.addEventListener('visibilitychange', resume);
     window.addEventListener('focus', resume);
-    this.setState({ viewportWidth: window.innerWidth });
+    // 터치 기기(아이패드·휴대폰)는 왼쪽 메뉴 글씨·아이콘·누르는 칸을 키운다(2026-10-16 사용자 요청: 아이패드에서 메뉴가 작음)
+    let isTouch = false;
+    try { isTouch = window.matchMedia('(pointer: coarse)').matches; } catch (e) {}
+    this.setState({ viewportWidth: window.innerWidth, isTouch });
     let resizeTimer = null;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
@@ -3956,6 +3959,13 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       goMarket: () => this.go('market'),
       goNews: () => this.go('news'),
       navItems,
+      // 터치 기기만 크게(PC는 그대로): 글씨 14.5→16.5px, 아이콘 18→21px, 줄 높이 약 44→52px
+      navFont: this.state.isTouch ? '16.5px' : '14.5px',
+      navIconSize: this.state.isTouch ? '21px' : '18px',
+      navIconBox: this.state.isTouch ? '26px' : '22px',
+      navPad: this.state.isTouch ? '13px 13px' : '11px 13px',
+      logoTitleSize: this.state.isTouch ? '17px' : '15.5px',
+      logoSubSize: this.state.isTouch ? '12px' : '11px',
       sidebarWidth: this.sidebarShown() ? '220px' : '0px',
       sidebarPad: this.sidebarShown() ? '22px 14px' : '20px 0px',
       sidebarToggleLeft: this.sidebarShown() ? '208px' : '10px',

@@ -4,7 +4,7 @@
  * index.html을 실제 Chromium으로 띄워 화면별·폭별 스크린샷을 .cache/ui-shots/에 남기고, 가로 넘침·말줄임을 자동으로 찾아 '주의'로 보여 준다.
  * UI(템플릿) 수정을 푸시하기 전에 반드시 돌리고 PNG를 직접 본다 — CLAUDE.md '화면 확인' 절차, tester 에이전트 담당.
  *
- * 사용: npm run shot -- [--screen home,ai] [--width 1180,940,600] [--click "글자,글자"] [--full] [--height 900] [--font noto|none] [--out .cache/ui-shots] [--busy] [--no-token]
+ * 사용: npm run shot -- [--screen home,ai] [--width 1180,940,600] [--click "글자,글자"] [--full] [--height 900] [--font noto|none] [--out .cache/ui-shots] [--busy] [--no-token] [--touch]
  *   --screen   화면 키 또는 메뉴 이름(기본 home). home·ai(종목분석)·market(시황분석)·news(뉴스)·study(주식공부)·journal(매매일지)·chart(차트 복기 노트)·predict(과거사례 Study)
  *   --width    뷰포트 폭 목록(기본 1180,940,600 = PC·갤럭시 폴드 펼침·좁은 폭)
  *   --click    화면에 들어간 뒤 차례로 누를 글자(정확히 일치). 예: --click "찰스 슈왑"(카드 열기), --click "새로고침"
@@ -12,6 +12,7 @@
  *   --font     noto(기본): Noto Sans KR을 'Pretendard' 이름으로 끼워 넣어 갤럭시 기본 한글 폰트에 가깝게 그린다(최초 1회 약 50MB 내려받아 .cache에 둠) / none: 환경 폰트 그대로
  *   --busy     GitHub 실행 조회 스텁이 '실행 중'을 돌려주게 함(중복 실행 확인창 등 상태 확인용)
  *   --no-token 브라우저 localStorage에 가짜 GitHub 토큰을 넣지 않음(토큰 없음 상태 확인용)
+ *   --touch    터치 화면으로 흉내(아이패드·휴대폰처럼 손가락 입력) — 터치 전용 크기 확인용
  *
  * 출력: 저장한 PNG 경로, 그 아래 '주의'(화면 오른쪽 밖으로 나간 요소, 상자 밖으로 삐져나온 글자, 말줄임된 글자). 주의는 실패가 아니라 직접 볼 곳의 힌트.
  * 환경: Playwright + Chromium. 클라우드 세션에는 둘 다 설치돼 있음(/opt/node-tools, /opt/pw-browsers).
@@ -58,7 +59,7 @@ function usage() {
 }
 
 function parseArgs(argv) {
-  const o = { screens: ['home'], widths: [1180, 940, 600], clicks: [], full: false, height: 900, font: 'noto', out: path.join(ROOT, '.cache', 'ui-shots'), busy: false, token: true, help: false };
+  const o = { screens: ['home'], widths: [1180, 940, 600], clicks: [], full: false, height: 900, font: 'noto', out: path.join(ROOT, '.cache', 'ui-shots'), busy: false, token: true, touch: false, help: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const next = () => { if (i + 1 >= argv.length) throw new Error(`${a} 뒤에 값이 없습니다`); return argv[++i]; };
@@ -71,6 +72,7 @@ function parseArgs(argv) {
     else if (a === '--out') o.out = path.resolve(ROOT, next());
     else if (a === '--busy') o.busy = true;
     else if (a === '--no-token') o.token = false;
+    else if (a === '--touch') o.touch = true;
     else if (a === '--help' || a === '-h') o.help = true;
     else throw new Error(`알 수 없는 인자: ${a} (--help 참고)`);
   }
@@ -278,7 +280,7 @@ async function main() {
   const saved = [];
   try {
     for (const width of opts.widths) {
-      const ctx = await browser.newContext({ viewport: { width, height: opts.height }, deviceScaleFactor: 1, locale: 'ko-KR' });
+      const ctx = await browser.newContext({ viewport: { width, height: opts.height }, deviceScaleFactor: 1, locale: 'ko-KR', hasTouch: opts.touch });
       if (opts.token) await ctx.addInitScript(() => { try { localStorage.setItem('stockking_gh_token', 'github_pat_TEST_ONLY'); } catch (e) {} });
       const page = await ctx.newPage();
       page.on('pageerror', e => pageErrors.push(`[${width}px] ${String(e.message || e).split('\n')[0]}`));
