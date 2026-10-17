@@ -1,0 +1,17 @@
+# 임시 진단(2026-10-17): 브리핑 투자자 수급 누락 원인 확인. 확인 후 삭제한다. main에는 넣지 않는다.
+name: Diag naver briefing
+on:
+  push:
+    branches: [ccr-f5563461-oo41yi]
+    paths: [".github/diag/**", ".github/workflows/diag-naver-briefing.yml"]
+permissions:
+  contents: read
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node .github/diag/naver-briefing.mjs
