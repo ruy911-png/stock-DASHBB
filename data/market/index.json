@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.19",
+      "krDate": "2026-10-19",
+      "usDate": "2026-10-16",
+      "wtiDate": "2026-10-16",
+      "collectedAt": "2026-10-19T10:15:06.877Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,768.01",
+          "chg": 1.76
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "808.89",
+          "chg": 1.78
+        },
+        {
+          "name": "원/달러",
+          "value": "1,331.30",
+          "chg": -0.5
+        },
+        {
+          "name": "S&P500",
+          "value": "7,659.44",
+          "chg": -1.09
+        },
+        {
+          "name": "나스닥",
+          "value": "26,140.03",
+          "chg": -2.15
+        },
+        {
+          "name": "VIX",
+          "value": "19.99",
+          "chg": 21.45
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,137.29",
+          "chg": -3.83
+        },
+        {
+          "name": "WTI",
+          "value": "101.41",
+          "chg": 3.51
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 1035
+        },
+        {
+          "name": "기관",
+          "amount": 5412
+        },
+        {
+          "name": "개인",
+          "amount": -11959
+        }
+      ],
+      "comment": "외국인 매도 완화에 반도체 저가매수 유입, 급락 뒤 반등",
+      "keywords": [
+        "환율",
+        "외식비",
+        "코스피",
+        "재건축 수주",
+        "개인정보 유출",
+        "해킹 사고"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-19T19:00:24+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5219"
+        }
+      }
+    },
+    {
       "date": "10.16",
       "krDate": "2026-10-16",
       "usDate": "2026-10-16",
