@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T13:39:52Z",
+  "generated_at": "2026-10-19T15:27:41Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -645,7 +645,7 @@
       "symbol": "BAC",
       "as_of": "2026-10-16",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [
         "저변동형"
       ],
@@ -653,7 +653,7 @@
         "저변동형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 1,
