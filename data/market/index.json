@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.20",
+      "krDate": "2026-10-20",
+      "usDate": "2026-10-19",
+      "wtiDate": "2026-10-19",
+      "collectedAt": "2026-10-20T07:25:56.191Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,552.74",
+          "chg": -3.73
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "781.97",
+          "chg": -3.33
+        },
+        {
+          "name": "원/달러",
+          "value": "1,327.50",
+          "chg": -0.45
+        },
+        {
+          "name": "S&P500",
+          "value": "7,690.73",
+          "chg": 0.41
+        },
+        {
+          "name": "나스닥",
+          "value": "26,430.89",
+          "chg": 1.11
+        },
+        {
+          "name": "VIX",
+          "value": "18.44",
+          "chg": -7.75
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,316.34",
+          "chg": 1.61
+        },
+        {
+          "name": "WTI",
+          "value": "103.66",
+          "chg": 2.22
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -5389
+        },
+        {
+          "name": "기관",
+          "amount": -9981
+        },
+        {
+          "name": "개인",
+          "amount": 9013
+        }
+      ],
+      "comment": "AI 투자 불안에 반도체 흔들림, 개인만 받친 국내 증시 급락",
+      "keywords": [
+        "AI 서밋",
+        "김장 채소",
+        "원화 강세",
+        "한정판 패키지",
+        "가계대출",
+        "무선 이어폰"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-20T16:00:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5240"
+        }
+      }
+    },
+    {
       "date": "10.19",
       "krDate": "2026-10-19",
       "usDate": "2026-10-16",
