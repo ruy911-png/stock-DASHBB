@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T01:06:58Z",
+  "generated_at": "2026-10-21T12:46:35Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -551,7 +551,7 @@
       "name": "월마트",
       "market": "us",
       "symbol": "WMT",
-      "as_of": "2026-10-16",
+      "as_of": "2026-10-20",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -574,22 +574,22 @@
         "after_surge_20d_pos_rate": null,
         "above_ma60_pct_1y": 0.59,
         "ma60_cross_count_1y": 20,
-        "autocorr_1d_1y": 0.08,
-        "ret_1y_pct": 8.97,
+        "autocorr_1d_1y": 0.09,
+        "ret_1y_pct": 9.39,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 26.25,
+        "vol_annual_pct_1y": 26.12,
         "max_drawdown_1y_pct": -23.52,
         "gap3_days_rate_1y": 0.02,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.0,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 13.83
+        "top5_gain_share_pct_1y": 13.94
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 59%(교차 20회), 1년 수익률 +9.0%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 59%(교차 20회), 1년 수익률 +9.4%, 하루 수익률 자기상관 +0.09, 최장 연속 상승 8일",
         "연환산 변동성 26%, 1년 최대 낙폭 -23.5%, 3%↑ 갭 발생일 2%",
         "거래량 3배↑ 급증일 4회, 그날 상승 50%",
         "윗꼬리 긴 날 0%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
