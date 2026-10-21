@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.21",
+      "krDate": "2026-10-21",
+      "usDate": "2026-10-20",
+      "wtiDate": "2026-10-20",
+      "collectedAt": "2026-10-21T10:43:43.629Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,735.66",
+          "chg": 3.29
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "792.76",
+          "chg": 1.38
+        },
+        {
+          "name": "원/달러",
+          "value": "1,325.20",
+          "chg": -0.14
+        },
+        {
+          "name": "S&P500",
+          "value": "7,712.57",
+          "chg": 0.28
+        },
+        {
+          "name": "나스닥",
+          "value": "26,424.82",
+          "chg": -0.02
+        },
+        {
+          "name": "VIX",
+          "value": "17.31",
+          "chg": -6.13
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,283.81",
+          "chg": -0.29
+        },
+        {
+          "name": "WTI",
+          "value": "101.79",
+          "chg": -1.8
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 6428
+        },
+        {
+          "name": "기관",
+          "amount": -733
+        },
+        {
+          "name": "개인",
+          "amount": -11135
+        }
+      ],
+      "comment": "반도체 수출 호조에 매수 사이드카 발동, 외국인 자금 코스피로 집중",
+      "keywords": [
+        "생산자물가",
+        "중소기업 간담회",
+        "투자 문화",
+        "차량용 반도체",
+        "재산세",
+        "기자간담회"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-21T18:00:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5266"
+        }
+      }
+    },
+    {
       "date": "10.20",
       "krDate": "2026-10-20",
       "usDate": "2026-10-19",
