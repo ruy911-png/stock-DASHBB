@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.23",
+      "krDate": "2026-10-23",
+      "usDate": "2026-10-22",
+      "wtiDate": "2026-10-22",
+      "collectedAt": "2026-10-23T15:46:27.920Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,550.30",
+          "chg": 0.3
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "751.69",
+          "chg": -1.62
+        },
+        {
+          "name": "원/달러",
+          "value": "1,325.90",
+          "chg": -0.05
+        },
+        {
+          "name": "S&P500",
+          "value": "7,663.43",
+          "chg": -1.21
+        },
+        {
+          "name": "나스닥",
+          "value": "26,008.86",
+          "chg": -2.6
+        },
+        {
+          "name": "VIX",
+          "value": "19.03",
+          "chg": 14.09
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "10,731.98",
+          "chg": -6.72
+        },
+        {
+          "name": "WTI",
+          "value": "99.47",
+          "chg": 2.39
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -9802
+        },
+        {
+          "name": "기관",
+          "amount": 8675
+        },
+        {
+          "name": "개인",
+          "amount": 414
+        }
+      ],
+      "comment": "미 기술주 충격에도 하이닉스가 지수 방어, 코스닥은 밀림",
+      "keywords": [
+        "국제유가",
+        "대출 연체율",
+        "정치자금",
+        "코스피",
+        "보안 취약점",
+        "순이익"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-23T19:00:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5315"
+        }
+      }
+    },
+    {
       "date": "10.22",
       "krDate": "2026-10-22",
       "usDate": "2026-10-21",
