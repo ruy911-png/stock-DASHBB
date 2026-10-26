@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.26",
+      "krDate": "2026-10-26",
+      "usDate": "2026-10-23",
+      "wtiDate": "2026-10-23",
+      "collectedAt": "2026-10-26T13:42:49.823Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,469.47",
+          "chg": -1.46
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "727.21",
+          "chg": -3.26
+        },
+        {
+          "name": "원/달러",
+          "value": "1,326.40",
+          "chg": 0.03
+        },
+        {
+          "name": "S&P500",
+          "value": "7,623.68",
+          "chg": -0.52
+        },
+        {
+          "name": "나스닥",
+          "value": "25,955.34",
+          "chg": -0.21
+        },
+        {
+          "name": "VIX",
+          "value": "19.45",
+          "chg": 2.21
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "10,779.46",
+          "chg": 0.44
+        },
+        {
+          "name": "WTI",
+          "value": "103.27",
+          "chg": 3.82
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -6827
+        },
+        {
+          "name": "기관",
+          "amount": 6131
+        },
+        {
+          "name": "개인",
+          "amount": 331
+        }
+      ],
+      "comment": "이벤트 경계감 속 외국인 매도, 코스피 5,500선 하회 마감",
+      "keywords": [
+        "가상자산 과세",
+        "환율",
+        "재정운용",
+        "정보 유출",
+        "주택 가격 격차",
+        "새우젓"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-26T20:01:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5344"
+        }
+      }
+    },
+    {
       "date": "10.23",
       "krDate": "2026-10-23",
       "usDate": "2026-10-22",
