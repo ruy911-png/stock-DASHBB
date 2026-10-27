@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.27",
+      "krDate": "2026-10-27",
+      "usDate": "2026-10-26",
+      "wtiDate": "2026-10-26",
+      "collectedAt": "2026-10-27T13:37:33.535Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,638.34",
+          "chg": 3.09
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "743.83",
+          "chg": 2.29
+        },
+        {
+          "name": "원/달러",
+          "value": "1,328.00",
+          "chg": 0.08
+        },
+        {
+          "name": "S&P500",
+          "value": "7,676.77",
+          "chg": 0.7
+        },
+        {
+          "name": "나스닥",
+          "value": "26,169.38",
+          "chg": 0.82
+        },
+        {
+          "name": "VIX",
+          "value": "18.39",
+          "chg": -5.45
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,083.47",
+          "chg": 2.82
+        },
+        {
+          "name": "WTI",
+          "value": "101.76",
+          "chg": -1.46
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 5826
+        },
+        {
+          "name": "기관",
+          "amount": 2824
+        },
+        {
+          "name": "개인",
+          "amount": -9407
+        }
+      ],
+      "comment": "앤트로픽 IPO 기대에 반도체 질주, 코스피 강세 마감",
+      "keywords": [
+        "빅아치",
+        "전세가격",
+        "수산물 할인",
+        "용접 자동화",
+        "전기료 체납",
+        "용접 로봇"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-27T20:01:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5368"
+        }
+      }
+    },
+    {
       "date": "10.26",
       "krDate": "2026-10-26",
       "usDate": "2026-10-23",
