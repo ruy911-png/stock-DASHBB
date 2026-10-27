@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T13:20:30Z",
+  "generated_at": "2026-10-27T13:44:18Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1229,6 +1229,35 @@
       "bars": 500,
       "new": true,
       "name_hint": "Bloom Energy Corporation"
+    },
+    "MU": {
+      "name": "",
+      "market": "us",
+      "symbol": "MU",
+      "as_of": "2026-10-26",
+      "close": 903.7,
+      "chg_1d_pct": 2.98,
+      "ma5": 889.496,
+      "ma20": 979.1825,
+      "ma60": 966.7517,
+      "ma120": 946.2823,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -7.71,
+      "pct_vs_ma120": -4.5,
+      "rsi14": 42.32,
+      "volume": 22705400.0,
+      "volume_avg20": 26901420.0,
+      "volume_ratio20": 0.84,
+      "high52": 1213.5601,
+      "low52": 201.37,
+      "pct_from_high52": -25.53,
+      "pct_from_low52": 348.78,
+      "ret_1m_pct": -16.5,
+      "ret_3m_pct": 10.14,
+      "ret_6m_pct": 72.28,
+      "bars": 500,
+      "new": true,
+      "name_hint": "Micron Technology, Inc."
     }
   }
 }
