@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.28",
+      "krDate": "2026-10-28",
+      "usDate": "2026-10-27",
+      "wtiDate": "2026-10-27",
+      "collectedAt": "2026-10-28T17:11:29.231Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "6,012.44",
+          "chg": 6.63
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "771.28",
+          "chg": 3.69
+        },
+        {
+          "name": "원/달러",
+          "value": "1,344.10",
+          "chg": 1.21
+        },
+        {
+          "name": "S&P500",
+          "value": "7,722.60",
+          "chg": 0.6
+        },
+        {
+          "name": "나스닥",
+          "value": "26,477.81",
+          "chg": 1.18
+        },
+        {
+          "name": "VIX",
+          "value": "17.52",
+          "chg": -4.73
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,482.50",
+          "chg": 3.6
+        },
+        {
+          "name": "WTI",
+          "value": "99.90",
+          "chg": -1.83
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 7835
+        },
+        {
+          "name": "기관",
+          "amount": 9505
+        },
+        {
+          "name": "개인",
+          "amount": -17562
+        }
+      ],
+      "comment": "SK하이닉스 실적·환원 기대에 반도체 쏠림, 2차전지는 소외",
+      "keywords": [
+        "개인정보 유출",
+        "실적 개선",
+        "영업이익",
+        "실적",
+        "반도체",
+        "코스피"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-28T19:00:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5391"
+        }
+      }
+    },
+    {
       "date": "10.27",
       "krDate": "2026-10-27",
       "usDate": "2026-10-26",
