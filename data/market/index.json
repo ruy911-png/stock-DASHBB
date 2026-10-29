@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.29",
+      "krDate": "2026-10-29",
+      "usDate": "2026-10-28",
+      "wtiDate": "2026-10-28",
+      "collectedAt": "2026-10-29T13:44:47.578Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,937.66",
+          "chg": -1.24
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "753.23",
+          "chg": -2.34
+        },
+        {
+          "name": "원/달러",
+          "value": "1,338.60",
+          "chg": -0.36
+        },
+        {
+          "name": "S&P500",
+          "value": "7,743.98",
+          "chg": 0.28
+        },
+        {
+          "name": "나스닥",
+          "value": "26,549.85",
+          "chg": 0.27
+        },
+        {
+          "name": "VIX",
+          "value": "16.91",
+          "chg": -3.48
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,684.00",
+          "chg": 1.75
+        },
+        {
+          "name": "WTI",
+          "value": "102.78",
+          "chg": 2.88
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 1221
+        },
+        {
+          "name": "기관",
+          "amount": -4132
+        },
+        {
+          "name": "개인",
+          "amount": -429
+        }
+      ],
+      "comment": "삼성전자 실망 매물에 코스피 6000선 이탈 마감",
+      "keywords": [
+        "개인정보 유출",
+        "체코 원전",
+        "쌀 소비",
+        "주주환원",
+        "실적 개선",
+        "LPG 가격"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-29T20:01:26+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5416"
+        }
+      }
+    },
+    {
       "date": "10.28",
       "krDate": "2026-10-28",
       "usDate": "2026-10-27",
