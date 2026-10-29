@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T15:12:05Z",
+  "generated_at": "2026-10-29T15:28:20Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2252,7 +2252,7 @@
       ]
     },
     "MRNA": {
-      "name": "",
+      "name": "모더나 (MRNA)",
       "market": "us",
       "symbol": "MRNA",
       "as_of": "2026-10-28",
