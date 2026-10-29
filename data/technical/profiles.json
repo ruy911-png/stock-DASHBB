@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T00:38:44Z",
+  "generated_at": "2026-10-29T15:12:05Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2249,6 +2249,60 @@
         "연환산 변동성 81%, 1년 최대 낙폭 -39.1%, 3%↑ 갭 발생일 33%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
+      ]
+    },
+    "MRNA": {
+      "name": "",
+      "market": "us",
+      "symbol": "MRNA",
+      "as_of": "2026-10-28",
+      "window": "2y",
+      "bars": 501,
+      "labels": [
+        "급등 빈발형",
+        "급등 후 반전형",
+        "추세 지속형",
+        "되돌림형",
+        "고변동형",
+        "윗꼬리 빈발형"
+      ],
+      "main_labels": [
+        "추세 지속형",
+        "고변동형"
+      ],
+      "metrics": {
+        "years": 1.99,
+        "surge_days": 16,
+        "surge_per_year": 8.0,
+        "crash_days": 5,
+        "limit_up_days": null,
+        "limit_down_days": null,
+        "after_surge_n": 16,
+        "after_surge_5d_mean_pct": -1.97,
+        "after_surge_5d_pos_rate": 0.25,
+        "after_surge_20d_mean_pct": -6.02,
+        "after_surge_20d_pos_rate": 0.33,
+        "above_ma60_pct_1y": 0.76,
+        "ma60_cross_count_1y": 17,
+        "autocorr_1d_1y": -0.14,
+        "ret_1y_pct": 703.32,
+        "longest_up_streak": 10,
+        "vol_annual_pct_1y": 194.3,
+        "max_drawdown_1y_pct": -34.16,
+        "gap3_days_rate_1y": 0.13,
+        "volume_spike_days_1y": 7,
+        "volume_spike_up_rate": 0.71,
+        "upper_shadow_days_rate_1y": 0.18,
+        "close_position_mean_1y": 0.53,
+        "top5_gain_share_pct_1y": 33.72
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 16회(연 8.0회), 급락일(−10%↓) 5회",
+        "급등 뒤 5거래일 평균 -2.0%, 플러스 비율 25% · 20거래일 평균 -6.0% (표본 16회)",
+        "최근 1년 60일선 위 76%(교차 17회), 1년 수익률 +703.3%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 10일",
+        "연환산 변동성 194%, 1년 최대 낙폭 -34.2%, 3%↑ 갭 발생일 13%",
+        "거래량 3배↑ 급증일 7회, 그날 상승 71%",
+        "윗꼬리 긴 날 18%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 34%"
       ]
     }
   },

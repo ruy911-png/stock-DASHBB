@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T00:38:43Z",
+  "generated_at": "2026-10-29T15:12:05Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1258,6 +1258,35 @@
       "bars": 500,
       "new": true,
       "name_hint": "Micron Technology, Inc."
+    },
+    "MRNA": {
+      "name": "",
+      "market": "us",
+      "symbol": "MRNA",
+      "as_of": "2026-10-28",
+      "close": 214.165,
+      "chg_1d_pct": 2.98,
+      "ma5": 204.743,
+      "ma20": 211.8698,
+      "ma60": 159.9212,
+      "ma120": 108.5957,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 1.08,
+      "pct_vs_ma120": 97.21,
+      "rsi14": 55.01,
+      "volume": 12024400.0,
+      "volume_avg20": 20249760.0,
+      "volume_ratio20": 0.59,
+      "high52": 245.81,
+      "low52": 22.36,
+      "pct_from_high52": -12.87,
+      "pct_from_low52": 857.8,
+      "ret_1m_pct": 5.26,
+      "ret_3m_pct": 269.76,
+      "ret_6m_pct": 368.43,
+      "bars": 501,
+      "new": true,
+      "name_hint": "Moderna, Inc."
     }
   }
 }
