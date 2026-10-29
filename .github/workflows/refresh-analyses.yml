@@ -105,7 +105,11 @@ jobs:
           prompt: "/refresh-analyses ${{ matrix.chunk }}"
           claude_args: |
             --max-turns 60
-            --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(date *)"
+            --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(node scripts/unconfirmed.mjs *),Bash(date *)"
+      # 미확인 개수·이유를 로그에 남긴다(참고용, 실패해도 커밋은 진행 — 사용자 요청 2026-10-29: 미확인이 너무 많다)
+      - name: 미확인 검사 (참고)
+        if: always()
+        run: node scripts/unconfirmed.mjs "${{ matrix.chunk }}" || true
       # 2026-10-06 첫 실행이 아무것도 안 쓰고 끝나(21턴, 권한 거부 6회) 원인 확인용. 공개 저장소라 도구 결과(웹 본문 등)는 빼고
       # Claude의 말·도구 호출 이름·권한 거부만 로그에 남기고, 전체 기록은 1일짜리 아티팩트로 보관
       - name: Claude 실행 요약 (말·도구 호출·권한 거부)

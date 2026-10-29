@@ -5,7 +5,7 @@
   "scripts": {
     "extract": "node scripts/dashboard-bundle.mjs extract",
     "build": "node scripts/dashboard-bundle.mjs build",
-    "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs && node scripts/test-market-collector.mjs && node scripts/validate-analyses.mjs && node scripts/validate-profiles.mjs && node scripts/validate-cases.mjs",
+    "check": "node scripts/dashboard-bundle.mjs check && node scripts/validate-market-data.mjs && node scripts/test-market-collector.mjs && node scripts/test-unconfirmed.mjs && node scripts/validate-analyses.mjs && node scripts/validate-profiles.mjs && node scripts/validate-cases.mjs",
     "shot": "node scripts/ui-shot.cjs",
     "check:profiles": "node scripts/validate-profiles.mjs",
     "profiles": "python3 scripts/stock-profiles.py",
