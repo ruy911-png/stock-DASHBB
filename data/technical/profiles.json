@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T15:57:07Z",
+  "generated_at": "2026-10-29T23:11:08Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -1283,15 +1283,11 @@
       "name": "돌비 래버러토리스",
       "market": "us",
       "symbol": "DLB",
-      "as_of": "2026-10-23",
+      "as_of": "2026-10-29",
       "window": "2y",
       "bars": 501,
-      "labels": [
-        "하락 추세형"
-      ],
-      "main_labels": [
-        "하락 추세형"
-      ],
+      "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.99,
         "surge_days": 2,
@@ -1304,27 +1300,27 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": -0.46,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.3,
+        "above_ma60_pct_1y": 0.31,
         "ma60_cross_count_1y": 17,
         "autocorr_1d_1y": -0.02,
-        "ret_1y_pct": -6.47,
+        "ret_1y_pct": -5.47,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 29.46,
+        "vol_annual_pct_1y": 29.54,
         "max_drawdown_1y_pct": -29.79,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 18.53
+        "top5_gain_share_pct_1y": 18.37
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 +0.2%, 플러스 비율 50% · 20거래일 평균 -0.5% (표본 2회)",
-        "최근 1년 60일선 위 30%(교차 17회), 1년 수익률 -6.5%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 8일",
-        "연환산 변동성 29%, 1년 최대 낙폭 -29.8%, 3%↑ 갭 발생일 1%",
+        "최근 1년 60일선 위 31%(교차 17회), 1년 수익률 -5.5%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 8일",
+        "연환산 변동성 30%, 1년 최대 낙폭 -29.8%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
-        "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
+        "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
       ]
     },
     "ISRG": {
