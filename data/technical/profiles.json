@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T23:11:08Z",
+  "generated_at": "2026-10-29T23:41:29Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -54,20 +54,16 @@
       "name": "포티넷",
       "market": "us",
       "symbol": "FTNT",
-      "as_of": "2026-10-23",
+      "as_of": "2026-10-29",
       "window": "2y",
       "bars": 501,
-      "labels": [
-        "추세 지속형"
-      ],
-      "main_labels": [
-        "추세 지속형"
-      ],
+      "labels": [],
+      "main_labels": [],
       "metrics": {
         "years": 1.99,
         "surge_days": 2,
         "surge_per_year": 1.0,
-        "crash_days": 1,
+        "crash_days": 2,
         "limit_up_days": null,
         "limit_down_days": null,
         "after_surge_n": 2,
@@ -76,25 +72,25 @@
         "after_surge_20d_mean_pct": 15.9,
         "after_surge_20d_pos_rate": 0.5,
         "above_ma60_pct_1y": 0.7,
-        "ma60_cross_count_1y": 26,
-        "autocorr_1d_1y": 0.01,
-        "ret_1y_pct": 112.6,
+        "ma60_cross_count_1y": 27,
+        "autocorr_1d_1y": 0.07,
+        "ret_1y_pct": 61.99,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 43.35,
-        "max_drawdown_1y_pct": -14.34,
+        "vol_annual_pct_1y": 48.34,
+        "max_drawdown_1y_pct": -28.58,
         "gap3_days_rate_1y": 0.04,
-        "volume_spike_days_1y": 2,
-        "volume_spike_up_rate": 1.0,
+        "volume_spike_days_1y": 4,
+        "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.03,
         "close_position_mean_1y": 0.57,
-        "top5_gain_share_pct_1y": 18.05
+        "top5_gain_share_pct_1y": 17.98
       },
       "notes": [
-        "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
+        "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 +4.5%, 플러스 비율 50% · 20거래일 평균 +15.9% (표본 2회)",
-        "최근 1년 60일선 위 70%(교차 26회), 1년 수익률 +112.6%, 하루 수익률 자기상관 +0.01, 최장 연속 상승 8일",
-        "연환산 변동성 43%, 1년 최대 낙폭 -14.3%, 3%↑ 갭 발생일 4%",
-        "거래량 3배↑ 급증일 2회, 그날 상승 100%",
+        "최근 1년 60일선 위 70%(교차 27회), 1년 수익률 +62.0%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 8일",
+        "연환산 변동성 48%, 1년 최대 낙폭 -28.6%, 3%↑ 갭 발생일 4%",
+        "거래량 3배↑ 급증일 4회, 그날 상승 50%",
         "윗꼬리 긴 날 3%, 종가의 일중 위치 평균 0.57(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
       ]
     },
