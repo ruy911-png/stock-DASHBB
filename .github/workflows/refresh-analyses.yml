@@ -27,6 +27,9 @@ permissions:
 concurrency:
   group: refresh-analyses
   cancel-in-progress: false
+env:
+  # 분석 날짜·'며칠 지난 분석' 계산을 한국 시간으로(서버는 UTC — 한국 10/30 00:28 실행이 '10.29'로 붙었음, 2026-10-29)
+  TZ: Asia/Seoul
 jobs:
   plan:
     runs-on: ubuntu-latest
