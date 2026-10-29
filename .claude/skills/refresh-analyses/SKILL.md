@@ -1,7 +1,7 @@
 ---
 name: refresh-analyses
 description: 종목분석 모음의 지정 종목을 오늘 날짜 기준으로 다시 분석해 data/analyses-backup.json에 오늘자 분석을 추가한다. GitHub Actions(refresh-analyses.yml)와 PC에서 같은 절차로 쓴다. 인자 = 종목코드/티커 쉼표 구분(예: /refresh-analyses 005930,SCHW).
-allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(npm run build), Bash(npm run check), Bash(node scripts/validate-analyses.mjs), Bash(date *)
+allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(npm run build), Bash(npm run check), Bash(node scripts/validate-analyses.mjs), Bash(node scripts/unconfirmed.mjs *), Bash(date *)
 ---
 
 # 종목분석 오늘자 재분석
@@ -13,8 +13,8 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
    - **목록에 없는 코드는 신규 종목이다.** `data/technical/latest.json`의 `items[code]`에 `new: true`와 함께 코드가 판별한 `market`(일봉이 있는 쪽: kospi/kosdaq/us)과 `name_hint`(야후 회사명, 참고용)가 있다. 정식 회사명(국장은 한글 상호, 미국은 통용 한글 표기 + 티커)은 웹검색으로 확인한다. `items[code]`가 없으면(일봉 조회 실패 = 코드가 틀렸을 가능성) 그 종목은 만들지 않고 요약에 "코드/티커 확인 필요"라고 적는다.
 2. `data/technical/latest.json`을 읽는다. 종목별 `items[code]`에 코드가 계산한 숫자(종가·이동평균 5/20/60/120·배열 상태·RSI(14)·거래량과 20일 평균 대비·52주 고저 대비·1/3/6개월 수익률, `as_of` 날짜)가 있다. **기술적분석의 숫자는 오직 이 파일의 값만 쓴다.** 없으면(`failed`에 있거나 항목 없음) 기술적분석은 `"• 미확인(일봉 조회 실패)"` 한 줄로 쓴다.
 3. 종목마다 `company-analyst`, `fundamental-analyst`, `valuation-analyst` 서브에이전트를 **한 메시지에서 동시에, run_in_background: false로** 호출한다(technical-analyst는 차트가 없으니 호출하지 않는다). 여러 종목이면 종목×3을 모두 한 메시지에서 보낸다. 모든 결과가 돌아오기 전에는 다음 단계로 가지 않는다. 각 호출에 아래 한 줄을 그대로 붙인다:
-   > "Sources: KR=네이버금융(DART는 웹검색 우회) / US=Yahoo Finance→Investing.com / 목표주가 컨센서스: US=StockAnalysis(1순위)→Yahoo Finance 분석 탭, KR=네이버금융 투자의견, Simply Wall St 금지, 인원·범위·기준일 함께 / Macro=FRED(미국)·ECOS(한국). Cite source+as-of date, say '미확인' instead of fabricating, no buy/sell recommendation. Keep it compact: max 3 bullets per section, one short parenthetical citation per bullet at most — this feeds a dashboard card, not a research report. 오늘 날짜: {오늘, YYYY-MM-DD}. 현금흐름(OCF·FCF·capex)과 PBR(BPS 포함)은 반드시 다룬다."
-4. 결과로 CLAUDE.md의 '종목분석 리포트 컨벤션'대로 5개 섹션을 쓴다(섹션당 최대 3개 bullet, bullet은 `• `로 시작하고 `\n`으로 구분, bullet당 출처 괄호 최대 1개, 확인 불가는 "미확인", 매수·매도 추천 금지, 컨센서스·목표주가는 사실 보고로만):
+   > "Sources: KR=네이버금융(DART는 웹검색 우회) / US=Yahoo Finance→Investing.com / 목표주가 컨센서스: US=StockAnalysis(1순위)→Yahoo Finance 분석 탭, KR=네이버금융 투자의견, Simply Wall St 금지, 인원·범위·기준일 함께 / Macro=FRED(미국)·ECOS(한국). Cite source+as-of date, say '미확인(이유)' instead of fabricating — but try one alternative source before giving up (see SKILL 대체 출처), and write not-yet-released results as '발표 예정(날짜)' not 미확인, no buy/sell recommendation. Keep it compact: max 3 bullets per section, one short parenthetical citation per bullet at most — this feeds a dashboard card, not a research report. 오늘 날짜: {오늘, YYYY-MM-DD}. 현금흐름(OCF·FCF·capex)과 PBR(BPS 포함)은 반드시 다룬다."
+4. 결과로 CLAUDE.md의 '종목분석 리포트 컨벤션'대로 5개 섹션을 쓴다(섹션당 최대 3개 bullet, bullet은 `• `로 시작하고 `\n`으로 구분, bullet당 출처 괄호 최대 1개, 확인 불가는 `미확인(이유)` — 괄호를 띄우지 않고 바로 붙인다(예: `점유율은 미확인(공개 자료 없음)`). 아직 발표 전인 실적은 미확인이 아니라 `11월 6일 발표 예정`(날짜를 모르면 `발표 전`)으로 쓴다, 매수·매도 추천 금지, 컨센서스·목표주가는 사실 보고로만):
    - `overview` 기업개요 ← company-analyst
    - `moat` 경제적해자 ← company-analyst의 경쟁우위 + 그 우위를 위협하는 리스크 1개 이상(필요하면 웹검색 보강)
    - `fundamental` 기본적분석 ← fundamental-analyst (현금흐름 bullet 필수)
@@ -27,11 +27,20 @@ allowed-tools: Agent, Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Bash(n
 5. 항목을 넣는다: `{ "ai": "claude", "date": "<오늘 월.일, 예: 10.5 — 앞자리 0 없이, 한국 시간 기준>", summary, overview, moat, fundamental, technical, valuation }`. 같은 `ai`·`date`가 이미 있으면 그 항목을 바꾸고, 아니면 `ais` 맨 앞에 넣고 최신 5개만 남긴다. `code`·`name`·`market`·`price`·`chg`는 그대로 두고, `tags`는 명백히 낡았을 때만 3개 이내로 고친다. 목록 화면에는 **첫 번째 태그 1개만** 보이므로 첫 태그는 업종(예: 반도체, 소프트웨어, 손해보험)으로 둔다(사용자 결정 2026-10-06). 다른 종목 항목은 건드리지 않는다.
    - **신규 종목**은 배열 맨 앞에 새 항목을 만든다: `{ "code": "<입력한 코드 — 국장 6자리, 미국은 대문자 티커>", "name": "<확인한 회사명>", "price": 0, "chg": 0, "market": "<latest.json의 market>", "tags": ["핵심 키워드 3개 이내"], "ais": [<오늘 항목>] }`.
    - JSON은 UTF-8, 들여쓰기 2칸, 파일 끝 줄바꿈 하나로 저장한다.
-6. `node scripts/validate-analyses.mjs` → `npm run build` → `npm run check`를 차례로 돌리고, 실패하면 고친 뒤 다시 돌린다.
-7. **git commit·push는 하지 않는다**(워크플로가 한다). 마지막에 요약만 쓴다: 처리한 종목, 건너뛴 종목(이유), 기술적분석을 미확인으로 둔 종목, 신뢰도 자가체크(5점 만점).
+6. **미확인 다시 찾기**(사용자 요청 2026-10-29: 미확인이 너무 많다). `node scripts/unconfirmed.mjs <대상 종목 쉼표 구분>`을 돌린다. 각 종목의 최신 분석에서 ① 이유 없는 `미확인` ② 한 분석에 미확인 4개 이상을 잡아 목록으로 보여 준다(종료 코드 1). 걸리면 **목록에 나온 항목만** 메인이 직접 WebSearch/WebFetch로 더 찾는다 — 서브에이전트를 다시 부르지 않는다. **분석 시간을 늘리지 않도록**(사용자 요청 2026-10-29: 분석 시간도 고려):
+   - 다시 찾기는 **한 번만** 한다. 모든 종목·항목의 검색을 **한 메시지에서 동시에** 보낸다(항목마다 검색 1번 + 필요하면 페이지 1~2개)
+   - 종목당 **최대 3개 항목**, 우선순위: ① 실적 발표일·연간 가이던스 ② 자체 과거·동종 PER·PBR ③ 점유율. '영향 규모'처럼 원래 수치가 드문 항목은 다시 찾지 않고 `미확인(수치 근거 없음)`으로 이유만 단다
+   대체 출처(앞에서부터, 항목당 최대 2곳):
+   - 연간 가이던스·실적 발표일: 회사 IR 보도자료·SEC 8-K(국장은 DART·회사 IR) → 실적 발표 일정 기사. 발표 전이면 `M월 D일 발표 예정`으로 쓴다
+   - 자체 과거평균 PER·PBR: StockAnalysis `stockanalysis.com/stocks/<티커>/financials/ratios/`(연도별 PE·PB) → Macrotrends `price-book` 페이지. 국장은 네이버금융 종목 페이지 '기업실적분석' 표의 연도별 PER·PBR. 여러 해가 적자라 평균이 의미 없으면 그 사실을 쓴다(미확인 아님)
+   - 동종 PER·PBR: 같은 업종 경쟁사 2~3곳의 현재 값(StockAnalysis statistics, 국장은 네이버금융 '동일업종비교')
+   - 점유율: 회사 10-K·사업보고서의 경쟁 항목 → 업계 보고서·기사. 회사 단독 수치가 없고 상위 몇 개사 합산만 있으면 그걸 쓴다
+   찾으면 값과 출처로 바꾸고, 끝내 없으면 `미확인(공개 자료 없음)`처럼 이유를 단다. 다시 `node scripts/unconfirmed.mjs`를 돌려 확인하고, 그래도 걸리면 더 찾지 않고 남은 항목을 요약에 적는다. 숫자는 이번에 찾은 출처가 있는 값만 쓴다(지어내지 않는다).
+7. `node scripts/validate-analyses.mjs` → `npm run build` → `npm run check`를 차례로 돌리고, 실패하면 고친 뒤 다시 돌린다.
+8. **git commit·push는 하지 않는다**(워크플로가 한다). 마지막에 요약만 쓴다: 처리한 종목, 건너뛴 종목(이유), 기술적분석을 미확인으로 둔 종목, **종목별 미확인 개수(다시 찾기 전 → 후)와 남은 미확인의 이유**, 신뢰도 자가체크(5점 만점).
 
 ## 금지
-- **파일은 Read·Edit·Write 도구로만 읽고 고친다.** Bash는 `npm run build`, `npm run check`, `node scripts/validate-analyses.mjs`, `date`만 허용되며 그 밖의 명령(python/node 스크립트로 JSON 고치기, cat, git 등)은 권한 거부로 실패한다 — 시도하지 말고, 거부되더라도 멈추지 말고 Edit/Write로 이어서 끝낸다. (2026-10-06 첫 실행이 스크립트 거부 뒤 아무것도 쓰지 않고 끝난 적 있음)
+- **파일은 Read·Edit·Write 도구로만 읽고 고친다.** Bash는 `npm run build`, `npm run check`, `node scripts/validate-analyses.mjs`, `node scripts/unconfirmed.mjs <코드>`, `date`만 허용되며 그 밖의 명령(python/node 스크립트로 JSON 고치기, cat, git 등)은 권한 거부로 실패한다 — 시도하지 말고, 거부되더라도 멈추지 말고 Edit/Write로 이어서 끝낸다. (2026-10-06 첫 실행이 스크립트 거부 뒤 아무것도 쓰지 않고 끝난 적 있음)
 - 숫자를 지어내지 않는다. 기술적분석 숫자는 `data/technical/latest.json`만, 나머지 숫자는 서브에이전트가 출처와 함께 가져온 것만.
 - 매수·매도·보유 권유, "지금 사라/팔아라" 류 표현 금지. 애널리스트 의견은 "~로 집계된다(사실 보고)"로만.
 - `index.html`을 직접 고치지 않는다(`npm run build`가 만든다).
