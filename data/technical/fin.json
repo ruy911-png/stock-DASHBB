@@ -1,0 +1,3628 @@
+{
+  "generated_at": "2026-10-30T12:26:20Z",
+  "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
+  "failed": [],
+  "items": {
+    "VCEL": {
+      "name": "베리셀(Vericel, VCEL)",
+      "symbol": "VCEL",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+22.5%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "흑자 전환"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "69,670,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "61,664,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "35.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "4.7%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "4.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "74.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "4.7% · 3.5% · -1.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "197,516,000 → 237,224,000 → 276,259,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "WKC": {
+      "name": "월드 키넥트(WKC)",
+      "symbol": "WKC",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+50.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+71.6%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "82,600,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "19,500,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "424.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-47.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "0.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "2.6%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-47.3% · 3.5% · 2.7%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "47,710,600,000 → 42,168,000,000 → 36,916,600,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "011200": {
+      "name": "HMM",
+      "symbol": "011200.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+29.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+50.5%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "2,819,827,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "112,751,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "29.4%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "7.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "13.4%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "18.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "7.1% · 13.6% · 4.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "8,400,969,000,000 → 11,700,224,000,000 → 10,891,443,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "489790": {
+      "name": "한화비전",
+      "symbol": "489790.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+18.6%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+11.6%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "94,972,478,700"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "19,062,928,640"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "136.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "5.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "9.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "53.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": null,
+            "value": null
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "MRNA": {
+      "name": "모더나 (MRNA)",
+      "symbol": "MRNA",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+4.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "적자 축소"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-1,073,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-1,244,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "62.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-32.6%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "-159.9%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "54.8%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-32.6% · -32.7% · -34.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "6,754,000,000 → 3,199,000,000 → 1,922,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "MU": {
+      "name": "마이크론 (MU)",
+      "symbol": "MU",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+379.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+1084.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "89,675,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "58,963,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "41.6%"
+          }
+        ],
+        "as_of": "2026-08-31"
+      },
+      "moat": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "61.4%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "74.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "80.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "61.4% · 15.8% · 1.7%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "25,111,000,000 → 37,378,000,000 → 133,188,000,000"
+          }
+        ],
+        "as_of": "2026-08-31"
+      }
+    },
+    "BE": {
+      "name": "블룸에너지 (BE)",
+      "symbol": "BE",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+138.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+2773.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "690,968,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "436,704,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "238.4%"
+          }
+        ],
+        "as_of": "2026-09-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-11.5%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "3.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "29.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-11.5% · -5.2% · -60.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "1,333,470,000 → 1,473,856,000 → 2,023,994,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "LLY": {
+      "name": "일라이릴리 (LLY)",
+      "symbol": "LLY",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+47.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+77.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "28,083,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "13,560,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "320.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "77.8%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "45.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "83.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "77.8% · 74.2% · 48.6%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "34,124,000,000 → 45,043,000,000 → 65,179,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "WM": {
+      "name": "웨이스트매니지먼트 (WM)",
+      "symbol": "WM",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+6.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+7.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "6,565,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,740,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "371.5%"
+          }
+        ],
+        "as_of": "2026-09-30"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "27.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "18.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "40.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "27.1% · 33.3% · 33.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "20,426,000,000 → 22,063,000,000 → 25,204,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "ONDS": {
+      "name": "온다스 (ONDS)",
+      "symbol": "ONDS",
+      "financial": false,
+      "fundamental": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+1235.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "적자 지속·확대"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-161,062,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-172,027,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "90.3%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-30.2%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "-115.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "39.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-30.2% · -229.2% · -135.3%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "15,691,430 → 7,193,000 → 50,731,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "SNOW": {
+      "name": "스노우플레이크 (SNOW)",
+      "symbol": "SNOW",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+35.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "적자 축소"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,253,253,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,193,484,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "304.3%"
+          }
+        ],
+        "as_of": "2026-07-31"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-69.2%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "-30.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "67.2%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-69.2% · -42.9% · -16.1%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "2,806,489,000 → 3,626,396,000 → 4,683,946,000"
+          }
+        ],
+        "as_of": "2026-01-31"
+      }
+    },
+    "010950": {
+      "name": "S-Oil",
+      "symbol": "010950.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+40.9%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "흑자 전환"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "2,181,299,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-1,036,975,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "199.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "2.0%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "0.7%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "3.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "2.0% · -2.2% · 10.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "35,726,694,000,000 → 36,637,031,000,000 → 34,246,957,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "NVDA": {
+      "name": "엔비디아 (NVIDIA)",
+      "symbol": "NVDA",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+105.9%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+124.1%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "134,360,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "127,006,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "39.9%"
+          }
+        ],
+        "as_of": "2026-07-31"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "76.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "60.4%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "71.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "76.3% · 91.9% · 69.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "60,922,000,000 → 130,497,000,000 → 215,938,000,000"
+          }
+        ],
+        "as_of": "2026-01-31"
+      }
+    },
+    "035720": {
+      "name": "카카오",
+      "symbol": "035720.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+9.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+35.9%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,140,949,776,320"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "462,768,507,860"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "106.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "4.4%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "9.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "94.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "4.4% · 0.5% · -10.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "7,557,001,757,270 → 7,864,033,326,470 → 8,099,147,815,080"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "001450": {
+      "name": "현대해상",
+      "symbol": "001450.KS",
+      "financial": true,
+      "fundamental": {
+        "met": 2,
+        "total": 5,
+        "unknown": 3,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,280,011,990,530"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,218,879,374,820"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": null,
+            "value": null
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "19.8%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "19.8% · 17.9% · 9.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "13,613,514,519,440 → 14,222,209,025,270 → 15,398,544,431,910"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "FTNT": {
+      "name": "포티넷",
+      "symbol": "FTNT",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+25.6%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+50.5%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,396,100,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,117,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "600.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 4,
+        "total": 5,
+        "unknown": 1,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "149.8%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "30.7%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "80.5%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "5,304,800,000 → 5,955,800,000 → 6,799,600,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "PCG": {
+      "name": "퍼시픽 가스 & 일렉트릭",
+      "symbol": "PCG",
+      "financial": false,
+      "fundamental": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-1.0%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+3.2%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "7,800,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-4,977,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "325.3%"
+          }
+        ],
+        "as_of": "2026-09-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "8.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "19.4%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "39.6%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "8.3% · 8.3% · 9.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "24,428,000,000 → 24,419,000,000 → 24,935,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "COIN": {
+      "name": "코인베이스",
+      "symbol": "COIN",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-18.5%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "적자 축소"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,713,665,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,713,665,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "102.3%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "8.5%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "20.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "74.6%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "8.5% · 25.1% · 1.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "3,108,383,000 → 6,564,028,000 → 7,181,325,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "353200": {
+      "name": "대덕전자",
+      "symbol": "353200.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+63.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+3666.0%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "214,981,342,830"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "66,790,868,780"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "40.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "5.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "4.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "10.2%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "5.3% · 2.7% · 2.9%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "909,651,486,890 → 892,135,903,750 → 1,065,294,559,810"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "PLTR": {
+      "name": "팔란티어",
+      "symbol": "PLTR",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+92.8%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+238.6%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,400,291,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,358,272,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "18.4%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "22.0%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "31.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "82.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "22.0% · 9.2% · 6.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "2,225,012,000 → 2,865,507,000 → 4,475,446,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "139480": {
+      "name": "이마트",
+      "symbol": "139480.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-1.8%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-299.0%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,572,542,014,030"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "880,408,328,980"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "160.8%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "1.2%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "1.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "31.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "1.2% · -5.7% · -0.8%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "29,472,247,894,450 → 29,020,896,860,840 → 28,970,388,263,850"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "004170": {
+      "name": "신세계",
+      "symbol": "004170.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+5.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+121.6%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,246,930,168,800"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "808,786,851,990"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "168.6%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "0.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "6.9%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "60.5%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "0.3% · 2.5% · 5.3%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "6,357,088,542,140 → 6,570,412,728,800 → 6,929,498,818,330"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "011070": {
+      "name": "LG이노텍",
+      "symbol": "011070.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+40.5%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+2057.3%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "850,634,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "85,737,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "87.2%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "5.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "3.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "8.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "5.9% · 8.4% · 12.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "20,605,290,042,370 → 21,200,755,000,000 → 21,896,603,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "009150": {
+      "name": "삼성전기",
+      "symbol": "009150.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+24.2%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+106.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,876,172,968,590"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "226,305,323,800"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "59.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "7.4%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "8.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "20.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "7.4% · 7.7% · 5.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "8,892,411,942,800 → 10,294,102,976,430 → 11,314,459,238,100"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "KO": {
+      "name": "코카콜라",
+      "symbol": "KO",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+6.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+7.9%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "16,342,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "14,297,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "192.6%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "40.7%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "31.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "61.6%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "40.7% · 42.8% · 41.3%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "45,754,000,000 → 47,061,000,000 → 47,941,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "WMT": {
+      "name": "월마트",
+      "symbol": "WMT",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+5.9%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+28.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "42,923,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "13,509,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "192.5%"
+          }
+        ],
+        "as_of": "2026-07-31"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "22.0%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "4.2%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "24.9%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "22.0% · 21.4% · 18.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "648,125,000,000 → 680,985,000,000 → 713,163,000,000"
+          }
+        ],
+        "as_of": "2026-01-31"
+      }
+    },
+    "MS": {
+      "name": "모건스탠리",
+      "symbol": "MS",
+      "financial": true,
+      "fundamental": {
+        "met": 1,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+27.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-15,587,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-18,582,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": null,
+            "value": null
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "15.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "15.1% · 12.8% · 9.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "50,667,000,000 → 57,621,000,000 → 65,966,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "BAC": {
+      "name": "뱅크오브아메리카",
+      "symbol": "BAC",
+      "financial": true,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+7.2%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "56,567,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "56,567,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": null,
+            "value": null
+          }
+        ],
+        "as_of": "2026-03-31"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "10.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "10.1% · 9.2% · 9.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "102,769,000,000 → 105,856,000,000 → 113,097,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "ARM": {
+      "name": "ARM홀딩스",
+      "symbol": "ARM",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+22.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-14.0%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "2,094,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1,472,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "29.7%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "10.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "18.5%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "97.5%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "10.9% · 11.6% · 5.8%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "3,233,000,000 → 4,007,000,000 → 4,920,000,000"
+          }
+        ],
+        "as_of": "2026-03-31"
+      }
+    },
+    "AMAT": {
+      "name": "AMAT",
+      "symbol": "AMAT",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+24.8%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+37.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "8,396,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "5,623,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "69.8%"
+          }
+        ],
+        "as_of": "2026-07-31"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "34.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "29.9%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "48.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "34.3% · 37.8% · 41.9%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "26,517,000,000 → 27,176,000,000 → 28,368,000,000"
+          }
+        ],
+        "as_of": "2025-10-31"
+      }
+    },
+    "005930": {
+      "name": "삼성전자",
+      "symbol": "005930.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+130.0%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+1813.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "196,729,338,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "140,486,303,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "31.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "10.4%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "13.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "39.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "10.4% · 8.6% · 4.1%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "258,935,494,000,000 → 300,870,903,000,000 → 333,605,938,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "240810": {
+      "name": "원익IPS",
+      "symbol": "240810.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-10.6%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-49.6%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "59,882,694,300"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "27,982,979,480"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "39.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "8.7%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "8.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "42.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "8.7% · 2.3% · -1.6%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "690,337,586,770 → 748,176,487,520 → 909,795,691,100"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "237690": {
+      "name": "에스티팜",
+      "symbol": "237690.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+58.9%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+41.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "112,626,629,200"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "77,101,418,930"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "34.8%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "9.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "16.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "41.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "9.3% · 6.9% · 5.1%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "284,991,652,400 → 273,751,342,840 → 331,681,282,440"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "005290": {
+      "name": "동진쎄미켐",
+      "symbol": "005290.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+17.5%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+38.9%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "231,962,756,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "144,429,977,310"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "82.7%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "9.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "14.4%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "26.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "9.1% · 15.5% · 15.8%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "1,309,924,437,990 → 1,112,812,913,020 → 1,194,144,534,560"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "028260": {
+      "name": "삼성물산",
+      "symbol": "028260.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+19.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+34.2%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "5,014,906,893,620"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,637,626,769,870"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "47.4%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "4.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "8.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "18.9%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "4.9% · 7.2% · 6.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "41,895,681,215,730 → 42,103,238,027,330 → 40,742,240,967,140"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "298040": {
+      "name": "효성중공업",
+      "symbol": "298040.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+10.6%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+104.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "784,641,248,090"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "513,419,161,060"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "225.2%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "22.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "12.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "21.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "22.1% · 11.7% · 10.7%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "4,300,571,503,250 → 4,894,979,612,220 → 5,968,511,616,600"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "CVS": {
+      "name": "CVS Health",
+      "symbol": "CVS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+7.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+97.5%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "14,780,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "11,758,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "218.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "2.4%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "2.6%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "13.8%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "2.4% · 6.1% · 10.9%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "357,776,000,000 → 372,809,000,000 → 402,067,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "ONON": {
+      "name": "On Holding",
+      "symbol": "ONON",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+13.5%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+28.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "525,400,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "429,100,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "69.7%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "12.5%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "12.5%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "62.8%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "12.5% · 17.4% · 7.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "1,792,100,000 → 2,318,300,000 → 3,014,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "MRK": {
+      "name": "머크",
+      "symbol": "MRK",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+5.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-107.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "19,967,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "16,063,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "209.4%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "34.7%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "34.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "74.8%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "34.7% · 37.0% · 1.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "60,115,000,000 → 64,168,000,000 → 65,011,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "CRSP": {
+      "name": "크리스퍼 테라퓨틱스",
+      "symbol": "CRSP",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "증가"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "적자 축소"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-369,582,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-373,798,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "51.8%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 0,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-30.3%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-30.3% · -19.0% · -8.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "370,000,000 → 35,000,000 → 0"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "DLB": {
+      "name": "돌비 래버러토리스",
+      "symbol": "DLB",
+      "financial": false,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-3.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-18.7%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "437,598,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "344,505,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "21.8%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "9.7%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "20.8%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "88.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "9.7% · 10.6% · 8.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": false,
+            "value": "1,299,744,000 → 1,273,721,000 → 1,349,130,000"
+          }
+        ],
+        "as_of": "2025-09-30"
+      }
+    },
+    "090460": {
+      "name": "비에이치",
+      "symbol": "090460.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+6.3%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-50.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "234,300,985,220"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "88,085,047,360"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "75.9%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "4.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "3.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "8.2%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "4.1% · 9.4% · 14.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "1,591,992,250,700 → 1,754,441,744,290 → 1,792,660,286,540"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "ISRG": {
+      "name": "인튜이티브 서지컬",
+      "symbol": "ISRG",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+21.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+37.2%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "4,089,500,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3,598,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "20.2%"
+          }
+        ],
+        "as_of": "2026-09-30"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "16.0%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "29.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "66.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "16.0% · 14.1% · 13.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "7,124,100,000 → 8,352,100,000 → 10,064,700,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "095610": {
+      "name": "테스",
+      "symbol": "095610.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+50.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+27.8%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "87,797,442,490"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "68,025,863,200"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "21.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "14.5%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "16.5%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "26.2%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "14.5% · 12.9% · 0.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "146,938,072,260 → 240,077,826,420 → 351,115,732,340"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "GOOGL": {
+      "name": "알파벳 A",
+      "symbol": "GOOGL",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+24.2%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+30.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "185,675,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "53,273,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "44.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "31.8%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "32.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "59.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "31.8% · 30.8% · 26.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "307,394,000,000 → 350,018,000,000 → 402,836,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "FROG": {
+      "name": "제이프로그",
+      "symbol": "FROG",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+28.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "적자 축소"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "176,264,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "169,701,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "55.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-8.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "-16.9%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "76.8%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-8.1% · -9.0% · -9.0%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "349,886,000 → 428,488,000 → 531,840,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "241710": {
+      "name": "코스메카코리아",
+      "symbol": "241710.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+39.8%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+39.3%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "55,582,025,330"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "5,898,524,650"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "146.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "18.0%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "13.0%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "24.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "18.0% · 19.6% · 13.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "470,719,111,290 → 524,328,644,680 → 640,929,072,770"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "096530": {
+      "name": "씨젠",
+      "symbol": "096530.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+19.2%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+588.1%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "158,959,163,310"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "97,397,477,890"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "21.8%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "4.8%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "7.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "64.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "4.8% · -0.9% · 0.1%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "367,375,048,980 → 414,251,733,220 → 474,231,586,050"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "257720": {
+      "name": "실리콘투",
+      "symbol": "257720.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+51.8%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+59.0%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "45,970,876,100"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "6,219,991,620"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "40.0%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "36.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "18.4%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "31.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "36.9% · 46.2% · 28.2%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "342,860,997,940 → 691,522,368,910 → 1,116,287,364,100"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "SHOP": {
+      "name": "쇼피파이",
+      "symbol": "SHOP",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+33.7%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+69.5%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "2,377,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "2,352,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "14.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "9.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "16.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "48.1%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "9.1% · 17.5% · 1.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "7,060,000,000 → 8,880,000,000 → 11,556,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "SCHW": {
+      "name": "찰스 슈왑",
+      "symbol": "SCHW",
+      "financial": true,
+      "fundamental": {
+        "met": 3,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+20.9%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "11,417,000,000"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "10,789,000,000"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": null,
+            "value": null
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 2,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": true,
+            "value": "17.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": null,
+            "value": null
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": true,
+            "value": "17.9% · 12.3% · 12.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "18,837,000,000 → 19,606,000,000 → 23,921,000,000"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    }
+  }
+}
