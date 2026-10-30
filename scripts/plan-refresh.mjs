@@ -1,5 +1,5 @@
 // 오늘자 재분석(refresh-analyses.yml)의 실행 계획: 대상 종목을 골라 묶음(chunk)으로 나눠 JSON 배열로 출력한다.
-// 사용: node scripts/plan-refresh.mjs --tickers all|005930,SCHW --max-age-days 0 --chunk-size 8
+// 사용: node scripts/plan-refresh.mjs --tickers all|005930,SCHW --max-age-days 0 --chunk-size 4
 // 출력 예: ["005930,SCHW,001450","AMAT,NVDA"]  (워크플로 matrix 입력, 묶음은 차례로 실행)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +15,7 @@ function arg(name, fallback) {
 
 const tickers = String(arg('--tickers', 'all')).trim();
 const maxAgeDays = Number(arg('--max-age-days', '0')) || 0;
-const chunkSize = Math.max(1, Number(arg('--chunk-size', '8')) || 8);
+const chunkSize = Math.max(1, Number(arg('--chunk-size', '4')) || 4);
 const today = arg('--today', null) ? new Date(arg('--today')) : new Date();
 
 // "8.28"(연도 없음) → 날짜. 월이 오늘보다 뒤면 작년으로 본다.

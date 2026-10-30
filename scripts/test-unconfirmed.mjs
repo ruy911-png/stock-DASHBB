@@ -2,7 +2,7 @@
 // 새 분석은 ① 미확인마다 이유를 붙이고(미확인(이유)) ② 한 분석에 미확인이 MAX_UNCONFIRMED개를 넘지 않아야 한다.
 // 걸리면 refresh-analyses 스킬이 그 항목만 다시 찾아본다. 예전 분석은 검사하지 않는다(종목을 지정해 최신 분석만 검사).
 import assert from 'node:assert/strict';
-import { findUnconfirmed, checkUnconfirmed, MAX_UNCONFIRMED } from './unconfirmed.mjs';
+import { findUnconfirmed, checkUnconfirmed, hasGrowth, MAX_UNCONFIRMED } from './unconfirmed.mjs';
 
 // 10/29 모더나(MRNA) 실제 분석(문장 일부 줄임) — 이유 없는 미확인 5개
 const mrna = {
@@ -50,5 +50,21 @@ const r = checkUnconfirmed(many);
 assert.equal(r.ok, false);
 assert.deepEqual(r.problems.map(p => p.kind), ['too-many']);
 assert.equal(checkUnconfirmed({ overview: '• 확인된 값만 있음. PER은 순손실이라 산정 불가' }).ok, true); // '산정 불가'는 미확인이 아니다
+
+// 6) 실적 증감률(사용자 지적 2026-10-30: MS '3Q26 순매출 203억 달러(전년 182억)' — 증감률이 안 보임)
+//    기본적분석 첫 bullet(최근 실적)에 부호 있는 증감률(+11.6% / -3.2%)이 있어야 한다.
+//    발표 전이면 '발표 예정', 끝내 없으면 '증감률은 미확인(이유)'도 허용
+const msFund = '• 3Q26 순매출 203억 달러(전년 182억), 희석 EPS 3.03달러(전년 2.80)다 (MS 3Q26 8-K, 2026-10-14)\n• 현금흐름: OCF -156억 (StockAnalysis)';
+assert.equal(hasGrowth(msFund), false);
+assert.equal(hasGrowth('• 3Q26 순매출 203.4억 달러(전년 대비 +11.6%), 희석 EPS 3.03달러(+8.2%) (MS 8-K)'), true);
+assert.equal(hasGrowth('• 3분기 매출 12.36억달러(+138.1%), 영업이익 2.25억달러 (SEC 8-K)'), true);
+assert.equal(hasGrowth('• 2분기 순손실 7.8억달러. 3분기 실적은 11월 6일 발표 예정 (Moderna)'), true);
+assert.equal(hasGrowth('• 3분기 매출 5,734억원. 증감률은 미확인(전년 비교 자료 없음)'), true);
+assert.equal(hasGrowth('• 3분기 매출 5,734억원, 영업이익률 17.9% (MTN)'), false); // 부호 없는 비율은 증감률이 아님
+const msBad = checkUnconfirmed({ fundamental: msFund });
+assert.equal(msBad.ok, false);
+assert.ok(msBad.problems.some(p => p.kind === 'no-growth'));
+assert.equal(checkUnconfirmed({ fundamental: '• 매출 20억(+11.6%)\n• 현금흐름: OCF 1억' }).ok, true);
+assert.equal(checkUnconfirmed({ overview: '• 기술지표만 있는 분석' }).ok, true); // 기본적분석이 없으면 검사하지 않음
 
 console.log('미확인 검사기 테스트 통과');
