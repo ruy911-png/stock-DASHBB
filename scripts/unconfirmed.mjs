@@ -26,10 +26,20 @@ export function findUnconfirmed(analysis) {
   return out;
 }
 
+// 기본적분석 첫 bullet(최근 실적)에 증감률이 있는가(사용자 지적 2026-10-30: 'MS 순매출 203억 달러(전년 182억)'에 증감률이 안 보임).
+// 부호 있는 %(+11.6% / -3.2%), 또는 발표 전('발표 예정'), 또는 '증감률은 미확인(이유)'
+export function hasGrowth(fundamental) {
+  const first = String(fundamental || '').split('\n')[0];
+  return /[+\-−]\s?\d+(?:\.\d+)?%/.test(first) || /발표 예정/.test(first) || /증감률[^.]*미확인\([^()]+\)/.test(first);
+}
+
 export function checkUnconfirmed(analysis, max = MAX_UNCONFIRMED) {
   const found = findUnconfirmed(analysis);
   const problems = found.filter(f => f.reason === null).map(f => ({ kind: 'no-reason', ...f }));
   if (found.length > max) problems.push({ kind: 'too-many', count: found.length, max });
+  if (typeof analysis?.fundamental === 'string' && analysis.fundamental.trim() && !hasGrowth(analysis.fundamental)) {
+    problems.push({ kind: 'no-growth', section: 'fundamental', bullet: analysis.fundamental.split('\n')[0].trim() });
+  }
   return { ok: problems.length === 0, found, problems };
 }
 
@@ -50,6 +60,7 @@ function main(argv) {
     console.log(`${code} ${latest.date}: 미확인 ${r.found.length}개(한도 ${MAX_UNCONFIRMED}) — ${r.ok ? '통과' : '다시 찾기'}`);
     for (const p of r.problems) {
       if (p.kind === 'no-reason') console.log(`  - [이유 없음] ${SECTION_NAMES[p.section]}: ${p.bullet}`);
+      else if (p.kind === 'no-growth') console.log(`  - [증감률 없음] 기본적분석 첫 bullet에 전년 대비 증감률(+X%)을 넣는다: ${p.bullet}`);
       else console.log(`  - [너무 많음] ${p.count}개 > ${p.max}개: 찾을 수 있는 값을 다시 찾고, 끝내 없는 것만 미확인(이유)로 남긴다`);
     }
     if (!r.ok) failed = true;
