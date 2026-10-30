@@ -1282,12 +1282,14 @@
         <sc-if value="{{ peekPanel.hasMoat }}" hint-placeholder-val="{{ false }}">
           <div style="margin-bottom:12px;">
             <div style="font-size:16px; font-weight:800; color:#2C6FB0; margin-bottom:6px;">🏰 경제적 해자</div>
+            <span id="__analysis_peek_moatbadge" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:0 0 6px;"></span>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_moat"></div>
           </div>
         </sc-if>
         <sc-if value="{{ peekPanel.hasFund }}" hint-placeholder-val="{{ true }}">
           <div style="margin-bottom:12px;">
             <div style="font-size:16px; font-weight:800; color:#6B62F0; margin-bottom:6px;">📊 기본적 분석</div>
+            <span id="__analysis_peek_fundbadge" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:0 0 6px;"></span>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_fundamental"></div>
           </div>
         </sc-if>
@@ -1295,8 +1297,8 @@
           <div>
             <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
               <div style="font-size:16px; font-weight:800; color:#E0922B;">🎯 기술적 분석 및 목표가</div>
-              <span id="__analysis_peek_techbadge" style="margin-left:auto; display:flex; align-items:center; gap:6px; flex-wrap:wrap;"></span>
             </div>
+            <span id="__analysis_peek_techbadge" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin:0 0 6px;"></span>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_technical"></div>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
           </div>
@@ -1784,6 +1786,13 @@ class Component extends DCLogic {
       const payload = await res.json();
       if (payload && payload.items) this.setState({ techItems: payload.items });
     } catch (e) {}
+    // 기본적분석·해자 신호 달 점수(재무제표 코드 계산, data/technical/fin.json, 사용자 결정 2026-10-30)
+    try {
+      const res = await fetch('./data/technical/fin.json' + (bust ? '?t=' + bust : ''), { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      if (payload && payload.items) this.setState({ finItems: payload.items });
+    } catch (e) {}
   }
   // 충족 비율 f(0~1)만큼 오른쪽부터 차오르는 달(그믐→초승→반달→보름)
   moonSvg(f, size) {
@@ -1795,10 +1804,19 @@ class Component extends DCLogic {
   // 달 배지(조건 충족 개수)와 과열 칩(과매수·과매도 지표 개수). 과거·현재 상태의 체크리스트이며 매수·매도 판단이 아니다
   techBadgeHtml(code) {
     const t = this.state.techItems && this.state.techItems[code];
-    if (!t || !t.score) return '';
+    return t && t.score ? this.scoreBadgeHtml(t.score, t.as_of) : '';
+  }
+  // 기본적분석(kind='fundamental')·해자 신호(kind='moat') 달 배지 — 재무제표 결산일 기준
+  finBadgeHtml(code, kind) {
+    const f = this.state.finItems && this.state.finItems[code];
+    const sc = f && f[kind];
+    return sc ? this.scoreBadgeHtml(sc, sc.as_of ? sc.as_of + ' 결산' : '', kind === 'moat' ? '해자를 직접 재는 값이 아니라 해자가 있으면 보통 나타나는 숫자' : '') : '';
+  }
+  scoreBadgeHtml(sc, asOf, note) {
     const esc = v => String(v).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
-    const sc = t.score, known = sc.total - sc.unknown;
-    const tip = sc.items.map(i => (i.ok === true ? '● ' : i.ok === false ? '○ ' : '? ') + i.label).join('\n') + '\n(' + (t.as_of || '') + ' 기준, 코드 계산 · 매수·매도 판단 아님)';
+    const known = sc.total - sc.unknown;
+    const tip = sc.items.map(i => (i.ok === true ? '● ' : i.ok === false ? '○ ' : '? ') + i.label + (i.value ? ' (' + i.value + ')' : '')).join('\n')
+      + (note ? '\n' + note : '') + '\n(' + (asOf || '') + ' 기준, 코드 계산 · 매수·매도 판단 아님)';
     const chip = 'display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:999px;padding:3px 10px 3px 5px;white-space:nowrap;';
     let html = `<span title="${esc(tip)}" style="${chip}color:#4A4A5E;background:#F3F3F8;">${this.moonSvg(known ? sc.met / sc.total : 0, 20)}${sc.met}/${sc.total}${sc.unknown ? `<span style="font-weight:500;color:#9A9AAC;">· 확인 못 함 ${sc.unknown}</span>` : ''}</span>`;
     return html;
@@ -2736,9 +2754,12 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
             el.innerHTML = window.marked ? window.marked.parse(html, { breaks: true }) : html.replace(/\n/g, '<br>');
           }
         });
-        const badgeEl = document.getElementById('__analysis_peek_techbadge');
-        const badge = this.techBadgeHtml(stock.code);
-        if (badgeEl && badgeEl.dataset.src !== badge) { badgeEl.dataset.src = badge; badgeEl.innerHTML = badge; }
+        // 달 배지는 각 섹션 제목 아래 한 줄(사용자 결정 2026-10-30, 2번 안)
+        [['__analysis_peek_techbadge', this.techBadgeHtml(stock.code)], ['__analysis_peek_fundbadge', this.finBadgeHtml(stock.code, 'fundamental')],
+         ['__analysis_peek_moatbadge', this.finBadgeHtml(stock.code, 'moat')]].forEach(([id, badge]) => {
+          const badgeEl = document.getElementById(id);
+          if (badgeEl && badgeEl.dataset.src !== badge) { badgeEl.dataset.src = badge; badgeEl.innerHTML = badge; }
+        });
       }
     }
   }
