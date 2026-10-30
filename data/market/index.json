@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "10.30",
+      "krDate": "2026-10-30",
+      "usDate": "2026-10-29",
+      "wtiDate": "2026-10-29",
+      "collectedAt": "2026-10-30T08:49:30.256Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,730.74",
+          "chg": -3.48
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "724.38",
+          "chg": -3.83
+        },
+        {
+          "name": "원/달러",
+          "value": "1,334.90",
+          "chg": -0.42
+        },
+        {
+          "name": "S&P500",
+          "value": "7,720.39",
+          "chg": -0.3
+        },
+        {
+          "name": "나스닥",
+          "value": "26,184.72",
+          "chg": -1.38
+        },
+        {
+          "name": "VIX",
+          "value": "17.20",
+          "chg": 1.71
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "11,518.20",
+          "chg": -1.42
+        },
+        {
+          "name": "WTI",
+          "value": "102.00",
+          "chg": -0.76
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -14526
+        },
+        {
+          "name": "기관",
+          "amount": 3948
+        },
+        {
+          "name": "개인",
+          "amount": 7974
+        }
+      ],
+      "comment": "알파벳 실적 충격에 반도체 매도 확산, 사이드카 재발동",
+      "keywords": [
+        "매도 사이드카",
+        "인사",
+        "경영진 인사",
+        "미소금융",
+        "임원 인사",
+        "개인정보 유출"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-10-30T15:00:31+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5435"
+        }
+      }
+    },
+    {
       "date": "10.29",
       "krDate": "2026-10-29",
       "usDate": "2026-10-28",
