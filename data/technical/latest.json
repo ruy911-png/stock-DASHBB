@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T05:15:35Z",
+  "generated_at": "2026-10-30T09:29:37Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1339,6 +1339,35 @@
       "bars": 485,
       "new": true,
       "name_hint": "HMM Co.,Ltd"
+    },
+    "WKC": {
+      "name": "",
+      "market": "us",
+      "symbol": "WKC",
+      "as_of": "2026-10-29",
+      "close": 37.21,
+      "chg_1d_pct": 1.64,
+      "ma5": 36.622,
+      "ma20": 36.4315,
+      "ma60": 36.0285,
+      "ma120": 34.4532,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 2.14,
+      "pct_vs_ma120": 8.0,
+      "rsi14": 61.29,
+      "volume": 1064100.0,
+      "volume_avg20": 836460.0,
+      "volume_ratio20": 1.27,
+      "high52": 40.25,
+      "low52": 22.59,
+      "pct_from_high52": -7.55,
+      "pct_from_low52": 64.72,
+      "ret_1m_pct": 5.83,
+      "ret_3m_pct": -6.65,
+      "ret_6m_pct": 37.97,
+      "bars": 501,
+      "new": true,
+      "name_hint": "World Kinect Corporation"
     }
   }
 }
