@@ -61,6 +61,11 @@ def _ttm(s: pd.Series):
     return None if len(v) < 4 or (v.index[0] - v.index[3]).days > 300 else float(v.sum())
 
 
+def _amt(x: float) -> str:
+    """금액(재무제표 통화 그대로)을 억·조 단위로."""
+    return f"{x / 1e12:,.1f}조" if abs(x) >= 1e12 else f"{x / 1e8:,.1f}억"
+
+
 def _pct(x: float) -> str:
     return f"{x:.1f}%"
 
@@ -94,7 +99,7 @@ def fundamental_score(qi: pd.DataFrame, qc: pd.DataFrame, qb: pd.DataFrame, fina
     items = [_growth_item("매출 전년 동기 대비 증가", rev), _growth_item("영업이익 전년 동기 대비 증가", op)]
     for label, s in (("영업현금흐름 플러스(최근 12개월)", ocf), ("잉여현금흐름 플러스(최근 12개월)", fcf)):
         v = _ttm(s)
-        items.append({"label": label, "ok": None if v is None else v > 0, "value": None if v is None else f"{v:,.0f}"})
+        items.append({"label": label, "ok": None if v is None else v > 0, "value": None if v is None else _amt(v)})
     l, e = _latest(liab), _latest(eq)
     if financial or l is None or e is None or e <= 0:  # 금융업은 예금·차입이 영업이라 부채비율이 의미 없다. 자본잠식도 계산 안 함
         items.append({"label": "부채비율 100% 이하", "ok": None, "value": None})
@@ -135,7 +140,7 @@ def moat_score(ai: pd.DataFrame, ab: pd.DataFrame, financial: bool = False) -> d
         items.append({"label": "최근 3년 매출 연속 증가", "ok": None, "value": None})
     else:
         items.append({"label": "최근 3년 매출 연속 증가", "ok": bool(rv.iloc[0] > rv.iloc[1] > rv.iloc[2]),
-                      "value": " → ".join(f"{v:,.0f}" for v in reversed(rv.tolist()))})
+                      "value": " → ".join(_amt(v) for v in reversed(rv.tolist()))})
     return _score(items, d0)
 
 
@@ -158,6 +163,8 @@ def selftest() -> int:
     vals = {i["label"]: i["value"] for i in f["items"]}
     assert vals["매출 전년 동기 대비 증가"] == "+20.0%" and vals["영업이익 전년 동기 대비 증가"] == "+20.0%"
     assert vals["부채비율 100% 이하"] == "80.0%"
+    # 금액은 억·조 단위로 짧게(툴팁 한 줄에 들어가게)
+    assert _amt(6_565_000_000) == "65.7억" and _amt(-1_073_000_000) == "-10.7억" and _amt(171_499_500_000_000) == "171.5조"
     assert f["as_of"] == "2026-09-30"
     # 영업이익 감소 → 불충족. 4분기 전 값이 없으면 확인 못 함
     f2 = fundamental_score(_frame({"Total Revenue": [90.0, 1, 1, 1, 100], "Operating Income": [24.0, 1, 1, 1, None]}, q), qc, qb)
