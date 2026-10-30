@@ -1,10 +1,9 @@
 {
-  "generated_at": "2026-10-30T10:22:53Z",
+  "generated_at": "2026-10-30T11:52:08Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
-    "ONDAS",
-    "WM"
+    "ONDAS"
   ],
   "items": {
     "005930": {
@@ -1142,33 +1141,65 @@
       "bars": 500
     },
     "WM": {
-      "name": "",
+      "name": "웨이스트매니지먼트 (WM)",
       "market": "us",
       "symbol": "WM",
-      "as_of": "2026-10-21",
-      "close": 229.58,
-      "chg_1d_pct": -0.93,
-      "ma5": 227.754,
-      "ma20": 212.9245,
-      "ma60": 218.2558,
-      "ma120": 221.1903,
+      "as_of": "2026-10-29",
+      "close": 230.9,
+      "chg_1d_pct": 2.55,
+      "ma5": 234.452,
+      "ma20": 221.7855,
+      "ma60": 219.0207,
+      "ma120": 221.7978,
       "ma_order": "혼조",
-      "pct_vs_ma20": 7.82,
-      "pct_vs_ma120": 3.79,
-      "rsi14": 71.3,
-      "volume": 2246200.0,
-      "volume_avg20": 2354015.0,
-      "volume_ratio20": 0.95,
+      "pct_vs_ma20": 4.11,
+      "pct_vs_ma120": 4.1,
+      "rsi14": 58.53,
+      "stoch_k14": 67.95,
+      "volume": 2852100.0,
+      "volume_avg20": 2569150.0,
+      "volume_ratio20": 1.11,
       "high52": 246.51,
       "low52": 196.77,
-      "pct_from_high52": -6.87,
-      "pct_from_low52": 16.67,
-      "ret_1m_pct": 10.55,
-      "ret_3m_pct": -3.24,
-      "ret_6m_pct": 2.52,
+      "pct_from_high52": -6.33,
+      "pct_from_low52": 17.35,
+      "ret_1m_pct": 13.23,
+      "ret_3m_pct": 1.92,
+      "ret_6m_pct": -0.71,
       "bars": 501,
-      "new": true,
-      "name_hint": "Waste Management, Inc."
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "LLY": {
       "name": "일라이릴리 (LLY)",
