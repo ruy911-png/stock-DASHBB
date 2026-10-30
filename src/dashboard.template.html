@@ -1293,7 +1293,10 @@
         </sc-if>
         <sc-if value="{{ peekPanel.hasTechOrValuation }}" hint-placeholder-val="{{ false }}">
           <div>
-            <div style="font-size:16px; font-weight:800; color:#E0922B; margin-bottom:6px;">🎯 기술적 분석 및 목표가</div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
+              <div style="font-size:16px; font-weight:800; color:#E0922B;">🎯 기술적 분석 및 목표가</div>
+              <span id="__analysis_peek_techbadge" style="margin-left:auto; display:flex; align-items:center; gap:6px; flex-wrap:wrap;"></span>
+            </div>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;" id="__analysis_peek_technical"></div>
             <div class="md-content" style="font-size:15px; color:#56566A; line-height:1.7; max-width:40em;{{ peekPanel.valuationDividerStyle }}" id="__analysis_peek_valuation"></div>
           </div>
@@ -1723,6 +1726,7 @@ class Component extends DCLogic {
     this.loadBackupSnapshot();
     this.loadMarketSnapshot();
     this.loadProfiles();
+    this.loadTech();
     this.loadCases();
     // 화면으로 돌아오면(탭 복귀·화면 켜짐) 멈춰 있던 실행 상태 확인을 즉시 재개 — 모바일은 뒤로 가면 타이머가 멈춘다(2026-10-07 보고)
     const resume = () => { if (document.visibilityState === 'visible') this.resumeWatch(); };
@@ -1772,6 +1776,48 @@ class Component extends DCLogic {
     } catch (e) {}
   }
 
+  // 기술지표(코드 계산, data/technical/latest.json): 기술적 분석 제목 옆 달 배지·과열 칩에 쓴다(사용자 결정 2026-10-30, A안)
+  async loadTech(bust) {
+    try {
+      const res = await fetch('./data/technical/latest.json' + (bust ? '?t=' + bust : ''), { cache: 'no-store' });
+      if (!res.ok) return;
+      const payload = await res.json();
+      if (payload && payload.items) this.setState({ techItems: payload.items });
+    } catch (e) {}
+  }
+  // 충족 비율 f(0~1)만큼 오른쪽부터 차오르는 달(그믐→초승→반달→보름)
+  moonSvg(f, size) {
+    const r = size / 2 - 1, c = size / 2, k = Math.abs(Math.cos(Math.PI * f) * r), sweep = f < 0.5 ? 0 : 1;
+    const lit = f >= 1 ? `M ${c} ${c - r} A ${r} ${r} 0 1 1 ${c} ${c + r} A ${r} ${r} 0 1 1 ${c} ${c - r} Z`
+      : `M ${c} ${c - r} A ${r} ${r} 0 0 1 ${c} ${c + r} A ${k} ${r} 0 0 ${sweep} ${c} ${c - r} Z`;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="display:block;flex-shrink:0" aria-hidden="true"><circle cx="${c}" cy="${c}" r="${r}" fill="#DCDCE6"/>${f > 0 ? `<path d="${lit}" fill="#F5C84B"/>` : ''}</svg>`;
+  }
+  // 달 배지(조건 충족 개수)와 과열 칩(과매수·과매도 지표 개수). 과거·현재 상태의 체크리스트이며 매수·매도 판단이 아니다
+  techBadgeHtml(code) {
+    const t = this.state.techItems && this.state.techItems[code];
+    if (!t || !t.score) return '';
+    const esc = v => String(v).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    const sc = t.score, known = sc.total - sc.unknown;
+    const tip = sc.items.map(i => (i.ok === true ? '● ' : i.ok === false ? '○ ' : '? ') + i.label).join('\n') + '\n(' + (t.as_of || '') + ' 기준, 코드 계산 · 매수·매도 판단 아님)';
+    const chip = 'display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:999px;padding:3px 10px 3px 5px;white-space:nowrap;';
+    let html = `<span title="${esc(tip)}" style="${chip}color:#4A4A5E;background:#F3F3F8;">${this.moonSvg(known ? sc.met / sc.total : 0, 20)}${sc.met}/${sc.total}${sc.unknown ? `<span style="font-weight:500;color:#9A9AAC;">· 확인 못 함 ${sc.unknown}</span>` : ''}</span>`;
+    return html;
+  }
+  // 과매수·과매도 줄(③안): RSI 줄 아래 '↳ 과매수 2/3 · 스토캐스틱 %K(14) 86.5, 20일선 이격도 +12.04% (기준일)'. 해당 없으면 ''
+  techHeatLine(code) {
+    const t = this.state.techItems && this.state.techItems[code];
+    const h = t && t.heat;
+    if (!h || (!h.over.length && !h.under.length)) return '';
+    const val = { 'RSI(14)': t.rsi14, '20일선 이격도': t.pct_vs_ma20 == null ? null : (t.pct_vs_ma20 > 0 ? '+' : '') + t.pct_vs_ma20 + '%', '스토캐스틱 %K(14)': t.stoch_k14 };
+    const short = { 'RSI(14)': 'RSI', '20일선 이격도': '이격도', '스토캐스틱 %K(14)': '스토캐스틱' }; // 좁은 패널에서 한 줄에 들어가게
+    const part = (label, names, col) => `<span style="color:${col};">${label} ${names.length}/${h.total}</span> · ` + names.map(n => (short[n] || n) + (val[n] != null ? ' ' + val[n] : '')).join(', ');
+    const parts = [];
+    if (h.over.length) parts.push(part('과매수', h.over, '#9A4A12'));
+    if (h.under.length) parts.push(part('과매도', h.under, '#2E4F8F'));
+    const md = (t.as_of || '').slice(5).replace('-', '.').replace(/^0/, '').replace('.0', '.'); // 2026-10-29 → 10.29
+    return `<span title="코드 계산(일봉) · 과매수: RSI≥70·이격도≥+10%·스토캐스틱≥80 / 과매도: RSI≤30·이격도≤-10%·스토캐스틱≤20 · 매수·매도 판단 아님" style="display:inline-block;font-size:13px;color:#7A6A5A;margin-left:14px;">↳ ${parts.join(' / ')} (${md} 기준)</span>`;
+  }
+
   // 과거사례(코드 계산 통계 + Claude 글, data/cases.json). 없으면 손으로 적은 예시 사례만 보인다
   async loadCases(bust) {
     try {
@@ -1815,6 +1861,7 @@ class Component extends DCLogic {
     this.setState({ refreshMsg: '최신 분석을 불러오는 중…' });
     await this.loadBackupSnapshot(Date.now()); // 주소에 시각을 붙여 GitHub Pages 캐시(최대 10분)를 건너뛴다
     this.loadProfiles(Date.now());
+    this.loadTech(Date.now());
     this.loadCases(Date.now());
     const n = (this.state.analyses || []).length;
     this.setState({ refreshMsg: n + '종목 불러옴 · ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) });
@@ -2673,14 +2720,25 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
           ['__analysis_peek_technical', r.technical || ''],
           ['__analysis_peek_valuation', r.valuation || ''],
         ];
+        const heatLine = this.techHeatLine(stock.code);
         mdFields.forEach(([id, text]) => {
           const el = document.getElementById(id);
-          if (el && el.dataset.src !== text) {
-            el.dataset.src = text;
-            const html = this.analysisHighlight(text);
+          const key = id === '__analysis_peek_technical' ? text + '\u0000' + heatLine : text;
+          if (el && el.dataset.src !== key) {
+            el.dataset.src = key;
+            let html = this.analysisHighlight(text);
+            // ③안(사용자 결정 2026-10-30): 과매수·과매도 줄을 RSI 줄 바로 아래에(없으면 기술적 분석 끝에)
+            if (id === '__analysis_peek_technical' && heatLine && text) {
+              const lines = html.split('\n'), at = lines.findIndex(l => /RSI/.test(l));
+              lines.splice(at >= 0 ? at + 1 : lines.length, 0, heatLine);
+              html = lines.join('\n');
+            }
             el.innerHTML = window.marked ? window.marked.parse(html, { breaks: true }) : html.replace(/\n/g, '<br>');
           }
         });
+        const badgeEl = document.getElementById('__analysis_peek_techbadge');
+        const badge = this.techBadgeHtml(stock.code);
+        if (badgeEl && badgeEl.dataset.src !== badge) { badgeEl.dataset.src = badge; badgeEl.innerHTML = badge; }
       }
     }
   }
