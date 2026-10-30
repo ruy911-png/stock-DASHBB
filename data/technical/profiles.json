@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T03:59:20Z",
+  "generated_at": "2026-10-30T04:36:31Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -296,9 +296,9 @@
       "name": "이마트",
       "market": "kospi",
       "symbol": "139480.KS",
-      "as_of": "2026-10-23",
+      "as_of": "2026-10-29",
       "window": "2y",
-      "bars": 486,
+      "bars": 485,
       "labels": [
         "박스권형"
       ],
@@ -306,7 +306,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.93,
+        "years": 1.92,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 2,
@@ -320,22 +320,22 @@
         "above_ma60_pct_1y": 0.46,
         "ma60_cross_count_1y": 10,
         "autocorr_1d_1y": -0.05,
-        "ret_1y_pct": -5.18,
+        "ret_1y_pct": -4.95,
         "longest_up_streak": 9,
-        "vol_annual_pct_1y": 48.13,
-        "max_drawdown_1y_pct": -45.69,
+        "vol_annual_pct_1y": 48.39,
+        "max_drawdown_1y_pct": -47.96,
         "gap3_days_rate_1y": 0.04,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.67,
         "upper_shadow_days_rate_1y": 0.07,
         "close_position_mean_1y": 0.45,
-        "top5_gain_share_pct_1y": 18.06
+        "top5_gain_share_pct_1y": 17.86
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -10.9%, 플러스 비율 0% · 20거래일 평균 -15.0% (표본 2회)",
-        "최근 1년 60일선 위 46%(교차 10회), 1년 수익률 -5.2%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 9일",
-        "연환산 변동성 48%, 1년 최대 낙폭 -45.7%, 3%↑ 갭 발생일 4%",
+        "최근 1년 60일선 위 46%(교차 10회), 1년 수익률 -4.9%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 9일",
+        "연환산 변동성 48%, 1년 최대 낙폭 -48.0%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 6회, 그날 상승 67%",
         "윗꼬리 긴 날 7%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
       ]
