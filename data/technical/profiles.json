@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T00:51:31Z",
+  "generated_at": "2026-10-30T03:39:52Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2295,6 +2295,60 @@
         "연환산 변동성 194%, 1년 최대 낙폭 -34.2%, 3%↑ 갭 발생일 13%",
         "거래량 3배↑ 급증일 7회, 그날 상승 71%",
         "윗꼬리 긴 날 18%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 34%"
+      ]
+    },
+    "489790": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "489790.KS",
+      "as_of": "2026-10-29",
+      "window": "2y",
+      "bars": 485,
+      "labels": [
+        "급등 빈발형",
+        "상한가 빈발형",
+        "급등 후 반전형",
+        "박스권형",
+        "고변동형",
+        "거래량 동반 상승형"
+      ],
+      "main_labels": [
+        "박스권형",
+        "고변동형"
+      ],
+      "metrics": {
+        "years": 1.92,
+        "surge_days": 18,
+        "surge_per_year": 9.4,
+        "crash_days": 11,
+        "limit_up_days": 2,
+        "limit_down_days": 0,
+        "after_surge_n": 17,
+        "after_surge_5d_mean_pct": -1.71,
+        "after_surge_5d_pos_rate": 0.35,
+        "after_surge_20d_mean_pct": 3.87,
+        "after_surge_20d_pos_rate": 0.53,
+        "above_ma60_pct_1y": 0.39,
+        "ma60_cross_count_1y": 11,
+        "autocorr_1d_1y": -0.06,
+        "ret_1y_pct": -3.91,
+        "longest_up_streak": 5,
+        "vol_annual_pct_1y": 89.92,
+        "max_drawdown_1y_pct": -64.02,
+        "gap3_days_rate_1y": 0.22,
+        "volume_spike_days_1y": 10,
+        "volume_spike_up_rate": 0.9,
+        "upper_shadow_days_rate_1y": 0.12,
+        "close_position_mean_1y": 0.45,
+        "top5_gain_share_pct_1y": 20.92
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 18회(연 9.4회), 급락일(−10%↓) 11회, 상한가 2회·하한가 0회",
+        "급등 뒤 5거래일 평균 -1.7%, 플러스 비율 35% · 20거래일 평균 +3.9% (표본 17회)",
+        "최근 1년 60일선 위 39%(교차 11회), 1년 수익률 -3.9%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 5일",
+        "연환산 변동성 90%, 1년 최대 낙폭 -64.0%, 3%↑ 갭 발생일 22%",
+        "거래량 3배↑ 급증일 10회, 그날 상승 90%",
+        "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 21%"
       ]
     }
   },

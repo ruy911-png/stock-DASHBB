@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T00:51:31Z",
+  "generated_at": "2026-10-30T03:39:51Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1281,6 +1281,35 @@
       "ret_3m_pct": 269.76,
       "ret_6m_pct": 368.43,
       "bars": 501
+    },
+    "489790": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "489790.KS",
+      "as_of": "2026-10-29",
+      "close": 49100.0,
+      "chg_1d_pct": 22.14,
+      "ma5": 40770.0,
+      "ma20": 43822.5,
+      "ma60": 47300.0,
+      "ma120": 54209.1667,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": 12.04,
+      "pct_vs_ma120": -9.42,
+      "rsi14": 60.16,
+      "volume": 2578859.0,
+      "volume_avg20": 178632.0,
+      "volume_ratio20": 14.44,
+      "high52": 92700.0,
+      "low52": 33350.0,
+      "pct_from_high52": -47.03,
+      "pct_from_low52": 47.23,
+      "ret_1m_pct": 6.16,
+      "ret_3m_pct": 17.6,
+      "ret_6m_pct": -40.27,
+      "bars": 485,
+      "new": true,
+      "name_hint": "Hanwha Vision CO.,LTD"
     }
   }
 }
