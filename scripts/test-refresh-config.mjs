@@ -41,4 +41,12 @@ assert.ok(wf.includes('Bash(node scripts/show-analysis.mjs *)'), 'allowedTools�
 assert.ok(skill.includes('Bash(node scripts/show-analysis.mjs *)'), '스킬 allowed-tools에 show-analysis 필요');
 assert.ok(skill.includes('node scripts/show-analysis.mjs <코드>'), '스킬 본문에 사용법 필요');
 
+// ④ 기본적분석·해자 신호 달 점수(사용자 결정 2026-10-30): 오늘자 업데이트와 토요일 갱신 둘 다 fin-score.py를 돌려 fin.json을 커밋
+const prof = fs.readFileSync(path.join(root, '.github/workflows/stock-profiles.yml'), 'utf8');
+for (const [name, text] of [['refresh-analyses.yml', wf], ['stock-profiles.yml', prof]]) {
+  assert.ok(text.includes('python3 scripts/fin-score.py --selftest'), `${name}: fin-score selftest 필요`);
+  assert.match(text, /python3 scripts\/fin-score\.py --tickers /, `${name}: fin-score 실행 필요`);
+  assert.match(text, /git add [^\n]*data\/technical\/fin\.json/, `${name}: fin.json 커밋 필요`);
+}
+
 console.log('오늘자 업데이트 실행 여유 테스트 통과');
