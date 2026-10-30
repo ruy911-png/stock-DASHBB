@@ -1,0 +1,16 @@
+name: diag-fin (임시)
+on:
+  push:
+    branches: [ccr-f5563461-oo41yi]
+    paths: [scripts/_diag_fin.py, .github/workflows/diag-fin.yml]
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install yfinance==1.7.0 pandas==3.0.6 numpy==2.4.6
+      - run: python3 scripts/_diag_fin.py
