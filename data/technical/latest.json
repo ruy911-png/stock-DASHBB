@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T12:30:24Z",
+  "generated_at": "2026-10-30T12:35:53Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -37,28 +37,64 @@
       "name": "찰스 슈왑",
       "market": "us",
       "symbol": "SCHW",
-      "as_of": "2026-10-09",
-      "close": 96.7,
-      "chg_1d_pct": -0.18,
-      "ma5": 96.782,
-      "ma20": 100.4755,
-      "ma60": 105.1095,
-      "ma120": 98.6417,
+      "as_of": "2026-10-29",
+      "close": 89.47,
+      "chg_1d_pct": 0.8,
+      "ma5": 89.568,
+      "ma20": 93.396,
+      "ma60": 102.3502,
+      "ma120": 98.7762,
       "ma_order": "혼조",
-      "pct_vs_ma20": -3.76,
-      "pct_vs_ma120": -1.97,
-      "rsi14": 35.18,
-      "volume": 6499800.0,
-      "volume_avg20": 8416580.0,
-      "volume_ratio20": 0.77,
+      "pct_vs_ma20": -4.2,
+      "pct_vs_ma120": -9.42,
+      "rsi14": 30.59,
+      "stoch_k14": 13.92,
+      "volume": 5893900.0,
+      "volume_avg20": 8539430.0,
+      "volume_ratio20": 0.69,
       "high52": 113.65,
       "low52": 85.35,
-      "pct_from_high52": -14.91,
-      "pct_from_low52": 13.3,
-      "ret_1m_pct": -9.9,
-      "ret_3m_pct": -5.55,
-      "ret_6m_pct": 2.0,
-      "bars": 499
+      "pct_from_high52": -21.28,
+      "pct_from_low52": 4.83,
+      "ret_1m_pct": -8.46,
+      "ret_3m_pct": -14.98,
+      "ret_6m_pct": -2.37,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "NVDA": {
       "name": "엔비디아 (NVIDIA)",
