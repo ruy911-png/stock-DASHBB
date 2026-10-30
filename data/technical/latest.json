@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T04:36:31Z",
+  "generated_at": "2026-10-30T04:39:52Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1310,6 +1310,35 @@
       "bars": 485,
       "new": true,
       "name_hint": "Hanwha Vision CO.,LTD"
+    },
+    "011200": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "011200.KS",
+      "as_of": "2026-10-29",
+      "close": 22300.0,
+      "chg_1d_pct": 0.68,
+      "ma5": 22410.0,
+      "ma20": 22330.0,
+      "ma60": 21633.3333,
+      "ma120": 20756.6667,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": -0.13,
+      "pct_vs_ma120": 7.44,
+      "rsi14": 51.46,
+      "volume": 977122.0,
+      "volume_avg20": 1745864.0,
+      "volume_ratio20": 0.56,
+      "high52": 24500.0,
+      "low52": 18310.0,
+      "pct_from_high52": -8.98,
+      "pct_from_low52": 21.79,
+      "ret_1m_pct": 4.94,
+      "ret_3m_pct": 7.99,
+      "ret_6m_pct": 6.95,
+      "bars": 485,
+      "new": true,
+      "name_hint": "HMM Co.,Ltd"
     }
   }
 }
