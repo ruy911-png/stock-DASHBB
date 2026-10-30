@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T12:39:51Z",
+  "generated_at": "2026-10-30T12:42:02Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -327,6 +327,7 @@
       "pct_vs_ma20": 2.3,
       "pct_vs_ma120": 13.0,
       "rsi14": 54.27,
+      "stoch_k14": 76.42,
       "volume": 1160000.0,
       "volume_avg20": 1677030.0,
       "volume_ratio20": 0.69,
@@ -337,7 +338,40 @@
       "ret_1m_pct": 1.84,
       "ret_3m_pct": 23.86,
       "ret_6m_pct": 112.81,
-      "bars": 501
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "298040": {
       "name": "효성중공업",
