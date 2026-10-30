@@ -76,6 +76,55 @@ def rsi(close: pd.Series, n: int = 14) -> pd.Series:
     return pd.Series(out, index=close.index)
 
 
+def stochastic_k(df: pd.DataFrame, n: int = 14) -> pd.Series:
+    """스토캐스틱 %K(빠른): (종가 − n일 최저 저가) ÷ (n일 최고 고가 − n일 최저 저가) × 100. 고저가가 없으면 종가로."""
+    close = df["Close"].astype(float)
+    high = df["High"].astype(float) if "High" in df else close
+    low = df["Low"].astype(float) if "Low" in df else close
+    hh, ll = high.rolling(n, min_periods=n).max(), low.rolling(n, min_periods=n).min()
+    rng = (hh - ll).replace(0, np.nan)
+    return (close - ll) / rng * 100.0
+
+
+def keep_cols(df: pd.DataFrame) -> pd.DataFrame:
+    """야후 일봉에서 쓰는 열만(스토캐스틱용 고가·저가 포함)."""
+    return df[[c for c in ("High", "Low", "Close", "Volume") if c in df.columns]]
+
+
+# 달 점수(조건 충족 개수)와 과열 칩 — 사용자 결정 2026-10-30(A안). 과거·현재 상태의 체크리스트이며 매수·매도 판단이 아니다.
+# 조건값이 없으면 ok=None(미확인)으로 두고 충족 개수에 넣지 않는다
+def tech_score(s: dict) -> dict:
+    def gt(a, b):
+        return None if s.get(a) is None or s.get(b) is None else s[a] > s[b]
+    rsi_v, vr, order = s.get("rsi14"), s.get("volume_ratio20"), s.get("ma_order")
+    items = [
+        {"label": "종가 > 20일선", "ok": gt("close", "ma20")},
+        {"label": "종가 > 120일선", "ok": gt("close", "ma120")},
+        {"label": "이동평균 정배열", "ok": None if order is None else order.startswith("정배열")},
+        {"label": "RSI(14) 30~70", "ok": None if rsi_v is None else 30 < rsi_v < 70},
+        {"label": "거래량 ≥ 20일 평균", "ok": None if vr is None else vr >= 1},
+    ]
+    return {"met": sum(1 for i in items if i["ok"] is True), "total": len(items),
+            "unknown": sum(1 for i in items if i["ok"] is None), "items": items}
+
+
+HEAT_RULES = [("RSI(14)", "rsi14", 70, 30), ("20일선 이격도", "pct_vs_ma20", 10, -10), ("스토캐스틱 %K(14)", "stoch_k14", 80, 20)]
+
+
+def heat(s: dict) -> dict:
+    """과매수(상단 기준 이상)·과매도(하단 기준 이하) 구간에 든 지표 이름. 칩에 '과매수 n/3'으로 보인다."""
+    over, under, unknown = [], [], 0
+    for label, key, hi, lo in HEAT_RULES:
+        v = s.get(key)
+        if v is None:
+            unknown += 1
+        elif v >= hi:
+            over.append(label)
+        elif v <= lo:
+            under.append(label)
+    return {"over": over, "under": under, "total": len(HEAT_RULES), "unknown": unknown}
+
+
 def drop_unfinished_session(df: pd.DataFrame, market: str, now: datetime | None = None) -> pd.DataFrame:
     """그 시장의 장 마감 전에 받은 '오늘' 행은 장중 가격이라 뺀다(종가 기준)."""
     tz, close_hour = MARKET_TZ.get(market, ("UTC", 24))
@@ -122,6 +171,7 @@ def summarize(df: pd.DataFrame) -> dict:
         "pct_vs_ma20": _pct(last, mas[20]),
         "pct_vs_ma120": _pct(last, mas[120]),
         "rsi14": _r(float(r.iloc[-1])),
+        "stoch_k14": _r(float(stochastic_k(df, 14).iloc[-1])),
         "volume": _r(float(vol.iloc[-1]), 0),
         "volume_avg20": _r(vol20, 0),
         "volume_ratio20": _r(float(vol.iloc[-1]) / vol20) if not np.isnan(vol20) and vol20 > 0 else None,
@@ -163,7 +213,7 @@ def fetch(targets: list[dict], period: str = "2y") -> dict[str, tuple[pd.DataFra
                 df = raw[sym] if isinstance(raw.columns, pd.MultiIndex) else raw
             except KeyError:
                 continue
-            df = df[["Close", "Volume"]].dropna(subset=["Close"])
+            df = keep_cols(df).dropna(subset=["Close"])
             if df.empty:
                 continue
             df.index = pd.DatetimeIndex(df.index).tz_localize(None).normalize()
@@ -199,6 +249,7 @@ def build(targets: list[dict], frames: dict[str, tuple[pd.DataFrame, str]], now:
             failed.append(t["code"])
             continue
         item = {"name": t["name"], "market": market, "symbol": sym, **summarize(df)}
+        item["score"], item["heat"] = tech_score(item), heat(item)
         if t.get("new"):
             item["new"] = True  # 목록에 없던 종목 — Claude가 새 항목을 만든다
             item["name_hint"] = (names or {}).get(t["code"])
@@ -253,6 +304,29 @@ def selftest() -> int:
     assert built["failed"] == ["BBB"] and set(built["items"]) == {"AAA", "035720"}
     assert built["items"]["035720"]["market"] == "kosdaq" and built["items"]["035720"]["new"] is True
     assert built["items"]["035720"]["name_hint"] == "Kakao Corp." and "new" not in built["items"]["AAA"]
+    # ── 스토캐스틱·달 점수·과열 칩 (사용자 요청 2026-10-30: 기술적분석 점수화 + 과매수·과매도, A안) ──
+    hl = pd.DataFrame({"High": [10.0, 12, 11, 13, 14], "Low": [8.0, 9, 9, 10, 11], "Close": [9.0, 11, 10, 12, 13.5],
+                       "Volume": [1.0] * 5}, index=pd.bdate_range("2025-01-01", periods=5))
+    assert round(stochastic_k(hl, 3).iloc[-1], 2) == round((13.5 - 9) / (14 - 9) * 100, 2)   # (C-최저 Low)/(최고 High-최저 Low)
+    assert np.isnan(stochastic_k(hl, 3).iloc[1])                                           # 이력 부족 → 값 없음
+    assert stochastic_k(hl.drop(columns=["High", "Low"]), 3).iloc[-1] == 100.0             # 고저가 없으면 종가로(마지막이 최고)
+    assert 0 <= summarize(df)["stoch_k14"] <= 100
+    assert list(keep_cols(pd.DataFrame(columns=["Open", "High", "Low", "Close", "Adj Close", "Volume"])).columns) == ["High", "Low", "Close", "Volume"]
+    base = {"close": 110.0, "ma20": 100.0, "ma120": 90.0, "ma_order": "정배열(5>20>60>120)", "rsi14": 55.0,
+            "volume_ratio20": 1.2, "pct_vs_ma20": 10.0, "stoch_k14": 50.0}
+    sc = tech_score(base)
+    assert (sc["met"], sc["total"], sc["unknown"]) == (5, 5, 0) and len(sc["items"]) == 5
+    sc = tech_score({**base, "close": 95.0, "ma_order": "혼조", "rsi14": 75.0, "volume_ratio20": 0.9, "ma120": None})
+    assert (sc["met"], sc["unknown"]) == (0, 1)                                            # 120일선 없음 → 미확인, 나머지 불충족
+    assert [i["ok"] for i in sc["items"]] == [False, None, False, False, False]
+    h = heat(base)                                                                         # 이격도 +10%는 과매수 경계 포함
+    assert h == {"over": ["20일선 이격도"], "under": [], "total": 3, "unknown": 0}
+    h = heat({**base, "rsi14": 25.0, "pct_vs_ma20": -12.0, "stoch_k14": 15.0})
+    assert h["over"] == [] and h["under"] == ["RSI(14)", "20일선 이격도", "스토캐스틱 %K(14)"]
+    assert heat({**base, "stoch_k14": None, "pct_vs_ma20": 3.0})["unknown"] == 1
+    built2 = build([{"code": "AAA", "name": "a", "market": "us"}], {"AAA": (df, "AAA")}, datetime(2026, 10, 5, 12, 0, tzinfo=timezone.utc))
+    it = built2["items"]["AAA"]
+    assert {"stoch_k14", "score", "heat"} <= set(it) and it["score"]["total"] == 5 and it["heat"]["total"] == 3
     print("selftest ok")
     return 0
 
