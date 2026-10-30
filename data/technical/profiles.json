@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T11:52:09Z",
+  "generated_at": "2026-10-30T12:30:25Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2486,6 +2486,50 @@
         "연환산 변동성 41%, 1년 최대 낙폭 -31.0%, 3%↑ 갭 발생일 2%",
         "거래량 3배↑ 급증일 2회, 그날 상승 50%",
         "윗꼬리 긴 날 9%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 13%"
+      ]
+    },
+    "PANW": {
+      "name": "",
+      "market": "us",
+      "symbol": "PANW",
+      "as_of": "2026-10-29",
+      "window": "2y",
+      "bars": 501,
+      "labels": [],
+      "main_labels": [],
+      "metrics": {
+        "years": 1.99,
+        "surge_days": 3,
+        "surge_per_year": 1.5,
+        "crash_days": 0,
+        "limit_up_days": null,
+        "limit_down_days": null,
+        "after_surge_n": 3,
+        "after_surge_5d_mean_pct": -5.25,
+        "after_surge_5d_pos_rate": 0.0,
+        "after_surge_20d_mean_pct": 4.95,
+        "after_surge_20d_pos_rate": 0.67,
+        "above_ma60_pct_1y": 0.56,
+        "ma60_cross_count_1y": 8,
+        "autocorr_1d_1y": 0.09,
+        "ret_1y_pct": 71.91,
+        "longest_up_streak": 8,
+        "vol_annual_pct_1y": 49.84,
+        "max_drawdown_1y_pct": -35.67,
+        "gap3_days_rate_1y": 0.06,
+        "volume_spike_days_1y": 3,
+        "volume_spike_up_rate": 0.0,
+        "upper_shadow_days_rate_1y": 0.03,
+        "close_position_mean_1y": 0.56,
+        "top5_gain_share_pct_1y": 15.85
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 3회(연 1.5회), 급락일(−10%↓) 0회",
+        "급등 뒤 5거래일 평균 -5.3%, 플러스 비율 0% · 20거래일 평균 +4.9% (표본 3회)",
+        "최근 1년 60일선 위 56%(교차 8회), 1년 수익률 +71.9%, 하루 수익률 자기상관 +0.09, 최장 연속 상승 8일",
+        "연환산 변동성 50%, 1년 최대 낙폭 -35.7%, 3%↑ 갭 발생일 6%",
+        "거래량 3배↑ 급증일 3회, 그날 상승 0%",
+        "윗꼬리 긴 날 3%, 종가의 일중 위치 평균 0.56(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]
     }
   },

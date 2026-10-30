@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T11:52:08Z",
+  "generated_at": "2026-10-30T12:30:24Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1426,6 +1426,69 @@
       "bars": 501,
       "new": true,
       "name_hint": "Vericel Corporation"
+    },
+    "PANW": {
+      "name": "",
+      "market": "us",
+      "symbol": "PANW",
+      "as_of": "2026-10-29",
+      "close": 380.57,
+      "chg_1d_pct": -3.53,
+      "ma5": 389.554,
+      "ma20": 383.905,
+      "ma60": 372.6667,
+      "ma120": 336.0453,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": -0.87,
+      "pct_vs_ma120": 13.25,
+      "rsi14": 50.8,
+      "stoch_k14": 52.83,
+      "volume": 7365700.0,
+      "volume_avg20": 5222080.0,
+      "volume_ratio20": 1.41,
+      "high52": 419.91,
+      "low52": 141.67,
+      "pct_from_high52": -9.37,
+      "pct_from_low52": 168.63,
+      "ret_1m_pct": -4.21,
+      "ret_3m_pct": 14.69,
+      "ret_6m_pct": 112.23,
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "Palo Alto Networks, Inc."
     }
   }
 }
