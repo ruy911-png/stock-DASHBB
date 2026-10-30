@@ -2,7 +2,7 @@
 // 새 분석은 ① 미확인마다 이유를 붙이고(미확인(이유)) ② 한 분석에 미확인이 MAX_UNCONFIRMED개를 넘지 않아야 한다.
 // 걸리면 refresh-analyses 스킬이 그 항목만 다시 찾아본다. 예전 분석은 검사하지 않는다(종목을 지정해 최신 분석만 검사).
 import assert from 'node:assert/strict';
-import { findUnconfirmed, checkUnconfirmed, hasGrowth, MAX_UNCONFIRMED } from './unconfirmed.mjs';
+import { findUnconfirmed, checkUnconfirmed, hasGrowth, growthProblems, MAX_UNCONFIRMED } from './unconfirmed.mjs';
 
 // 10/29 모더나(MRNA) 실제 분석(문장 일부 줄임) — 이유 없는 미확인 5개
 const mrna = {
@@ -36,7 +36,7 @@ const fixed = {
   ...mrna,
   overview: mrna.overview.replace('3분기 실적과 연간 가이던스는 미확인', '연간 매출 가이던스 15억~22억달러'),
   moat: mrna.moat.replace('점유율 수치는 미확인', '점유율 수치는 미확인(공개 자료 없음)').replace('영향 규모는 미확인', '영향 규모는 미확인(수치 근거 없음)'),
-  fundamental: mrna.fundamental.replace('3분기 실적은 11월 초 예정이라 미확인', '3분기 실적은 11월 6일 발표 예정'),
+  fundamental: mrna.fundamental.replace('3분기 실적은 11월 초 예정이라 미확인', '3분기 실적은 11월 6일 발표 예정').replace('2분기 매출 1.45억달러, 순손실 7.8억달러', '2분기 매출 1.45억달러(+2.1%), 순손실 7.8억달러(적자 축소)'),
   valuation: mrna.valuation.replace('자체 과거평균·동종 PBR은 미확인', '5년 평균 PBR 약 4배'),
 };
 const good = checkUnconfirmed(fixed);
@@ -57,8 +57,10 @@ assert.equal(checkUnconfirmed({ overview: '• 확인된 값만 있음. PER은 �
 const msFund = '• 3Q26 순매출 203억 달러(전년 182억), 희석 EPS 3.03달러(전년 2.80)다 (MS 3Q26 8-K, 2026-10-14)\n• 현금흐름: OCF -156억 (StockAnalysis)';
 assert.equal(hasGrowth(msFund), false);
 assert.equal(hasGrowth('• 3Q26 순매출 203.4억 달러(전년 대비 +11.6%), 희석 EPS 3.03달러(+8.2%) (MS 8-K)'), true);
-assert.equal(hasGrowth('• 3분기 매출 12.36억달러(+138.1%), 영업이익 2.25억달러 (SEC 8-K)'), true);
-assert.equal(hasGrowth('• 2분기 순손실 7.8억달러. 3분기 실적은 11월 6일 발표 예정 (Moderna)'), true);
+assert.equal(hasGrowth('• 3분기 매출 12.36억달러(+138.1%), 영업이익 2.25억달러 (SEC 8-K)'), false); // 7) 규칙: 이익 증감률도 필요(전엔 통과)
+assert.equal(hasGrowth('• 3분기 매출 12.36억달러(+138.1%), 영업이익 2.25억달러(흑자 전환) (SEC 8-K)'), true);
+assert.equal(hasGrowth('• 3분기 실적은 11월 6일 발표 예정 (Moderna)'), true); // 실적 숫자가 없고 발표 전이면 통과
+assert.equal(hasGrowth('• 2분기 순손실 7.8억달러. 3분기 실적은 11월 6일 발표 예정 (Moderna)'), false); // 쓴 이익엔 증감률 필요(7) 규칙)
 assert.equal(hasGrowth('• 3분기 매출 5,734억원. 증감률은 미확인(전년 비교 자료 없음)'), true);
 assert.equal(hasGrowth('• 3분기 매출 5,734억원, 영업이익률 17.9% (MTN)'), false); // 부호 없는 비율은 증감률이 아님
 const msBad = checkUnconfirmed({ fundamental: msFund });
@@ -66,5 +68,27 @@ assert.equal(msBad.ok, false);
 assert.ok(msBad.problems.some(p => p.kind === 'no-growth'));
 assert.equal(checkUnconfirmed({ fundamental: '• 매출 20억(+11.6%)\n• 현금흐름: OCF 1억' }).ok, true);
 assert.equal(checkUnconfirmed({ overview: '• 기술지표만 있는 분석' }).ok, true); // 기본적분석이 없으면 검사하지 않음
+
+// 7) 매출과 이익을 각각(사용자 지적 2026-10-30: '매출 증감만 있다' — WM·ISRG·WKC·BE·SHOP)
+//    매출 항목이 있으면 매출 증감률, 이익(영업이익·순이익·EPS·손실) 항목이 있으면 이익 증감률이 각각 필요.
+//    '(전년 1.98)'처럼 전년 값을 쓴 항목엔 증감률도 함께. 적자는 '적자 전환·흑자 전환·적자 축소/확대'도 증감으로 본다
+const kinds = t => growthProblems(t).map(p => p.kind).sort();
+// 실제 10.30 분석 첫 bullet들
+assert.deepEqual(kinds('• 3Q26 순매출 203억 달러(전년 182억), 희석 EPS 3.03달러(전년 2.80)다 (MS 3Q26 8-K)'), ['no-profit-growth', 'no-revenue-growth', 'prior-without-growth']);
+assert.deepEqual(kinds('• 3분기 매출 68.46억달러(+6.3%), 조정 EPS 2.15달러(전년 1.98)다. 연간 FCF 가이던스 유지 (WM 8-K)'), ['no-profit-growth', 'prior-without-growth']);
+assert.deepEqual(kinds('• 3분기 매출 12.36억달러(+138.1%), GAAP 영업이익 2.25억달러, 비GAAP EPS 0.94달러 (SEC 8-K)'), ['no-profit-growth']);
+assert.deepEqual(kinds('• 2Q26 매출 4,026억원(+52%), 영업이익 830억원(+59%)이다 (한국경제)'), []);
+assert.deepEqual(kinds('• 2Q26 매출 4,142억원(+6.3%), 영업이익 79억원(-53.7%)이며 일회성 비용이 원인이다 (교보증권)'), []);
+assert.deepEqual(kinds('• 2분기 연결 영업손실 430억원으로 적자 전환했다. 별도 영업이익은 256억원(+64%)이다 (보도)'), []);
+assert.deepEqual(kinds('• 회계 3분기 매출 $305M은 전년비 -3.3%로 컨센서스에 못 미쳤다 (Nasdaq)'), []); // 이익 언급이 없으면 매출만
+assert.deepEqual(kinds('• 2Q26 순손실은 9,120만 달러로 전년 2억850만 달러보다 줄었다 (SEC 8-K)'), ['no-profit-growth', 'prior-without-growth']);
+assert.deepEqual(kinds('• 2Q26 순손실은 9,120만 달러로 적자 축소(전년 2억850만 달러)다 (SEC 8-K)'), []);
+assert.deepEqual(kinds('• 3분기 매출 5,734억원. 증감률은 미확인(전년 비교 자료 없음)'), []); // 이유 단 미확인은 허용
+assert.deepEqual(kinds('• 3분기 매출 5,734억원, 영업이익률 17.9% (MTN)'), ['no-profit-growth', 'no-revenue-growth']); // 부호 없는 비율은 증감률 아님
+assert.deepEqual(kinds('• 강세 근거는 AI 수요다 (보도)'), ['no-growth']); // 실적 숫자도, 발표 예정도 없음
+// checkUnconfirmed가 각 문제를 no-growth 종류로 묶어 보고한다
+const wm = checkUnconfirmed({ fundamental: '• 3분기 매출 68.46억달러(+6.3%), 조정 EPS 2.15달러(전년 1.98)다 (WM)' });
+assert.equal(wm.ok, false);
+assert.ok(wm.problems.some(p => p.kind === 'no-growth' && /이익/.test(p.detail)));
 
 console.log('미확인 검사기 테스트 통과');
