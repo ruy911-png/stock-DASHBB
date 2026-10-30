@@ -19,7 +19,7 @@ on:
         type: string
       chunk_size:
         description: "한 번의 Claude 실행이 맡는 종목 수"
-        default: "8"
+        default: "4" # 8이면 대화 57/60턴까지 써 다시 찾기를 건너뜀(2026-10-30)
         type: string
 permissions:
   contents: write
@@ -110,8 +110,8 @@ jobs:
           github_token: ${{ github.token }}
           prompt: "/refresh-analyses ${{ matrix.chunk }}"
           claude_args: |
-            --max-turns 60
-            --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(node scripts/unconfirmed.mjs *),Bash(date *)"
+            --max-turns 100
+            --allowedTools "Agent,Read,Write,Edit,Grep,Glob,WebSearch,WebFetch,Bash(npm run build),Bash(npm run check),Bash(node scripts/validate-analyses.mjs),Bash(node scripts/unconfirmed.mjs *),Bash(node scripts/show-analysis.mjs *),Bash(date *)"
       # 미확인 개수·이유를 로그에 남긴다(참고용, 실패해도 커밋은 진행 — 사용자 요청 2026-10-29: 미확인이 너무 많다)
       - name: 미확인 검사 (참고)
         if: always()
