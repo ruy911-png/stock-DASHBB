@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T09:29:37Z",
+  "generated_at": "2026-10-30T09:43:39Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1368,6 +1368,35 @@
       "bars": 501,
       "new": true,
       "name_hint": "World Kinect Corporation"
+    },
+    "VCEL": {
+      "name": "",
+      "market": "us",
+      "symbol": "VCEL",
+      "as_of": "2026-10-29",
+      "close": 42.91,
+      "chg_1d_pct": 4.43,
+      "ma5": 42.568,
+      "ma20": 41.109,
+      "ma60": 41.2317,
+      "ma120": 41.0585,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 4.38,
+      "pct_vs_ma120": 4.51,
+      "rsi14": 58.28,
+      "volume": 544800.0,
+      "volume_avg20": 553950.0,
+      "volume_ratio20": 0.98,
+      "high52": 48.31,
+      "low52": 29.34,
+      "pct_from_high52": -11.18,
+      "pct_from_low52": 46.25,
+      "ret_1m_pct": 6.9,
+      "ret_3m_pct": -6.64,
+      "ret_6m_pct": 23.55,
+      "bars": 501,
+      "new": true,
+      "name_hint": "Vericel Corporation"
     }
   }
 }
