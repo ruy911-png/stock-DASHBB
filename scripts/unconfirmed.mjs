@@ -26,19 +26,41 @@ export function findUnconfirmed(analysis) {
   return out;
 }
 
-// 기본적분석 첫 bullet(최근 실적)에 증감률이 있는가(사용자 지적 2026-10-30: 'MS 순매출 203억 달러(전년 182억)'에 증감률이 안 보임).
-// 부호 있는 %(+11.6% / -3.2%), 또는 발표 전('발표 예정'), 또는 '증감률은 미확인(이유)'
-export function hasGrowth(fundamental) {
+// 기본적분석 첫 bullet(최근 실적)의 증감률(사용자 지적 2026-10-30: ① MS '203억 달러(전년 182억)' — 증감률이 안 보임
+// ② '매출 증감만 있다' — 이익·EPS엔 증감률이 없음). 매출·이익 항목을 각각 보고, 전년 값만 쓴 항목도 잡는다.
+const PCT = /[+\-−]\s?\d+(?:\.\d+)?%/;
+const TURN = /(흑자|적자)\s?(전환|축소|확대|지속)/;
+const REVENUE = /매출|순매출|총거래액|revenue/i;
+const PROFIT = /이익|EPS|손실/;
+const PRIOR = /전년\s?(?:동기\s?)?[\d$]/;
+export function growthProblems(fundamental) {
   const first = String(fundamental || '').split('\n')[0];
-  return /[+\-−]\s?\d+(?:\.\d+)?%/.test(first) || /발표 예정/.test(first) || /증감률[^.]*미확인\([^()]+\)/.test(first);
+  if (/증감률[^.]*미확인\([^()]+\)/.test(first)) return [];
+  // 끝의 출처 괄호(예: (SEC 8-K, 2026-10-22))는 빼고 쉼표·문장 단위로 나눈다 — 단 '(+11.6%)'처럼 증감률이 든 괄호는 남긴다
+  const tail = first.match(/\s*\(([^()]*)\)\s*$/);
+  const body = tail && !PCT.test(tail[1]) && !TURN.test(tail[1]) ? first.slice(0, tail.index) : first;
+  const clauses = body.split(/,\s|\.\s|·/);
+  const grown = c => PCT.test(c) || TURN.test(c);
+  const rev = clauses.filter(c => REVENUE.test(c));
+  const prof = clauses.filter(c => PROFIT.test(c));
+  const out = [];
+  if (rev.length && !rev.some(grown)) out.push({ kind: 'no-revenue-growth', detail: '매출 증감률 없음' });
+  if (prof.length && !prof.some(grown)) out.push({ kind: 'no-profit-growth', detail: '이익(영업이익·순이익·EPS) 증감률 없음' });
+  if (clauses.some(c => PRIOR.test(c) && !grown(c))) out.push({ kind: 'prior-without-growth', detail: "전년 값만 쓰고 증감률이 없는 항목 있음" });
+  if (!rev.length && !prof.length && !/발표 예정|발표 전/.test(first)) out.push({ kind: 'no-growth', detail: '최근 실적 숫자·증감률 없음' });
+  return out;
+}
+export function hasGrowth(fundamental) {
+  return growthProblems(fundamental).length === 0;
 }
 
 export function checkUnconfirmed(analysis, max = MAX_UNCONFIRMED) {
   const found = findUnconfirmed(analysis);
   const problems = found.filter(f => f.reason === null).map(f => ({ kind: 'no-reason', ...f }));
   if (found.length > max) problems.push({ kind: 'too-many', count: found.length, max });
-  if (typeof analysis?.fundamental === 'string' && analysis.fundamental.trim() && !hasGrowth(analysis.fundamental)) {
-    problems.push({ kind: 'no-growth', section: 'fundamental', bullet: analysis.fundamental.split('\n')[0].trim() });
+  if (typeof analysis?.fundamental === 'string' && analysis.fundamental.trim()) {
+    const bullet = analysis.fundamental.split('\n')[0].trim();
+    for (const g of growthProblems(analysis.fundamental)) problems.push({ kind: 'no-growth', section: 'fundamental', bullet, detail: g.detail });
   }
   return { ok: problems.length === 0, found, problems };
 }
@@ -60,7 +82,7 @@ function main(argv) {
     console.log(`${code} ${latest.date}: 미확인 ${r.found.length}개(한도 ${MAX_UNCONFIRMED}) — ${r.ok ? '통과' : '다시 찾기'}`);
     for (const p of r.problems) {
       if (p.kind === 'no-reason') console.log(`  - [이유 없음] ${SECTION_NAMES[p.section]}: ${p.bullet}`);
-      else if (p.kind === 'no-growth') console.log(`  - [증감률 없음] 기본적분석 첫 bullet에 전년 대비 증감률(+X%)을 넣는다: ${p.bullet}`);
+      else if (p.kind === 'no-growth') console.log(`  - [증감률] ${p.detail} — 매출·이익 각각 전년 대비 증감률(+X%)을 넣는다: ${p.bullet}`);
       else console.log(`  - [너무 많음] ${p.count}개 > ${p.max}개: 찾을 수 있는 값을 다시 찾고, 끝내 없는 것만 미확인(이유)로 남긴다`);
     }
     if (!r.ok) failed = true;
