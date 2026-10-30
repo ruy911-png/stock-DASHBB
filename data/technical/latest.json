@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T12:44:40Z",
+  "generated_at": "2026-10-30T13:53:31Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -442,6 +442,7 @@
       "pct_vs_ma20": 4.76,
       "pct_vs_ma120": 12.08,
       "rsi14": 66.29,
+      "stoch_k14": 83.1,
       "volume": 1889100.0,
       "volume_avg20": 2296895.0,
       "volume_ratio20": 0.82,
@@ -452,7 +453,42 @@
       "ret_1m_pct": 10.36,
       "ret_3m_pct": 27.01,
       "ret_6m_pct": -1.93,
-      "bars": 501
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "139480": {
       "name": "이마트",
