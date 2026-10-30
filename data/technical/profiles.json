@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T09:56:05Z",
+  "generated_at": "2026-10-30T10:07:01Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -246,7 +246,7 @@
       "name": "팔란티어",
       "market": "us",
       "symbol": "PLTR",
-      "as_of": "2026-10-23",
+      "as_of": "2026-10-29",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -272,21 +272,21 @@
         "above_ma60_pct_1y": 0.4,
         "ma60_cross_count_1y": 22,
         "autocorr_1d_1y": 0.03,
-        "ret_1y_pct": 12.11,
+        "ret_1y_pct": 3.6,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 60.78,
+        "vol_annual_pct_1y": 60.65,
         "max_drawdown_1y_pct": -48.22,
         "gap3_days_rate_1y": 0.06,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.06,
         "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 19.11
+        "top5_gain_share_pct_1y": 19.49
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.0회), 급락일(−10%↓) 7회",
         "급등 뒤 5거래일 평균 +5.5%, 플러스 비율 83% · 20거래일 평균 +13.3% (표본 6회)",
-        "최근 1년 60일선 위 40%(교차 22회), 1년 수익률 +12.1%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 40%(교차 22회), 1년 수익률 +3.6%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 7일",
         "연환산 변동성 61%, 1년 최대 낙폭 -48.2%, 3%↑ 갭 발생일 6%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
         "윗꼬리 긴 날 6%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
@@ -2096,16 +2096,16 @@
       ]
     },
     "LLY": {
-      "name": "",
+      "name": "일라이릴리 (LLY)",
       "market": "us",
       "symbol": "LLY",
-      "as_of": "2026-10-23",
+      "as_of": "2026-10-29",
       "window": "2y",
-      "bars": 499,
+      "bars": 501,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.98,
+        "years": 1.99,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 2,
@@ -2119,24 +2119,24 @@
         "above_ma60_pct_1y": 0.65,
         "ma60_cross_count_1y": 24,
         "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 56.75,
+        "ret_1y_pct": 67.5,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 34.97,
+        "vol_annual_pct_1y": 35.53,
         "max_drawdown_1y_pct": -23.31,
-        "gap3_days_rate_1y": 0.02,
+        "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.04,
-        "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 16.09
+        "close_position_mean_1y": 0.48,
+        "top5_gain_share_pct_1y": 16.43
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 -1.5%, 플러스 비율 50% · 20거래일 평균 -10.5% (표본 2회)",
-        "최근 1년 60일선 위 65%(교차 24회), 1년 수익률 +56.7%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 7일",
-        "연환산 변동성 35%, 1년 최대 낙폭 -23.3%, 3%↑ 갭 발생일 2%",
+        "최근 1년 60일선 위 65%(교차 24회), 1년 수익률 +67.5%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 7일",
+        "연환산 변동성 36%, 1년 최대 낙폭 -23.3%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 0회",
-        "윗꼬리 긴 날 4%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
+        "윗꼬리 긴 날 4%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]
     },
     "BE": {
