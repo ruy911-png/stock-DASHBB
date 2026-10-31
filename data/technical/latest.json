@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T13:53:31Z",
+  "generated_at": "2026-10-31T05:52:12Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -8,58 +8,725 @@
   "items": {
     "005930": {
       "name": "삼성전자",
-      "market": "kosdaq",
-      "symbol": "005930.KQ",
-      "as_of": "2026-10-27",
-      "close": 222000.0,
-      "chg_1d_pct": 4.23,
-      "ma5": 217700.0,
-      "ma20": 241175.0,
-      "ma60": 250633.3333,
-      "ma120": 273266.6667,
+      "market": "kospi",
+      "symbol": "005930.KS",
+      "as_of": "2026-10-30",
+      "close": 225000.0,
+      "chg_1d_pct": -3.02,
+      "ma5": 226800.0,
+      "ma20": 235575.0,
+      "ma60": 250983.3333,
+      "ma120": 273433.3333,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -7.95,
-      "pct_vs_ma120": -18.76,
-      "rsi14": 40.9,
-      "volume": 14196879.0,
-      "volume_avg20": 17985617.0,
-      "volume_ratio20": 0.79,
+      "pct_vs_ma20": -4.49,
+      "pct_vs_ma120": -17.71,
+      "rsi14": 44.0,
+      "stoch_k14": 47.25,
+      "volume": 19668075.0,
+      "volume_avg20": 17927552.0,
+      "volume_ratio20": 1.1,
       "high52": 362500.0,
       "low52": 94800.0,
-      "pct_from_high52": -38.76,
-      "pct_from_low52": 134.18,
-      "ret_1m_pct": -19.71,
-      "ret_3m_pct": -17.78,
-      "ret_6m_pct": 3.5,
-      "bars": 485
+      "pct_from_high52": -37.93,
+      "pct_from_low52": 137.34,
+      "ret_1m_pct": -17.43,
+      "ret_3m_pct": 2.27,
+      "ret_6m_pct": 0.22,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "SCHW": {
       "name": "찰스 슈왑",
       "market": "us",
       "symbol": "SCHW",
-      "as_of": "2026-10-29",
-      "close": 89.47,
-      "chg_1d_pct": 0.8,
-      "ma5": 89.568,
-      "ma20": 93.396,
-      "ma60": 102.3502,
-      "ma120": 98.7762,
+      "as_of": "2026-10-30",
+      "close": 88.05,
+      "chg_1d_pct": -1.59,
+      "ma5": 89.062,
+      "ma20": 92.9635,
+      "ma60": 102.0233,
+      "ma120": 98.778,
       "ma_order": "혼조",
-      "pct_vs_ma20": -4.2,
-      "pct_vs_ma120": -9.42,
-      "rsi14": 30.59,
-      "stoch_k14": 13.92,
-      "volume": 5893900.0,
-      "volume_avg20": 8539430.0,
-      "volume_ratio20": 0.69,
+      "pct_vs_ma20": -5.29,
+      "pct_vs_ma120": -10.86,
+      "rsi14": 27.7,
+      "stoch_k14": 6.59,
+      "volume": 11474100.0,
+      "volume_avg20": 8500315.0,
+      "volume_ratio20": 1.35,
       "high52": 113.65,
       "low52": 85.35,
-      "pct_from_high52": -21.28,
-      "pct_from_low52": 4.83,
-      "ret_1m_pct": -8.46,
-      "ret_3m_pct": -14.98,
-      "ret_6m_pct": -2.37,
+      "pct_from_high52": -22.53,
+      "pct_from_low52": 3.16,
+      "ret_1m_pct": -10.49,
+      "ret_3m_pct": -16.83,
+      "ret_6m_pct": -3.81,
       "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "NVDA": {
+      "name": "엔비디아 (NVIDIA)",
+      "market": "us",
+      "symbol": "NVDA",
+      "as_of": "2026-10-30",
+      "close": 204.64,
+      "chg_1d_pct": -4.22,
+      "ma5": 213.524,
+      "ma20": 221.4595,
+      "ma60": 221.6692,
+      "ma120": 215.1355,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -7.59,
+      "pct_vs_ma120": -4.88,
+      "rsi14": 35.06,
+      "stoch_k14": 13.42,
+      "volume": 168039400.0,
+      "volume_avg20": 99407925.0,
+      "volume_ratio20": 1.69,
+      "high52": 239.24,
+      "low52": 165.17,
+      "pct_from_high52": -14.46,
+      "pct_from_low52": 23.9,
+      "ret_1m_pct": -11.36,
+      "ret_3m_pct": -0.97,
+      "ret_6m_pct": 3.12,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "035720": {
+      "name": "카카오",
+      "market": "kospi",
+      "symbol": "035720.KS",
+      "as_of": "2026-10-30",
+      "close": 29450.0,
+      "chg_1d_pct": 0.51,
+      "ma5": 29520.0,
+      "ma20": 31310.0,
+      "ma60": 34612.5,
+      "ma120": 36615.4167,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -5.94,
+      "pct_vs_ma120": -19.57,
+      "rsi14": 29.87,
+      "stoch_k14": 14.47,
+      "volume": 1235336.0,
+      "volume_avg20": 1347384.0,
+      "volume_ratio20": 0.92,
+      "high52": 67700.0,
+      "low52": 29300.0,
+      "pct_from_high52": -56.5,
+      "pct_from_low52": 0.51,
+      "ret_1m_pct": -12.61,
+      "ret_3m_pct": -17.39,
+      "ret_6m_pct": -39.15,
+      "bars": 486,
+      "score": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "001450": {
+      "name": "현대해상",
+      "market": "kospi",
+      "symbol": "001450.KS",
+      "as_of": "2026-10-30",
+      "close": 43950.0,
+      "chg_1d_pct": 1.62,
+      "ma5": 42590.0,
+      "ma20": 44445.0,
+      "ma60": 46612.5,
+      "ma120": 41498.3333,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -1.11,
+      "pct_vs_ma120": 5.91,
+      "rsi14": 45.97,
+      "stoch_k14": 43.03,
+      "volume": 239066.0,
+      "volume_avg20": 323752.0,
+      "volume_ratio20": 0.74,
+      "high52": 53500.0,
+      "low52": 26450.0,
+      "pct_from_high52": -17.85,
+      "pct_from_low52": 66.16,
+      "ret_1m_pct": -12.1,
+      "ret_3m_pct": 14.3,
+      "ret_6m_pct": 43.16,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "096530": {
+      "name": "씨젠",
+      "market": "kosdaq",
+      "symbol": "096530.KQ",
+      "as_of": "2026-10-30",
+      "close": 33250.0,
+      "chg_1d_pct": -1.04,
+      "ma5": 33340.0,
+      "ma20": 35952.5,
+      "ma60": 33205.8333,
+      "ma120": 30877.0833,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -7.52,
+      "pct_vs_ma120": 7.69,
+      "rsi14": 42.3,
+      "stoch_k14": 15.62,
+      "volume": 167824.0,
+      "volume_avg20": 324576.0,
+      "volume_ratio20": 0.52,
+      "high52": 38900.0,
+      "low52": 21850.0,
+      "pct_from_high52": -14.52,
+      "pct_from_low52": 52.17,
+      "ret_1m_pct": -1.34,
+      "ret_3m_pct": 26.91,
+      "ret_6m_pct": 34.62,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "FTNT": {
+      "name": "포티넷",
+      "market": "us",
+      "symbol": "FTNT",
+      "as_of": "2026-10-30",
+      "close": 136.08,
+      "chg_1d_pct": -2.17,
+      "ma5": 163.518,
+      "ma20": 177.718,
+      "ma60": 169.2795,
+      "ma120": 158.5535,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -23.43,
+      "pct_vs_ma120": -14.17,
+      "rsi14": 26.63,
+      "stoch_k14": 12.45,
+      "volume": 8671600.0,
+      "volume_avg20": 4728000.0,
+      "volume_ratio20": 1.83,
+      "high52": 194.75,
+      "low52": 75.23,
+      "pct_from_high52": -30.13,
+      "pct_from_low52": 80.89,
+      "ret_1m_pct": -23.86,
+      "ret_3m_pct": -16.62,
+      "ret_6m_pct": 57.7,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "241710": {
+      "name": "코스메카코리아",
+      "market": "kosdaq",
+      "symbol": "241710.KQ",
+      "as_of": "2026-10-30",
+      "close": 94600.0,
+      "chg_1d_pct": -4.44,
+      "ma5": 100200.0,
+      "ma20": 107005.0,
+      "ma60": 118833.3333,
+      "ma120": 97545.8333,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -11.59,
+      "pct_vs_ma120": -3.02,
+      "rsi14": 31.06,
+      "stoch_k14": 15.12,
+      "volume": 136476.0,
+      "volume_avg20": 105363.0,
+      "volume_ratio20": 1.3,
+      "high52": 153900.0,
+      "low52": 63900.0,
+      "pct_from_high52": -38.53,
+      "pct_from_low52": 48.04,
+      "ret_1m_pct": -27.01,
+      "ret_3m_pct": 13.7,
+      "ret_6m_pct": 11.43,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "SHOP": {
+      "name": "쇼피파이",
+      "market": "us",
+      "symbol": "SHOP",
+      "as_of": "2026-10-30",
+      "close": 157.49,
+      "chg_1d_pct": -5.63,
+      "ma5": 165.318,
+      "ma20": 169.24,
+      "ma60": 152.5073,
+      "ma120": 134.0182,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -6.94,
+      "pct_vs_ma120": 17.51,
+      "rsi14": 44.61,
+      "stoch_k14": 12.35,
+      "volume": 10534600.0,
+      "volume_avg20": 7738940.0,
+      "volume_ratio20": 1.36,
+      "high52": 179.22,
+      "low52": 95.4,
+      "pct_from_high52": -12.12,
+      "pct_from_low52": 65.08,
+      "ret_1m_pct": 5.63,
+      "ret_3m_pct": 34.6,
+      "ret_6m_pct": 23.36,
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "257720": {
+      "name": "실리콘투",
+      "market": "kosdaq",
+      "symbol": "257720.KQ",
+      "as_of": "2026-10-30",
+      "close": 27850.0,
+      "chg_1d_pct": -2.79,
+      "ma5": 28900.0,
+      "ma20": 32792.5,
+      "ma60": 40295.0,
+      "ma120": 38382.0833,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -15.07,
+      "pct_vs_ma120": -27.44,
+      "rsi14": 23.73,
+      "stoch_k14": 19.66,
+      "volume": 1306677.0,
+      "volume_avg20": 668156.0,
+      "volume_ratio20": 1.96,
+      "high52": 54200.0,
+      "low52": 27850.0,
+      "pct_from_high52": -48.62,
+      "pct_from_low52": 0.0,
+      "ret_1m_pct": -27.0,
+      "ret_3m_pct": -23.7,
+      "ret_6m_pct": -41.8,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "FROG": {
+      "name": "제이프로그",
+      "market": "us",
+      "symbol": "FROG",
+      "as_of": "2026-10-30",
+      "close": 94.39,
+      "chg_1d_pct": -4.49,
+      "ma5": 98.752,
+      "ma20": 96.5525,
+      "ma60": 93.542,
+      "ma120": 87.6699,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": -2.24,
+      "pct_vs_ma120": 7.67,
+      "rsi14": 48.38,
+      "stoch_k14": 53.51,
+      "volume": 2125000.0,
+      "volume_avg20": 1628620.0,
+      "volume_ratio20": 1.3,
+      "high52": 104.03,
+      "low52": 34.75,
+      "pct_from_high52": -9.27,
+      "pct_from_low52": 171.63,
+      "ret_1m_pct": -3.28,
+      "ret_3m_pct": 14.55,
+      "ret_6m_pct": 89.2,
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "298040": {
+      "name": "효성중공업",
+      "market": "kospi",
+      "symbol": "298040.KS",
+      "as_of": "2026-10-30",
+      "close": 1809000.0,
+      "chg_1d_pct": -5.34,
+      "ma5": 1897000.0,
+      "ma20": 2141750.0,
+      "ma60": 2615083.3333,
+      "ma120": 2992000.0,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -15.54,
+      "pct_vs_ma120": -39.54,
+      "rsi14": 30.41,
+      "stoch_k14": 8.72,
+      "volume": 45114.0,
+      "volume_avg20": 58495.0,
+      "volume_ratio20": 0.77,
+      "high52": 4601000.0,
+      "low52": 1681000.0,
+      "pct_from_high52": -60.68,
+      "pct_from_low52": 7.61,
+      "ret_1m_pct": -35.49,
+      "ret_3m_pct": -22.16,
+      "ret_6m_pct": -44.65,
+      "bars": 486,
       "score": {
         "met": 1,
         "total": 5,
@@ -90,254 +757,100 @@
       "heat": {
         "over": [],
         "under": [
+          "20일선 이격도",
           "스토캐스틱 %K(14)"
         ],
         "total": 3,
         "unknown": 0
       }
     },
-    "NVDA": {
-      "name": "엔비디아 (NVIDIA)",
+    "PCG": {
+      "name": "퍼시픽 가스 & 일렉트릭",
       "market": "us",
-      "symbol": "NVDA",
-      "as_of": "2026-10-12",
-      "close": 226.32,
-      "chg_1d_pct": -1.29,
-      "ma5": 232.558,
-      "ma20": 227.502,
-      "ma60": 219.1165,
-      "ma120": 214.0431,
-      "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": -0.52,
-      "pct_vs_ma120": 5.74,
-      "rsi14": 49.35,
-      "volume": 69908781.0,
-      "volume_avg20": 108851535.0,
-      "volume_ratio20": 0.64,
-      "high52": 239.24,
-      "low52": 165.17,
-      "pct_from_high52": -5.4,
-      "pct_from_low52": 37.02,
-      "ret_1m_pct": 3.68,
-      "ret_3m_pct": 6.86,
-      "ret_6m_pct": 19.55,
-      "bars": 500
-    },
-    "035720": {
-      "name": "카카오",
-      "market": "kospi",
-      "symbol": "035720.KS",
-      "as_of": "2026-10-20",
-      "close": 31550.0,
-      "chg_1d_pct": -1.71,
-      "ma5": 31640.0,
-      "ma20": 32830.0,
-      "ma60": 35471.6667,
-      "ma120": 37833.3333,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -3.9,
-      "pct_vs_ma120": -16.61,
-      "rsi14": 36.62,
-      "volume": 1021665.0,
-      "volume_avg20": 1392529.0,
-      "volume_ratio20": 0.73,
-      "high52": 67700.0,
-      "low52": 31000.0,
-      "pct_from_high52": -53.4,
-      "pct_from_low52": 1.77,
-      "ret_1m_pct": -8.55,
-      "ret_3m_pct": -9.6,
-      "ret_6m_pct": -32.87,
-      "bars": 485
-    },
-    "001450": {
-      "name": "현대해상",
-      "market": "kospi",
-      "symbol": "001450.KS",
-      "as_of": "2026-10-20",
-      "close": 43200.0,
-      "chg_1d_pct": -1.71,
-      "ma5": 43020.0,
-      "ma20": 46850.0,
-      "ma60": 46064.1667,
-      "ma120": 40704.1667,
+      "symbol": "PCG",
+      "as_of": "2026-10-30",
+      "close": 13.18,
+      "chg_1d_pct": -0.38,
+      "ma5": 13.074,
+      "ma20": 12.9785,
+      "ma60": 14.3003,
+      "ma120": 15.6308,
       "ma_order": "혼조",
-      "pct_vs_ma20": -7.79,
-      "pct_vs_ma120": 6.13,
-      "rsi14": 38.3,
-      "volume": 233058.0,
-      "volume_avg20": 404281.0,
-      "volume_ratio20": 0.58,
-      "high52": 53500.0,
-      "low52": 26450.0,
-      "pct_from_high52": -19.25,
-      "pct_from_low52": 63.33,
-      "ret_1m_pct": -12.2,
-      "ret_3m_pct": 16.91,
-      "ret_6m_pct": 44.72,
-      "bars": 485
+      "pct_vs_ma20": 1.55,
+      "pct_vs_ma120": -15.68,
+      "rsi14": 50.42,
+      "stoch_k14": 75.0,
+      "volume": 20734100.0,
+      "volume_avg20": 34597025.0,
+      "volume_ratio20": 0.6,
+      "high52": 19.11,
+      "low52": 11.95,
+      "pct_from_high52": -31.03,
+      "pct_from_low52": 10.29,
+      "ret_1m_pct": 8.3,
+      "ret_3m_pct": -24.38,
+      "ret_6m_pct": -19.88,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
-    "096530": {
-      "name": "씨젠",
-      "market": "kosdaq",
-      "symbol": "096530.KQ",
-      "as_of": "2026-10-29",
-      "close": 33600.0,
-      "chg_1d_pct": 0.3,
-      "ma5": 33460.0,
-      "ma20": 36062.5,
-      "ma60": 33100.0,
-      "ma120": 30804.1667,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -6.83,
-      "pct_vs_ma120": 9.08,
-      "rsi14": 43.85,
-      "volume": 302497.0,
-      "volume_avg20": 317566.0,
-      "volume_ratio20": 0.95,
-      "high52": 38900.0,
-      "low52": 21850.0,
-      "pct_from_high52": -13.62,
-      "pct_from_low52": 53.78,
-      "ret_1m_pct": -2.04,
-      "ret_3m_pct": 19.15,
-      "ret_6m_pct": 35.21,
-      "bars": 485
-    },
-    "FTNT": {
-      "name": "포티넷",
+    "ISRG": {
+      "name": "인튜이티브 서지컬",
       "market": "us",
-      "symbol": "FTNT",
-      "as_of": "2026-10-29",
-      "close": 139.1,
-      "chg_1d_pct": -20.09,
-      "ma5": 172.3,
-      "ma20": 179.9615,
-      "ma60": 169.68,
-      "ma120": 158.3815,
+      "symbol": "ISRG",
+      "as_of": "2026-10-30",
+      "close": 432.01,
+      "chg_1d_pct": -3.73,
+      "ma5": 444.492,
+      "ma20": 430.3765,
+      "ma60": 400.0223,
+      "ma120": 400.4867,
       "ma_order": "혼조",
-      "pct_vs_ma20": -22.71,
-      "pct_vs_ma120": -12.17,
-      "rsi14": 27.63,
-      "volume": 17294521.0,
-      "volume_avg20": 4008085.0,
-      "volume_ratio20": 4.31,
-      "high52": 194.75,
-      "low52": 75.23,
-      "pct_from_high52": -28.58,
-      "pct_from_low52": 84.9,
-      "ret_1m_pct": -22.19,
-      "ret_3m_pct": -14.11,
-      "ret_6m_pct": 64.99,
-      "bars": 501
-    },
-    "241710": {
-      "name": "코스메카코리아",
-      "market": "kosdaq",
-      "symbol": "241710.KQ",
-      "as_of": "2026-10-12",
-      "close": 111800.0,
-      "chg_1d_pct": 0.36,
-      "ma5": 112120.0,
-      "ma20": 122810.0,
-      "ma60": 113558.3333,
-      "ma120": 95175.0,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -8.97,
-      "pct_vs_ma120": 17.47,
-      "rsi14": 41.34,
-      "volume": 69422.0,
-      "volume_avg20": 132816.0,
-      "volume_ratio20": 0.52,
-      "high52": 153900.0,
-      "low52": 61500.0,
-      "pct_from_high52": -27.36,
-      "pct_from_low52": 81.79,
-      "ret_1m_pct": -13.4,
-      "ret_3m_pct": 32.46,
-      "ret_6m_pct": 45.76,
-      "bars": 484
-    },
-    "SHOP": {
-      "name": "쇼피파이",
-      "market": "us",
-      "symbol": "SHOP",
-      "as_of": "2026-10-29",
-      "close": 166.89,
-      "chg_1d_pct": -0.79,
-      "ma5": 167.556,
-      "ma20": 168.935,
-      "ma60": 152.3398,
-      "ma120": 133.5603,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -1.21,
-      "pct_vs_ma120": 24.95,
-      "rsi14": 54.85,
-      "volume": 4538100.0,
-      "volume_avg20": 7757975.0,
-      "volume_ratio20": 0.58,
-      "high52": 179.22,
-      "low52": 95.4,
-      "pct_from_high52": -6.88,
-      "pct_from_low52": 74.94,
-      "ret_1m_pct": 12.54,
-      "ret_3m_pct": 42.46,
-      "ret_6m_pct": 37.78,
-      "bars": 501
-    },
-    "257720": {
-      "name": "실리콘투",
-      "market": "kosdaq",
-      "symbol": "257720.KQ",
-      "as_of": "2026-10-29",
-      "close": 28650.0,
-      "chg_1d_pct": -3.54,
-      "ma5": 29380.0,
-      "ma20": 33307.5,
-      "ma60": 40396.6667,
-      "ma120": 38511.6667,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -13.98,
-      "pct_vs_ma120": -25.61,
-      "rsi14": 25.31,
-      "volume": 636457.0,
-      "volume_avg20": 661436.0,
-      "volume_ratio20": 0.96,
-      "high52": 54200.0,
-      "low52": 28650.0,
-      "pct_from_high52": -47.14,
-      "pct_from_low52": 0.0,
-      "ret_1m_pct": -25.97,
-      "ret_3m_pct": -25.39,
-      "ret_6m_pct": -41.05,
-      "bars": 485
-    },
-    "FROG": {
-      "name": "제이프로그",
-      "market": "us",
-      "symbol": "FROG",
-      "as_of": "2026-10-29",
-      "close": 98.83,
-      "chg_1d_pct": -1.63,
-      "ma5": 99.998,
-      "ma20": 96.608,
-      "ma60": 93.3528,
-      "ma120": 87.4584,
-      "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": 2.3,
-      "pct_vs_ma120": 13.0,
-      "rsi14": 54.27,
-      "stoch_k14": 76.42,
-      "volume": 1160000.0,
-      "volume_avg20": 1677030.0,
-      "volume_ratio20": 0.69,
-      "high52": 104.03,
-      "low52": 34.75,
-      "pct_from_high52": -5.0,
-      "pct_from_low52": 184.4,
-      "ret_1m_pct": 1.84,
-      "ret_3m_pct": 23.86,
-      "ret_6m_pct": 112.81,
+      "pct_vs_ma20": 0.38,
+      "pct_vs_ma120": 7.87,
+      "rsi14": 54.15,
+      "stoch_k14": 55.13,
+      "volume": 3480900.0,
+      "volume_avg20": 2315785.0,
+      "volume_ratio20": 1.5,
+      "high52": 592.85,
+      "low52": 332.02,
+      "pct_from_high52": -27.13,
+      "pct_from_low52": 30.12,
+      "ret_1m_pct": 7.67,
+      "ret_3m_pct": 15.08,
+      "ret_6m_pct": -5.63,
       "bars": 501,
       "score": {
         "met": 4,
@@ -354,7 +867,7 @@
           },
           {
             "label": "이동평균 정배열",
-            "ok": true
+            "ok": false
           },
           {
             "label": "RSI(14) 30~70",
@@ -362,129 +875,12 @@
           },
           {
             "label": "거래량 ≥ 20일 평균",
-            "ok": false
+            "ok": true
           }
         ]
       },
       "heat": {
         "over": [],
-        "under": [],
-        "total": 3,
-        "unknown": 0
-      }
-    },
-    "298040": {
-      "name": "효성중공업",
-      "market": "kospi",
-      "symbol": "298040.KS",
-      "as_of": "2026-10-20",
-      "close": 1892000.0,
-      "chg_1d_pct": -2.27,
-      "ma5": 1942000.0,
-      "ma20": 2522350.0,
-      "ma60": 2686033.3333,
-      "ma120": 3114566.6667,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -24.99,
-      "pct_vs_ma120": -39.25,
-      "rsi14": 25.91,
-      "volume": 49154.0,
-      "volume_avg20": 55698.0,
-      "volume_ratio20": 0.88,
-      "high52": 4601000.0,
-      "low52": 1418000.0,
-      "pct_from_high52": -58.88,
-      "pct_from_low52": 33.43,
-      "ret_1m_pct": -29.64,
-      "ret_3m_pct": -34.03,
-      "ret_6m_pct": -38.13,
-      "bars": 485
-    },
-    "PCG": {
-      "name": "퍼시픽 가스 & 일렉트릭",
-      "market": "us",
-      "symbol": "PCG",
-      "as_of": "2026-10-12",
-      "close": 13.16,
-      "chg_1d_pct": 0.23,
-      "ma5": 12.85,
-      "ma20": 12.672,
-      "ma60": 15.3467,
-      "ma120": 16.0195,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 3.85,
-      "pct_vs_ma120": -17.85,
-      "rsi14": 47.32,
-      "volume": 20249700.0,
-      "volume_avg20": 39296165.0,
-      "volume_ratio20": 0.52,
-      "high52": 19.11,
-      "low52": 11.95,
-      "pct_from_high52": -31.14,
-      "pct_from_low52": 10.13,
-      "ret_1m_pct": -4.64,
-      "ret_3m_pct": -24.54,
-      "ret_6m_pct": -25.82,
-      "bars": 500
-    },
-    "ISRG": {
-      "name": "인튜이티브 서지컬",
-      "market": "us",
-      "symbol": "ISRG",
-      "as_of": "2026-10-29",
-      "close": 448.76,
-      "chg_1d_pct": 1.03,
-      "ma5": 448.548,
-      "ma20": 428.3735,
-      "ma60": 399.0507,
-      "ma120": 400.3872,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 4.76,
-      "pct_vs_ma120": 12.08,
-      "rsi14": 66.29,
-      "stoch_k14": 83.1,
-      "volume": 1889100.0,
-      "volume_avg20": 2296895.0,
-      "volume_ratio20": 0.82,
-      "high52": 592.85,
-      "low52": 332.02,
-      "pct_from_high52": -24.3,
-      "pct_from_low52": 35.16,
-      "ret_1m_pct": 10.36,
-      "ret_3m_pct": 27.01,
-      "ret_6m_pct": -1.93,
-      "bars": 501,
-      "score": {
-        "met": 3,
-        "total": 5,
-        "unknown": 0,
-        "items": [
-          {
-            "label": "종가 > 20일선",
-            "ok": true
-          },
-          {
-            "label": "종가 > 120일선",
-            "ok": true
-          },
-          {
-            "label": "이동평균 정배열",
-            "ok": false
-          },
-          {
-            "label": "RSI(14) 30~70",
-            "ok": true
-          },
-          {
-            "label": "거래량 ≥ 20일 평균",
-            "ok": false
-          }
-        ]
-      },
-      "heat": {
-        "over": [
-          "스토캐스틱 %K(14)"
-        ],
         "under": [],
         "total": 3,
         "unknown": 0
@@ -494,571 +890,31 @@
       "name": "이마트",
       "market": "kospi",
       "symbol": "139480.KS",
-      "as_of": "2026-10-29",
-      "close": 69200.0,
-      "chg_1d_pct": 1.17,
-      "ma5": 68020.0,
-      "ma20": 70930.0,
-      "ma60": 73901.6667,
-      "ma120": 81211.6667,
+      "as_of": "2026-10-30",
+      "close": 69100.0,
+      "chg_1d_pct": -0.14,
+      "ma5": 67940.0,
+      "ma20": 70810.0,
+      "ma60": 73723.3333,
+      "ma120": 80905.0,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -2.44,
-      "pct_vs_ma120": -14.79,
-      "rsi14": 44.1,
-      "volume": 91182.0,
-      "volume_avg20": 111235.0,
-      "volume_ratio20": 0.82,
+      "pct_vs_ma20": -2.41,
+      "pct_vs_ma120": -14.59,
+      "rsi14": 43.86,
+      "stoch_k14": 29.29,
+      "volume": 73852.0,
+      "volume_avg20": 113177.0,
+      "volume_ratio20": 0.65,
       "high52": 127600.0,
       "low52": 66400.0,
-      "pct_from_high52": -45.77,
-      "pct_from_low52": 4.22,
-      "ret_1m_pct": -4.02,
-      "ret_3m_pct": -16.32,
-      "ret_6m_pct": -32.49,
-      "bars": 485
-    },
-    "090460": {
-      "name": "비에이치",
-      "market": "kospi",
-      "symbol": "090460.KS",
-      "as_of": "2026-10-29",
-      "close": 16930.0,
-      "chg_1d_pct": -5.63,
-      "ma5": 17244.0,
-      "ma20": 18760.0,
-      "ma60": 18444.5,
-      "ma120": 21783.25,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -9.75,
-      "pct_vs_ma120": -22.28,
-      "rsi14": 42.29,
-      "volume": 415079.0,
-      "volume_avg20": 510034.0,
-      "volume_ratio20": 0.81,
-      "high52": 40200.0,
-      "low52": 13100.0,
-      "pct_from_high52": -57.89,
-      "pct_from_low52": 29.24,
-      "ret_1m_pct": -16.81,
-      "ret_3m_pct": 4.18,
-      "ret_6m_pct": -52.38,
-      "bars": 485
-    },
-    "009150": {
-      "name": "삼성전기",
-      "market": "kospi",
-      "symbol": "009150.KS",
-      "as_of": "2026-10-20",
-      "close": 1155000.0,
-      "chg_1d_pct": -1.28,
-      "ma5": 1210000.0,
-      "ma20": 1427350.0,
-      "ma60": 1362850.0,
-      "ma120": 1433233.3333,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -19.08,
-      "pct_vs_ma120": -19.41,
-      "rsi14": 33.53,
-      "volume": 710721.0,
-      "volume_avg20": 676391.0,
-      "volume_ratio20": 1.05,
-      "high52": 2270000.0,
-      "low52": 196500.0,
-      "pct_from_high52": -49.12,
-      "pct_from_low52": 487.79,
-      "ret_1m_pct": -12.3,
-      "ret_3m_pct": -18.26,
-      "ret_6m_pct": 103.35,
-      "bars": 485
-    },
-    "004170": {
-      "name": "신세계",
-      "market": "kospi",
-      "symbol": "004170.KS",
-      "as_of": "2026-10-20",
-      "close": 270500.0,
-      "chg_1d_pct": -7.84,
-      "ma5": 278500.0,
-      "ma20": 320325.0,
-      "ma60": 386758.3333,
-      "ma120": 484283.3333,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -15.55,
-      "pct_vs_ma120": -44.14,
-      "rsi14": 28.14,
-      "volume": 99772.0,
-      "volume_avg20": 73163.0,
-      "volume_ratio20": 1.36,
-      "high52": 776000.0,
-      "low52": 171500.0,
-      "pct_from_high52": -65.14,
-      "pct_from_low52": 57.73,
-      "ret_1m_pct": -26.49,
-      "ret_3m_pct": -55.66,
-      "ret_6m_pct": -21.14,
-      "bars": 485
-    },
-    "DLB": {
-      "name": "돌비 래버러토리스",
-      "market": "us",
-      "symbol": "DLB",
-      "as_of": "2026-10-29",
-      "close": 62.91,
-      "chg_1d_pct": 2.01,
-      "ma5": 62.65,
-      "ma20": 60.536,
-      "ma60": 60.9757,
-      "ma120": 57.0327,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 3.92,
-      "pct_vs_ma120": 10.31,
-      "rsi14": 61.12,
-      "volume": 677008.0,
-      "volume_avg20": 628840.0,
-      "volume_ratio20": 1.08,
-      "high52": 69.09,
-      "low52": 48.51,
-      "pct_from_high52": -8.94,
-      "pct_from_low52": 29.68,
-      "ret_1m_pct": 7.04,
-      "ret_3m_pct": 6.97,
-      "ret_6m_pct": -1.92,
-      "bars": 501
-    },
-    "005290": {
-      "name": "동진쎄미켐",
-      "market": "kosdaq",
-      "symbol": "005290.KQ",
-      "as_of": "2026-10-08",
-      "close": 51200.0,
-      "chg_1d_pct": 0.39,
-      "ma5": 51920.0,
-      "ma20": 44960.0,
-      "ma60": 42808.3333,
-      "ma120": 49704.1667,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 13.88,
-      "pct_vs_ma120": 3.01,
-      "rsi14": 66.11,
-      "volume": 471604.0,
-      "volume_avg20": 437296.0,
-      "volume_ratio20": 1.08,
-      "high52": 66000.0,
-      "low52": 31600.0,
-      "pct_from_high52": -22.42,
-      "pct_from_low52": 62.03,
-      "ret_1m_pct": 27.2,
-      "ret_3m_pct": 4.38,
-      "ret_6m_pct": 10.82,
-      "bars": 486
-    },
-    "028260": {
-      "name": "삼성물산",
-      "market": "kospi",
-      "symbol": "028260.KS",
-      "as_of": "2026-10-20",
-      "close": 275000.0,
-      "chg_1d_pct": -3.51,
-      "ma5": 281100.0,
-      "ma20": 327425.0,
-      "ma60": 346716.6667,
-      "ma120": 379812.5,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -16.01,
-      "pct_vs_ma120": -27.6,
-      "rsi14": 29.31,
-      "volume": 248675.0,
-      "volume_avg20": 341734.0,
-      "volume_ratio20": 0.73,
-      "high52": 535000.0,
-      "low52": 194800.0,
-      "pct_from_high52": -48.6,
-      "pct_from_low52": 41.17,
-      "ret_1m_pct": -20.75,
-      "ret_3m_pct": -25.07,
-      "ret_6m_pct": -5.01,
-      "bars": 485
-    },
-    "353200": {
-      "name": "대덕전자",
-      "market": "kosdaq",
-      "symbol": "353200.KQ",
-      "as_of": "2026-10-16",
-      "close": 131700.0,
-      "chg_1d_pct": 1.7,
-      "ma5": 140000.0,
-      "ma20": 129300.0,
-      "ma60": 113693.3333,
-      "ma120": 125575.8333,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 1.86,
-      "pct_vs_ma120": 4.88,
-      "rsi14": 52.05,
-      "volume": 1033976.0,
-      "volume_avg20": 1132388.0,
-      "volume_ratio20": 0.91,
-      "high52": 190900.0,
-      "low52": 28250.0,
-      "pct_from_high52": -31.01,
-      "pct_from_low52": 366.19,
-      "ret_1m_pct": 31.7,
-      "ret_3m_pct": 15.73,
-      "ret_6m_pct": 50.69,
-      "bars": 483
-    },
-    "MRK": {
-      "name": "머크",
-      "market": "us",
-      "symbol": "MRK",
-      "as_of": "2026-10-29",
-      "close": 146.33,
-      "chg_1d_pct": 3.83,
-      "ma5": 142.992,
-      "ma20": 144.325,
-      "ma60": 144.8092,
-      "ma120": 133.3681,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 1.39,
-      "pct_vs_ma120": 9.72,
-      "rsi14": 52.45,
-      "volume": 13436900.0,
-      "volume_avg20": 9879410.0,
-      "volume_ratio20": 1.36,
-      "high52": 156.45,
-      "low52": 82.49,
-      "pct_from_high52": -6.47,
-      "pct_from_low52": 77.39,
-      "ret_1m_pct": 0.7,
-      "ret_3m_pct": 12.39,
-      "ret_6m_pct": 34.03,
-      "bars": 501
-    },
-    "BAC": {
-      "name": "뱅크오브아메리카",
-      "market": "us",
-      "symbol": "BAC",
-      "as_of": "2026-10-29",
-      "close": 51.14,
-      "chg_1d_pct": 0.57,
-      "ma5": 50.75,
-      "ma20": 52.1395,
-      "ma60": 57.8728,
-      "ma120": 57.2962,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -1.92,
-      "pct_vs_ma120": -10.74,
-      "rsi14": 32.94,
-      "volume": 32424100.0,
-      "volume_avg20": 42072790.0,
-      "volume_ratio20": 0.77,
-      "high52": 64.81,
-      "low52": 46.72,
-      "pct_from_high52": -21.09,
-      "pct_from_low52": 9.46,
-      "ret_1m_pct": -6.04,
-      "ret_3m_pct": -17.45,
-      "ret_6m_pct": -4.34,
-      "bars": 501
-    },
-    "GOOGL": {
-      "name": "알파벳 A",
-      "market": "us",
-      "symbol": "GOOGL",
-      "as_of": "2026-10-12",
-      "close": 352.72,
-      "chg_1d_pct": 0.3,
-      "ma5": 350.17,
-      "ma20": 346.0885,
-      "ma60": 344.576,
-      "ma120": 356.8229,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 1.92,
-      "pct_vs_ma120": -1.15,
-      "rsi14": 57.25,
-      "volume": 18116718.0,
-      "volume_avg20": 26297015.0,
-      "volume_ratio20": 0.69,
-      "high52": 402.62,
-      "low52": 236.57,
-      "pct_from_high52": -12.39,
-      "pct_from_low52": 49.1,
-      "ret_1m_pct": 4.2,
-      "ret_3m_pct": -1.89,
-      "ret_6m_pct": 9.78,
-      "bars": 500
-    },
-    "WMT": {
-      "name": "월마트",
-      "market": "us",
-      "symbol": "WMT",
-      "as_of": "2026-10-20",
-      "close": 117.85,
-      "chg_1d_pct": -0.72,
-      "ma5": 117.878,
-      "ma20": 110.558,
-      "ma60": 109.6412,
-      "ma120": 114.5567,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 6.6,
-      "pct_vs_ma120": 2.87,
-      "rsi14": 69.15,
-      "volume": 21819800.0,
-      "volume_avg20": 21318400.0,
-      "volume_ratio20": 1.02,
-      "high52": 134.2,
-      "low52": 100.61,
-      "pct_from_high52": -12.18,
-      "pct_from_low52": 17.14,
-      "ret_1m_pct": 9.69,
-      "ret_3m_pct": 7.79,
-      "ret_6m_pct": -9.07,
-      "bars": 501
-    },
-    "MS": {
-      "name": "모건스탠리",
-      "market": "us",
-      "symbol": "MS",
-      "as_of": "2026-10-29",
-      "close": 190.0,
-      "chg_1d_pct": -0.07,
-      "ma5": 186.004,
-      "ma20": 185.97,
-      "ma60": 201.5055,
-      "ma120": 206.6853,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 2.17,
-      "pct_vs_ma120": -8.07,
-      "rsi14": 50.63,
-      "volume": 5547200.0,
-      "volume_avg20": 6451490.0,
-      "volume_ratio20": 0.86,
-      "high52": 228.55,
-      "low52": 154.37,
-      "pct_from_high52": -16.87,
-      "pct_from_low52": 23.08,
-      "ret_1m_pct": 1.02,
-      "ret_3m_pct": -9.7,
-      "ret_6m_pct": -0.31,
-      "bars": 501
-    },
-    "237690": {
-      "name": "에스티팜",
-      "market": "kosdaq",
-      "symbol": "237690.KQ",
-      "as_of": "2026-10-07",
-      "close": 96400.0,
-      "chg_1d_pct": -0.52,
-      "ma5": 94780.0,
-      "ma20": 92145.0,
-      "ma60": 102113.3333,
-      "ma120": 118490.0,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 4.62,
-      "pct_vs_ma120": -18.64,
-      "rsi14": 51.05,
-      "volume": 90822.0,
-      "volume_avg20": 98548.0,
-      "volume_ratio20": 0.92,
-      "high52": 168700.0,
-      "low52": 84700.0,
-      "pct_from_high52": -42.86,
-      "pct_from_low52": 13.81,
-      "ret_1m_pct": -2.63,
-      "ret_3m_pct": -26.13,
-      "ret_6m_pct": -36.91,
-      "bars": 485
-    },
-    "KO": {
-      "name": "코카콜라",
-      "market": "us",
-      "symbol": "KO",
-      "as_of": "2026-10-09",
-      "close": 88.05,
-      "chg_1d_pct": 0.32,
-      "ma5": 86.864,
-      "ma20": 87.407,
-      "ma60": 87.3375,
-      "ma120": 83.8382,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 0.74,
-      "pct_vs_ma120": 5.02,
-      "rsi14": 54.24,
-      "volume": 10428800.0,
-      "volume_avg20": 16089685.0,
-      "volume_ratio20": 0.65,
-      "high52": 91.99,
-      "low52": 66.37,
-      "pct_from_high52": -4.28,
-      "pct_from_low52": 32.67,
-      "ret_1m_pct": 0.25,
-      "ret_3m_pct": 4.51,
-      "ret_6m_pct": 13.66,
-      "bars": 499
-    },
-    "CVS": {
-      "name": "CVS Health",
-      "market": "us",
-      "symbol": "CVS",
-      "as_of": "2026-10-09",
-      "close": 86.16,
-      "chg_1d_pct": -1.87,
-      "ma5": 87.07,
-      "ma20": 88.163,
-      "ma60": 95.3522,
-      "ma120": 95.0955,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -2.27,
-      "pct_vs_ma120": -9.4,
-      "rsi14": 38.56,
-      "volume": 11651700.0,
-      "volume_avg20": 8974720.0,
-      "volume_ratio20": 1.3,
-      "high52": 110.6,
-      "low52": 70.08,
-      "pct_from_high52": -22.1,
-      "pct_from_low52": 22.95,
-      "ret_1m_pct": -9.58,
-      "ret_3m_pct": -18.64,
-      "ret_6m_pct": 8.61,
-      "bars": 499
-    },
-    "ARM": {
-      "name": "ARM홀딩스",
-      "market": "us",
-      "symbol": "ARM",
-      "as_of": "2026-10-07",
-      "close": 294.37,
-      "chg_1d_pct": -2.71,
-      "ma5": 299.932,
-      "ma20": 287.797,
-      "ma60": 268.6857,
-      "ma120": 281.0744,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 2.28,
-      "pct_vs_ma120": 4.73,
-      "rsi14": 53.4,
-      "volume": 3409100.0,
-      "volume_avg20": 5806425.0,
-      "volume_ratio20": 0.59,
-      "high52": 439.46,
-      "low52": 104.55,
-      "pct_from_high52": -33.02,
-      "pct_from_low52": 181.56,
-      "ret_1m_pct": 12.56,
-      "ret_3m_pct": -10.22,
-      "ret_6m_pct": 97.68,
-      "bars": 501
-    },
-    "AMAT": {
-      "name": "AMAT",
-      "market": "us",
-      "symbol": "AMAT",
-      "as_of": "2026-10-26",
-      "close": 387.59,
-      "chg_1d_pct": 2.74,
-      "ma5": 390.866,
-      "ma20": 465.8835,
-      "ma60": 476.7433,
-      "ma120": 500.5637,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -16.81,
-      "pct_vs_ma120": -22.57,
-      "rsi14": 30.59,
-      "volume": 6132700.0,
-      "volume_avg20": 6960180.0,
-      "volume_ratio20": 0.88,
-      "high52": 723.0,
-      "low52": 220.23,
-      "pct_from_high52": -46.39,
-      "pct_from_low52": 75.99,
-      "ret_1m_pct": -20.08,
-      "ret_3m_pct": -18.65,
-      "ret_6m_pct": -4.27,
-      "bars": 500
-    },
-    "ONON": {
-      "name": "On Holding",
-      "market": "us",
-      "symbol": "ONON",
-      "as_of": "2026-10-09",
-      "close": 35.09,
-      "chg_1d_pct": 3.08,
-      "ma5": 33.472,
-      "ma20": 30.0415,
-      "ma60": 31.787,
-      "ma120": 34.4335,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 16.81,
-      "pct_vs_ma120": 1.91,
-      "rsi14": 76.84,
-      "volume": 11122600.0,
-      "volume_avg20": 12769760.0,
-      "volume_ratio20": 0.87,
-      "high52": 50.63,
-      "low52": 26.76,
-      "pct_from_high52": -30.69,
-      "pct_from_low52": 31.13,
-      "ret_1m_pct": 30.69,
-      "ret_3m_pct": -7.46,
-      "ret_6m_pct": 4.59,
-      "bars": 499
-    },
-    "CRSP": {
-      "name": "크리스퍼 테라퓨틱스",
-      "market": "us",
-      "symbol": "CRSP",
-      "as_of": "2026-10-29",
-      "close": 54.26,
-      "chg_1d_pct": 0.28,
-      "ma5": 51.648,
-      "ma20": 51.712,
-      "ma60": 54.2913,
-      "ma120": 53.1471,
-      "ma_order": "혼조",
-      "pct_vs_ma20": 4.93,
-      "pct_vs_ma120": 2.09,
-      "rsi14": 56.0,
-      "volume": 1298400.0,
-      "volume_avg20": 1511515.0,
-      "volume_ratio20": 0.86,
-      "high52": 63.99,
-      "low52": 44.34,
-      "pct_from_high52": -15.21,
-      "pct_from_low52": 22.37,
-      "ret_1m_pct": -1.92,
-      "ret_3m_pct": 13.07,
-      "ret_6m_pct": 3.67,
-      "bars": 501
-    },
-    "PLTR": {
-      "name": "팔란티어",
-      "market": "us",
-      "symbol": "PLTR",
-      "as_of": "2026-10-29",
-      "close": 196.42,
-      "chg_1d_pct": -0.2,
-      "ma5": 197.51,
-      "ma20": 197.4775,
-      "ma60": 184.276,
-      "ma120": 158.169,
-      "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": -0.54,
-      "pct_vs_ma120": 24.18,
-      "rsi14": 53.43,
-      "stoch_k14": 42.01,
-      "volume": 19992800.0,
-      "volume_avg20": 22489835.0,
-      "volume_ratio20": 0.89,
-      "high52": 209.05,
-      "low52": 107.27,
-      "pct_from_high52": -6.04,
-      "pct_from_low52": 83.11,
-      "ret_1m_pct": 5.01,
-      "ret_3m_pct": 59.61,
-      "ret_6m_pct": 41.2,
-      "bars": 501,
+      "pct_from_high52": -45.85,
+      "pct_from_low52": 4.07,
+      "ret_1m_pct": -4.03,
+      "ret_3m_pct": -12.86,
+      "ret_6m_pct": -33.17,
+      "bars": 486,
       "score": {
-        "met": 3,
+        "met": 1,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1068,11 +924,11 @@
           },
           {
             "label": "종가 > 120일선",
-            "ok": true
+            "ok": false
           },
           {
             "label": "이동평균 정배열",
-            "ok": true
+            "ok": false
           },
           {
             "label": "RSI(14) 30~70",
@@ -1091,221 +947,1732 @@
         "unknown": 0
       }
     },
+    "090460": {
+      "name": "비에이치",
+      "market": "kospi",
+      "symbol": "090460.KS",
+      "as_of": "2026-10-30",
+      "close": 16180.0,
+      "chg_1d_pct": -4.43,
+      "ma5": 17006.0,
+      "ma20": 18546.5,
+      "ma60": 18463.0,
+      "ma120": 21651.8333,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -12.76,
+      "pct_vs_ma120": -25.27,
+      "rsi14": 39.28,
+      "stoch_k14": 14.45,
+      "volume": 299565.0,
+      "volume_avg20": 508779.0,
+      "volume_ratio20": 0.59,
+      "high52": 40200.0,
+      "low52": 13100.0,
+      "pct_from_high52": -59.75,
+      "pct_from_low52": 23.51,
+      "ret_1m_pct": -21.07,
+      "ret_3m_pct": 9.84,
+      "ret_6m_pct": -51.77,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "009150": {
+      "name": "삼성전기",
+      "market": "kospi",
+      "symbol": "009150.KS",
+      "as_of": "2026-10-30",
+      "close": 1196000.0,
+      "chg_1d_pct": -7.5,
+      "ma5": 1222800.0,
+      "ma20": 1320800.0,
+      "ma60": 1361866.6667,
+      "ma120": 1457941.6667,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -9.45,
+      "pct_vs_ma120": -17.97,
+      "rsi14": 42.04,
+      "stoch_k14": 37.09,
+      "volume": 877969.0,
+      "volume_avg20": 740473.0,
+      "volume_ratio20": 1.19,
+      "high52": 2270000.0,
+      "low52": 204000.0,
+      "pct_from_high52": -47.31,
+      "pct_from_low52": 486.27,
+      "ret_1m_pct": -21.73,
+      "ret_3m_pct": 7.36,
+      "ret_6m_pct": 54.52,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "004170": {
+      "name": "신세계",
+      "market": "kospi",
+      "symbol": "004170.KS",
+      "as_of": "2026-10-30",
+      "close": 245000.0,
+      "chg_1d_pct": -1.21,
+      "ma5": 248100.0,
+      "ma20": 281925.0,
+      "ma60": 356575.0,
+      "ma120": 474475.0,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -13.1,
+      "pct_vs_ma120": -48.36,
+      "rsi14": 28.08,
+      "stoch_k14": 9.92,
+      "volume": 48638.0,
+      "volume_avg20": 68207.0,
+      "volume_ratio20": 0.71,
+      "high52": 776000.0,
+      "low52": 171500.0,
+      "pct_from_high52": -68.43,
+      "pct_from_low52": 42.86,
+      "ret_1m_pct": -27.94,
+      "ret_3m_pct": -47.37,
+      "ret_6m_pct": -36.28,
+      "bars": 486,
+      "score": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "DLB": {
+      "name": "돌비 래버러토리스",
+      "market": "us",
+      "symbol": "DLB",
+      "as_of": "2026-10-30",
+      "close": 61.99,
+      "chg_1d_pct": -1.46,
+      "ma5": 62.478,
+      "ma20": 60.691,
+      "ma60": 60.9935,
+      "ma120": 57.0693,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 2.14,
+      "pct_vs_ma120": 8.62,
+      "rsi14": 55.62,
+      "stoch_k14": 69.62,
+      "volume": 688800.0,
+      "volume_avg20": 622560.0,
+      "volume_ratio20": 1.11,
+      "high52": 69.09,
+      "low52": 48.51,
+      "pct_from_high52": -10.28,
+      "pct_from_low52": 27.79,
+      "ret_1m_pct": 4.96,
+      "ret_3m_pct": 3.78,
+      "ret_6m_pct": 7.88,
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "005290": {
+      "name": "동진쎄미켐",
+      "market": "kosdaq",
+      "symbol": "005290.KQ",
+      "as_of": "2026-10-30",
+      "close": 38800.0,
+      "chg_1d_pct": -6.05,
+      "ma5": 39520.0,
+      "ma20": 44357.5,
+      "ma60": 42857.5,
+      "ma120": 47775.4167,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -12.53,
+      "pct_vs_ma120": -18.79,
+      "rsi14": 41.23,
+      "stoch_k14": 12.6,
+      "volume": 263531.0,
+      "volume_avg20": 449128.0,
+      "volume_ratio20": 0.59,
+      "high52": 66000.0,
+      "low52": 31600.0,
+      "pct_from_high52": -41.21,
+      "pct_from_low52": 22.78,
+      "ret_1m_pct": -16.74,
+      "ret_3m_pct": 6.3,
+      "ret_6m_pct": -35.66,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "028260": {
+      "name": "삼성물산",
+      "market": "kospi",
+      "symbol": "028260.KS",
+      "as_of": "2026-10-30",
+      "close": 312000.0,
+      "chg_1d_pct": -3.55,
+      "ma5": 310600.0,
+      "ma20": 306400.0,
+      "ma60": 343183.3333,
+      "ma120": 379300.0,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 1.83,
+      "pct_vs_ma120": -17.74,
+      "rsi14": 47.97,
+      "stoch_k14": 69.8,
+      "volume": 318634.0,
+      "volume_avg20": 365112.0,
+      "volume_ratio20": 0.87,
+      "high52": 535000.0,
+      "low52": 204500.0,
+      "pct_from_high52": -41.68,
+      "pct_from_low52": 52.57,
+      "ret_1m_pct": -9.57,
+      "ret_3m_pct": 2.3,
+      "ret_6m_pct": -2.5,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "353200": {
+      "name": "대덕전자",
+      "market": "kosdaq",
+      "symbol": "353200.KQ",
+      "as_of": "2026-10-30",
+      "close": 119400.0,
+      "chg_1d_pct": -13.6,
+      "ma5": 128600.0,
+      "ma20": 137845.0,
+      "ma60": 117810.0,
+      "ma120": 127438.3333,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -13.38,
+      "pct_vs_ma120": -6.31,
+      "rsi14": 43.83,
+      "stoch_k14": 13.53,
+      "volume": 2021238.0,
+      "volume_avg20": 1128539.0,
+      "volume_ratio20": 1.79,
+      "high52": 190900.0,
+      "low52": 31400.0,
+      "pct_from_high52": -37.45,
+      "pct_from_low52": 280.25,
+      "ret_1m_pct": -8.29,
+      "ret_3m_pct": 30.78,
+      "ret_6m_pct": 20.73,
+      "bars": 486,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "MRK": {
+      "name": "머크",
+      "market": "us",
+      "symbol": "MRK",
+      "as_of": "2026-10-30",
+      "close": 149.52,
+      "chg_1d_pct": 2.18,
+      "ma5": 143.842,
+      "ma20": 144.586,
+      "ma60": 145.1617,
+      "ma120": 133.6868,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 3.41,
+      "pct_vs_ma120": 11.84,
+      "rsi14": 56.86,
+      "stoch_k14": 69.62,
+      "volume": 12341400.0,
+      "volume_avg20": 10158980.0,
+      "volume_ratio20": 1.21,
+      "high52": 156.45,
+      "low52": 82.49,
+      "pct_from_high52": -4.43,
+      "pct_from_low52": 81.26,
+      "ret_1m_pct": 3.97,
+      "ret_3m_pct": 17.02,
+      "ret_6m_pct": 33.31,
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "BAC": {
+      "name": "뱅크오브아메리카",
+      "market": "us",
+      "symbol": "BAC",
+      "as_of": "2026-10-30",
+      "close": 50.01,
+      "chg_1d_pct": -2.21,
+      "ma5": 50.64,
+      "ma20": 51.9525,
+      "ma60": 57.6563,
+      "ma120": 57.2917,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -3.74,
+      "pct_vs_ma120": -12.71,
+      "rsi14": 27.67,
+      "stoch_k14": 13.42,
+      "volume": 43055300.0,
+      "volume_avg20": 40692180.0,
+      "volume_ratio20": 1.06,
+      "high52": 64.81,
+      "low52": 46.72,
+      "pct_from_high52": -22.84,
+      "pct_from_low52": 7.04,
+      "ret_1m_pct": -6.92,
+      "ret_3m_pct": -19.96,
+      "ret_6m_pct": -6.07,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "GOOGL": {
+      "name": "알파벳 A",
+      "market": "us",
+      "symbol": "GOOGL",
+      "as_of": "2026-10-30",
+      "close": 279.84,
+      "chg_1d_pct": -1.4,
+      "ma5": 305.186,
+      "ma20": 333.9065,
+      "ma60": 340.31,
+      "ma120": 351.6604,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -16.19,
+      "pct_vs_ma120": -20.42,
+      "rsi14": 21.38,
+      "stoch_k14": 3.54,
+      "volume": 65520500.0,
+      "volume_avg20": 30908790.0,
+      "volume_ratio20": 2.12,
+      "high52": 402.62,
+      "low52": 273.5,
+      "pct_from_high52": -30.5,
+      "pct_from_low52": 2.32,
+      "ret_1m_pct": -17.27,
+      "ret_3m_pct": -25.08,
+      "ret_6m_pct": -27.44,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "WMT": {
+      "name": "월마트",
+      "market": "us",
+      "symbol": "WMT",
+      "as_of": "2026-10-30",
+      "close": 123.51,
+      "chg_1d_pct": 1.86,
+      "ma5": 120.628,
+      "ma20": 115.952,
+      "ma60": 110.7355,
+      "ma120": 113.8817,
+      "ma_order": "혼조",
+      "pct_vs_ma20": 6.52,
+      "pct_vs_ma120": 8.45,
+      "rsi14": 72.71,
+      "stoch_k14": 91.87,
+      "volume": 29769400.0,
+      "volume_avg20": 19591470.0,
+      "volume_ratio20": 1.52,
+      "high52": 134.2,
+      "low52": 100.61,
+      "pct_from_high52": -7.97,
+      "pct_from_low52": 22.76,
+      "ret_1m_pct": 18.46,
+      "ret_3m_pct": 11.56,
+      "ret_6m_pct": -6.15,
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "RSI(14)",
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "MS": {
+      "name": "모건스탠리",
+      "market": "us",
+      "symbol": "MS",
+      "as_of": "2026-10-30",
+      "close": 184.3,
+      "chg_1d_pct": -3.0,
+      "ma5": 186.966,
+      "ma20": 185.6695,
+      "ma60": 201.0147,
+      "ma120": 206.6286,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -0.74,
+      "pct_vs_ma120": -10.81,
+      "rsi14": 43.29,
+      "stoch_k14": 46.62,
+      "volume": 7940800.0,
+      "volume_avg20": 6251715.0,
+      "volume_ratio20": 1.27,
+      "high52": 228.55,
+      "low52": 154.37,
+      "pct_from_high52": -19.36,
+      "pct_from_low52": 19.39,
+      "ret_1m_pct": -1.97,
+      "ret_3m_pct": -12.75,
+      "ret_6m_pct": -3.09,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "237690": {
+      "name": "에스티팜",
+      "market": "kosdaq",
+      "symbol": "237690.KQ",
+      "as_of": "2026-10-30",
+      "close": 72500.0,
+      "chg_1d_pct": -2.03,
+      "ma5": 78520.0,
+      "ma20": 88145.0,
+      "ma60": 95428.3333,
+      "ma120": 110101.6667,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -17.75,
+      "pct_vs_ma120": -34.15,
+      "rsi14": 27.64,
+      "stoch_k14": 4.9,
+      "volume": 117106.0,
+      "volume_avg20": 109162.0,
+      "volume_ratio20": 1.07,
+      "high52": 168700.0,
+      "low52": 72500.0,
+      "pct_from_high52": -57.02,
+      "pct_from_low52": 0.0,
+      "ret_1m_pct": -22.29,
+      "ret_3m_pct": -26.4,
+      "ret_6m_pct": -51.01,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "KO": {
+      "name": "코카콜라",
+      "market": "us",
+      "symbol": "KO",
+      "as_of": "2026-10-30",
+      "close": 94.08,
+      "chg_1d_pct": 1.36,
+      "ma5": 92.502,
+      "ma20": 91.1025,
+      "ma60": 89.2018,
+      "ma120": 85.7056,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 3.27,
+      "pct_vs_ma120": 9.77,
+      "rsi14": 62.48,
+      "stoch_k14": 77.37,
+      "volume": 18364600.0,
+      "volume_avg20": 16760270.0,
+      "volume_ratio20": 1.1,
+      "high52": 95.34,
+      "low52": 67.54,
+      "pct_from_high52": -1.32,
+      "pct_from_low52": 39.3,
+      "ret_1m_pct": 9.27,
+      "ret_3m_pct": 8.31,
+      "ret_6m_pct": 19.73,
+      "bars": 501,
+      "score": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "CVS": {
+      "name": "CVS Health",
+      "market": "us",
+      "symbol": "CVS",
+      "as_of": "2026-10-30",
+      "close": 90.25,
+      "chg_1d_pct": -0.09,
+      "ma5": 90.838,
+      "ma20": 90.4495,
+      "ma60": 91.8212,
+      "ma120": 96.2183,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -0.22,
+      "pct_vs_ma120": -6.2,
+      "rsi14": 47.49,
+      "stoch_k14": 45.13,
+      "volume": 8187500.0,
+      "volume_avg20": 8476775.0,
+      "volume_ratio20": 0.97,
+      "high52": 110.6,
+      "low52": 70.08,
+      "pct_from_high52": -18.4,
+      "pct_from_low52": 28.78,
+      "ret_1m_pct": 5.93,
+      "ret_3m_pct": -14.35,
+      "ret_6m_pct": 9.94,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "ARM": {
+      "name": "ARM홀딩스",
+      "market": "us",
+      "symbol": "ARM",
+      "as_of": "2026-10-30",
+      "close": 205.97,
+      "chg_1d_pct": -9.97,
+      "ma5": 224.118,
+      "ma20": 243.9675,
+      "ma60": 260.1765,
+      "ma120": 285.2399,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -15.57,
+      "pct_vs_ma120": -27.79,
+      "rsi14": 34.86,
+      "stoch_k14": 11.73,
+      "volume": 10553500.0,
+      "volume_avg20": 4618780.0,
+      "volume_ratio20": 2.28,
+      "high52": 439.46,
+      "low52": 104.55,
+      "pct_from_high52": -53.13,
+      "pct_from_low52": 97.01,
+      "ret_1m_pct": -29.54,
+      "ret_3m_pct": -13.84,
+      "ret_6m_pct": -2.47,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "AMAT": {
+      "name": "AMAT",
+      "market": "us",
+      "symbol": "AMAT",
+      "as_of": "2026-10-30",
+      "close": 390.09,
+      "chg_1d_pct": -7.49,
+      "ma5": 402.254,
+      "ma20": 442.431,
+      "ma60": 468.3622,
+      "ma120": 499.775,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -11.83,
+      "pct_vs_ma120": -21.95,
+      "rsi14": 36.28,
+      "stoch_k14": 15.32,
+      "volume": 10276900.0,
+      "volume_avg20": 6996630.0,
+      "volume_ratio20": 1.47,
+      "high52": 723.0,
+      "low52": 220.23,
+      "pct_from_high52": -46.05,
+      "pct_from_low52": 77.13,
+      "ret_1m_pct": -26.3,
+      "ret_3m_pct": -24.72,
+      "ret_6m_pct": 0.26,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "ONON": {
+      "name": "On Holding",
+      "market": "us",
+      "symbol": "ONON",
+      "as_of": "2026-10-30",
+      "close": 33.78,
+      "chg_1d_pct": 2.99,
+      "ma5": 32.772,
+      "ma20": 33.953,
+      "ma60": 31.0372,
+      "ma120": 34.2601,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -0.51,
+      "pct_vs_ma120": -1.4,
+      "rsi14": 55.95,
+      "stoch_k14": 52.08,
+      "volume": 8986600.0,
+      "volume_avg20": 9973970.0,
+      "volume_ratio20": 0.9,
+      "high52": 50.63,
+      "low52": 26.76,
+      "pct_from_high52": -33.28,
+      "pct_from_low52": 26.23,
+      "ret_1m_pct": 11.85,
+      "ret_3m_pct": -10.99,
+      "ret_6m_pct": -2.2,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "CRSP": {
+      "name": "크리스퍼 테라퓨틱스",
+      "market": "us",
+      "symbol": "CRSP",
+      "as_of": "2026-10-30",
+      "close": 51.42,
+      "chg_1d_pct": -5.23,
+      "ma5": 52.054,
+      "ma20": 51.5115,
+      "ma60": 54.2877,
+      "ma120": 53.1255,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -0.18,
+      "pct_vs_ma120": -3.21,
+      "rsi14": 47.6,
+      "stoch_k14": 47.99,
+      "volume": 1166800.0,
+      "volume_avg20": 1524330.0,
+      "volume_ratio20": 0.77,
+      "high52": 63.99,
+      "low52": 44.34,
+      "pct_from_high52": -19.64,
+      "pct_from_low52": 15.97,
+      "ret_1m_pct": -7.25,
+      "ret_3m_pct": 3.73,
+      "ret_6m_pct": -0.41,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
+    },
+    "PLTR": {
+      "name": "팔란티어",
+      "market": "us",
+      "symbol": "PLTR",
+      "as_of": "2026-10-30",
+      "close": 184.11,
+      "chg_1d_pct": -6.27,
+      "ma5": 194.982,
+      "ma20": 197.2455,
+      "ma60": 184.7458,
+      "ma120": 158.5625,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -6.66,
+      "pct_vs_ma120": 16.11,
+      "rsi14": 41.86,
+      "stoch_k14": 10.97,
+      "volume": 27007300.0,
+      "volume_avg20": 22599880.0,
+      "volume_ratio20": 1.2,
+      "high52": 209.05,
+      "low52": 107.27,
+      "pct_from_high52": -11.93,
+      "pct_from_low52": 71.63,
+      "ret_1m_pct": -3.12,
+      "ret_3m_pct": 46.53,
+      "ret_6m_pct": 27.79,
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
+    },
     "COIN": {
       "name": "코인베이스",
       "market": "us",
       "symbol": "COIN",
-      "as_of": "2026-10-13",
-      "close": 181.79,
-      "chg_1d_pct": 0.78,
-      "ma5": 178.404,
-      "ma20": 186.6895,
-      "ma60": 173.5155,
-      "ma120": 174.3342,
+      "as_of": "2026-10-30",
+      "close": 143.54,
+      "chg_1d_pct": -10.62,
+      "ma5": 157.428,
+      "ma20": 171.645,
+      "ma60": 175.3097,
+      "ma120": 171.0698,
       "ma_order": "혼조",
-      "pct_vs_ma20": -2.62,
-      "pct_vs_ma120": 4.28,
-      "rsi14": 49.47,
-      "volume": 4717500.0,
-      "volume_avg20": 10000830.0,
-      "volume_ratio20": 0.47,
-      "high52": 361.43,
+      "pct_vs_ma20": -16.37,
+      "pct_vs_ma120": -16.09,
+      "rsi14": 31.91,
+      "stoch_k14": 13.68,
+      "volume": 20836200.0,
+      "volume_avg20": 7803840.0,
+      "volume_ratio20": 2.67,
+      "high52": 343.78,
       "low52": 141.09,
-      "pct_from_high52": -49.7,
-      "pct_from_low52": 28.85,
-      "ret_1m_pct": -5.05,
-      "ret_3m_pct": 8.72,
-      "ret_6m_pct": -1.42,
-      "bars": 501
+      "pct_from_high52": -58.25,
+      "pct_from_low52": 1.74,
+      "ret_1m_pct": -24.17,
+      "ret_3m_pct": -2.02,
+      "ret_6m_pct": -24.95,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "240810": {
       "name": "원익IPS",
       "market": "kosdaq",
       "symbol": "240810.KQ",
-      "as_of": "2026-10-08",
-      "close": 133700.0,
-      "chg_1d_pct": 1.98,
-      "ma5": 137560.0,
-      "ma20": 125410.0,
-      "ma60": 114361.6667,
-      "ma120": 122241.6667,
+      "as_of": "2026-10-30",
+      "close": 88500.0,
+      "chg_1d_pct": -7.72,
+      "ma5": 93420.0,
+      "ma20": 112900.0,
+      "ma60": 112705.0,
+      "ma120": 120284.1667,
       "ma_order": "혼조",
-      "pct_vs_ma20": 6.61,
-      "pct_vs_ma120": 9.37,
-      "rsi14": 56.64,
-      "volume": 1997899.0,
-      "volume_avg20": 1178226.0,
-      "volume_ratio20": 1.7,
+      "pct_vs_ma20": -21.61,
+      "pct_vs_ma120": -26.42,
+      "rsi14": 35.07,
+      "stoch_k14": 2.85,
+      "volume": 571818.0,
+      "volume_avg20": 983847.0,
+      "volume_ratio20": 0.58,
       "high52": 183300.0,
-      "low52": 44300.0,
-      "pct_from_high52": -27.06,
-      "pct_from_low52": 201.81,
-      "ret_1m_pct": 16.46,
-      "ret_3m_pct": 7.39,
-      "ret_6m_pct": 22.32,
-      "bars": 486
+      "low52": 55700.0,
+      "pct_from_high52": -51.72,
+      "pct_from_low52": 58.89,
+      "ret_1m_pct": -32.08,
+      "ret_3m_pct": -1.12,
+      "ret_6m_pct": -21.82,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "095610": {
       "name": "테스",
       "market": "kosdaq",
       "symbol": "095610.KQ",
-      "as_of": "2026-10-08",
-      "close": 164200.0,
-      "chg_1d_pct": 0.67,
-      "ma5": 173000.0,
-      "ma20": 154905.0,
-      "ma60": 149428.3333,
-      "ma120": 139818.3333,
-      "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": 6.0,
-      "pct_vs_ma120": 17.44,
-      "rsi14": 55.24,
-      "volume": 207900.0,
-      "volume_avg20": 373104.0,
-      "volume_ratio20": 0.56,
+      "as_of": "2026-10-30",
+      "close": 108500.0,
+      "chg_1d_pct": -7.89,
+      "ma5": 112300.0,
+      "ma20": 136350.0,
+      "ma60": 140768.3333,
+      "ma120": 144349.1667,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -20.43,
+      "pct_vs_ma120": -24.84,
+      "rsi14": 35.73,
+      "stoch_k14": 12.22,
+      "volume": 231014.0,
+      "volume_avg20": 286765.0,
+      "volume_ratio20": 0.81,
       "high52": 217500.0,
       "low52": 36500.0,
-      "pct_from_high52": -24.51,
-      "pct_from_low52": 349.86,
-      "ret_1m_pct": 11.85,
-      "ret_3m_pct": 2.37,
-      "ret_6m_pct": 179.73,
-      "bars": 486
+      "pct_from_high52": -50.11,
+      "pct_from_low52": 197.26,
+      "ret_1m_pct": -36.48,
+      "ret_3m_pct": -11.14,
+      "ret_6m_pct": 21.09,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "011070": {
       "name": "LG이노텍",
       "market": "kospi",
       "symbol": "011070.KS",
-      "as_of": "2026-10-20",
-      "close": 407000.0,
-      "chg_1d_pct": -3.55,
-      "ma5": 415600.0,
-      "ma20": 516850.0,
-      "ma60": 551766.6667,
-      "ma120": 714525.0,
+      "as_of": "2026-10-30",
+      "close": 326000.0,
+      "chg_1d_pct": -6.19,
+      "ma5": 356600.0,
+      "ma20": 446925.0,
+      "ma60": 526575.0,
+      "ma120": 702429.1667,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -21.25,
-      "pct_vs_ma120": -43.04,
-      "rsi14": 34.19,
-      "volume": 122207.0,
-      "volume_avg20": 243781.0,
-      "volume_ratio20": 0.5,
+      "pct_vs_ma20": -27.06,
+      "pct_vs_ma120": -53.59,
+      "rsi14": 26.59,
+      "stoch_k14": 3.68,
+      "volume": 182041.0,
+      "volume_avg20": 246238.0,
+      "volume_ratio20": 0.74,
       "high52": 1530000.0,
-      "low52": 183600.0,
-      "pct_from_high52": -73.4,
-      "pct_from_low52": 121.68,
-      "ret_1m_pct": -19.57,
-      "ret_3m_pct": -40.84,
-      "ret_6m_pct": 12.59,
-      "bars": 485
+      "low52": 216000.0,
+      "pct_from_high52": -78.69,
+      "pct_from_low52": 50.93,
+      "ret_1m_pct": -44.27,
+      "ret_3m_pct": -36.58,
+      "ret_6m_pct": -34.8,
+      "bars": 486,
+      "score": {
+        "met": 0,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "010950": {
       "name": "S-Oil",
       "market": "kospi",
       "symbol": "010950.KS",
-      "as_of": "2026-10-20",
-      "close": 144000.0,
-      "chg_1d_pct": -7.81,
-      "ma5": 155160.0,
-      "ma20": 158000.0,
-      "ma60": 148001.6667,
-      "ma120": 132054.1667,
+      "as_of": "2026-10-30",
+      "close": 123000.0,
+      "chg_1d_pct": 0.57,
+      "ma5": 125000.0,
+      "ma20": 147895.0,
+      "ma60": 147213.3333,
+      "ma120": 132553.3333,
       "ma_order": "혼조",
-      "pct_vs_ma20": -8.86,
-      "pct_vs_ma120": 9.05,
-      "rsi14": 41.56,
-      "volume": 635848.0,
-      "volume_avg20": 341679.0,
-      "volume_ratio20": 1.86,
+      "pct_vs_ma20": -16.83,
+      "pct_vs_ma120": -7.21,
+      "rsi14": 31.93,
+      "stoch_k14": 7.31,
+      "volume": 249529.0,
+      "volume_avg20": 400375.0,
+      "volume_ratio20": 0.62,
       "high52": 170600.0,
-      "low52": 62600.0,
-      "pct_from_high52": -15.59,
-      "pct_from_low52": 130.03,
-      "ret_1m_pct": -3.16,
-      "ret_3m_pct": 2.56,
-      "ret_6m_pct": 18.03,
-      "bars": 485
+      "low52": 68100.0,
+      "pct_from_high52": -27.9,
+      "pct_from_low52": 80.62,
+      "ret_1m_pct": -22.05,
+      "ret_3m_pct": -5.02,
+      "ret_6m_pct": 1.82,
+      "bars": 486,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "SNOW": {
       "name": "스노우플레이크 (SNOW)",
       "market": "us",
       "symbol": "SNOW",
-      "as_of": "2026-10-19",
-      "close": 315.35,
-      "chg_1d_pct": 2.77,
-      "ma5": 330.02,
-      "ma20": 337.6455,
-      "ma60": 327.4545,
-      "ma120": 273.8006,
+      "as_of": "2026-10-30",
+      "close": 306.08,
+      "chg_1d_pct": -7.32,
+      "ma5": 329.726,
+      "ma20": 333.0455,
+      "ma60": 331.6822,
+      "ma120": 287.3701,
       "ma_order": "혼조",
-      "pct_vs_ma20": -6.6,
-      "pct_vs_ma120": 15.18,
-      "rsi14": 41.67,
-      "volume": 5303900.0,
-      "volume_avg20": 4496735.0,
-      "volume_ratio20": 1.18,
+      "pct_vs_ma20": -8.1,
+      "pct_vs_ma120": 6.51,
+      "rsi14": 39.63,
+      "stoch_k14": 14.75,
+      "volume": 7748100.0,
+      "volume_avg20": 4087200.0,
+      "volume_ratio20": 1.9,
       "high52": 368.89,
       "low52": 121.11,
-      "pct_from_high52": -14.51,
-      "pct_from_low52": 160.38,
-      "ret_1m_pct": -5.14,
-      "ret_3m_pct": 16.05,
-      "ret_6m_pct": 109.62,
-      "bars": 500
+      "pct_from_high52": -17.03,
+      "pct_from_low52": 152.73,
+      "ret_1m_pct": -10.5,
+      "ret_3m_pct": -0.47,
+      "ret_6m_pct": 117.08,
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "ONDS": {
       "name": "온다스 (ONDS)",
       "market": "us",
       "symbol": "ONDS",
-      "as_of": "2026-10-28",
-      "close": 6.86,
-      "chg_1d_pct": 3.16,
-      "ma5": 6.378,
-      "ma20": 6.6095,
-      "ma60": 7.5817,
-      "ma120": 8.2562,
-      "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": 3.79,
-      "pct_vs_ma120": -16.91,
-      "rsi14": 52.03,
-      "volume": 51851200.0,
-      "volume_avg20": 48810220.0,
-      "volume_ratio20": 1.06,
+      "as_of": "2026-10-30",
+      "close": 6.32,
+      "chg_1d_pct": -8.14,
+      "ma5": 6.574,
+      "ma20": 6.5515,
+      "ma60": 7.5082,
+      "ma120": 8.2122,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -3.53,
+      "pct_vs_ma120": -23.04,
+      "rsi14": 42.42,
+      "stoch_k14": 40.86,
+      "volume": 41033000.0,
+      "volume_avg20": 48534575.0,
+      "volume_ratio20": 0.85,
       "high52": 14.01,
       "low52": 5.25,
-      "pct_from_high52": -51.03,
-      "pct_from_low52": 30.67,
-      "ret_1m_pct": -8.29,
-      "ret_3m_pct": -9.5,
-      "ret_6m_pct": -27.71,
-      "bars": 500
+      "pct_from_high52": -54.89,
+      "pct_from_low52": 20.38,
+      "ret_1m_pct": -11.24,
+      "ret_3m_pct": -24.49,
+      "ret_6m_pct": -38.76,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "WM": {
       "name": "웨이스트매니지먼트 (WM)",
       "market": "us",
       "symbol": "WM",
-      "as_of": "2026-10-29",
-      "close": 230.9,
-      "chg_1d_pct": 2.55,
-      "ma5": 234.452,
-      "ma20": 221.7855,
-      "ma60": 219.0207,
-      "ma120": 221.7978,
+      "as_of": "2026-10-30",
+      "close": 233.45,
+      "chg_1d_pct": 1.1,
+      "ma5": 233.266,
+      "ma20": 223.2355,
+      "ma60": 219.0947,
+      "ma120": 221.959,
       "ma_order": "혼조",
-      "pct_vs_ma20": 4.11,
-      "pct_vs_ma120": 4.1,
-      "rsi14": 58.53,
-      "stoch_k14": 67.95,
-      "volume": 2852100.0,
-      "volume_avg20": 2569150.0,
-      "volume_ratio20": 1.11,
+      "pct_vs_ma20": 4.58,
+      "pct_vs_ma120": 5.18,
+      "rsi14": 60.72,
+      "stoch_k14": 74.77,
+      "volume": 2615200.0,
+      "volume_avg20": 2575060.0,
+      "volume_ratio20": 1.02,
       "high52": 246.51,
       "low52": 196.77,
-      "pct_from_high52": -6.33,
-      "pct_from_low52": 17.35,
-      "ret_1m_pct": 13.23,
-      "ret_3m_pct": 1.92,
-      "ret_6m_pct": -0.71,
+      "pct_from_high52": -5.3,
+      "pct_from_low52": 18.64,
+      "ret_1m_pct": 15.63,
+      "ret_3m_pct": 3.1,
+      "ret_6m_pct": 2.05,
       "bars": 501,
       "score": {
         "met": 4,
@@ -1345,254 +2712,530 @@
       "name": "일라이릴리 (LLY)",
       "market": "us",
       "symbol": "LLY",
-      "as_of": "2026-10-29",
-      "close": 1373.7,
-      "chg_1d_pct": 6.63,
-      "ma5": 1299.302,
-      "ma20": 1232.2755,
-      "ma60": 1196.7863,
-      "ma120": 1163.1163,
+      "as_of": "2026-10-30",
+      "close": 1417.54,
+      "chg_1d_pct": 3.19,
+      "ma5": 1328.118,
+      "ma20": 1246.01,
+      "ma60": 1200.5463,
+      "ma120": 1166.8709,
       "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": 11.48,
-      "pct_vs_ma120": 18.11,
-      "rsi14": 74.44,
-      "volume": 4362500.0,
-      "volume_avg20": 2263975.0,
-      "volume_ratio20": 1.93,
-      "high52": 1373.7,
-      "low52": 813.53,
+      "pct_vs_ma20": 13.77,
+      "pct_vs_ma120": 21.48,
+      "rsi14": 77.88,
+      "stoch_k14": 88.97,
+      "volume": 5247800.0,
+      "volume_avg20": 2374025.0,
+      "volume_ratio20": 2.21,
+      "high52": 1417.54,
+      "low52": 844.5,
       "pct_from_high52": 0.0,
-      "pct_from_low52": 68.86,
-      "ret_1m_pct": 18.72,
-      "ret_3m_pct": 19.57,
-      "ret_6m_pct": 46.98,
-      "bars": 501
+      "pct_from_low52": 67.86,
+      "ret_1m_pct": 23.28,
+      "ret_3m_pct": 26.41,
+      "ret_6m_pct": 47.15,
+      "bars": 501,
+      "score": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": false
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "RSI(14)",
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "BE": {
       "name": "블룸에너지 (BE)",
       "market": "us",
       "symbol": "BE",
-      "as_of": "2026-10-28",
-      "close": 228.08,
-      "chg_1d_pct": 4.38,
-      "ma5": 212.314,
-      "ma20": 248.271,
-      "ma60": 244.0577,
-      "ma120": 252.8358,
-      "ma_order": "혼조",
-      "pct_vs_ma20": -8.13,
-      "pct_vs_ma120": -9.79,
-      "rsi14": 45.67,
-      "volume": 13249000.0,
-      "volume_avg20": 15081660.0,
-      "volume_ratio20": 0.88,
+      "as_of": "2026-10-30",
+      "close": 203.17,
+      "chg_1d_pct": -8.61,
+      "ma5": 215.194,
+      "ma20": 241.208,
+      "ma60": 243.4273,
+      "ma120": 251.8401,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -15.77,
+      "pct_vs_ma120": -19.33,
+      "rsi14": 39.17,
+      "stoch_k14": 18.86,
+      "volume": 16601800.0,
+      "volume_avg20": 14917050.0,
+      "volume_ratio20": 1.11,
       "high52": 345.85,
       "low52": 76.97,
-      "pct_from_high52": -34.05,
-      "pct_from_low52": 196.32,
-      "ret_1m_pct": -21.69,
-      "ret_3m_pct": 10.12,
-      "ret_6m_pct": -20.8,
-      "bars": 501
+      "pct_from_high52": -41.25,
+      "pct_from_low52": 163.96,
+      "ret_1m_pct": -26.81,
+      "ret_3m_pct": -6.94,
+      "ret_6m_pct": -30.07,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "MU": {
-      "name": "",
+      "name": "마이크론 (MU)",
       "market": "us",
       "symbol": "MU",
-      "as_of": "2026-10-26",
-      "close": 903.7,
-      "chg_1d_pct": 2.98,
-      "ma5": 889.496,
-      "ma20": 979.1825,
-      "ma60": 966.7517,
-      "ma120": 946.2823,
+      "as_of": "2026-10-30",
+      "close": 884.74,
+      "chg_1d_pct": -5.3,
+      "ma5": 926.94,
+      "ma20": 950.609,
+      "ma60": 970.6545,
+      "ma120": 953.5793,
       "ma_order": "혼조",
-      "pct_vs_ma20": -7.71,
-      "pct_vs_ma120": -4.5,
-      "rsi14": 42.32,
-      "volume": 22705400.0,
-      "volume_avg20": 26901420.0,
-      "volume_ratio20": 0.84,
+      "pct_vs_ma20": -6.93,
+      "pct_vs_ma120": -7.22,
+      "rsi14": 41.98,
+      "stoch_k14": 25.21,
+      "volume": 30762300.0,
+      "volume_avg20": 25919245.0,
+      "volume_ratio20": 1.19,
       "high52": 1213.5601,
       "low52": 201.37,
-      "pct_from_high52": -25.53,
-      "pct_from_low52": 348.78,
-      "ret_1m_pct": -16.5,
-      "ret_3m_pct": 10.14,
-      "ret_6m_pct": 72.28,
-      "bars": 500,
-      "new": true,
-      "name_hint": "Micron Technology, Inc."
+      "pct_from_high52": -27.1,
+      "pct_from_low52": 339.36,
+      "ret_1m_pct": -19.38,
+      "ret_3m_pct": 6.66,
+      "ret_6m_pct": 63.17,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "MRNA": {
       "name": "모더나 (MRNA)",
       "market": "us",
       "symbol": "MRNA",
-      "as_of": "2026-10-28",
-      "close": 214.165,
-      "chg_1d_pct": 2.98,
-      "ma5": 204.743,
-      "ma20": 211.8698,
-      "ma60": 159.9212,
-      "ma120": 108.5957,
+      "as_of": "2026-10-30",
+      "close": 221.72,
+      "chg_1d_pct": -0.47,
+      "ma5": 213.093,
+      "ma20": 215.1463,
+      "ma60": 165.4939,
+      "ma120": 111.4061,
       "ma_order": "혼조",
-      "pct_vs_ma20": 1.08,
-      "pct_vs_ma120": 97.21,
-      "rsi14": 55.01,
-      "volume": 12024400.0,
-      "volume_avg20": 20249760.0,
-      "volume_ratio20": 0.59,
+      "pct_vs_ma20": 3.06,
+      "pct_vs_ma120": 99.02,
+      "rsi14": 57.33,
+      "stoch_k14": 56.29,
+      "volume": 8999800.0,
+      "volume_avg20": 19589095.0,
+      "volume_ratio20": 0.46,
       "high52": 245.81,
       "low52": 22.36,
-      "pct_from_high52": -12.87,
-      "pct_from_low52": 857.8,
-      "ret_1m_pct": 5.26,
-      "ret_3m_pct": 269.76,
-      "ret_6m_pct": 368.43,
-      "bars": 501
+      "pct_from_high52": -9.8,
+      "pct_from_low52": 891.59,
+      "ret_1m_pct": 17.35,
+      "ret_3m_pct": 302.1,
+      "ret_6m_pct": 388.69,
+      "bars": 501,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "489790": {
-      "name": "",
+      "name": "한화비전",
       "market": "kospi",
       "symbol": "489790.KS",
-      "as_of": "2026-10-29",
-      "close": 49100.0,
-      "chg_1d_pct": 22.14,
-      "ma5": 40770.0,
-      "ma20": 43822.5,
-      "ma60": 47300.0,
-      "ma120": 54209.1667,
+      "as_of": "2026-10-30",
+      "close": 51300.0,
+      "chg_1d_pct": 4.48,
+      "ma5": 43290.0,
+      "ma20": 43867.5,
+      "ma60": 47455.0,
+      "ma120": 53897.5,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": 12.04,
-      "pct_vs_ma120": -9.42,
-      "rsi14": 60.16,
-      "volume": 2578859.0,
-      "volume_avg20": 178632.0,
-      "volume_ratio20": 14.44,
+      "pct_vs_ma20": 16.94,
+      "pct_vs_ma120": -4.82,
+      "rsi14": 63.23,
+      "stoch_k14": 95.42,
+      "volume": 1592050.0,
+      "volume_avg20": 296482.0,
+      "volume_ratio20": 5.37,
       "high52": 92700.0,
       "low52": 33350.0,
-      "pct_from_high52": -47.03,
-      "pct_from_low52": 47.23,
-      "ret_1m_pct": 6.16,
-      "ret_3m_pct": 17.6,
-      "ret_6m_pct": -40.27,
-      "bars": 485,
-      "new": true,
-      "name_hint": "Hanwha Vision CO.,LTD"
+      "pct_from_high52": -44.66,
+      "pct_from_low52": 53.82,
+      "ret_1m_pct": 4.59,
+      "ret_3m_pct": 38.46,
+      "ret_6m_pct": -35.79,
+      "bars": 486,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "011200": {
-      "name": "",
+      "name": "HMM",
       "market": "kospi",
       "symbol": "011200.KS",
-      "as_of": "2026-10-29",
-      "close": 22300.0,
-      "chg_1d_pct": 0.68,
-      "ma5": 22410.0,
-      "ma20": 22330.0,
-      "ma60": 21633.3333,
-      "ma120": 20756.6667,
+      "as_of": "2026-10-30",
+      "close": 23350.0,
+      "chg_1d_pct": 4.71,
+      "ma5": 22550.0,
+      "ma20": 22455.0,
+      "ma60": 21673.3333,
+      "ma120": 20775.0,
       "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": -0.13,
-      "pct_vs_ma120": 7.44,
-      "rsi14": 51.46,
-      "volume": 977122.0,
-      "volume_avg20": 1745864.0,
-      "volume_ratio20": 0.56,
+      "pct_vs_ma20": 3.99,
+      "pct_vs_ma120": 12.39,
+      "rsi14": 61.07,
+      "stoch_k14": 73.13,
+      "volume": 1887193.0,
+      "volume_avg20": 1765983.0,
+      "volume_ratio20": 1.07,
       "high52": 24500.0,
       "low52": 18310.0,
-      "pct_from_high52": -8.98,
-      "pct_from_low52": 21.79,
-      "ret_1m_pct": 4.94,
-      "ret_3m_pct": 7.99,
-      "ret_6m_pct": 6.95,
-      "bars": 485,
-      "new": true,
-      "name_hint": "HMM Co.,Ltd"
+      "pct_from_high52": -4.69,
+      "pct_from_low52": 27.53,
+      "ret_1m_pct": 11.19,
+      "ret_3m_pct": 16.75,
+      "ret_6m_pct": 12.53,
+      "bars": 486,
+      "score": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "WKC": {
-      "name": "",
+      "name": "월드 키넥트(WKC)",
       "market": "us",
       "symbol": "WKC",
-      "as_of": "2026-10-29",
-      "close": 37.21,
-      "chg_1d_pct": 1.64,
-      "ma5": 36.622,
-      "ma20": 36.4315,
-      "ma60": 36.0285,
-      "ma120": 34.4532,
+      "as_of": "2026-10-30",
+      "close": 37.34,
+      "chg_1d_pct": 0.35,
+      "ma5": 36.782,
+      "ma20": 36.506,
+      "ma60": 36.0303,
+      "ma120": 34.5378,
       "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": 2.14,
-      "pct_vs_ma120": 8.0,
-      "rsi14": 61.29,
-      "volume": 1064100.0,
-      "volume_avg20": 836460.0,
-      "volume_ratio20": 1.27,
+      "pct_vs_ma20": 2.28,
+      "pct_vs_ma120": 8.11,
+      "rsi14": 62.48,
+      "stoch_k14": 81.75,
+      "volume": 1570100.0,
+      "volume_avg20": 843870.0,
+      "volume_ratio20": 1.86,
       "high52": 40.25,
       "low52": 22.59,
-      "pct_from_high52": -7.55,
-      "pct_from_low52": 64.72,
-      "ret_1m_pct": 5.83,
-      "ret_3m_pct": -6.65,
-      "ret_6m_pct": 37.97,
+      "pct_from_high52": -7.23,
+      "pct_from_low52": 65.29,
+      "ret_1m_pct": 4.65,
+      "ret_3m_pct": -4.4,
+      "ret_6m_pct": 37.79,
       "bars": 501,
-      "new": true,
-      "name_hint": "World Kinect Corporation"
+      "score": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "VCEL": {
-      "name": "",
+      "name": "베리셀(Vericel, VCEL)",
       "market": "us",
       "symbol": "VCEL",
-      "as_of": "2026-10-29",
-      "close": 42.91,
-      "chg_1d_pct": 4.43,
-      "ma5": 42.568,
-      "ma20": 41.109,
-      "ma60": 41.2317,
-      "ma120": 41.0585,
+      "as_of": "2026-10-30",
+      "close": 40.26,
+      "chg_1d_pct": -6.18,
+      "ma5": 42.114,
+      "ma20": 41.1145,
+      "ma60": 41.1568,
+      "ma120": 41.1197,
       "ma_order": "혼조",
-      "pct_vs_ma20": 4.38,
-      "pct_vs_ma120": 4.51,
-      "rsi14": 58.28,
-      "volume": 544800.0,
-      "volume_avg20": 553950.0,
-      "volume_ratio20": 0.98,
+      "pct_vs_ma20": -2.08,
+      "pct_vs_ma120": -2.09,
+      "rsi14": 46.16,
+      "stoch_k14": 15.6,
+      "volume": 598700.0,
+      "volume_avg20": 556325.0,
+      "volume_ratio20": 1.08,
       "high52": 48.31,
       "low52": 29.34,
-      "pct_from_high52": -11.18,
-      "pct_from_low52": 46.25,
-      "ret_1m_pct": 6.9,
-      "ret_3m_pct": -6.64,
-      "ret_6m_pct": 23.55,
+      "pct_from_high52": -16.66,
+      "pct_from_low52": 37.22,
+      "ret_1m_pct": 2.08,
+      "ret_3m_pct": -12.57,
+      "ret_6m_pct": 13.19,
       "bars": 501,
-      "new": true,
-      "name_hint": "Vericel Corporation"
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      }
     },
     "PANW": {
-      "name": "",
+      "name": "팰로앨토 네트웍스(Palo Alto Networks, PANW)",
       "market": "us",
       "symbol": "PANW",
-      "as_of": "2026-10-29",
-      "close": 380.57,
-      "chg_1d_pct": -3.53,
-      "ma5": 389.554,
-      "ma20": 383.905,
-      "ma60": 372.6667,
-      "ma120": 336.0453,
+      "as_of": "2026-10-30",
+      "close": 365.87,
+      "chg_1d_pct": -3.86,
+      "ma5": 386.618,
+      "ma20": 382.0365,
+      "ma60": 372.773,
+      "ma120": 337.3137,
       "ma_order": "정배열(5>20>60>120)",
-      "pct_vs_ma20": -0.87,
-      "pct_vs_ma120": 13.25,
-      "rsi14": 50.8,
-      "stoch_k14": 52.83,
-      "volume": 7365700.0,
-      "volume_avg20": 5222080.0,
-      "volume_ratio20": 1.41,
+      "pct_vs_ma20": -4.23,
+      "pct_vs_ma120": 8.47,
+      "rsi14": 46.19,
+      "stoch_k14": 42.6,
+      "volume": 7567000.0,
+      "volume_avg20": 5325830.0,
+      "volume_ratio20": 1.42,
       "high52": 419.91,
       "low52": 141.67,
-      "pct_from_high52": -9.37,
-      "pct_from_low52": 168.63,
-      "ret_1m_pct": -4.21,
-      "ret_3m_pct": 14.69,
-      "ret_6m_pct": 112.23,
+      "pct_from_high52": -12.87,
+      "pct_from_low52": 158.26,
+      "ret_1m_pct": -7.67,
+      "ret_3m_pct": 5.4,
+      "ret_6m_pct": 102.05,
       "bars": 501,
       "score": {
         "met": 4,
@@ -1626,9 +3269,7 @@
         "under": [],
         "total": 3,
         "unknown": 0
-      },
-      "new": true,
-      "name_hint": "Palo Alto Networks, Inc."
+      }
     }
   }
 }

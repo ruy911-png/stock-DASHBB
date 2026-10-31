@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T13:53:33Z",
+  "generated_at": "2026-10-31T05:53:21Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -512,30 +512,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+47.7%"
+            "value": "+38.6%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+77.4%"
+            "value": "+56.1%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "280.8억"
+            "value": "306.4억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "135.6억"
+            "value": "116.9억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "320.0%"
+            "value": "267.7%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 5,
@@ -1222,30 +1222,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": false,
-            "value": "-18.5%"
+            "value": "-35.0%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
-            "ok": true,
-            "value": "적자 축소"
+            "ok": false,
+            "value": "-93.0%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "17.1억"
+            "value": "38.5억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "17.1억"
+            "value": "38.5억"
           },
           {
             "label": "부채비율 100% 이하",
-            "ok": false,
-            "value": "102.3%"
+            "ok": true,
+            "value": "96.4%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 3,
@@ -3139,30 +3139,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+24.2%"
+            "value": "+24.7%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+30.4%"
+            "value": "+29.9%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "1,856.8억"
+            "value": "1,795.5억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "532.7억"
+            "value": "197.5억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "44.0%"
+            "value": "48.1%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 5,
@@ -3622,6 +3622,77 @@
           }
         ],
         "as_of": "2025-12-31"
+      }
+    },
+    "PANW": {
+      "name": "팰로앨토 네트웍스(Palo Alto Networks, PANW)",
+      "symbol": "PANW",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+34.4%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-65.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "45.5억"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "41.1억"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "76.3%"
+          }
+        ],
+        "as_of": "2026-07-31"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "1.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "6.1%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "70.4%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "1.1% · 14.5% · 49.9%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "80.3억 → 92.2억 → 114.8억"
+          }
+        ],
+        "as_of": "2026-07-31"
       }
     }
   }
