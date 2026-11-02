@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T13:34:22Z",
+  "generated_at": "2026-11-02T14:33:40Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3235,7 +3235,7 @@
       "ret_1m_pct": -7.67,
       "ret_3m_pct": 5.4,
       "ret_6m_pct": 102.05,
-      "bars": 501,
+      "bars": 499,
       "score": {
         "met": 4,
         "total": 5,

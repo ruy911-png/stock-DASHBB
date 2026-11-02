@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T13:34:23Z",
+  "generated_at": "2026-11-02T14:33:41Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2505,11 +2505,11 @@
       "symbol": "PANW",
       "as_of": "2026-10-30",
       "window": "2y",
-      "bars": 501,
+      "bars": 499,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 3,
         "surge_per_year": 1.5,
         "crash_days": 0,
