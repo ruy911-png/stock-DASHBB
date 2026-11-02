@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T05:52:12Z",
+  "generated_at": "2026-11-02T13:34:22Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -2463,31 +2463,31 @@
       "name": "S-Oil",
       "market": "kospi",
       "symbol": "010950.KS",
-      "as_of": "2026-10-30",
-      "close": 123000.0,
-      "chg_1d_pct": 0.57,
-      "ma5": 125000.0,
-      "ma20": 147895.0,
-      "ma60": 147213.3333,
-      "ma120": 132553.3333,
+      "as_of": "2026-11-02",
+      "close": 130000.0,
+      "chg_1d_pct": 5.69,
+      "ma5": 125460.0,
+      "ma20": 146955.0,
+      "ma60": 147351.6667,
+      "ma120": 132620.0,
       "ma_order": "혼조",
-      "pct_vs_ma20": -16.83,
-      "pct_vs_ma120": -7.21,
-      "rsi14": 31.93,
-      "stoch_k14": 7.31,
-      "volume": 249529.0,
-      "volume_avg20": 400375.0,
-      "volume_ratio20": 0.62,
+      "pct_vs_ma20": -11.54,
+      "pct_vs_ma120": -1.98,
+      "rsi14": 39.32,
+      "stoch_k14": 23.19,
+      "volume": 531406.0,
+      "volume_avg20": 399642.0,
+      "volume_ratio20": 1.33,
       "high52": 170600.0,
-      "low52": 68100.0,
-      "pct_from_high52": -27.9,
-      "pct_from_low52": 80.62,
-      "ret_1m_pct": -22.05,
-      "ret_3m_pct": -5.02,
-      "ret_6m_pct": 1.82,
-      "bars": 486,
+      "low52": 71800.0,
+      "pct_from_high52": -23.8,
+      "pct_from_low52": 81.06,
+      "ret_1m_pct": -19.6,
+      "ret_3m_pct": 2.85,
+      "ret_6m_pct": 8.88,
+      "bars": 484,
       "score": {
-        "met": 1,
+        "met": 2,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -2509,15 +2509,14 @@
           },
           {
             "label": "거래량 ≥ 20일 평균",
-            "ok": false
+            "ok": true
           }
         ]
       },
       "heat": {
         "over": [],
         "under": [
-          "20일선 이격도",
-          "스토캐스틱 %K(14)"
+          "20일선 이격도"
         ],
         "total": 3,
         "unknown": 0
