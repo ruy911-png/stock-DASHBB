@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T23:16:57Z",
+  "generated_at": "2026-11-03T23:38:35Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -10,13 +10,13 @@
       "name": "현대해상",
       "market": "kospi",
       "symbol": "001450.KS",
-      "as_of": "2026-10-30",
+      "as_of": "2026-11-03",
       "window": "2y",
-      "bars": 486,
+      "bars": 485,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.93,
+        "years": 1.92,
         "surge_days": 3,
         "surge_per_year": 1.6,
         "crash_days": 1,
@@ -27,10 +27,10 @@
         "after_surge_5d_pos_rate": 0.0,
         "after_surge_20d_mean_pct": -12.62,
         "after_surge_20d_pos_rate": 0.33,
-        "above_ma60_pct_1y": 0.69,
-        "ma60_cross_count_1y": 28,
+        "above_ma60_pct_1y": 0.68,
+        "ma60_cross_count_1y": 26,
         "autocorr_1d_1y": -0.06,
-        "ret_1y_pct": 61.28,
+        "ret_1y_pct": 54.23,
         "longest_up_streak": 7,
         "vol_annual_pct_1y": 50.55,
         "max_drawdown_1y_pct": -24.74,
@@ -39,12 +39,12 @@
         "volume_spike_up_rate": 0.67,
         "upper_shadow_days_rate_1y": 0.1,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 15.94
+        "top5_gain_share_pct_1y": 16.06
       },
       "notes": [
         "2년 급등일(+10%↑) 3회(연 1.6회), 급락일(−10%↓) 1회, 상한가 0회·하한가 0회",
         "급등 뒤 5거래일 평균 -6.9%, 플러스 비율 0% · 20거래일 평균 -12.6% (표본 3회)",
-        "최근 1년 60일선 위 69%(교차 28회), 1년 수익률 +61.3%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 68%(교차 26회), 1년 수익률 +54.2%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 7일",
         "연환산 변동성 51%, 1년 최대 낙폭 -24.7%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 6회, 그날 상승 67%",
         "윗꼬리 긴 날 10%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
