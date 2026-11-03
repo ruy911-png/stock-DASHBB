@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T22:48:29Z",
+  "generated_at": "2026-11-03T23:17:00Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -3761,6 +3761,77 @@
             "label": "최근 3년 매출 연속 증가",
             "ok": true,
             "value": "226.8억 → 257.9억 → 346.4억"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "222800": {
+      "name": "",
+      "symbol": "222800.KQ",
+      "financial": false,
+      "fundamental": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+51.0%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+1036.4%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-1,250.8억"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": false,
+            "value": "-2,074.2억"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": false,
+            "value": "183.4%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "-28.5%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "0.9%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": false,
+            "value": "8.7%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "-28.5% · -6.8% · -24.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "1.0조 → 1.2조 → 1.4조"
           }
         ],
         "as_of": "2025-12-31"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T22:48:26Z",
+  "generated_at": "2026-11-03T23:16:56Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3335,6 +3335,71 @@
       },
       "new": true,
       "name_hint": "Advanced Micro Devices, Inc."
+    },
+    "222800": {
+      "name": "",
+      "market": "kosdaq",
+      "symbol": "222800.KQ",
+      "as_of": "2026-11-03",
+      "close": 112300.0,
+      "chg_1d_pct": -6.73,
+      "ma5": 119420.0,
+      "ma20": 132335.0,
+      "ma60": 127133.3333,
+      "ma120": 119760.0,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -15.14,
+      "pct_vs_ma120": -6.23,
+      "rsi14": 40.97,
+      "stoch_k14": 26.26,
+      "volume": 876912.0,
+      "volume_avg20": 843790.0,
+      "volume_ratio20": 1.04,
+      "high52": 175000.0,
+      "low52": 42800.0,
+      "pct_from_high52": -35.83,
+      "pct_from_low52": 162.38,
+      "ret_1m_pct": -29.68,
+      "ret_3m_pct": 76.02,
+      "ret_6m_pct": 30.58,
+      "bars": 485,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도"
+        ],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "SIMMTECH Co., Ltd."
     }
   }
 }
