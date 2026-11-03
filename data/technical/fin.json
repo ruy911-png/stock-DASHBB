@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T14:33:43Z",
+  "generated_at": "2026-11-03T22:48:29Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -3693,6 +3693,77 @@
           }
         ],
         "as_of": "2026-07-31"
+      }
+    },
+    "AMD": {
+      "name": "",
+      "symbol": "AMD",
+      "financial": false,
+      "fundamental": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+50.1%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "흑자 전환"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "100.8억"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "84.0억"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "25.6%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "6.9%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": false,
+            "value": "10.7%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "49.5%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "6.9% · 2.9% · 1.5%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "226.8억 → 257.9억 → 346.4억"
+          }
+        ],
+        "as_of": "2025-12-31"
       }
     }
   }

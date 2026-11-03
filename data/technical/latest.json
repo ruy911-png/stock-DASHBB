@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T14:33:40Z",
+  "generated_at": "2026-11-03T22:48:26Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3269,6 +3269,72 @@
         "total": 3,
         "unknown": 0
       }
+    },
+    "AMD": {
+      "name": "",
+      "market": "us",
+      "symbol": "AMD",
+      "as_of": "2026-11-03",
+      "close": 483.9,
+      "chg_1d_pct": 3.65,
+      "ma5": 520.08,
+      "ma20": 553.919,
+      "ma60": 537.4362,
+      "ma120": 520.7738,
+      "ma_order": "혼조",
+      "pct_vs_ma20": -12.64,
+      "pct_vs_ma120": -7.08,
+      "rsi14": 38.41,
+      "stoch_k14": 15.76,
+      "volume": 32065405.0,
+      "volume_avg20": 21429920.0,
+      "volume_ratio20": 1.5,
+      "high52": 649.42,
+      "low52": 190.95,
+      "pct_from_high52": -25.49,
+      "pct_from_low52": 153.42,
+      "ret_1m_pct": -23.4,
+      "ret_3m_pct": 0.38,
+      "ret_6m_pct": 36.21,
+      "bars": 501,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [
+          "20일선 이격도",
+          "스토캐스틱 %K(14)"
+        ],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "Advanced Micro Devices, Inc."
     }
   }
 }
