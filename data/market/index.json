@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.4",
+      "krDate": "2026-11-04",
+      "usDate": "2026-11-03",
+      "wtiDate": "2026-11-03",
+      "collectedAt": "2026-11-04T07:08:17.910Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,683.80",
+          "chg": 0.62
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "714.95",
+          "chg": 1.5
+        },
+        {
+          "name": "원/달러",
+          "value": "1,342.30",
+          "chg": -0.27
+        },
+        {
+          "name": "S&P500",
+          "value": "7,568.92",
+          "chg": 0.36
+        },
+        {
+          "name": "나스닥",
+          "value": "25,372.01",
+          "chg": 0.83
+        },
+        {
+          "name": "VIX",
+          "value": "20.83",
+          "chg": -1.51
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "10,600.40",
+          "chg": 2.63
+        },
+        {
+          "name": "WTI",
+          "value": "96.09",
+          "chg": -0.38
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -25094
+        },
+        {
+          "name": "기관",
+          "amount": 10136
+        },
+        {
+          "name": "개인",
+          "amount": 11465
+        }
+      ],
+      "comment": "반도체는 눌렸는데 2차전지가 버팀목, 외국인 매도 속 지수 반등",
+      "keywords": [
+        "할인 행사",
+        "수소 엑스포",
+        "외환보유액",
+        "상가 임대료",
+        "휴머노이드 로봇",
+        "실적 개선"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-04T16:00:29+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5512"
+        }
+      }
+    },
+    {
       "date": "11.3",
       "krDate": "2026-11-03",
       "usDate": "2026-11-02",
