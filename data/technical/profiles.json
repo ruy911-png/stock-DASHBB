@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T16:23:14Z",
+  "generated_at": "2026-11-04T22:47:51Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -1090,7 +1090,7 @@
       "name": "CVS Health",
       "market": "us",
       "symbol": "CVS",
-      "as_of": "2026-10-30",
+      "as_of": "2026-11-04",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1103,7 +1103,7 @@
         "years": 1.99,
         "surge_days": 2,
         "surge_per_year": 1.0,
-        "crash_days": 1,
+        "crash_days": 2,
         "limit_up_days": null,
         "limit_down_days": null,
         "after_surge_n": 2,
@@ -1111,27 +1111,27 @@
         "after_surge_5d_pos_rate": 0.5,
         "after_surge_20d_mean_pct": -1.85,
         "after_surge_20d_pos_rate": 0.5,
-        "above_ma60_pct_1y": 0.54,
+        "above_ma60_pct_1y": 0.53,
         "ma60_cross_count_1y": 19,
-        "autocorr_1d_1y": -0.05,
-        "ret_1y_pct": 11.97,
+        "autocorr_1d_1y": -0.08,
+        "ret_1y_pct": 1.94,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 31.45,
-        "max_drawdown_1y_pct": -23.1,
+        "vol_annual_pct_1y": 33.69,
+        "max_drawdown_1y_pct": -27.7,
         "gap3_days_rate_1y": 0.03,
-        "volume_spike_days_1y": 2,
+        "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 14.55
+        "top5_gain_share_pct_1y": 14.48
       },
       "notes": [
-        "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 1회",
+        "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 -4.5%, 플러스 비율 50% · 20거래일 평균 -1.9% (표본 2회)",
-        "최근 1년 60일선 위 54%(교차 19회), 1년 수익률 +12.0%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 7일",
-        "연환산 변동성 31%, 1년 최대 낙폭 -23.1%, 3%↑ 갭 발생일 3%",
-        "거래량 3배↑ 급증일 2회, 그날 상승 0%",
-        "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
+        "최근 1년 60일선 위 53%(교차 19회), 1년 수익률 +1.9%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
+        "연환산 변동성 34%, 1년 최대 낙폭 -27.7%, 3%↑ 갭 발생일 3%",
+        "거래량 3배↑ 급증일 3회, 그날 상승 0%",
+        "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
       ]
     },
     "ONON": {
