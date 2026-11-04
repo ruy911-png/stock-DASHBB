@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T14:23:38Z",
+  "generated_at": "2026-11-04T15:30:59Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1580,31 +1580,31 @@
       "name": "월마트",
       "market": "us",
       "symbol": "WMT",
-      "as_of": "2026-10-30",
-      "close": 123.51,
-      "chg_1d_pct": 1.86,
-      "ma5": 120.628,
-      "ma20": 115.952,
-      "ma60": 110.7355,
-      "ma120": 113.8817,
+      "as_of": "2026-11-03",
+      "close": 124.86,
+      "chg_1d_pct": -2.22,
+      "ma5": 123.216,
+      "ma20": 117.966,
+      "ma60": 111.2028,
+      "ma120": 113.8044,
       "ma_order": "혼조",
-      "pct_vs_ma20": 6.52,
-      "pct_vs_ma120": 8.45,
-      "rsi14": 72.71,
-      "stoch_k14": 91.87,
-      "volume": 29769400.0,
-      "volume_avg20": 19591470.0,
-      "volume_ratio20": 1.52,
+      "pct_vs_ma20": 5.84,
+      "pct_vs_ma120": 9.71,
+      "rsi14": 68.42,
+      "stoch_k14": 72.77,
+      "volume": 21021200.0,
+      "volume_avg20": 20338645.0,
+      "volume_ratio20": 1.03,
       "high52": 134.2,
       "low52": 100.61,
-      "pct_from_high52": -7.97,
-      "pct_from_low52": 22.76,
-      "ret_1m_pct": 18.46,
-      "ret_3m_pct": 11.56,
-      "ret_6m_pct": -6.15,
+      "pct_from_high52": -6.96,
+      "pct_from_low52": 24.1,
+      "ret_1m_pct": 18.84,
+      "ret_3m_pct": 11.14,
+      "ret_6m_pct": -4.53,
       "bars": 501,
       "score": {
-        "met": 3,
+        "met": 4,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1622,7 +1622,7 @@
           },
           {
             "label": "RSI(14) 30~70",
-            "ok": false
+            "ok": true
           },
           {
             "label": "거래량 ≥ 20일 평균",
@@ -1631,10 +1631,7 @@
         ]
       },
       "heat": {
-        "over": [
-          "RSI(14)",
-          "스토캐스틱 %K(14)"
-        ],
+        "over": [],
         "under": [],
         "total": 3,
         "unknown": 0
