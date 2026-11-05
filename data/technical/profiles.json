@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T08:17:47Z",
+  "generated_at": "2026-11-05T08:51:55Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -934,51 +934,50 @@
       "name": "동진쎄미켐",
       "market": "kosdaq",
       "symbol": "005290.KQ",
-      "as_of": "2026-10-30",
+      "as_of": "2026-11-05",
       "window": "2y",
       "bars": 486,
       "labels": [
         "급등 후 반전형",
-        "박스권형",
         "되돌림형",
         "고변동형",
         "거래량 동반 상승형"
       ],
       "main_labels": [
-        "박스권형",
-        "고변동형"
+        "고변동형",
+        "급등 후 반전형"
       ],
       "metrics": {
         "years": 1.93,
         "surge_days": 8,
         "surge_per_year": 4.1,
-        "crash_days": 7,
+        "crash_days": 8,
         "limit_up_days": 0,
         "limit_down_days": 0,
         "after_surge_n": 8,
         "after_surge_5d_mean_pct": -2.62,
         "after_surge_5d_pos_rate": 0.25,
-        "after_surge_20d_mean_pct": -1.48,
-        "after_surge_20d_pos_rate": 0.57,
-        "above_ma60_pct_1y": 0.53,
+        "after_surge_20d_mean_pct": -4.58,
+        "after_surge_20d_pos_rate": 0.5,
+        "above_ma60_pct_1y": 0.51,
         "ma60_cross_count_1y": 21,
-        "autocorr_1d_1y": -0.14,
-        "ret_1y_pct": -9.03,
+        "autocorr_1d_1y": -0.15,
+        "ret_1y_pct": -19.0,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 78.31,
+        "vol_annual_pct_1y": 79.28,
         "max_drawdown_1y_pct": -49.77,
-        "gap3_days_rate_1y": 0.24,
+        "gap3_days_rate_1y": 0.25,
         "volume_spike_days_1y": 8,
         "volume_spike_up_rate": 0.88,
         "upper_shadow_days_rate_1y": 0.12,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 14.95
+        "top5_gain_share_pct_1y": 14.91
       },
       "notes": [
-        "2년 급등일(+10%↑) 8회(연 4.1회), 급락일(−10%↓) 7회, 상한가 0회·하한가 0회",
-        "급등 뒤 5거래일 평균 -2.6%, 플러스 비율 25% · 20거래일 평균 -1.5% (표본 8회)",
-        "최근 1년 60일선 위 53%(교차 21회), 1년 수익률 -9.0%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 7일",
-        "연환산 변동성 78%, 1년 최대 낙폭 -49.8%, 3%↑ 갭 발생일 24%",
+        "2년 급등일(+10%↑) 8회(연 4.1회), 급락일(−10%↓) 8회, 상한가 0회·하한가 0회",
+        "급등 뒤 5거래일 평균 -2.6%, 플러스 비율 25% · 20거래일 평균 -4.6% (표본 8회)",
+        "최근 1년 60일선 위 51%(교차 21회), 1년 수익률 -19.0%, 하루 수익률 자기상관 -0.15, 최장 연속 상승 7일",
+        "연환산 변동성 79%, 1년 최대 낙폭 -49.8%, 3%↑ 갭 발생일 25%",
         "거래량 3배↑ 급증일 8회, 그날 상승 88%",
         "윗꼬리 긴 날 12%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
