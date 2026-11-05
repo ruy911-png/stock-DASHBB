@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.5",
+      "krDate": "2026-11-05",
+      "usDate": "2026-11-04",
+      "wtiDate": "2026-11-04",
+      "collectedAt": "2026-11-05T07:10:02.362Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,383.80",
+          "chg": -5.28
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "678.41",
+          "chg": -5.11
+        },
+        {
+          "name": "원/달러",
+          "value": "1,340.70",
+          "chg": -0.13
+        },
+        {
+          "name": "S&P500",
+          "value": "7,688.62",
+          "chg": 1.58
+        },
+        {
+          "name": "나스닥",
+          "value": "25,736.51",
+          "chg": 1.44
+        },
+        {
+          "name": "VIX",
+          "value": "16.61",
+          "chg": -20.26
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "10,268.65",
+          "chg": -3.13
+        },
+        {
+          "name": "WTI",
+          "value": "88.12",
+          "chg": -8.29
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -33934
+        },
+        {
+          "name": "기관",
+          "amount": 8417
+        },
+        {
+          "name": "개인",
+          "amount": 22768
+        }
+      ],
+      "comment": "데이터센터 규제 우려에 반도체 급락, 양 시장 사이드카 발동",
+      "keywords": [
+        "비트코인",
+        "경상수지",
+        "매도 사이드카",
+        "국제유가",
+        "월세 비중",
+        "수수료 상한제"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-05T16:00:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5536"
+        }
+      }
+    },
+    {
       "date": "11.4",
       "krDate": "2026-11-04",
       "usDate": "2026-11-03",
