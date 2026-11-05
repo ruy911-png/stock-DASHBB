@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T13:21:20Z",
+  "generated_at": "2026-11-05T13:24:44Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3598,6 +3598,71 @@
       },
       "new": true,
       "name_hint": "Toll Brothers, Inc."
+    },
+    "BBY": {
+      "name": "",
+      "market": "us",
+      "symbol": "BBY",
+      "as_of": "2026-11-04",
+      "close": 101.36,
+      "chg_1d_pct": 7.98,
+      "ma5": 97.482,
+      "ma20": 94.296,
+      "ma60": 90.1985,
+      "ma120": 83.8142,
+      "ma_order": "정배열(5>20>60>120)",
+      "pct_vs_ma20": 7.49,
+      "pct_vs_ma120": 20.93,
+      "rsi14": 62.18,
+      "stoch_k14": 98.77,
+      "volume": 3742100.0,
+      "volume_avg20": 2863445.0,
+      "volume_ratio20": 1.31,
+      "high52": 101.36,
+      "low52": 55.52,
+      "pct_from_high52": 0.0,
+      "pct_from_low52": 82.56,
+      "ret_1m_pct": 19.46,
+      "ret_3m_pct": 26.67,
+      "ret_6m_pct": 72.7,
+      "bars": 501,
+      "score": {
+        "met": 5,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": true
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": true
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [
+          "스토캐스틱 %K(14)"
+        ],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "Best Buy Co., Inc."
     }
   }
 }
