@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:41:15Z",
+  "generated_at": "2026-11-06T15:54:00Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2637,10 +2637,10 @@
       ]
     },
     "FSLR": {
-      "name": "",
+      "name": "퍼스트솔라(FSLR)",
       "market": "us",
       "symbol": "FSLR",
-      "as_of": "2026-11-03",
+      "as_of": "2026-11-05",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -2653,7 +2653,7 @@
         "years": 1.99,
         "surge_days": 7,
         "surge_per_year": 3.5,
-        "crash_days": 7,
+        "crash_days": 6,
         "limit_up_days": null,
         "limit_down_days": null,
         "after_surge_n": 7,
@@ -2662,25 +2662,25 @@
         "after_surge_20d_mean_pct": -2.24,
         "after_surge_20d_pos_rate": 0.43,
         "above_ma60_pct_1y": 0.35,
-        "ma60_cross_count_1y": 9,
+        "ma60_cross_count_1y": 10,
         "autocorr_1d_1y": -0.08,
-        "ret_1y_pct": -30.36,
+        "ret_1y_pct": -25.48,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 52.2,
+        "vol_annual_pct_1y": 52.41,
         "max_drawdown_1y_pct": -47.16,
-        "gap3_days_rate_1y": 0.08,
-        "volume_spike_days_1y": 3,
-        "volume_spike_up_rate": 0.0,
+        "gap3_days_rate_1y": 0.09,
+        "volume_spike_days_1y": 4,
+        "volume_spike_up_rate": 0.25,
         "upper_shadow_days_rate_1y": 0.1,
         "close_position_mean_1y": 0.47,
-        "top5_gain_share_pct_1y": 14.96
+        "top5_gain_share_pct_1y": 14.7
       },
       "notes": [
-        "2년 급등일(+10%↑) 7회(연 3.5회), 급락일(−10%↓) 7회",
+        "2년 급등일(+10%↑) 7회(연 3.5회), 급락일(−10%↓) 6회",
         "급등 뒤 5거래일 평균 +0.3%, 플러스 비율 86% · 20거래일 평균 -2.2% (표본 7회)",
-        "최근 1년 60일선 위 35%(교차 9회), 1년 수익률 -30.4%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
-        "연환산 변동성 52%, 1년 최대 낙폭 -47.2%, 3%↑ 갭 발생일 8%",
-        "거래량 3배↑ 급증일 3회, 그날 상승 0%",
+        "최근 1년 60일선 위 35%(교차 10회), 1년 수익률 -25.5%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 7일",
+        "연환산 변동성 52%, 1년 최대 낙폭 -47.2%, 3%↑ 갭 발생일 9%",
+        "거래량 3배↑ 급증일 4회, 그날 상승 25%",
         "윗꼬리 긴 날 10%, 종가의 일중 위치 평균 0.47(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
     },

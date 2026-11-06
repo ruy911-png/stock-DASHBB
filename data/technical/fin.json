@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:41:18Z",
+  "generated_at": "2026-11-06T15:54:02Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -3838,7 +3838,7 @@
       }
     },
     "FSLR": {
-      "name": "",
+      "name": "퍼스트솔라(FSLR)",
       "symbol": "FSLR",
       "financial": false,
       "fundamental": {
