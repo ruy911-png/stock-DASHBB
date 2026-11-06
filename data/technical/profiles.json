@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T15:29:03Z",
+  "generated_at": "2026-11-06T01:45:50Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -193,7 +193,7 @@
       "name": "대덕전자",
       "market": "kosdaq",
       "symbol": "353200.KQ",
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "window": "2y",
       "bars": 485,
       "labels": [
@@ -211,7 +211,7 @@
         "years": 1.92,
         "surge_days": 23,
         "surge_per_year": 12.0,
-        "crash_days": 10,
+        "crash_days": 11,
         "limit_up_days": 1,
         "limit_down_days": 0,
         "after_surge_n": 23,
@@ -222,22 +222,22 @@
         "above_ma60_pct_1y": 0.75,
         "ma60_cross_count_1y": 9,
         "autocorr_1d_1y": -0.09,
-        "ret_1y_pct": 183.88,
+        "ret_1y_pct": 127.03,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 101.21,
+        "vol_annual_pct_1y": 103.25,
         "max_drawdown_1y_pct": -60.97,
-        "gap3_days_rate_1y": 0.31,
+        "gap3_days_rate_1y": 0.32,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.23,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 16.34
+        "top5_gain_share_pct_1y": 16.35
       },
       "notes": [
-        "2년 급등일(+10%↑) 23회(연 12.0회), 급락일(−10%↓) 10회, 상한가 1회·하한가 0회",
+        "2년 급등일(+10%↑) 23회(연 12.0회), 급락일(−10%↓) 11회, 상한가 1회·하한가 0회",
         "급등 뒤 5거래일 평균 +0.0%, 플러스 비율 39% · 20거래일 평균 +6.5% (표본 23회)",
-        "최근 1년 60일선 위 75%(교차 9회), 1년 수익률 +183.9%, 하루 수익률 자기상관 -0.09, 최장 연속 상승 6일",
-        "연환산 변동성 101%, 1년 최대 낙폭 -61.0%, 3%↑ 갭 발생일 31%",
+        "최근 1년 60일선 위 75%(교차 9회), 1년 수익률 +127.0%, 하루 수익률 자기상관 -0.09, 최장 연속 상승 6일",
+        "연환산 변동성 103%, 1년 최대 낙폭 -61.0%, 3%↑ 갭 발생일 32%",
         "거래량 3배↑ 급증일 4회, 그날 상승 100%",
         "윗꼬리 긴 날 23%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]

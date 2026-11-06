@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T15:29:02Z",
+  "generated_at": "2026-11-06T01:45:49Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1326,31 +1326,31 @@
       "name": "대덕전자",
       "market": "kosdaq",
       "symbol": "353200.KQ",
-      "as_of": "2026-11-04",
-      "close": 99500.0,
-      "chg_1d_pct": -1.49,
-      "ma5": 114920.0,
-      "ma20": 130940.0,
-      "ma60": 118080.0,
-      "ma120": 127002.5,
+      "as_of": "2026-11-05",
+      "close": 79800.0,
+      "chg_1d_pct": -19.8,
+      "ma5": 103240.0,
+      "ma20": 127365.0,
+      "ma60": 117751.6667,
+      "ma120": 126619.1667,
       "ma_order": "혼조",
-      "pct_vs_ma20": -24.01,
-      "pct_vs_ma120": -21.66,
-      "rsi14": 34.31,
-      "stoch_k14": 9.23,
-      "volume": 2264059.0,
-      "volume_avg20": 1215151.0,
-      "volume_ratio20": 1.86,
+      "pct_vs_ma20": -37.35,
+      "pct_vs_ma120": -36.98,
+      "rsi14": 27.43,
+      "stoch_k14": 2.24,
+      "volume": 3052670.0,
+      "volume_avg20": 1272318.0,
+      "volume_ratio20": 2.4,
       "high52": 190900.0,
-      "low52": 35150.0,
-      "pct_from_high52": -47.88,
-      "pct_from_low52": 183.07,
-      "ret_1m_pct": -32.68,
-      "ret_3m_pct": 2.79,
-      "ret_6m_pct": -8.97,
+      "low52": 36000.0,
+      "pct_from_high52": -58.2,
+      "pct_from_low52": 121.67,
+      "ret_1m_pct": -49.46,
+      "ret_3m_pct": -17.48,
+      "ret_6m_pct": -30.85,
       "bars": 485,
       "score": {
-        "met": 2,
+        "met": 1,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1368,7 +1368,7 @@
           },
           {
             "label": "RSI(14) 30~70",
-            "ok": true
+            "ok": false
           },
           {
             "label": "거래량 ≥ 20일 평균",
@@ -1379,6 +1379,7 @@
       "heat": {
         "over": [],
         "under": [
+          "RSI(14)",
           "20일선 이격도",
           "스토캐스틱 %K(14)"
         ],
