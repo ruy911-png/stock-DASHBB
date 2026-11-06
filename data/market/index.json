@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.6",
+      "krDate": "2026-11-06",
+      "usDate": "2026-11-05",
+      "wtiDate": "2026-11-05",
+      "collectedAt": "2026-11-06T11:48:20.467Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,059.69",
+          "chg": -6.02
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "644.27",
+          "chg": -5.03
+        },
+        {
+          "name": "원/달러",
+          "value": "1,356.00",
+          "chg": -0.07
+        },
+        {
+          "name": "S&P500",
+          "value": "7,353.73",
+          "chg": -4.36
+        },
+        {
+          "name": "나스닥",
+          "value": "24,315.00",
+          "chg": -5.52
+        },
+        {
+          "name": "VIX",
+          "value": "28.18",
+          "chg": 69.66
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "9,011.14",
+          "chg": -12.25
+        },
+        {
+          "name": "WTI",
+          "value": "90.52",
+          "chg": 2.72
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -26892
+        },
+        {
+          "name": "기관",
+          "amount": 17092
+        },
+        {
+          "name": "개인",
+          "amount": 5207
+        }
+      ],
+      "comment": "AI 데이터센터 규제 우려에 외국인 2조대 매도, 코스피 5000선 턱걸이 마감",
+      "keywords": [
+        "중간선거",
+        "코스피 급락",
+        "AI 규제",
+        "비만 인식",
+        "아파트값",
+        "코스피"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-06T20:01:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5563"
+        }
+      }
+    },
+    {
       "date": "11.5",
       "krDate": "2026-11-05",
       "usDate": "2026-11-04",
