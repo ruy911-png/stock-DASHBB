@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:54:02Z",
+  "generated_at": "2026-11-07T06:07:34Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -86,30 +86,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+50.3%"
+            "value": "+41.3%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+71.6%"
+            "value": "+17.4%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "0.8억"
+            "value": "1.4억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "0.2억"
+            "value": "0.8억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "424.0%"
+            "value": "449.6%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 0,
@@ -1080,30 +1080,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+25.6%"
+            "value": "+20.5%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+50.5%"
+            "value": "+28.7%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "34.0억"
+            "value": "36.9억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "31.2억"
+            "value": "34.3억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "600.1%"
+            "value": "431.5%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 4,
@@ -1364,22 +1364,22 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+92.8%"
+            "value": "+95.9%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+238.6%"
+            "value": "+175.9%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "34.0억"
+            "value": "41.0억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "33.6억"
+            "value": "40.5억"
           },
           {
             "label": "부채비율 100% 이하",
@@ -1387,7 +1387,7 @@
             "value": "18.4%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 4,
@@ -1719,30 +1719,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+6.7%"
+            "value": "+7.4%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+7.9%"
+            "value": "+11.3%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "163.4억"
+            "value": "162.3억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "143.0억"
+            "value": "142.8억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "192.6%"
+            "value": "183.1%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 5,
@@ -1925,14 +1925,14 @@
       "symbol": "BAC",
       "financial": true,
       "fundamental": {
-        "met": 3,
+        "met": 1,
         "total": 5,
-        "unknown": 2,
+        "unknown": 4,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+7.2%"
+            "value": "+3.2%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
@@ -1941,13 +1941,13 @@
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "565.7억"
+            "ok": null,
+            "value": null
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "565.7억"
+            "ok": null,
+            "value": null
           },
           {
             "label": "부채비율 100% 이하",
@@ -1955,7 +1955,7 @@
             "value": null
           }
         ],
-        "as_of": "2026-03-31"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 1,
@@ -1996,37 +1996,37 @@
       "symbol": "ARM",
       "financial": false,
       "fundamental": {
-        "met": 4,
+        "met": 5,
         "total": 5,
         "unknown": 0,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+22.4%"
+            "value": "+27.1%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
-            "ok": false,
-            "value": "-14.0%"
+            "ok": true,
+            "value": "+23.3%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "20.9억"
+            "value": "17.3억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "14.7억"
+            "value": "11.8억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "29.7%"
+            "value": "25.6%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 3,
@@ -2571,30 +2571,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+7.3%"
+            "value": "+5.4%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+97.5%"
+            "value": "+41.6%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "147.8억"
+            "value": "187.1억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "117.6억"
+            "value": "155.7억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "218.1%"
+            "value": "220.4%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 1,
@@ -2713,30 +2713,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+5.1%"
+            "value": "+4.7%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": false,
-            "value": "-107.8%"
+            "value": "-12.0%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "199.7억"
+            "value": "187.0억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "160.6억"
+            "value": "147.5억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": false,
-            "value": "209.4%"
+            "value": "195.6%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 4,
@@ -2799,15 +2799,15 @@
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": false,
-            "value": "-3.7억"
+            "value": "-3.8억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "51.8%"
+            "value": "55.1%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 0,
@@ -3494,30 +3494,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+33.7%"
+            "value": "+31.6%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "+69.5%"
+            "value": "+40.1%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "23.8억"
+            "value": "26.8억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "23.5억"
+            "value": "25.6억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "14.1%"
+            "value": "15.0%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 3,
@@ -3696,7 +3696,7 @@
       }
     },
     "AMD": {
-      "name": "",
+      "name": "어드밴스드 마이크로 디바이시스(AMD)",
       "symbol": "AMD",
       "financial": false,
       "fundamental": {
@@ -3707,30 +3707,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+50.1%"
+            "value": "+44.7%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "흑자 전환"
+            "value": "+123.0%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "100.8억"
+            "value": "91.2억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "84.0억"
+            "value": "70.6억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "25.6%"
+            "value": "38.6%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 2,
@@ -3767,7 +3767,7 @@
       }
     },
     "222800": {
-      "name": "",
+      "name": "심텍",
       "symbol": "222800.KQ",
       "financial": false,
       "fundamental": {
@@ -3909,28 +3909,28 @@
       }
     },
     "DUOL": {
-      "name": "",
+      "name": "듀오링고(DUOL)",
       "symbol": "DUOL",
       "financial": false,
       "fundamental": {
-        "met": 5,
+        "met": 4,
         "total": 5,
         "unknown": 0,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+18.3%"
+            "value": "+13.7%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
-            "ok": true,
-            "value": "+1.7%"
+            "ok": false,
+            "value": "-31.2%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "4.3억"
+            "value": "4.4억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
@@ -3940,10 +3940,10 @@
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "47.1%"
+            "value": "46.2%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 3,
@@ -3980,7 +3980,7 @@
       }
     },
     "TOL": {
-      "name": "",
+      "name": "톨브라더스(TOL)",
       "symbol": "TOL",
       "financial": false,
       "fundamental": {
@@ -4051,7 +4051,7 @@
       }
     },
     "BBY": {
-      "name": "",
+      "name": "베스트바이(BBY)",
       "symbol": "BBY",
       "financial": false,
       "fundamental": {
@@ -4122,7 +4122,7 @@
       }
     },
     "006360": {
-      "name": "",
+      "name": "GS건설",
       "symbol": "006360.KS",
       "financial": false,
       "fundamental": {
