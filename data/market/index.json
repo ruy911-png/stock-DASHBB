@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.9",
+      "krDate": "2026-11-09",
+      "usDate": "2026-11-06",
+      "wtiDate": "2026-11-06",
+      "collectedAt": "2026-11-09T06:42:03.894Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,018.85",
+          "chg": -0.81
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "638.97",
+          "chg": -0.82
+        },
+        {
+          "name": "원/달러",
+          "value": "1,347.20",
+          "chg": -1.2
+        },
+        {
+          "name": "S&P500",
+          "value": "7,376.86",
+          "chg": 0.31
+        },
+        {
+          "name": "나스닥",
+          "value": "24,579.43",
+          "chg": 1.09
+        },
+        {
+          "name": "VIX",
+          "value": "25.64",
+          "chg": -9.01
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "9,390.25",
+          "chg": 4.21
+        },
+        {
+          "name": "WTI",
+          "value": "90.83",
+          "chg": 0.34
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -7566
+        },
+        {
+          "name": "기관",
+          "amount": 7242
+        },
+        {
+          "name": "개인",
+          "amount": -4289
+        }
+      ],
+      "comment": "반도체는 버티는데 2차전지는 밀리며 지수 하락 유지",
+      "keywords": [
+        "배추값",
+        "공시가격",
+        "김장 할인",
+        "아트 스타트업",
+        "하락 출발",
+        "공개매수"
+      ],
+      "mood": "보합 · 혼조",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-09T15:00:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5586"
+        }
+      }
+    },
+    {
       "date": "11.6",
       "krDate": "2026-11-06",
       "usDate": "2026-11-05",
