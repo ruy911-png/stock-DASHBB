@@ -2,6 +2,91 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.10",
+      "krDate": "2026-11-10",
+      "usDate": "2026-11-09",
+      "wtiDate": "2026-11-09",
+      "collectedAt": "2026-11-10T07:40:36.943Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,239.13",
+          "chg": 4.39
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "667.61",
+          "chg": 4.48
+        },
+        {
+          "name": "원/달러",
+          "value": "1,335.90",
+          "chg": -0.45
+        },
+        {
+          "name": "S&P500",
+          "value": "7,549.94",
+          "chg": 2.35
+        },
+        {
+          "name": "나스닥",
+          "value": "25,253.14",
+          "chg": 2.74
+        },
+        {
+          "name": "VIX",
+          "value": "19.92",
+          "chg": -22.31
+        },
+        {
+          "name": "필라델피아 반도체",
+          "value": "10,033.93",
+          "chg": 6.86
+        },
+        {
+          "name": "WTI",
+          "value": "86.85",
+          "chg": -4.38
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 1086
+        },
+        {
+          "name": "기관",
+          "amount": 4347
+        },
+        {
+          "name": "개인",
+          "amount": -9500
+        }
+      ],
+      "comment": "매수 사이드카 발동 뒤 반도체 강세로 상승폭 유지",
+      "keywords": [
+        "매수 사이드카",
+        "사회공헌",
+        "이사회 조사",
+        "CES 혁신상",
+        "반도체",
+        "스타트업 육성"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-10T14:00:26+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5609"
+        }
+      }
+    },
+    {
       "date": "11.9",
       "krDate": "2026-11-09",
       "usDate": "2026-11-06",
