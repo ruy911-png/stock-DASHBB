@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T12:21:49Z",
+  "generated_at": "2026-11-10T12:44:54Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -1472,9 +1472,9 @@
       "name": "제이프로그",
       "market": "us",
       "symbol": "FROG",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "고변동형",
         "거래량 동반 상승형"
@@ -1484,7 +1484,7 @@
         "거래량 동반 상승형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 11,
         "surge_per_year": 5.5,
         "crash_days": 3,
@@ -1496,25 +1496,25 @@
         "after_surge_20d_mean_pct": 3.19,
         "after_surge_20d_pos_rate": 0.6,
         "above_ma60_pct_1y": 0.67,
-        "ma60_cross_count_1y": 19,
-        "autocorr_1d_1y": -0.02,
-        "ret_1y_pct": 118.95,
+        "ma60_cross_count_1y": 18,
+        "autocorr_1d_1y": 0.0,
+        "ret_1y_pct": 128.9,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 84.88,
+        "vol_annual_pct_1y": 85.12,
         "max_drawdown_1y_pct": -49.62,
         "gap3_days_rate_1y": 0.11,
-        "volume_spike_days_1y": 7,
-        "volume_spike_up_rate": 0.86,
+        "volume_spike_days_1y": 6,
+        "volume_spike_up_rate": 0.83,
         "upper_shadow_days_rate_1y": 0.13,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 21.87
+        "top5_gain_share_pct_1y": 21.66
       },
       "notes": [
         "2년 급등일(+10%↑) 11회(연 5.5회), 급락일(−10%↓) 3회",
         "급등 뒤 5거래일 평균 +0.0%, 플러스 비율 50% · 20거래일 평균 +3.2% (표본 10회)",
-        "최근 1년 60일선 위 67%(교차 19회), 1년 수익률 +119.0%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 7일",
+        "최근 1년 60일선 위 67%(교차 18회), 1년 수익률 +128.9%, 하루 수익률 자기상관 +0.00, 최장 연속 상승 7일",
         "연환산 변동성 85%, 1년 최대 낙폭 -49.6%, 3%↑ 갭 발생일 11%",
-        "거래량 3배↑ 급증일 7회, 그날 상승 86%",
+        "거래량 3배↑ 급증일 6회, 그날 상승 83%",
         "윗꼬리 긴 날 13%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 22%"
       ]
     },
@@ -1717,9 +1717,9 @@
       "name": "찰스 슈왑",
       "market": "us",
       "symbol": "SCHW",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "박스권형"
       ],
@@ -1727,7 +1727,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 0,
@@ -1739,23 +1739,23 @@
         "after_surge_20d_mean_pct": null,
         "after_surge_20d_pos_rate": null,
         "above_ma60_pct_1y": 0.47,
-        "ma60_cross_count_1y": 14,
-        "autocorr_1d_1y": 0.03,
-        "ret_1y_pct": -2.34,
+        "ma60_cross_count_1y": 13,
+        "autocorr_1d_1y": 0.02,
+        "ret_1y_pct": -1.56,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 25.89,
+        "vol_annual_pct_1y": 25.92,
         "max_drawdown_1y_pct": -22.53,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.51,
-        "top5_gain_share_pct_1y": 12.17
+        "top5_gain_share_pct_1y": 12.11
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 0회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 47%(교차 14회), 1년 수익률 -2.3%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 47%(교차 13회), 1년 수익률 -1.6%, 하루 수익률 자기상관 +0.02, 최장 연속 상승 10일",
         "연환산 변동성 26%, 1년 최대 낙폭 -22.5%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.51(0 저가~1 고가), 상승분의 상위 5일 집중도 12%"
@@ -2110,13 +2110,13 @@
       "name": "일라이릴리 (LLY)",
       "market": "us",
       "symbol": "LLY",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 2,
@@ -2130,22 +2130,22 @@
         "above_ma60_pct_1y": 0.65,
         "ma60_cross_count_1y": 24,
         "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": 46.25,
+        "ret_1y_pct": 50.62,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 35.4,
+        "vol_annual_pct_1y": 35.62,
         "max_drawdown_1y_pct": -23.31,
         "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 0,
         "volume_spike_up_rate": null,
         "upper_shadow_days_rate_1y": 0.03,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 17.1
+        "top5_gain_share_pct_1y": 16.88
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 -1.5%, 플러스 비율 50% · 20거래일 평균 -10.5% (표본 2회)",
-        "최근 1년 60일선 위 65%(교차 24회), 1년 수익률 +46.3%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 7일",
-        "연환산 변동성 35%, 1년 최대 낙폭 -23.3%, 3%↑ 갭 발생일 3%",
+        "최근 1년 60일선 위 65%(교차 24회), 1년 수익률 +50.6%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 7일",
+        "연환산 변동성 36%, 1년 최대 낙폭 -23.3%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 0회",
         "윗꼬리 긴 날 3%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
