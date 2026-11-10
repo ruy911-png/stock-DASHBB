@@ -3,9 +3,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const dataPath = path.join(root, 'data', 'market', 'index.json');
+const dataPath = process.env.MARKET_DATA_PATH || path.join(root, 'data', 'market', 'index.json'); // 테스트는 임시 파일을 준다
 const payload = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
-const indexNames = ['KOSPI', 'KOSDAQ', '원/달러', 'S&P500', '나스닥', 'VIX', '필라델피아 반도체', 'WTI'];
+// 2026-11-10부터 일곱째 칸은 미국채 10년 금리(등락 단위 %p). 그 전 항목은 필라델피아 반도체 그대로 둔다
+const YIELD_NAME = '미국채 10년';
+const indexNames = ['KOSPI', 'KOSDAQ', '원/달러', 'S&P500', '나스닥', 'VIX', YIELD_NAME, 'WTI'];
+const legacyIndexNames = indexNames.map(name => (name === YIELD_NAME ? '필라델피아 반도체' : name));
 const flowNames = ['외국인', '기관', '개인'];
 const isoDate = /^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/;
 const isoDateTime = /^20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])T([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{3})?)?(?:Z|[+-]\d{2}:\d{2})$/;
@@ -46,12 +49,14 @@ payload.entries.forEach((entry, index) => {
 
   if (typeof entry.date !== 'string' || !entry.date.trim()) fail(`${position}.date가 비었습니다.`);
   if (!isoDateTime.test(entry.collectedAt || '')) fail(`${position}.collectedAt은 ISO 시각이어야 합니다.`);
-  exactNames(entry.indices, indexNames, 'indices', position);
+  const hasYield = Array.isArray(entry.indices) && entry.indices.some(item => item && item.name === YIELD_NAME);
+  exactNames(entry.indices, hasYield ? indexNames : legacyIndexNames, 'indices', position);
   entry.indices.forEach((item, itemIndex) => {
     if ((typeof item.value !== 'string' && typeof item.value !== 'number') || String(item.value).trim() === '') {
       fail(`${position}.indices[${itemIndex}].value가 비었습니다.`);
     }
     if (!Number.isFinite(Number(item.chg))) fail(`${position}.indices[${itemIndex}].chg가 숫자가 아닙니다.`);
+    if ((item.name === YIELD_NAME) !== (item.unit === '%p')) fail(`${position}.indices[${itemIndex}].unit은 ${YIELD_NAME}에만 '%p'여야 합니다.`);
   });
 
   exactNames(entry.flows, flowNames, 'flows', position);
