@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T11:52:34Z",
+  "generated_at": "2026-11-10T11:56:07Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2414,13 +2414,13 @@
       "name": "월드 키넥트(WKC)",
       "market": "us",
       "symbol": "WKC",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 0,
@@ -2432,26 +2432,26 @@
         "after_surge_20d_mean_pct": 2.13,
         "after_surge_20d_pos_rate": 0.5,
         "above_ma60_pct_1y": 0.56,
-        "ma60_cross_count_1y": 13,
-        "autocorr_1d_1y": 0.06,
-        "ret_1y_pct": 39.07,
+        "ma60_cross_count_1y": 12,
+        "autocorr_1d_1y": 0.07,
+        "ret_1y_pct": 37.75,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 28.43,
+        "vol_annual_pct_1y": 28.4,
         "max_drawdown_1y_pct": -19.49,
         "gap3_days_rate_1y": 0.02,
         "volume_spike_days_1y": 5,
         "volume_spike_up_rate": 0.8,
         "upper_shadow_days_rate_1y": 0.04,
-        "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 17.03
+        "close_position_mean_1y": 0.52,
+        "top5_gain_share_pct_1y": 17.12
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 +0.6%, 플러스 비율 50% · 20거래일 평균 +2.1% (표본 2회)",
-        "최근 1년 60일선 위 56%(교차 13회), 1년 수익률 +39.1%, 하루 수익률 자기상관 +0.06, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 56%(교차 12회), 1년 수익률 +37.8%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 8일",
         "연환산 변동성 28%, 1년 최대 낙폭 -19.5%, 3%↑ 갭 발생일 2%",
         "거래량 3배↑ 급증일 5회, 그날 상승 80%",
-        "윗꼬리 긴 날 4%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
+        "윗꼬리 긴 날 4%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "VCEL": {
@@ -2546,9 +2546,9 @@
       "name": "어드밴스드 마이크로 디바이시스(AMD)",
       "market": "us",
       "symbol": "AMD",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "급등 지속형",
         "고변동형"
@@ -2558,9 +2558,9 @@
         "급등 지속형"
       ],
       "metrics": {
-        "years": 1.99,
-        "surge_days": 8,
-        "surge_per_year": 4.0,
+        "years": 1.98,
+        "surge_days": 9,
+        "surge_per_year": 4.5,
         "crash_days": 4,
         "limit_up_days": null,
         "limit_down_days": null,
@@ -2571,23 +2571,23 @@
         "after_surge_20d_pos_rate": 0.86,
         "above_ma60_pct_1y": 0.6,
         "ma60_cross_count_1y": 21,
-        "autocorr_1d_1y": -0.05,
-        "ret_1y_pct": 75.18,
+        "autocorr_1d_1y": -0.02,
+        "ret_1y_pct": 113.96,
         "longest_up_streak": 13,
-        "vol_annual_pct_1y": 72.28,
+        "vol_annual_pct_1y": 73.02,
         "max_drawdown_1y_pct": -37.73,
-        "gap3_days_rate_1y": 0.23,
+        "gap3_days_rate_1y": 0.24,
         "volume_spike_days_1y": 1,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.09,
         "close_position_mean_1y": 0.53,
-        "top5_gain_share_pct_1y": 14.67
+        "top5_gain_share_pct_1y": 14.73
       },
       "notes": [
-        "2년 급등일(+10%↑) 8회(연 4.0회), 급락일(−10%↓) 4회",
+        "2년 급등일(+10%↑) 9회(연 4.5회), 급락일(−10%↓) 4회",
         "급등 뒤 5거래일 평균 +0.3%, 플러스 비율 71% · 20거래일 평균 +15.1% (표본 7회)",
-        "최근 1년 60일선 위 60%(교차 21회), 1년 수익률 +75.2%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 13일",
-        "연환산 변동성 72%, 1년 최대 낙폭 -37.7%, 3%↑ 갭 발생일 23%",
+        "최근 1년 60일선 위 60%(교차 21회), 1년 수익률 +114.0%, 하루 수익률 자기상관 -0.02, 최장 연속 상승 13일",
+        "연환산 변동성 73%, 1년 최대 낙폭 -37.7%, 3%↑ 갭 발생일 24%",
         "거래량 3배↑ 급증일 1회, 그날 상승 0%",
         "윗꼬리 긴 날 9%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
