@@ -35,7 +35,7 @@
 - 하네스는 CDN이 막힌 환경을 위해 npm 패키지 파일을 `npm pack`으로 받아 `.cache/ui-vendor/`에 끼워 넣고, Firebase·GitHub API는 스텁으로 대체한다. 클라우드 세션에는 Playwright·Chromium이 있고, PC는 `npm i -g playwright && npx playwright install chromium`이 필요하다. `.cache/`는 커밋하지 않는다. 글꼴은 Noto Sans KR을 템플릿 폰트 이름으로 끼워 넣어 갤럭시에 가깝게 그린다(`--font none`이면 환경 폰트). 아이패드·PC는 폰트가 달라 몇 px 차이의 줄바꿈·넘침은 실제 캡처로 재확인한다.
 
 ### 자동머지 정책
-- **시황 자동수집**(`.github/workflows/collect-market-data.yml`, 사용자 결정 2026-10-05): 검증 통과 시 **PR 없이 main에 바로 커밋**한다. 예약(평일 20:20·21:20·22:20 KST) 또는 페이지의 '⚡ 시황 업데이트' 버튼으로 실행. (전에는 PR + `gh pr merge --auto`였으나 저장소의 "Allow auto-merge" 설정에 의존해 9/29부터 멈췄음 — #80) 미장이 열려 있으면 직전 정규장 종가를 야후·Cboe 이력에서 가져온다(직전 저장값 복사 금지)
+- **시황 자동수집**(`.github/workflows/collect-market-data.yml`, 사용자 결정 2026-10-05): 검증 통과 시 **PR 없이 main에 바로 커밋**한다. 예약(평일 20:20·21:20·22:20 KST) 또는 페이지의 '⚡ 시황 업데이트' 버튼으로 실행. (전에는 PR + `gh pr merge --auto`였으나 저장소의 "Allow auto-merge" 설정에 의존해 9/29부터 멈췄음 — #80) 미장이 열려 있으면 직전 정규장 종가를 야후·Cboe 이력에서 가져온다(직전 저장값 복사 금지). 일곱째 칸은 미국채 10년 금리(야후 ^TNX, 등락은 %p·소수 셋째 자리, 사용자 결정 2026-11-10 — 그 전 기록은 필라델피아 반도체 그대로)
 - **종목분석 오늘자 업데이트**(`.github/workflows/refresh-analyses.yml`, 사용자 결정 2026-10-05): 사용자가 페이지의 '오늘자로 업데이트' 버튼이나 Run workflow로 직접 실행한 것이므로, 검증(`npm run check` + `validate-analyses`) 통과 시 PR 없이 main에 바로 커밋한다. 절차는 `.claude/skills/refresh-analyses/SKILL.md`(PC에서도 `/refresh-analyses 005930,SCHW`로 같은 절차)
 - **종목 특성 갱신**(`.github/workflows/stock-profiles.yml`, 사용자 결정 2026-10-06): 코드만 계산하는 통계라 검증 통과 시 main에 바로 커밋. 토요일 09:20 KST 주 1회 + 수동 실행, 오늘자 업데이트 때도 해당 종목만 갱신
 - 그 외 모든 PR(종목분석 추가, 기능/레이아웃 수정 등)은 사용자가 명시적으로 요청할 때만 머지 — 임의로 자동머지하지 않음

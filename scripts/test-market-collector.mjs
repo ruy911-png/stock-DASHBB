@@ -200,10 +200,12 @@ assert.throws(
   assert.ok(!('필라델피아 반도체' in yahooSymbols)); // 반도체지수는 더 받지 않는다
   const tnx = chartOf(['2026-11-05', '2026-11-06', '2026-11-09'], [4.21, 4.25, 4.32]);
   // 값은 금리(%) 그대로, 등락은 전 거래일과의 차이(%p). 미장 기준일까지의 마지막 봉을 쓴다
-  assert.deepEqual(yieldFromHistory(tnx, '2026-11-09'), { name: '미국채 10년', value: '4.32', chg: 0.07, unit: '%p' });
-  assert.deepEqual(yieldFromHistory(tnx, '2026-11-06'), { name: '미국채 10년', value: '4.25', chg: 0.04, unit: '%p' });
+  assert.deepEqual(yieldFromHistory(tnx, '2026-11-09'), { name: '미국채 10년', value: '4.320', chg: 0.07, unit: '%p' });
+  assert.deepEqual(yieldFromHistory(tnx, '2026-11-06'), { name: '미국채 10년', value: '4.250', chg: 0.04, unit: '%p' });
   // 채권시장만 쉬는 날(콜럼버스 데이 등: 주식은 열림)엔 그날 봉이 없다 → 직전 봉을 쓴다(기준일 불일치로 실패하지 않음)
-  assert.equal(yieldFromHistory(tnx, '2026-11-10').value, '4.32');
+  assert.equal(yieldFromHistory(tnx, '2026-11-10').value, '4.320');
+  // 하루 변동이 작다(2026-11-09 실제: 4.859 → 4.864) → 소수 셋째 자리까지
+  assert.deepEqual(yieldFromHistory(chartOf(['2026-11-06', '2026-11-09'], [4.859000205993652, 4.863999843597412]), '2026-11-09'), { name: '미국채 10년', value: '4.864', chg: 0.005, unit: '%p' });
   // 금리 하락은 음수
   assert.equal(yieldFromHistory(chartOf(['2026-11-05', '2026-11-06'], [4.30, 4.18]), '2026-11-06').chg, -0.12);
   // 빈 값(null) 봉은 건너뛴다

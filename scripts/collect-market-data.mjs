@@ -247,7 +247,7 @@ export function yieldFromHistory(chart, usDate) {
   if (bars.length < 2) throw new Error(`${YIELD_NAME} 야후 일봉이 부족합니다.`);
   const last = bars[bars.length - 1];
   const previous = bars[bars.length - 2];
-  return { name: YIELD_NAME, value: last.close.toFixed(2), chg: Number((last.close - previous.close).toFixed(2)), unit: '%p' };
+  return { name: YIELD_NAME, value: last.close.toFixed(3), chg: Number((last.close - previous.close).toFixed(3)), unit: '%p' }; // 하루 변동이 0.005%p 수준이라 소수 셋째 자리
 }
 
 export async function fetchYield(usDate) {
