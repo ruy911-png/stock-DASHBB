@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T07:26:54Z",
+  "generated_at": "2026-11-10T07:35:32Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -4187,6 +4187,77 @@
             "label": "최근 3년 매출 연속 증가",
             "ok": false,
             "value": "13.4조 → 12.9조 → 12.5조"
+          }
+        ],
+        "as_of": "2025-12-31"
+      }
+    },
+    "035420": {
+      "name": "",
+      "symbol": "035420.KS",
+      "financial": false,
+      "fundamental": {
+        "met": 4,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "매출 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+16.2%"
+          },
+          {
+            "label": "영업이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-82.2%"
+          },
+          {
+            "label": "영업현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "3.2조"
+          },
+          {
+            "label": "잉여현금흐름 플러스(최근 12개월)",
+            "ok": true,
+            "value": "1.4조"
+          },
+          {
+            "label": "부채비율 100% 이하",
+            "ok": true,
+            "value": "46.1%"
+          }
+        ],
+        "as_of": "2026-06-30"
+      },
+      "moat": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "ROE 15% 이상",
+            "ok": false,
+            "value": "7.1%"
+          },
+          {
+            "label": "영업이익률 15% 이상",
+            "ok": true,
+            "value": "18.3%"
+          },
+          {
+            "label": "매출총이익률 40% 이상",
+            "ok": true,
+            "value": "100.0%"
+          },
+          {
+            "label": "최근 3년 ROE 모두 10% 이상",
+            "ok": false,
+            "value": "7.1% · 7.6% · 4.4%"
+          },
+          {
+            "label": "최근 3년 매출 연속 증가",
+            "ok": true,
+            "value": "9.7조 → 10.7조 → 12.0조"
           }
         ],
         "as_of": "2025-12-31"
