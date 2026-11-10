@@ -2111,7 +2111,7 @@ class Component extends DCLogic {
   }
 
   openMarketPaste() {
-    const tmpl = '날짜:\n\nKOSPI:\nKOSDAQ:\n원/달러:\nS&P500:\n나스닥:\nVIX:\n필라델피아 반도체:\nWTI:\n\n외국인:\n기관:\n개인:\n\n키워드: #반도체 #환율\n코멘트: ';
+    const tmpl = '날짜:\n\nKOSPI:\nKOSDAQ:\n원/달러:\nS&P500:\n나스닥:\nVIX:\n미국채 10년:\nWTI:\n\n외국인:\n기관:\n개인:\n\n키워드: #반도체 #환율\n코멘트: ';
     console.log('[openMarketPaste] tmpl type:', typeof tmpl, 'val:', tmpl.slice(0,20));
     this.setState({ marketOpen: true, marketMsg: '', mktPasteText: tmpl });
   }
@@ -2161,7 +2161,7 @@ class Component extends DCLogic {
       { name: 'S&P500', alias: ['S&P500', 'S&P 500', 'SP500', '에스앤피'] },
       { name: '나스닥', alias: ['나스닥', 'NASDAQ', 'Nasdaq'] },
       { name: 'VIX', alias: ['VIX', '빅스', '변동성지수'] },
-      { name: '필라델피아 반도체', alias: ['필라델피아 반도체', 'SOX', 'PHLX Semiconductor'] },
+      { name: '미국채 10년', alias: ['미국채 10년', '10년물', '미 국채 10년', 'US10Y', 'TNX'] }, // 2026-11-10 필라델피아 반도체 자리에 교체
       { name: 'WTI', alias: ['WTI', '서부텍사스유', '서부 텍사스유'] },
     ];
     let foundCount = 0;
@@ -2194,6 +2194,7 @@ class Component extends DCLogic {
       name: p.name,
       value: p.value != null ? p.value : base.indices[i].value,
       chg: p.chg != null ? p.chg : (p.found ? 0 : base.indices[i].chg),
+      ...(base.indices[i].unit ? { unit: base.indices[i].unit } : {}), // 미국채 10년은 등락 단위가 %p
     }));
     const outFlows = flows.map((p, i) => ({
       name: p.name,
@@ -2304,7 +2305,7 @@ class Component extends DCLogic {
     const cur = entry.indices[idx];
     const newValue = prompt(cur.name + ' 값', cur.value);
     if (newValue === null) return;
-    const newChgStr = prompt(cur.name + ' 등락률(%) 예: 0.84 또는 -1.2', String(cur.chg));
+    const newChgStr = prompt(cur.name + (cur.unit === '%p' ? ' 등락(%p) 예: 0.05 또는 -0.12' : ' 등락률(%) 예: 0.84 또는 -1.2'), String(cur.chg));
     if (newChgStr === null) return;
     const cleaned = String(newChgStr).replace(/[^0-9.-]/g, '');
     const newChg = parseFloat(cleaned);
@@ -2439,7 +2440,7 @@ class Component extends DCLogic {
       { name: 'S&P500', value: '5,488.41', chg: 0.31 },
       { name: '나스닥', value: '17,890.7', chg: 0.45 },
       { name: 'VIX', value: '13.24', chg: -3.10 },
-      { name: '필라델피아 반도체', value: '5,500.00', chg: 0.60 },
+      { name: '미국채 10년', value: '4.25', chg: 0.05, unit: '%p' },
       { name: 'WTI', value: '75.00', chg: 0.25 },
     ],
     flows: [
@@ -3823,13 +3824,16 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
     });
     const rawIndices = Array.isArray(mk.indices) ? mk.indices : [];
     const indices = this.market.indices.map((definition) => {
-      const rawIdx = rawIndices.findIndex(item => item.name === definition.name);
+      let rawIdx = rawIndices.findIndex(item => item.name === definition.name);
+      // 2026-11-10 전 기록에는 미국채 10년 대신 필라델피아 반도체가 있다 → 그 자리에 옛 값을 그대로 보인다
+      if (rawIdx < 0 && definition.name === '미국채 10년') rawIdx = rawIndices.findIndex(item => item.name === '필라델피아 반도체');
       const item = rawIdx >= 0 ? rawIndices[rawIdx] : { name: definition.name, value: '—', chg: null };
+      const pp = item.unit === '%p'; // 금리: 값에 %를 붙이고 등락은 %p(전 거래일과의 차이)
       const chg = Number(item.chg);
       const hasChange = item.chg !== null && item.chg !== '' && Number.isFinite(chg);
       return {
-        name: item.name, value: item.value == null || item.value === '' ? '—' : item.value,
-        change: hasChange ? ((chg >= 0 ? '▲ +' : '▼ ') + Math.abs(chg).toFixed(2) + '%') : '—',
+        name: item.name, value: item.value == null || item.value === '' ? '—' : item.value + (pp ? '%' : ''),
+        change: hasChange ? ((chg >= 0 ? '▲ +' : '▼ ') + Math.abs(chg).toFixed(2) + (pp ? '%p' : '%')) : '—',
         col: hasChange ? (chg >= 0 ? UP : DOWN) : '#9A9AAC',
         onEdit: rawIdx >= 0 ? () => this.editIndexValue(rawIdx) : () => {},
       };

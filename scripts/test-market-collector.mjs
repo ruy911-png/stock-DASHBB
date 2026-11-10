@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings } from './collect-market-data.mjs';
+import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings, yieldFromHistory, yahooSymbols, YIELD_NAME, US_INDEX_NAMES } from './collect-market-data.mjs';
 
 // 야후 일봉 → 직전에 끝난 정규장: 뉴욕 16시 전의 '오늘' 봉은 장중이라 빼고, now 뒤의 봉은 보지 않는다
 const chartOf = (dates, closes) => ({ chart: { result: [{
@@ -191,6 +191,42 @@ assert.throws(
   // 지워진 id(404)는 건너뛰고, 최대 횟수에서 멈춘다
   const gaps = await withEarlierBriefings({ result: { items: [{ id: 10, briefingDate: '2026-10-17', briefingHour: '01' }] } }, '2026-10-16', async () => { throw new Error('404'); }, 5);
   assert.equal(gaps.result.items.length, 1);
+}
+
+// 필라델피아 반도체 → 미국채 10년 금리(사용자 결정 2026-11-10: 교체, 등락은 %p)
+{
+  assert.equal(YIELD_NAME, '미국채 10년');
+  assert.deepEqual(US_INDEX_NAMES, ['S&P500', '나스닥', 'VIX', '미국채 10년']);
+  assert.ok(!('필라델피아 반도체' in yahooSymbols)); // 반도체지수는 더 받지 않는다
+  const tnx = chartOf(['2026-11-05', '2026-11-06', '2026-11-09'], [4.21, 4.25, 4.32]);
+  // 값은 금리(%) 그대로, 등락은 전 거래일과의 차이(%p). 미장 기준일까지의 마지막 봉을 쓴다
+  assert.deepEqual(yieldFromHistory(tnx, '2026-11-09'), { name: '미국채 10년', value: '4.32', chg: 0.07, unit: '%p' });
+  assert.deepEqual(yieldFromHistory(tnx, '2026-11-06'), { name: '미국채 10년', value: '4.25', chg: 0.04, unit: '%p' });
+  // 채권시장만 쉬는 날(콜럼버스 데이 등: 주식은 열림)엔 그날 봉이 없다 → 직전 봉을 쓴다(기준일 불일치로 실패하지 않음)
+  assert.equal(yieldFromHistory(tnx, '2026-11-10').value, '4.32');
+  // 금리 하락은 음수
+  assert.equal(yieldFromHistory(chartOf(['2026-11-05', '2026-11-06'], [4.30, 4.18]), '2026-11-06').chg, -0.12);
+  // 빈 값(null) 봉은 건너뛴다
+  assert.equal(yieldFromHistory(chartOf(['2026-11-05', '2026-11-06', '2026-11-09'], [4.21, null, 4.32]), '2026-11-09').chg, 0.11);
+  assert.throws(() => yieldFromHistory(chartOf(['2026-11-09'], [4.32]), '2026-11-09'), /부족/);
+  assert.throws(() => yieldFromHistory({}, '2026-11-09'), /읽지 못했습니다/);
+}
+
+// 검증기: 옛 항목(필라델피아 반도체)과 새 항목(미국채 10년, unit '%p') 둘 다 통과, 섞이거나 unit이 빠지면 실패
+{
+  const fs = await import('node:fs'), os = await import('node:os'), path = await import('node:path');
+  const { execFileSync } = await import('node:child_process');
+  const real = JSON.parse(fs.readFileSync(new URL('../data/market/index.json', import.meta.url), 'utf8'));
+  const old = real.entries.find(e => e.indices.some(i => i.name === '필라델피아 반도체'));
+  const fresh = { ...old, krDate: '2099-01-02', indices: old.indices.map(i => i.name === '필라델피아 반도체' ? { name: '미국채 10년', value: '4.32', chg: 0.07, unit: '%p' } : i) };
+  const run = entries => {
+    const file = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'mkt-')), 'index.json');
+    fs.writeFileSync(file, JSON.stringify({ version: 1, entries }));
+    try { execFileSync('node', [new URL('./validate-market-data.mjs', import.meta.url).pathname], { env: { ...process.env, MARKET_DATA_PATH: file }, stdio: 'pipe' }); return true; } catch { return false; }
+  };
+  assert.equal(run([fresh, old]), true);
+  assert.equal(run([{ ...fresh, indices: fresh.indices.map(i => i.name === '미국채 10년' ? { ...i, unit: undefined } : i) }]), false); // %p 표시 빠짐
+  assert.equal(run([{ ...fresh, indices: [...fresh.indices, old.indices.find(i => i.name === '필라델피아 반도체')] }]), false); // 둘 다 있으면 안 됨
 }
 
 console.log('시황 자동수집 파서 검증 완료');

@@ -23,12 +23,15 @@ export const urls = {
   nasdaq: 'https://api.stock.naver.com/index/.IXIC/basic',
   vix: 'https://api.stock.naver.com/index/.VIX/basic',
   vixHistory: 'https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv',
-  sox: 'https://api.stock.naver.com/index/.SOX/basic',
   wti: 'https://api.stock.naver.com/marketindex/energy/CLcv1/prices?page=1&pageSize=5',
   // 미장이 열려 있을 때(국장 마감 시각엔 흔함) 직전에 끝난 정규장 종가를 가져오는 일봉 이력(야후, 비공식)
   yahooChart: 'https://query1.finance.yahoo.com/v8/finance/chart/',
 };
-export const yahooSymbols = { 'S&P500': '^GSPC', '나스닥': '^IXIC', '필라델피아 반도체': '^SOX' };
+export const yahooSymbols = { 'S&P500': '^GSPC', '나스닥': '^IXIC' };
+// 미국채 10년 금리(사용자 결정 2026-11-10: 필라델피아 반도체 자리에 교체). 야후 ^TNX 일봉 = 금리(%) 그대로
+export const YIELD_NAME = '미국채 10년';
+export const yieldSymbol = '^TNX';
+export const US_INDEX_NAMES = ['S&P500', '나스닥', 'VIX', YIELD_NAME];
 
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -232,6 +235,25 @@ export function usFromHistory(name, chart, now = new Date()) {
   };
 }
 
+// 야후 ^TNX 일봉 → 미장 기준일(usDate)까지의 마지막 금리와 전 거래일 대비 차이(%p).
+// 채권시장만 쉬는 날은 그날 봉이 없어 직전 봉을 쓴다(주식 기준일과 달라도 실패하지 않는다).
+export function yieldFromHistory(chart, usDate) {
+  const result = chart && chart.chart && Array.isArray(chart.chart.result) && chart.chart.result[0];
+  if (!result || !Array.isArray(result.timestamp)) throw new Error(`${YIELD_NAME} 야후 일봉을 읽지 못했습니다.`);
+  const closes = result.indicators.quote[0].close;
+  const bars = result.timestamp
+    .map((ts, i) => ({ date: newYorkParts(new Date(ts * 1000)).date, close: closes[i] }))
+    .filter(bar => Number.isFinite(bar.close) && bar.date <= usDate);
+  if (bars.length < 2) throw new Error(`${YIELD_NAME} 야후 일봉이 부족합니다.`);
+  const last = bars[bars.length - 1];
+  const previous = bars[bars.length - 2];
+  return { name: YIELD_NAME, value: last.close.toFixed(2), chg: Number((last.close - previous.close).toFixed(2)), unit: '%p' };
+}
+
+export async function fetchYield(usDate) {
+  return yieldFromHistory(await request(`${urls.yahooChart}${encodeURIComponent(yieldSymbol)}?range=1mo&interval=1d`), usDate);
+}
+
 export async function fetchUsFromHistory(now = new Date()) {
   const results = [];
   for (const [name, symbol] of Object.entries(yahooSymbols)) {
@@ -244,7 +266,7 @@ export async function fetchUsFromHistory(now = new Date()) {
   }
   const vixIndex = vixFromHistory(await request(urls.vixHistory, false), usDate);
   const byName = Object.fromEntries(results.map(item => [item.index.name, item.index]));
-  return { usDate, usIndices: [byName['S&P500'], byName['나스닥'], vixIndex, byName['필라델피아 반도체']] };
+  return { usDate, usIndices: [byName['S&P500'], byName['나스닥'], vixIndex, await fetchYield(usDate)] };
 }
 
 export function alreadyCollected(payload, krDate) {
@@ -256,9 +278,9 @@ function writeOutput(name, value) {
 }
 
 async function main() {
-  const [briefingList, kospi, kosdaq, fxRows, sp500, nasdaq, vix, sox, wtiRows] = await Promise.all([
+  const [briefingList, kospi, kosdaq, fxRows, sp500, nasdaq, vix, wtiRows] = await Promise.all([
     request(urls.briefingList), request(urls.kospi), request(urls.kosdaq), request(urls.fx),
-    request(urls.sp500), request(urls.nasdaq), request(urls.vix), request(urls.sox), request(urls.wti),
+    request(urls.sp500), request(urls.nasdaq), request(urls.vix), request(urls.wti),
   ]);
   if (!Array.isArray(fxRows) || !fxRows[0]) throw new Error('원/달러 마감 데이터를 찾지 못했습니다.');
   if (!Array.isArray(wtiRows) || !wtiRows[0]) throw new Error('WTI 결제 데이터를 찾지 못했습니다.');
@@ -297,12 +319,12 @@ async function main() {
     throw new Error(`국장 기준일 불일치: KOSPI ${krDate}, KOSDAQ ${kosdaqDate}, 원/달러 ${fxDate}, 브리핑 ${briefing.publishedDate}`);
   }
 
-  const usIndexNames = ['S&P500', '나스닥', 'VIX', '필라델피아 반도체'];
+  const usIndexNames = US_INDEX_NAMES;
   let usDate;
   let usIndices;
   if (sp500.marketStatus === 'CLOSE') {
     usDate = isoDate(sp500.localTradedAt, '미장');
-    for (const [name, data] of [['나스닥', nasdaq], ['필라델피아 반도체', sox]]) {
+    for (const [name, data] of [['나스닥', nasdaq]]) {
       const date = isoDate(data.localTradedAt, name);
       if (date !== usDate) throw new Error(`미장 기준일 불일치: S&P500 ${usDate}, ${name} ${date}`);
     }
@@ -310,7 +332,7 @@ async function main() {
     const vixIndex = vixDate === usDate && vix.marketStatus === 'CLOSE'
       ? marketIndex('VIX', vix)
       : vixFromHistory(await request(urls.vixHistory, false), usDate);
-    usIndices = [marketIndex('S&P500', sp500), marketIndex('나스닥', nasdaq), vixIndex, marketIndex('필라델피아 반도체', sox)];
+    usIndices = [marketIndex('S&P500', sp500), marketIndex('나스닥', nasdaq), vixIndex, await fetchYield(usDate)];
   } else {
     // 미장이 프리마켓·장중이면 직전에 끝난 정규장 종가를 이력에서 직접 가져온다(복사하지 않음).
     ({ usDate, usIndices } = await fetchUsFromHistory());
