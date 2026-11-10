@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T11:42:22Z",
+  "generated_at": "2026-11-10T11:52:34Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -1424,9 +1424,9 @@
       "name": "알파벳 A",
       "market": "us",
       "symbol": "GOOGL",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "박스권형"
       ],
@@ -1434,7 +1434,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 0,
         "surge_per_year": 0.0,
         "crash_days": 1,
@@ -1448,24 +1448,24 @@
         "above_ma60_pct_1y": 0.53,
         "ma60_cross_count_1y": 15,
         "autocorr_1d_1y": 0.07,
-        "ret_1y_pct": 0.17,
+        "ret_1y_pct": 1.19,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 33.76,
+        "vol_annual_pct_1y": 33.78,
         "max_drawdown_1y_pct": -30.71,
         "gap3_days_rate_1y": 0.03,
         "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.02,
-        "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 17.44
+        "close_position_mean_1y": 0.51,
+        "top5_gain_share_pct_1y": 17.34
       },
       "notes": [
         "2년 급등일(+10%↑) 0회(연 0.0회), 급락일(−10%↓) 1회",
         "급등 뒤 행동: 표본 없음(2년간 +10% 마감일 없음)",
-        "최근 1년 60일선 위 53%(교차 15회), 1년 수익률 +0.2%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 53%(교차 15회), 1년 수익률 +1.2%, 하루 수익률 자기상관 +0.07, 최장 연속 상승 10일",
         "연환산 변동성 34%, 1년 최대 낙폭 -30.7%, 3%↑ 갭 발생일 3%",
         "거래량 3배↑ 급증일 2회, 그날 상승 0%",
-        "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
+        "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.51(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "FROG": {
@@ -1816,9 +1816,9 @@
       "name": "엔비디아 (NVIDIA)",
       "market": "us",
       "symbol": "NVDA",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "박스권형"
       ],
@@ -1826,7 +1826,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 1,
         "surge_per_year": 0.5,
         "crash_days": 1,
@@ -1839,14 +1839,14 @@
         "after_surge_20d_pos_rate": 1.0,
         "above_ma60_pct_1y": 0.58,
         "ma60_cross_count_1y": 31,
-        "autocorr_1d_1y": -0.07,
-        "ret_1y_pct": -4.39,
+        "autocorr_1d_1y": -0.08,
+        "ret_1y_pct": -5.0,
         "longest_up_streak": 11,
-        "vol_annual_pct_1y": 38.45,
-        "max_drawdown_1y_pct": -24.09,
+        "vol_annual_pct_1y": 38.51,
+        "max_drawdown_1y_pct": -25.32,
         "gap3_days_rate_1y": 0.04,
-        "volume_spike_days_1y": 0,
-        "volume_spike_up_rate": null,
+        "volume_spike_days_1y": 1,
+        "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.01,
         "close_position_mean_1y": 0.48,
         "top5_gain_share_pct_1y": 14.46
@@ -1854,9 +1854,9 @@
       "notes": [
         "2년 급등일(+10%↑) 1회(연 0.5회), 급락일(−10%↓) 1회",
         "급등 뒤 5거래일 평균 -8.6%, 플러스 비율 0% · 20거래일 평균 +2.7% (표본 1회)",
-        "최근 1년 60일선 위 58%(교차 31회), 1년 수익률 -4.4%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 11일",
-        "연환산 변동성 38%, 1년 최대 낙폭 -24.1%, 3%↑ 갭 발생일 4%",
-        "거래량 3배↑ 급증일 0회",
+        "최근 1년 60일선 위 58%(교차 31회), 1년 수익률 -5.0%, 하루 수익률 자기상관 -0.08, 최장 연속 상승 11일",
+        "연환산 변동성 39%, 1년 최대 낙폭 -25.3%, 3%↑ 갭 발생일 4%",
+        "거래량 3배↑ 급증일 1회, 그날 상승 0%",
         "윗꼬리 긴 날 1%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 14%"
       ]
     },
@@ -2010,9 +2010,9 @@
       "name": "온다스 (ONDS)",
       "market": "us",
       "symbol": "ONDS",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "급등 빈발형",
         "박스권형",
@@ -2024,9 +2024,9 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.99,
-        "surge_days": 49,
-        "surge_per_year": 24.6,
+        "years": 1.98,
+        "surge_days": 50,
+        "surge_per_year": 25.2,
         "crash_days": 31,
         "limit_up_days": null,
         "limit_down_days": null,
@@ -2037,25 +2037,25 @@
         "after_surge_20d_pos_rate": 0.62,
         "above_ma60_pct_1y": 0.36,
         "ma60_cross_count_1y": 38,
-        "autocorr_1d_1y": -0.06,
-        "ret_1y_pct": -11.08,
+        "autocorr_1d_1y": -0.03,
+        "ret_1y_pct": 13.71,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 110.36,
+        "vol_annual_pct_1y": 110.24,
         "max_drawdown_1y_pct": -67.74,
         "gap3_days_rate_1y": 0.24,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.19,
-        "close_position_mean_1y": 0.44,
-        "top5_gain_share_pct_1y": 18.69
+        "close_position_mean_1y": 0.45,
+        "top5_gain_share_pct_1y": 18.35
       },
       "notes": [
-        "2년 급등일(+10%↑) 49회(연 24.6회), 급락일(−10%↓) 31회",
+        "2년 급등일(+10%↑) 50회(연 25.2회), 급락일(−10%↓) 31회",
         "급등 뒤 5거래일 평균 +6.9%, 플러스 비율 56% · 20거래일 평균 +21.9% (표본 48회)",
-        "최근 1년 60일선 위 36%(교차 38회), 1년 수익률 -11.1%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 36%(교차 38회), 1년 수익률 +13.7%, 하루 수익률 자기상관 -0.03, 최장 연속 상승 8일",
         "연환산 변동성 110%, 1년 최대 낙폭 -67.7%, 3%↑ 갭 발생일 24%",
         "거래량 3배↑ 급증일 4회, 그날 상승 100%",
-        "윗꼬리 긴 날 19%, 종가의 일중 위치 평균 0.44(0 저가~1 고가), 상승분의 상위 5일 집중도 19%"
+        "윗꼬리 긴 날 19%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
       ]
     },
     "WM": {
@@ -2154,9 +2154,9 @@
       "name": "블룸에너지 (BE)",
       "market": "us",
       "symbol": "BE",
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-09",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "급등 빈발형",
         "고변동형",
@@ -2167,36 +2167,36 @@
         "급등 빈발형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 26,
         "surge_per_year": 13.1,
         "crash_days": 20,
         "limit_up_days": null,
         "limit_down_days": null,
-        "after_surge_n": 26,
-        "after_surge_5d_mean_pct": 3.79,
-        "after_surge_5d_pos_rate": 0.58,
-        "after_surge_20d_mean_pct": 16.22,
-        "after_surge_20d_pos_rate": 0.65,
+        "after_surge_n": 25,
+        "after_surge_5d_mean_pct": 1.52,
+        "after_surge_5d_pos_rate": 0.56,
+        "after_surge_20d_mean_pct": 12.79,
+        "after_surge_20d_pos_rate": 0.64,
         "above_ma60_pct_1y": 0.63,
         "ma60_cross_count_1y": 15,
         "autocorr_1d_1y": -0.09,
-        "ret_1y_pct": 22.51,
+        "ret_1y_pct": 41.66,
         "longest_up_streak": 7,
-        "vol_annual_pct_1y": 111.45,
+        "vol_annual_pct_1y": 112.0,
         "max_drawdown_1y_pct": -52.65,
         "gap3_days_rate_1y": 0.4,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.21,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 15.1
+        "top5_gain_share_pct_1y": 14.85
       },
       "notes": [
         "2년 급등일(+10%↑) 26회(연 13.1회), 급락일(−10%↓) 20회",
-        "급등 뒤 5거래일 평균 +3.8%, 플러스 비율 58% · 20거래일 평균 +16.2% (표본 26회)",
-        "최근 1년 60일선 위 63%(교차 15회), 1년 수익률 +22.5%, 하루 수익률 자기상관 -0.09, 최장 연속 상승 7일",
-        "연환산 변동성 111%, 1년 최대 낙폭 -52.7%, 3%↑ 갭 발생일 40%",
+        "급등 뒤 5거래일 평균 +1.5%, 플러스 비율 56% · 20거래일 평균 +12.8% (표본 25회)",
+        "최근 1년 60일선 위 63%(교차 15회), 1년 수익률 +41.7%, 하루 수익률 자기상관 -0.09, 최장 연속 상승 7일",
+        "연환산 변동성 112%, 1년 최대 낙폭 -52.7%, 3%↑ 갭 발생일 40%",
         "거래량 3배↑ 급증일 3회, 그날 상승 0%",
         "윗꼬리 긴 날 21%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 15%"
       ]
