@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T14:07:00Z",
+  "generated_at": "2026-11-11T14:28:54Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2931,6 +2931,50 @@
         "연환산 변동성 55%, 1년 최대 낙폭 -41.1%, 3%↑ 갭 발생일 13%",
         "거래량 3배↑ 급증일 7회, 그날 상승 100%",
         "윗꼬리 긴 날 8%, 종가의 일중 위치 평균 0.42(0 저가~1 고가), 상승분의 상위 5일 집중도 20%"
+      ]
+    },
+    "LRCX": {
+      "name": "",
+      "market": "us",
+      "symbol": "LRCX",
+      "as_of": "2026-11-10",
+      "window": "2y",
+      "bars": 501,
+      "labels": [],
+      "main_labels": [],
+      "metrics": {
+        "years": 1.99,
+        "surge_days": 4,
+        "surge_per_year": 2.0,
+        "crash_days": 4,
+        "limit_up_days": null,
+        "limit_down_days": null,
+        "after_surge_n": 3,
+        "after_surge_5d_mean_pct": 0.54,
+        "after_surge_5d_pos_rate": 0.67,
+        "after_surge_20d_mean_pct": 1.11,
+        "after_surge_20d_pos_rate": 0.67,
+        "above_ma60_pct_1y": 0.68,
+        "ma60_cross_count_1y": 13,
+        "autocorr_1d_1y": 0.02,
+        "ret_1y_pct": 39.56,
+        "longest_up_streak": 14,
+        "vol_annual_pct_1y": 68.97,
+        "max_drawdown_1y_pct": -57.26,
+        "gap3_days_rate_1y": 0.27,
+        "volume_spike_days_1y": 1,
+        "volume_spike_up_rate": 1.0,
+        "upper_shadow_days_rate_1y": 0.08,
+        "close_position_mean_1y": 0.52,
+        "top5_gain_share_pct_1y": 13.39
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 4회(연 2.0회), 급락일(−10%↓) 4회",
+        "급등 뒤 5거래일 평균 +0.5%, 플러스 비율 67% · 20거래일 평균 +1.1% (표본 3회)",
+        "최근 1년 60일선 위 68%(교차 13회), 1년 수익률 +39.6%, 하루 수익률 자기상관 +0.02, 최장 연속 상승 14일",
+        "연환산 변동성 69%, 1년 최대 낙폭 -57.3%, 3%↑ 갭 발생일 27%",
+        "거래량 3배↑ 급증일 1회, 그날 상승 100%",
+        "윗꼬리 긴 날 8%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 13%"
       ]
     }
   },

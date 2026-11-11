@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T14:06:59Z",
+  "generated_at": "2026-11-11T14:28:53Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3760,6 +3760,69 @@
       },
       "new": true,
       "name_hint": "NAVER Corporation"
+    },
+    "LRCX": {
+      "name": "",
+      "market": "us",
+      "symbol": "LRCX",
+      "as_of": "2026-11-10",
+      "close": 222.39,
+      "chg_1d_pct": 0.49,
+      "ma5": 210.154,
+      "ma20": 240.9875,
+      "ma60": 286.3,
+      "ma120": 310.634,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -7.72,
+      "pct_vs_ma120": -28.41,
+      "rsi14": 39.77,
+      "stoch_k14": 49.97,
+      "volume": 11584000.0,
+      "volume_avg20": 13854750.0,
+      "volume_ratio20": 0.84,
+      "high52": 433.33,
+      "low52": 139.59,
+      "pct_from_high52": -48.68,
+      "pct_from_low52": 59.32,
+      "ret_1m_pct": -28.16,
+      "ret_3m_pct": -31.81,
+      "ret_6m_pct": -23.11,
+      "bars": 501,
+      "score": {
+        "met": 1,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": false
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "Lam Research Corporation"
     }
   }
 }
