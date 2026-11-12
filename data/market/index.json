@@ -2,6 +2,92 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.12",
+      "krDate": "2026-11-12",
+      "usDate": "2026-11-11",
+      "wtiDate": "2026-11-11",
+      "collectedAt": "2026-11-12T15:30:09.688Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,342.73",
+          "chg": -0.61
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "696.53",
+          "chg": -1.22
+        },
+        {
+          "name": "원/달러",
+          "value": "1,335.50",
+          "chg": -0.15
+        },
+        {
+          "name": "S&P500",
+          "value": "7,619.38",
+          "chg": 1.31
+        },
+        {
+          "name": "나스닥",
+          "value": "25,466.19",
+          "chg": 1.6
+        },
+        {
+          "name": "VIX",
+          "value": "17.49",
+          "chg": -10.12
+        },
+        {
+          "name": "미국채 10년",
+          "value": "4.998",
+          "chg": 0.015,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "86.53",
+          "chg": 0.57
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 4123
+        },
+        {
+          "name": "기관",
+          "amount": -6624
+        },
+        {
+          "name": "개인",
+          "amount": -2689
+        }
+      ],
+      "comment": "젠슨 황 리스크와 옵션 만기 부담에 코스피·코스닥 하락 마감",
+      "keywords": [
+        "명예박사",
+        "가구 박람회",
+        "실적 개선",
+        "CEO 해임",
+        "명예박사학위",
+        "IR 대상"
+      ],
+      "mood": "강보합 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-12T20:01:29+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5663"
+        }
+      }
+    },
+    {
       "date": "11.11",
       "krDate": "2026-11-11",
       "usDate": "2026-11-10",
