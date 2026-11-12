@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T02:40:04Z",
+  "generated_at": "2026-11-12T15:32:33Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -2069,31 +2069,31 @@
       "name": "크리스퍼 테라퓨틱스",
       "market": "us",
       "symbol": "CRSP",
-      "as_of": "2026-11-06",
-      "close": 50.07,
-      "chg_1d_pct": 3.11,
-      "ma5": 50.077,
-      "ma20": 50.6548,
-      "ma60": 53.9761,
-      "ma120": 53.1037,
+      "as_of": "2026-11-11",
+      "close": 45.75,
+      "chg_1d_pct": 1.33,
+      "ma5": 47.914,
+      "ma20": 50.1083,
+      "ma60": 53.6451,
+      "ma120": 53.0612,
       "ma_order": "혼조",
-      "pct_vs_ma20": -1.15,
-      "pct_vs_ma120": -5.71,
-      "rsi14": 45.97,
-      "stoch_k14": 32.03,
-      "volume": 1234300.0,
-      "volume_avg20": 1375205.0,
-      "volume_ratio20": 0.9,
+      "pct_vs_ma20": -8.7,
+      "pct_vs_ma120": -13.78,
+      "rsi14": 37.64,
+      "stoch_k14": 11.12,
+      "volume": 2676800.0,
+      "volume_avg20": 1494745.0,
+      "volume_ratio20": 1.79,
       "high52": 61.89,
       "low52": 44.34,
-      "pct_from_high52": -19.1,
-      "pct_from_low52": 12.92,
-      "ret_1m_pct": -0.73,
-      "ret_3m_pct": -6.43,
-      "ret_6m_pct": -8.68,
+      "pct_from_high52": -26.08,
+      "pct_from_low52": 3.18,
+      "ret_1m_pct": -8.68,
+      "ret_3m_pct": -15.26,
+      "ret_6m_pct": -13.27,
       "bars": 501,
       "score": {
-        "met": 1,
+        "met": 2,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -2115,13 +2115,15 @@
           },
           {
             "label": "거래량 ≥ 20일 평균",
-            "ok": false
+            "ok": true
           }
         ]
       },
       "heat": {
         "over": [],
-        "under": [],
+        "under": [
+          "스토캐스틱 %K(14)"
+        ],
         "total": 3,
         "unknown": 0
       }
