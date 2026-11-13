@@ -2,6 +2,92 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.13",
+      "krDate": "2026-11-13",
+      "usDate": "2026-11-12",
+      "wtiDate": "2026-11-12",
+      "collectedAt": "2026-11-13T18:34:22.821Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "5,290.53",
+          "chg": -0.98
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "699.66",
+          "chg": 0.45
+        },
+        {
+          "name": "원/달러",
+          "value": "1,337.60",
+          "chg": 0.08
+        },
+        {
+          "name": "S&P500",
+          "value": "7,592.40",
+          "chg": -0.35
+        },
+        {
+          "name": "나스닥",
+          "value": "25,366.09",
+          "chg": -0.39
+        },
+        {
+          "name": "VIX",
+          "value": "18.70",
+          "chg": 6.92
+        },
+        {
+          "name": "미국채 10년",
+          "value": "5.103",
+          "chg": 0.105,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "88.74",
+          "chg": 2.55
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -5418
+        },
+        {
+          "name": "기관",
+          "amount": -59
+        },
+        {
+          "name": "개인",
+          "amount": 143
+        }
+      ],
+      "comment": "외국인 매도 전환에 코스피 5,500선 터치 뒤 하락 마감",
+      "keywords": [
+        "라면 수출",
+        "코스피",
+        "제조동 준공",
+        "실적 개선",
+        "영업이익",
+        "제조동"
+      ],
+      "mood": "약보합 · 경계",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-13T20:01:28+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5687"
+        }
+      }
+    },
+    {
       "date": "11.12",
       "krDate": "2026-11-12",
       "usDate": "2026-11-11",
