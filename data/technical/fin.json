@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T15:32:36Z",
+  "generated_at": "2026-11-14T06:35:29Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -299,30 +299,30 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+4.4%"
+            "value": "+30.9%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": true,
-            "value": "적자 축소"
+            "value": "흑자 전환"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": false,
-            "value": "-10.7억"
+            "value": "-17.9억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": false,
-            "value": "-12.4억"
+            "value": "-20.4억"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": true,
-            "value": "62.1%"
+            "value": "97.0%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 1,
@@ -1570,37 +1570,37 @@
       "symbol": "011070.KS",
       "financial": false,
       "fundamental": {
-        "met": 5,
+        "met": 3,
         "total": 5,
         "unknown": 0,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+40.5%"
+            "value": "+18.6%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
-            "ok": true,
-            "value": "+2057.3%"
+            "ok": false,
+            "value": "-53.4%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "8,506.3억"
+            "value": "1.1조"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "857.4억"
+            "value": "1,945.9억"
           },
           {
             "label": "부채비율 100% 이하",
-            "ok": true,
-            "value": "87.2%"
+            "ok": false,
+            "value": "100.1%"
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 1,
@@ -1861,7 +1861,7 @@
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": true,
-            "value": "+27.4%"
+            "value": "+10.5%"
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
@@ -1871,12 +1871,12 @@
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": false,
-            "value": "-155.9억"
+            "value": "-582.8억"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": false,
-            "value": "-185.8억"
+            "value": "-615.1억"
           },
           {
             "label": "부채비율 100% 이하",
@@ -1884,7 +1884,7 @@
             "value": null
           }
         ],
-        "as_of": "2026-06-30"
+        "as_of": "2026-09-30"
       },
       "moat": {
         "met": 2,
@@ -4193,7 +4193,7 @@
       }
     },
     "035420": {
-      "name": "",
+      "name": "네이버",
       "symbol": "035420.KS",
       "financial": false,
       "fundamental": {
@@ -4264,7 +4264,7 @@
       }
     },
     "LRCX": {
-      "name": "",
+      "name": "램리서치(LRCX)",
       "symbol": "LRCX",
       "financial": false,
       "fundamental": {
