@@ -2,6 +2,92 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.17",
+      "krDate": "2026-11-17",
+      "usDate": "2026-11-16",
+      "wtiDate": "2026-11-16",
+      "collectedAt": "2026-11-17T07:04:37.370Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "4,968.48",
+          "chg": -2.59
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "650.06",
+          "chg": -2.34
+        },
+        {
+          "name": "원/달러",
+          "value": "1,337.10",
+          "chg": 0.04
+        },
+        {
+          "name": "S&P500",
+          "value": "7,416.59",
+          "chg": -1.92
+        },
+        {
+          "name": "나스닥",
+          "value": "24,509.76",
+          "chg": -2.49
+        },
+        {
+          "name": "VIX",
+          "value": "22.91",
+          "chg": 18.7
+        },
+        {
+          "name": "미국채 10년",
+          "value": "5.121",
+          "chg": -0.033,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "85.72",
+          "chg": -3.21
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -14459
+        },
+        {
+          "name": "기관",
+          "amount": 5361
+        },
+        {
+          "name": "개인",
+          "amount": 4291
+        }
+      ],
+      "comment": "AI 투자 우려와 외국인 매도에 코스피 5000선 붕괴",
+      "keywords": [
+        "비트코인",
+        "유류할증료",
+        "외국인 매도",
+        "김장 비용",
+        "세계회계사대회",
+        "테마 매장"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-17T16:00:59+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5735"
+        }
+      }
+    },
+    {
       "date": "11.13",
       "krDate": "2026-11-13",
       "usDate": "2026-11-12",
