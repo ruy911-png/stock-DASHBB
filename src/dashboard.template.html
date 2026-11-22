@@ -2324,7 +2324,7 @@ class Component extends DCLogic {
     const entry = hist[selIdx];
     if (!entry || !entry.flows || !entry.flows[idx]) return;
     const cur = entry.flows[idx];
-    const newAmountStr = prompt(cur.name + ' 순매수(억원) 입력, 예: 27742 또는 -25429', String(cur.amount));
+    const newAmountStr = prompt(cur.name + ' 순매수(억원) 입력, 예: 27742 또는 -25429', cur.amount == null ? '' : String(cur.amount));
     if (newAmountStr === null) return;
     const cleaned = String(newAmountStr).replace(/[^0-9.-]/g, '');
     const newAmount = parseFloat(cleaned);
@@ -3839,16 +3839,24 @@ SEPA + Trend + VCP + Pivot + Extension + Stop + **R/R ≥ 2** 모두 통과.
       };
     });
     const homeIndices = indices.slice(0, 6);
-    const flowMax = Math.max(...mk.flows.map(f => Math.abs(f.amount)), 1);
-    const flows = mk.flows.map((f, idx) => ({
-      name: f.name,
-      amount: (f.amount >= 0 ? '+' : '−') + this.fmt(Math.abs(f.amount)),
-      col: f.amount >= 0 ? UP : DOWN,
-      lightCol: f.amount >= 0 ? '#FF9A9A' : '#8FB6FF',
-      width: (Math.abs(f.amount) / flowMax * 100).toFixed(0) + '%',
-      justify: f.amount >= 0 ? 'flex-start' : 'flex-end',
-      onEdit: () => this.editFlowValue(idx),
-    }));
+    // amount=null = 미확인(네이버 브리핑에 수급 카드가 없던 날, 2026-11-22) → 회색 '미확인', 막대 없음
+    const flowKnown = f => f.amount !== null && f.amount !== undefined && f.amount !== '' && Number.isFinite(Number(f.amount));
+    const flowMax = Math.max(...mk.flows.filter(flowKnown).map(f => Math.abs(Number(f.amount))), 1);
+    const flows = mk.flows.map((f, idx) => {
+      if (!flowKnown(f)) {
+        return { name: f.name, amount: '미확인', col: '#9A9AAC', lightCol: 'rgba(255,255,255,.55)', width: '0%', justify: 'flex-start', onEdit: () => this.editFlowValue(idx) };
+      }
+      const a = Number(f.amount);
+      return {
+        name: f.name,
+        amount: (a >= 0 ? '+' : '−') + this.fmt(Math.abs(a)),
+        col: a >= 0 ? UP : DOWN,
+        lightCol: a >= 0 ? '#FF9A9A' : '#8FB6FF',
+        width: (Math.abs(a) / flowMax * 100).toFixed(0) + '%',
+        justify: a >= 0 ? 'flex-start' : 'flex-end',
+        onEdit: () => this.editFlowValue(idx),
+      };
+    });
     const secMax = Math.max(...this.market.sectors.map(s => Math.abs(s.pct)), 1);
     const sectors = this.market.sectors.map(s => ({
       name: s.name,

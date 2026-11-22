@@ -134,23 +134,27 @@ export async function withEarlierBriefings(payload, targetDate, fetchDetail, max
 export function extractBriefing(payload, targetDate) {
   const result = payload?.result;
   if (!result || result.briefingDate !== targetDate) throw new Error('AI 브리핑 기준일이 국장 기준일과 다릅니다.');
+  // 2026-11-19부터 네이버 AI 브리핑에 수급(investor_flow_combined_bar)·키워드(keyword_tags) 카드가 빠진 글이 나와
+  // 수집 전체가 멈췄다(지수까지 4일 미갱신). 사용자 결정 2026-11-22: 수급이 없으면 amount=null('미확인')로 두고
+  // 나머지(지수·환율·코멘트)는 계속 수집한다. 카드가 다시 생기면 자동으로 숫자가 채워진다.
   const flowVisual = (result.visuals || []).find(item => item.type === 'investor_flow_combined_bar');
   const kospiFlow = flowVisual?.data?.find(item => item.market === 'KOSPI');
-  if (!Array.isArray(kospiFlow?.flows)) {
-    const visualTypes = (result.visuals || []).map(item => item.type);
-    const debugDump = JSON.stringify(flowVisual ?? null).slice(0, 1500);
-    throw new Error(`AI 브리핑에서 코스피 투자자 수급을 찾지 못했습니다. (visuals 타입 목록: ${JSON.stringify(visualTypes)}, flowVisual 덤프: ${debugDump})`);
-  }
   const actorNames = { FOREIGN: '외국인', INSTITUTIONAL: '기관', INDIVIDUAL: '개인' };
-  const flowMap = new Map(kospiFlow.flows.map(item => [actorNames[item.actor], numberValue(item.amount, `${item.actor} 수급`) / 100000000]));
+  const flowMap = new Map((Array.isArray(kospiFlow?.flows) ? kospiFlow.flows : [])
+    .map(item => [actorNames[item.actor], numberValue(item.amount, `${item.actor} 수급`) / 100000000]));
   const flows = ['외국인', '기관', '개인'].map(name => {
     const amount = flowMap.get(name);
-    if (!Number.isFinite(amount)) throw new Error(`AI 브리핑에서 ${name} 수급을 찾지 못했습니다.`);
-    return { name, amount };
+    return { name, amount: Number.isFinite(amount) ? amount : null };
   });
   const keywordVisual = (result.visuals || []).find(item => item.type === 'keyword_tags');
   const keywords = (keywordVisual?.data || []).map(item => item.keyword).filter(Boolean).slice(0, 6);
-  if (!keywords.length) throw new Error('AI 브리핑에서 오늘의 키워드를 찾지 못했습니다.');
+  const missing = [];
+  if (flows.some(item => item.amount === null)) missing.push('코스피 투자자 수급');
+  if (!keywords.length) missing.push('오늘의 키워드');
+  if (missing.length) {
+    const visualTypes = (result.visuals || []).map(item => item.type);
+    console.warn(`경고: AI 브리핑(id ${result.id})에 ${missing.join('·')}이(가) 없어 미확인으로 둡니다. (visuals 타입 목록: ${JSON.stringify(visualTypes)})`);
+  }
   const generatedAt = result.briefingMeta?.generatedAt || `${targetDate}T${String(result.briefingHour).padStart(2, '0')}:00:00`;
   const publishedAt = /(?:Z|[+-]\d{2}:\d{2})$/.test(generatedAt) ? generatedAt : `${generatedAt}+09:00`;
   return {
@@ -158,6 +162,7 @@ export function extractBriefing(payload, targetDate) {
     comment: result.title,
     keywords,
     flows,
+    complete: !missing.length,
     publishedDate: result.briefingDate,
     publishedAt,
     url: new URL(`/briefing/market/posts/${result.id}`, urls.home).href,
@@ -302,17 +307,21 @@ async function main() {
   }
   const briefingItems = await withEarlierBriefings(briefingList, krDate, id => request(`${urls.briefingDetail}?id=${id}`));
   const briefingCandidates = selectClosingBriefing(briefingItems, krDate);
+  // 수급·키워드가 다 있는 후보를 우선 고르고, 없으면 선호 순서상 첫 후보를 수급 '미확인'으로 쓴다.
   let briefing = null;
+  let fallbackBriefing = null;
   let briefingError = null;
   for (const candidate of briefingCandidates) {
     try {
       const briefingPayload = await request(`${urls.briefingDetail}?id=${candidate.id}`);
-      briefing = extractBriefing(briefingPayload, candidate.briefingDate);
-      break;
+      const parsed = extractBriefing(briefingPayload, candidate.briefingDate);
+      if (parsed.complete) { briefing = parsed; break; }
+      fallbackBriefing ??= parsed;
     } catch (error) {
       briefingError = error;
     }
   }
+  briefing ??= fallbackBriefing;
   if (!briefing) throw briefingError || new Error('AI 브리핑 후보 중 유효한 항목을 찾지 못했습니다.');
   const briefingDateOk = briefing.publishedDate === krDate || briefing.publishedDate === addDays(krDate, 1);
   if (kosdaqDate !== krDate || fxDate !== krDate || !briefingDateOk) {
