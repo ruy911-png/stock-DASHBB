@@ -2,6 +2,90 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.23",
+      "krDate": "2026-11-23",
+      "usDate": "2026-11-20",
+      "wtiDate": "2026-11-20",
+      "collectedAt": "2026-11-23T10:19:33.070Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "4,708.54",
+          "chg": -3.31
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "635.45",
+          "chg": -1.58
+        },
+        {
+          "name": "원/달러",
+          "value": "1,345.50",
+          "chg": 0.04
+        },
+        {
+          "name": "S&P500",
+          "value": "6,910.39",
+          "chg": -3.7
+        },
+        {
+          "name": "나스닥",
+          "value": "22,617.73",
+          "chg": -5.28
+        },
+        {
+          "name": "VIX",
+          "value": "35.89",
+          "chg": 26.2
+        },
+        {
+          "name": "미국채 10년",
+          "value": "4.912",
+          "chg": -0.14,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "83.98",
+          "chg": 0.93
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": -2515
+        },
+        {
+          "name": "기관",
+          "amount": 1779
+        },
+        {
+          "name": "개인",
+          "amount": -3584
+        }
+      ],
+      "comment": "매도 사이드카 발동 속 반도체 약세, 코스피 4700선 후퇴",
+      "keywords": [
+        "매도 사이드카 발동",
+        "반도체 약세",
+        "코스피"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-23T19:00:27+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5836",
+          "keywordsFrom": "title"
+        }
+      }
+    },
+    {
       "date": "11.18",
       "krDate": "2026-11-18",
       "usDate": "2026-11-17",
