@@ -118,6 +118,15 @@ assert.deepEqual(briefing.flows, [
   { name: '기관', amount: 13744 },
   { name: '개인', amount: -16421 },
 ]);
+// 2026-11-19~: 수급·키워드 카드가 없는 브리핑 → 실패하지 않고 수급 null(미확인)·키워드 빈 배열, complete=false
+const noFlow = extractBriefing({ result: { id: 9001, title: '코스피 상승 마감', briefingDate: '2026-11-20', briefingHour: '20',
+  visuals: [{ type: 'index_card' }, { type: 'general_stock_card' }, { type: 'horizontal_indicator_card' }] } }, '2026-11-20');
+assert.deepEqual(noFlow.flows, [
+  { name: '외국인', amount: null }, { name: '기관', amount: null }, { name: '개인', amount: null },
+]);
+assert.deepEqual(noFlow.keywords, []);
+assert.equal(noFlow.complete, false);
+assert.equal(briefing.complete, true);
 assert.deepEqual(vixFromHistory('DATE,OPEN,HIGH,LOW,CLOSE\n07/17/2026,18.01,19.50,17.68,18.77\n07/20/2026,18.90,18.94,17.41,18.65\n', '2026-07-20'), {
   name: 'VIX', value: '18.65', chg: -0.64,
 });

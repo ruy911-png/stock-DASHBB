@@ -61,12 +61,13 @@ payload.entries.forEach((entry, index) => {
 
   exactNames(entry.flows, flowNames, 'flows', position);
   entry.flows.forEach((item, itemIndex) => {
-    if (!Number.isFinite(Number(item.amount))) fail(`${position}.flows[${itemIndex}].amount가 숫자가 아닙니다.`);
+    // amount=null은 '미확인'(네이버 브리핑에 수급 카드가 없던 날, 2026-11-22 결정)
+    if (item.amount !== null && !Number.isFinite(Number(item.amount))) fail(`${position}.flows[${itemIndex}].amount가 숫자가 아닙니다.`);
   });
 
   if (typeof entry.comment !== 'string' || !entry.comment.trim()) fail(`${position}.comment가 비었습니다.`);
-  if (!Array.isArray(entry.keywords) || entry.keywords.length < 1 || entry.keywords.length > 6 || entry.keywords.some(word => typeof word !== 'string' || !word.trim())) {
-    fail(`${position}.keywords는 1~6개의 문자열이어야 합니다.`);
+  if (!Array.isArray(entry.keywords) || entry.keywords.length > 6 || entry.keywords.some(word => typeof word !== 'string' || !word.trim())) {
+    fail(`${position}.keywords는 0~6개의 문자열이어야 합니다.`);
   }
   if (typeof entry.mood !== 'string' || !entry.mood.trim() || typeof entry.moodUp !== 'boolean') {
     fail(`${position}의 mood 또는 moodUp이 올바르지 않습니다.`);
