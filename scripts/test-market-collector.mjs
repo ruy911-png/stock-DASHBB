@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { titleKeywords } from './title-keywords.mjs';
 import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings, yieldFromHistory, yahooSymbols, YIELD_NAME, US_INDEX_NAMES } from './collect-market-data.mjs';
 
 // 야후 일봉 → 직전에 끝난 정규장: 뉴욕 16시 전의 '오늘' 봉은 장중이라 빼고, now 뒤의 봉은 보지 않는다
@@ -119,12 +120,14 @@ assert.deepEqual(briefing.flows, [
   { name: '개인', amount: -16421 },
 ]);
 // 2026-11-19~: 수급·키워드 카드가 없는 브리핑 → 실패하지 않고 수급 null(미확인)·키워드 빈 배열, complete=false
-const noFlow = extractBriefing({ result: { id: 9001, title: '코스피 상승 마감', briefingDate: '2026-11-20', briefingHour: '20',
+const noFlow = extractBriefing({ result: { id: 9001, title: '엔비디아 호실적에 반도체 강세, 코스피 5,067선 회복', briefingDate: '2026-11-20', briefingHour: '20',
   visuals: [{ type: 'index_card' }, { type: 'general_stock_card' }, { type: 'horizontal_indicator_card' }] } }, '2026-11-20');
 assert.deepEqual(noFlow.flows, [
   { name: '외국인', amount: null }, { name: '기관', amount: null }, { name: '개인', amount: null },
 ]);
-assert.deepEqual(noFlow.keywords, []);
+assert.deepEqual(noFlow.keywords, ['엔비디아 호실적', '반도체 강세', '코스피']);
+assert.equal(noFlow.keywordsFrom, 'title');
+assert.equal(briefing.keywordsFrom, 'naver');
 assert.equal(noFlow.complete, false);
 assert.equal(briefing.complete, true);
 assert.deepEqual(vixFromHistory('DATE,OPEN,HIGH,LOW,CLOSE\n07/17/2026,18.01,19.50,17.68,18.77\n07/20/2026,18.90,18.94,17.41,18.65\n', '2026-07-20'), {
@@ -241,3 +244,10 @@ assert.throws(
 }
 
 console.log('시황 자동수집 파서 검증 완료');
+
+// 제목 키워드 추출 규칙(scripts/title-keywords.mjs)
+assert.deepEqual(titleKeywords('반도체는 버티는데 2차전지는 밀리며 지수 하락 유지'), ['반도체', '2차전지', '지수 하락']);
+assert.deepEqual(titleKeywords('외국인·기관 동반 매도에 코스피 약세 마감'), ['외국인', '기관 동반 매도', '코스피 약세']);
+assert.deepEqual(titleKeywords('주주환원 기대에 삼성은 올랐지만 코스닥 매도 사이드카 충격'), ['주주환원 기대', '삼성', '코스닥 매도 사이드카']);
+assert.deepEqual(titleKeywords(''), []);
+console.log('제목 키워드 추출 테스트 통과');

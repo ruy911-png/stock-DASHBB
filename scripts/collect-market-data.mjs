@@ -1,3 +1,4 @@
+import { titleKeywords } from './title-keywords.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -147,13 +148,16 @@ export function extractBriefing(payload, targetDate) {
     return { name, amount: Number.isFinite(amount) ? amount : null };
   });
   const keywordVisual = (result.visuals || []).find(item => item.type === 'keyword_tags');
-  const keywords = (keywordVisual?.data || []).map(item => item.keyword).filter(Boolean).slice(0, 6);
+  const tagKeywords = (keywordVisual?.data || []).map(item => item.keyword).filter(Boolean).slice(0, 6);
+  // 키워드 카드가 없으면 브리핑 제목에서 규칙으로 뽑는다(scripts/title-keywords.mjs, 사용자 결정 2026-11-23)
+  const keywordsFrom = tagKeywords.length ? 'naver' : 'title';
+  const keywords = tagKeywords.length ? tagKeywords : titleKeywords(result.title);
   const missing = [];
   if (flows.some(item => item.amount === null)) missing.push('코스피 투자자 수급');
-  if (!keywords.length) missing.push('오늘의 키워드');
+  if (!tagKeywords.length) missing.push('오늘의 키워드 카드');
   if (missing.length) {
     const visualTypes = (result.visuals || []).map(item => item.type);
-    console.warn(`경고: AI 브리핑(id ${result.id})에 ${missing.join('·')}이(가) 없어 미확인으로 둡니다. (visuals 타입 목록: ${JSON.stringify(visualTypes)})`);
+    console.warn(`경고: AI 브리핑(id ${result.id})에 ${missing.join('·')}이(가) 없습니다(수급은 미확인, 키워드는 제목에서 추출). (visuals 타입 목록: ${JSON.stringify(visualTypes)})`);
   }
   const generatedAt = result.briefingMeta?.generatedAt || `${targetDate}T${String(result.briefingHour).padStart(2, '0')}:00:00`;
   const publishedAt = /(?:Z|[+-]\d{2}:\d{2})$/.test(generatedAt) ? generatedAt : `${generatedAt}+09:00`;
@@ -161,6 +165,7 @@ export function extractBriefing(payload, targetDate) {
     title: result.title,
     comment: result.title,
     keywords,
+    keywordsFrom,
     flows,
     complete: !missing.length,
     publishedDate: result.briefingDate,
@@ -376,6 +381,7 @@ async function main() {
         provider: '네이버페이 증권 AI 브리핑',
         publishedAt: briefing.publishedAt,
         url: briefing.url,
+        keywordsFrom: briefing.keywordsFrom, // naver = 브리핑 키워드 카드, title = 제목에서 규칙 추출
       },
     },
   };

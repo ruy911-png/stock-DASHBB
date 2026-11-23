@@ -36,6 +36,7 @@
 
 ### 자동머지 정책
 - **시황 자동수집**(`.github/workflows/collect-market-data.yml`, 사용자 결정 2026-10-05): 검증 통과 시 **PR 없이 main에 바로 커밋**한다. 예약(평일 20:20·21:20·22:20 KST) 또는 페이지의 '⚡ 시황 업데이트' 버튼으로 실행. (전에는 PR + `gh pr merge --auto`였으나 저장소의 "Allow auto-merge" 설정에 의존해 9/29부터 멈췄음 — #80) 미장이 열려 있으면 직전 정규장 종가를 야후·Cboe 이력에서 가져온다(직전 저장값 복사 금지). 일곱째 칸은 미국채 10년 금리(야후 ^TNX, 등락은 %p·소수 셋째 자리, 사용자 결정 2026-11-10 — 그 전 기록은 필라델피아 반도체 그대로)
+- **브리핑 카드 누락 대응**(2026-11-19~): 네이버 AI 브리핑에 수급·키워드 카드가 빠지는 날이 있다. 수급이 없으면 `amount: null`(화면 '미확인', 사용자 결정 2026-11-22), 키워드 카드가 없으면 브리핑 제목에서 규칙으로 구절을 뽑는다(`scripts/title-keywords.mjs`, `sources.briefing.keywordsFrom`=`naver`|`title`, 사용자 결정 2026-11-23). 국장 장중에 돌리면 'KOSPI 장마감 아님'으로 실패하는 것이 정상
 - **종목분석 오늘자 업데이트**(`.github/workflows/refresh-analyses.yml`, 사용자 결정 2026-10-05): 사용자가 페이지의 '오늘자로 업데이트' 버튼이나 Run workflow로 직접 실행한 것이므로, 검증(`npm run check` + `validate-analyses`) 통과 시 PR 없이 main에 바로 커밋한다. 절차는 `.claude/skills/refresh-analyses/SKILL.md`(PC에서도 `/refresh-analyses 005930,SCHW`로 같은 절차)
 - **종목 특성 갱신**(`.github/workflows/stock-profiles.yml`, 사용자 결정 2026-10-06): 코드만 계산하는 통계라 검증 통과 시 main에 바로 커밋. 토요일 09:20 KST 주 1회 + 수동 실행, 오늘자 업데이트 때도 해당 종목만 갱신
 - 그 외 모든 PR(종목분석 추가, 기능/레이아웃 수정 등)은 사용자가 명시적으로 요청할 때만 머지 — 임의로 자동머지하지 않음
