@@ -25,6 +25,7 @@
 - 미국주식 entry는 관례상 `price: 0, chg: 0` (실시간 가격은 이 파일이 아닌 별도 소스에서 주입됨)
 
 ### 파이프라인
+- **TDD**(사용자 결정 2026-11-23): 스크립트·수집기·검증기·템플릿 로직을 고칠 때는 ① 바라는 동작을 `scripts/test-*.mjs`에 실패하는 테스트로 먼저 쓰고 실패를 확인 → ② 통과하게 코드를 고치고 → ③ `npm run check` 통과 뒤 적용한다. 버그 수정은 그 버그를 재현하는 테스트부터. 새 테스트 파일은 `package.json`의 `check`에 연결한다. 데이터(분석 글·시황 값)만 바꾸는 작업은 해당 없음
 - `data/analyses-backup.json` 수정 → `npm run build` (src/dashboard.template.html → index.html) → `npm run check` (빌드 동기화 + 시황데이터 검증 + 수집기 테스트) 순으로 검증 후 커밋
 - 브랜치가 이미 머지된 상태면 `git fetch origin main && git checkout -B <branch> origin/main`로 재시작 후 이어서 작업 (머지된 브랜치에 새 커밋을 쌓지 않음)
 - 세션 인수인계는 `docs/handoff.md`(현재 상태·남은 일·절차). 새 세션은 먼저 읽고, 세션 끝에 갱신해 PR로 올린다 (사용자 결정 2026-10-07: 시작문을 짧게)
