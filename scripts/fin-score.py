@@ -72,8 +72,8 @@ def _pct(x: float) -> str:
 
 def _growth_item(label: str, s: pd.Series) -> dict:
     pair = _year_ago(s)
-    if pair is None:
-        return {"label": label, "ok": None, "value": None}
+    if pair is None:  # '확인 못 함'이면 value에 이유를 남긴다(2026-11-24)
+        return {"label": label, "ok": None, "value": "자료 없음" if s.empty else "1년 전 같은 분기 자료 없음"}
     now, before = pair
     if before <= 0:
         if now > 0:
@@ -99,10 +99,12 @@ def fundamental_score(qi: pd.DataFrame, qc: pd.DataFrame, qb: pd.DataFrame, fina
     items = [_growth_item("매출 전년 동기 대비 증가", rev), _growth_item("영업이익 전년 동기 대비 증가", op)]
     for label, s in (("영업현금흐름 플러스(최근 12개월)", ocf), ("잉여현금흐름 플러스(최근 12개월)", fcf)):
         v = _ttm(s)
-        items.append({"label": label, "ok": None if v is None else v > 0, "value": None if v is None else _amt(v)})
+        items.append({"label": label, "ok": None if v is None else v > 0, "value": _amt(v) if v is not None
+                      else ("자료 없음" if s.empty else "연속한 4분기 자료 없음")})
     l, e = _latest(liab), _latest(eq)
     if financial or l is None or e is None or e <= 0:  # 금융업은 예금·차입이 영업이라 부채비율이 의미 없다. 자본잠식도 계산 안 함
-        items.append({"label": "부채비율 100% 이하", "ok": None, "value": None})
+        why = "금융업이라 해당 없음" if financial else ("자료 없음" if l is None or e is None else "자기자본 마이너스로 계산 불가")
+        items.append({"label": "부채비율 100% 이하", "ok": None, "value": why})
     else:
         items.append({"label": "부채비율 100% 이하", "ok": l / e * 100 <= 100, "value": _pct(l / e * 100)})
     return _score(items, rev.index[0] if not rev.empty else None)
@@ -121,23 +123,33 @@ def moat_score(ai: pd.DataFrame, ab: pd.DataFrame, financial: bool = False) -> d
     def ratio(a: pd.Series, label: str, th: float, skip: bool) -> dict:
         x, r = _latest(a), _latest(rev)
         if skip or x is None or r is None or r <= 0:
-            return {"label": label, "ok": None, "value": None}
+            return {"label": label, "ok": None, "value": "금융업이라 해당 없음" if skip else "자료 없음"}
         v = x / r * 100
         return {"label": label, "ok": v >= th, "value": _pct(v)}
 
     d0 = rev.index[0] if not rev.empty else (ni.index[0] if not ni.empty else None)
     r0 = None if d0 is None else roe(d0)
-    items = [{"label": "ROE 15% 이상", "ok": None if r0 is None else r0 >= 15, "value": None if r0 is None else _pct(r0)},
+    def roe_why(d, prefix=""):
+        """ROE를 못 구한 이유(자기자본 자료 없음·마이너스)."""
+        e = eq.get(d)
+        if ni.get(d) is None:
+            return f"{prefix}순이익 자료 없음"
+        return f"{prefix}자기자본 자료 없음" if e is None else f"{prefix}자기자본 마이너스로 {'ROE ' if prefix else ''}계산 불가"
+
+    items = [{"label": "ROE 15% 이상", "ok": None if r0 is None else r0 >= 15,
+              "value": ("자료 없음" if d0 is None else roe_why(d0)) if r0 is None else _pct(r0)},
              ratio(op, "영업이익률 15% 이상", 15, financial), ratio(gp, "매출총이익률 40% 이상", 40, financial)]
     years = list(ni.index[:3])
     roes = [roe(d) for d in years]
     if len(years) < 3 or any(v is None for v in roes):
-        items.append({"label": "최근 3년 ROE 모두 10% 이상", "ok": None, "value": None})
+        why = (f"연간 자료 {len(years)}년뿐" if years else "자료 없음") if len(years) < 3 else \
+            ", ".join(roe_why(d, f"{d.year}년 ") for d, v in zip(years, roes) if v is None)
+        items.append({"label": "최근 3년 ROE 모두 10% 이상", "ok": None, "value": why})
     else:
         items.append({"label": "최근 3년 ROE 모두 10% 이상", "ok": all(v >= 10 for v in roes), "value": " · ".join(_pct(v) for v in roes)})
     rv = rev.iloc[:3]
     if len(rv) < 3 or rv.isna().any():
-        items.append({"label": "최근 3년 매출 연속 증가", "ok": None, "value": None})
+        items.append({"label": "최근 3년 매출 연속 증가", "ok": None, "value": f"연간 자료 {len(rv)}년뿐" if len(rv) else "자료 없음"})
     else:
         items.append({"label": "최근 3년 매출 연속 증가", "ok": bool(rv.iloc[0] > rv.iloc[1] > rv.iloc[2]),
                       "value": " → ".join(_amt(v) for v in reversed(rv.tolist()))})
@@ -203,6 +215,21 @@ def selftest() -> int:
     # 연간이 2년뿐이면 3년 조건은 확인 못 함
     m4 = moat_score(ai.iloc[:, :2], ab.iloc[:, :2])
     assert [i["ok"] for i in m4["items"]][3:] == [None, None]
+    # '확인 못 함'이면 이유를 value에 남긴다(사용자 요청 2026-11-24: 포티넷 3년 ROE가 왜 확인 못 함인지 안 보임)
+    def why(sc, label):
+        return next(i for i in sc["items"] if i["label"] == label)["value"]
+    neg = moat_score(ai, _frame({"Stockholders Equity": [300.0, 300, -50, 300]}, y))
+    assert neg["items"][3]["ok"] is None and why(neg, "최근 3년 ROE 모두 10% 이상") == "2023년 자기자본 마이너스로 ROE 계산 불가", neg
+    hole_eq = moat_score(ai, _frame({"Stockholders Equity": [300.0, None, 300, 300]}, y))
+    assert why(hole_eq, "최근 3년 ROE 모두 10% 이상") == "2024년 자기자본 자료 없음", hole_eq
+    assert why(m4, "최근 3년 ROE 모두 10% 이상") == "연간 자료 2년뿐" and why(m4, "최근 3년 매출 연속 증가") == "연간 자료 2년뿐", m4
+    assert why(moat_score(ai, _frame({"Stockholders Equity": [-10.0, 300, 300, 300]}, y)), "ROE 15% 이상") == "자기자본 마이너스로 계산 불가"
+    assert why(m3, "영업이익률 15% 이상") == "금융업이라 해당 없음" and why(m2, "매출총이익률 40% 이상") == "자료 없음"
+    assert why(f5, "부채비율 100% 이하") == "금융업이라 해당 없음"
+    assert why(f4, "부채비율 100% 이하") == "자기자본 마이너스로 계산 불가"
+    assert why(f4, "영업현금흐름 플러스(최근 12개월)") == "연속한 4분기 자료 없음"
+    assert why(f2, "영업이익 전년 동기 대비 증가") == "1년 전 같은 분기 자료 없음"
+    assert why(f6, "매출 전년 동기 대비 증가") == "자료 없음"
     # 최신 분기가 비어 있으면(10/30 BAC: 9월·6월 분기 매출이 NaN) 값이 있는 최근 분기로 본다
     gap = _frame({"Total Revenue": [None, None, 110.0, 100, 1, 1, 100], "Operating Income": [None, None, 22.0, 20, 1, 1, 20]},
                  ["2026-09-30", "2026-06-30", "2026-03-31", "2025-12-31", "2025-09-30", "2025-06-30", "2025-03-31"])
