@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T04:11:13Z",
+  "generated_at": "2026-11-24T04:17:43Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -581,31 +581,31 @@
       "name": "실리콘투",
       "market": "kosdaq",
       "symbol": "257720.KQ",
-      "as_of": "2026-11-20",
-      "close": 23200.0,
-      "chg_1d_pct": -4.13,
-      "ma5": 23710.0,
-      "ma20": 26450.0,
-      "ma60": 36240.0,
-      "ma120": 36517.0833,
+      "as_of": "2026-11-23",
+      "close": 23700.0,
+      "chg_1d_pct": 2.16,
+      "ma5": 23680.0,
+      "ma20": 26175.0,
+      "ma60": 35770.0,
+      "ma120": 36405.8333,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -12.29,
-      "pct_vs_ma120": -36.47,
-      "rsi14": 24.47,
-      "stoch_k14": 5.59,
-      "volume": 624088.0,
-      "volume_avg20": 782413.0,
-      "volume_ratio20": 0.8,
+      "pct_vs_ma20": -9.46,
+      "pct_vs_ma120": -34.9,
+      "rsi14": 28.23,
+      "stoch_k14": 12.35,
+      "volume": 813892.0,
+      "volume_avg20": 790500.0,
+      "volume_ratio20": 1.03,
       "high52": 54200.0,
       "low52": 23200.0,
-      "pct_from_high52": -57.2,
-      "pct_from_low52": 0.0,
-      "ret_1m_pct": -25.64,
-      "ret_3m_pct": -48.79,
-      "ret_6m_pct": -40.59,
-      "bars": 486,
+      "pct_from_high52": -56.27,
+      "pct_from_low52": 2.16,
+      "ret_1m_pct": -21.65,
+      "ret_3m_pct": -48.42,
+      "ret_6m_pct": -40.82,
+      "bars": 484,
       "score": {
-        "met": 0,
+        "met": 1,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -627,7 +627,7 @@
           },
           {
             "label": "거래량 ≥ 20일 평균",
-            "ok": false
+            "ok": true
           }
         ]
       },
@@ -635,7 +635,6 @@
         "over": [],
         "under": [
           "RSI(14)",
-          "20일선 이격도",
           "스토캐스틱 %K(14)"
         ],
         "total": 3,
