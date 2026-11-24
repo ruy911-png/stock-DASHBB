@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T07:44:35Z",
+  "generated_at": "2026-11-24T07:49:55Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -54,13 +54,13 @@
       "name": "포티넷",
       "market": "us",
       "symbol": "FTNT",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-23",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 2,
         "surge_per_year": 1.0,
         "crash_days": 2,
@@ -73,25 +73,25 @@
         "after_surge_20d_pos_rate": 0.5,
         "above_ma60_pct_1y": 0.67,
         "ma60_cross_count_1y": 24,
-        "autocorr_1d_1y": 0.1,
-        "ret_1y_pct": 56.23,
+        "autocorr_1d_1y": 0.09,
+        "ret_1y_pct": 67.99,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 49.58,
+        "vol_annual_pct_1y": 49.78,
         "max_drawdown_1y_pct": -38.98,
         "gap3_days_rate_1y": 0.04,
         "volume_spike_days_1y": 4,
         "volume_spike_up_rate": 0.5,
         "upper_shadow_days_rate_1y": 0.03,
-        "close_position_mean_1y": 0.56,
-        "top5_gain_share_pct_1y": 17.5
+        "close_position_mean_1y": 0.57,
+        "top5_gain_share_pct_1y": 17.2
       },
       "notes": [
         "2년 급등일(+10%↑) 2회(연 1.0회), 급락일(−10%↓) 2회",
         "급등 뒤 5거래일 평균 +4.5%, 플러스 비율 50% · 20거래일 평균 +15.9% (표본 2회)",
-        "최근 1년 60일선 위 67%(교차 24회), 1년 수익률 +56.2%, 하루 수익률 자기상관 +0.10, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 67%(교차 24회), 1년 수익률 +68.0%, 하루 수익률 자기상관 +0.09, 최장 연속 상승 8일",
         "연환산 변동성 50%, 1년 최대 낙폭 -39.0%, 3%↑ 갭 발생일 4%",
         "거래량 3배↑ 급증일 4회, 그날 상승 50%",
-        "윗꼬리 긴 날 3%, 종가의 일중 위치 평균 0.56(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
+        "윗꼬리 긴 날 3%, 종가의 일중 위치 평균 0.57(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "PCG": {
@@ -1963,9 +1963,9 @@
       "name": "스노우플레이크 (SNOW)",
       "market": "us",
       "symbol": "SNOW",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-23",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "박스권형"
       ],
@@ -1973,7 +1973,7 @@
         "박스권형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 7,
         "surge_per_year": 3.5,
         "crash_days": 3,
@@ -1985,26 +1985,26 @@
         "after_surge_20d_mean_pct": 11.59,
         "after_surge_20d_pos_rate": 0.71,
         "above_ma60_pct_1y": 0.46,
-        "ma60_cross_count_1y": 7,
-        "autocorr_1d_1y": 0.05,
-        "ret_1y_pct": 0.73,
+        "ma60_cross_count_1y": 6,
+        "autocorr_1d_1y": 0.04,
+        "ret_1y_pct": 10.88,
         "longest_up_streak": 12,
-        "vol_annual_pct_1y": 67.28,
+        "vol_annual_pct_1y": 67.49,
         "max_drawdown_1y_pct": -54.3,
         "gap3_days_rate_1y": 0.1,
         "volume_spike_days_1y": 8,
         "volume_spike_up_rate": 0.38,
         "upper_shadow_days_rate_1y": 0.13,
         "close_position_mean_1y": 0.49,
-        "top5_gain_share_pct_1y": 23.79
+        "top5_gain_share_pct_1y": 23.36
       },
       "notes": [
         "2년 급등일(+10%↑) 7회(연 3.5회), 급락일(−10%↓) 3회",
         "급등 뒤 5거래일 평균 -0.6%, 플러스 비율 43% · 20거래일 평균 +11.6% (표본 7회)",
-        "최근 1년 60일선 위 46%(교차 7회), 1년 수익률 +0.7%, 하루 수익률 자기상관 +0.05, 최장 연속 상승 12일",
+        "최근 1년 60일선 위 46%(교차 6회), 1년 수익률 +10.9%, 하루 수익률 자기상관 +0.04, 최장 연속 상승 12일",
         "연환산 변동성 67%, 1년 최대 낙폭 -54.3%, 3%↑ 갭 발생일 10%",
         "거래량 3배↑ 급증일 8회, 그날 상승 38%",
-        "윗꼬리 긴 날 13%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 24%"
+        "윗꼬리 긴 날 13%, 종가의 일중 위치 평균 0.49(0 저가~1 고가), 상승분의 상위 5일 집중도 23%"
       ]
     },
     "ONDS": {
@@ -2504,13 +2504,13 @@
       "name": "팰로앨토 네트웍스(Palo Alto Networks, PANW)",
       "market": "us",
       "symbol": "PANW",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-23",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [],
       "main_labels": [],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 3,
         "surge_per_year": 1.5,
         "crash_days": 0,
@@ -2523,24 +2523,24 @@
         "after_surge_20d_pos_rate": 0.67,
         "above_ma60_pct_1y": 0.51,
         "ma60_cross_count_1y": 8,
-        "autocorr_1d_1y": 0.09,
-        "ret_1y_pct": 71.75,
+        "autocorr_1d_1y": 0.08,
+        "ret_1y_pct": 90.97,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 52.84,
+        "vol_annual_pct_1y": 52.34,
         "max_drawdown_1y_pct": -28.75,
-        "gap3_days_rate_1y": 0.08,
-        "volume_spike_days_1y": 3,
+        "gap3_days_rate_1y": 0.09,
+        "volume_spike_days_1y": 2,
         "volume_spike_up_rate": 0.0,
         "upper_shadow_days_rate_1y": 0.04,
         "close_position_mean_1y": 0.55,
-        "top5_gain_share_pct_1y": 15.74
+        "top5_gain_share_pct_1y": 15.61
       },
       "notes": [
         "2년 급등일(+10%↑) 3회(연 1.5회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 -5.3%, 플러스 비율 0% · 20거래일 평균 +4.9% (표본 3회)",
-        "최근 1년 60일선 위 51%(교차 8회), 1년 수익률 +71.7%, 하루 수익률 자기상관 +0.09, 최장 연속 상승 8일",
-        "연환산 변동성 53%, 1년 최대 낙폭 -28.8%, 3%↑ 갭 발생일 8%",
-        "거래량 3배↑ 급증일 3회, 그날 상승 0%",
+        "최근 1년 60일선 위 51%(교차 8회), 1년 수익률 +91.0%, 하루 수익률 자기상관 +0.08, 최장 연속 상승 8일",
+        "연환산 변동성 52%, 1년 최대 낙폭 -28.8%, 3%↑ 갭 발생일 9%",
+        "거래량 3배↑ 급증일 2회, 그날 상승 0%",
         "윗꼬리 긴 날 4%, 종가의 일중 위치 평균 0.55(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
       ]
     },
