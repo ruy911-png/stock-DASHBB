@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T08:19:13Z",
+  "generated_at": "2026-11-24T14:40:43Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2258,9 +2258,9 @@
       "name": "모더나 (MRNA)",
       "market": "us",
       "symbol": "MRNA",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-23",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
         "급등 빈발형",
         "급등 후 반전형",
@@ -2274,7 +2274,7 @@
         "고변동형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 17,
         "surge_per_year": 8.6,
         "crash_days": 5,
@@ -2286,26 +2286,26 @@
         "after_surge_20d_mean_pct": -4.83,
         "after_surge_20d_pos_rate": 0.38,
         "above_ma60_pct_1y": 0.81,
-        "ma60_cross_count_1y": 14,
+        "ma60_cross_count_1y": 15,
         "autocorr_1d_1y": -0.14,
-        "ret_1y_pct": 706.45,
+        "ret_1y_pct": 848.48,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 194.38,
+        "vol_annual_pct_1y": 194.32,
         "max_drawdown_1y_pct": -34.16,
         "gap3_days_rate_1y": 0.13,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.67,
         "upper_shadow_days_rate_1y": 0.19,
-        "close_position_mean_1y": 0.52,
-        "top5_gain_share_pct_1y": 33.46
+        "close_position_mean_1y": 0.53,
+        "top5_gain_share_pct_1y": 33.06
       },
       "notes": [
         "2년 급등일(+10%↑) 17회(연 8.6회), 급락일(−10%↓) 5회",
         "급등 뒤 5거래일 평균 -2.1%, 플러스 비율 24% · 20거래일 평균 -4.8% (표본 17회)",
-        "최근 1년 60일선 위 81%(교차 14회), 1년 수익률 +706.5%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 81%(교차 15회), 1년 수익률 +848.5%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 10일",
         "연환산 변동성 194%, 1년 최대 낙폭 -34.2%, 3%↑ 갭 발생일 13%",
         "거래량 3배↑ 급증일 6회, 그날 상승 67%",
-        "윗꼬리 긴 날 19%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 33%"
+        "윗꼬리 긴 날 19%, 종가의 일중 위치 평균 0.53(0 저가~1 고가), 상승분의 상위 5일 집중도 33%"
       ]
     },
     "489790": {
