@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T07:55:02Z",
+  "generated_at": "2026-11-24T08:19:13Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2696,17 +2696,19 @@
       "name": "듀오링고(DUOL)",
       "market": "us",
       "symbol": "DUOL",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-23",
       "window": "2y",
-      "bars": 501,
+      "bars": 500,
       "labels": [
+        "박스권형",
         "되돌림형"
       ],
       "main_labels": [
+        "박스권형",
         "되돌림형"
       ],
       "metrics": {
-        "years": 1.99,
+        "years": 1.98,
         "surge_days": 6,
         "surge_per_year": 3.0,
         "crash_days": 3,
@@ -2720,21 +2722,21 @@
         "above_ma60_pct_1y": 0.51,
         "ma60_cross_count_1y": 8,
         "autocorr_1d_1y": -0.14,
-        "ret_1y_pct": -16.88,
+        "ret_1y_pct": -12.45,
         "longest_up_streak": 10,
-        "vol_annual_pct_1y": 63.97,
+        "vol_annual_pct_1y": 63.88,
         "max_drawdown_1y_pct": -56.94,
         "gap3_days_rate_1y": 0.07,
         "volume_spike_days_1y": 6,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.13,
         "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 15.72
+        "top5_gain_share_pct_1y": 15.66
       },
       "notes": [
         "2년 급등일(+10%↑) 6회(연 3.0회), 급락일(−10%↓) 3회",
         "급등 뒤 5거래일 평균 -3.2%, 플러스 비율 50% · 20거래일 평균 +8.4% (표본 6회)",
-        "최근 1년 60일선 위 51%(교차 8회), 1년 수익률 -16.9%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 10일",
+        "최근 1년 60일선 위 51%(교차 8회), 1년 수익률 -12.4%, 하루 수익률 자기상관 -0.14, 최장 연속 상승 10일",
         "연환산 변동성 64%, 1년 최대 낙폭 -56.9%, 3%↑ 갭 발생일 7%",
         "거래량 3배↑ 급증일 6회, 그날 상승 33%",
         "윗꼬리 긴 날 13%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 16%"
