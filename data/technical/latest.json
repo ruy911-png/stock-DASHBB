@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T04:17:43Z",
+  "generated_at": "2026-11-24T07:44:34Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -3863,6 +3863,69 @@
         "total": 3,
         "unknown": 0
       }
+    },
+    "012330": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "012330.KS",
+      "as_of": "2026-11-24",
+      "close": 359000.0,
+      "chg_1d_pct": 14.51,
+      "ma5": 338600.0,
+      "ma20": 347400.0,
+      "ma60": 371233.3333,
+      "ma120": 450512.5,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": 3.34,
+      "pct_vs_ma120": -20.31,
+      "rsi14": 52.71,
+      "stoch_k14": 79.39,
+      "volume": 346452.0,
+      "volume_avg20": 224112.0,
+      "volume_ratio20": 1.55,
+      "high52": 768000.0,
+      "low52": 288500.0,
+      "pct_from_high52": -53.26,
+      "pct_from_low52": 24.44,
+      "ret_1m_pct": 10.12,
+      "ret_3m_pct": -27.62,
+      "ret_6m_pct": -32.9,
+      "bars": 485,
+      "score": {
+        "met": 3,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": true
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "Hyundai Mobis Co.,Ltd"
     }
   }
 }

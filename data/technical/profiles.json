@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T04:17:43Z",
+  "generated_at": "2026-11-24T07:44:35Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -2977,6 +2977,56 @@
         "연환산 변동성 70%, 1년 최대 낙폭 -57.7%, 3%↑ 갭 발생일 27%",
         "거래량 3배↑ 급증일 1회, 그날 상승 100%",
         "윗꼬리 긴 날 8%, 종가의 일중 위치 평균 0.52(0 저가~1 고가), 상승분의 상위 5일 집중도 13%"
+      ]
+    },
+    "012330": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "012330.KS",
+      "as_of": "2026-11-24",
+      "window": "2y",
+      "bars": 485,
+      "labels": [
+        "고변동형",
+        "거래량 동반 상승형"
+      ],
+      "main_labels": [
+        "고변동형",
+        "거래량 동반 상승형"
+      ],
+      "metrics": {
+        "years": 1.92,
+        "surge_days": 8,
+        "surge_per_year": 4.2,
+        "crash_days": 3,
+        "limit_up_days": 0,
+        "limit_down_days": 0,
+        "after_surge_n": 7,
+        "after_surge_5d_mean_pct": -1.94,
+        "after_surge_5d_pos_rate": 0.43,
+        "after_surge_20d_mean_pct": -8.81,
+        "after_surge_20d_pos_rate": 0.29,
+        "above_ma60_pct_1y": 0.42,
+        "ma60_cross_count_1y": 14,
+        "autocorr_1d_1y": 0.03,
+        "ret_1y_pct": 19.67,
+        "longest_up_streak": 6,
+        "vol_annual_pct_1y": 71.96,
+        "max_drawdown_1y_pct": -59.18,
+        "gap3_days_rate_1y": 0.21,
+        "volume_spike_days_1y": 8,
+        "volume_spike_up_rate": 0.88,
+        "upper_shadow_days_rate_1y": 0.15,
+        "close_position_mean_1y": 0.47,
+        "top5_gain_share_pct_1y": 21.52
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 8회(연 4.2회), 급락일(−10%↓) 3회, 상한가 0회·하한가 0회",
+        "급등 뒤 5거래일 평균 -1.9%, 플러스 비율 43% · 20거래일 평균 -8.8% (표본 7회)",
+        "최근 1년 60일선 위 42%(교차 14회), 1년 수익률 +19.7%, 하루 수익률 자기상관 +0.03, 최장 연속 상승 6일",
+        "연환산 변동성 72%, 1년 최대 낙폭 -59.2%, 3%↑ 갭 발생일 21%",
+        "거래량 3배↑ 급증일 8회, 그날 상승 88%",
+        "윗꼬리 긴 날 15%, 종가의 일중 위치 평균 0.47(0 저가~1 고가), 상승분의 상위 5일 집중도 22%"
       ]
     }
   },
