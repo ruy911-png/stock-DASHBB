@@ -279,8 +279,22 @@ export async function fetchUsFromHistory(now = new Date()) {
   return { usDate, usIndices: [byName['S&P500'], byName['나스닥'], vixIndex, await fetchYield(usDate)] };
 }
 
+// 수급 칸이 있는데 값이 비어 있으면(null) 미확인. flows가 아예 없는 옛 항목은 미확인으로 보지 않는다
+const flowsKnown = entry => !(Array.isArray(entry?.flows)
+  && entry.flows.some(item => item.amount === null || item.amount === undefined));
+
+// 2026-11-25 버그: 수급 카드가 없는 16시 브리핑으로 먼저 저장되면 20시 이후 예약 실행이 '이미 수집됨'으로 건너뛰어
+// 수급이 끝까지 미확인으로 남았다. 수급이 미확인인 항목은 아직 수집이 끝나지 않은 것으로 본다.
 export function alreadyCollected(payload, krDate) {
-  return payload.entries.some(item => item.krDate === krDate);
+  return payload.entries.some(item => item.krDate === krDate && flowsKnown(item));
+}
+
+// 같은 날짜 항목이 없으면 맨 앞에 추가, 있는데 수급이 미확인이고 새 수집에 수급이 있으면 그 자리를 교체한다.
+export function mergeEntry(entries, entry) {
+  const index = entries.findIndex(item => item.krDate === entry.krDate);
+  if (index < 0) return { entries: [entry, ...entries], changed: true };
+  if (flowsKnown(entries[index]) || !flowsKnown(entry)) return { entries, changed: false };
+  return { entries: entries.map((item, i) => (i === index ? entry : item)), changed: true };
 }
 
 function writeOutput(name, value) {
@@ -386,7 +400,8 @@ async function main() {
     },
   };
 
-  const exists = payload.entries.some(item => item.krDate === krDate);
+  const merged = mergeEntry(payload.entries, entry);
+  const exists = !merged.changed;
   writeOutput('kr_date', krDate);
   writeOutput('us_date', usDate);
   writeOutput('wti_date', wtiDate);
@@ -395,14 +410,14 @@ async function main() {
 
   if (dryRun) {
     console.log(JSON.stringify(entry, null, 2));
-    console.log(exists ? `드라이런: ${krDate} 데이터가 이미 있습니다.` : `드라이런: ${krDate} 데이터를 추가할 수 있습니다.`);
+    console.log(exists ? `드라이런: ${krDate} 데이터가 이미 있습니다(수급도 아직 미확인이면 그대로 둠).` : `드라이런: ${krDate} 데이터를 추가·갱신할 수 있습니다.`);
     return;
   }
   if (exists) {
-    console.log(`${krDate} 시황 데이터가 이미 있어 변경하지 않았습니다.`);
+    console.log(`${krDate} 시황 데이터가 이미 있어 변경하지 않았습니다. (새 브리핑에도 수급이 없으면 미확인 그대로)`);
     return;
   }
-  payload.entries.unshift(entry);
+  payload.entries = merged.entries;
   fs.writeFileSync(dataPath, `${JSON.stringify(payload, null, 2)}\n`);
   console.log(`${krDate} 시황 데이터를 추가했습니다. (미장 ${usDate}, WTI ${wtiDate})`);
 }
