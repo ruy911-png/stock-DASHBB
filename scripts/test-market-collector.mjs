@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { titleKeywords } from './title-keywords.mjs';
-import { addDays, alreadyCollected, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings, yieldFromHistory, yahooSymbols, YIELD_NAME, US_INDEX_NAMES } from './collect-market-data.mjs';
+import { addDays, alreadyCollected, mergeEntry, carryForwardUsIndices, extractBriefing, marketMood, selectClosingBriefing, usFromHistory, vixFromHistory, withEarlierBriefings, yieldFromHistory, yahooSymbols, YIELD_NAME, US_INDEX_NAMES } from './collect-market-data.mjs';
 
 // 야후 일봉 → 직전에 끝난 정규장: 뉴욕 16시 전의 '오늘' 봉은 장중이라 빼고, now 뒤의 봉은 보지 않는다
 const chartOf = (dates, closes) => ({ chart: { result: [{
@@ -16,6 +16,28 @@ assert.equal(usFromHistory('S&P500', chart, new Date('2026-10-03T12:00:00Z')).us
 assert.throws(() => usFromHistory('S&P500', chartOf(['2026-10-01'], [1]), new Date('2026-10-02T00:00:00Z')), /부족/);
 assert.ok(alreadyCollected({ entries: [{ krDate: '2026-10-02' }] }, '2026-10-02'));
 assert.ok(!alreadyCollected({ entries: [{ krDate: '2026-10-02' }] }, '2026-10-05'));
+// 2026-11-25 버그: 16시 브리핑(수급 카드 없음)으로 먼저 저장되면 20시 이후 실행이 '이미 수집됨'으로 건너뛰어 수급이 끝까지 미확인
+const nullFlows = [{ name: '외국인', amount: null }, { name: '기관', amount: null }, { name: '개인', amount: null }];
+const fullFlows = [{ name: '외국인', amount: 10 }, { name: '기관', amount: -5 }, { name: '개인', amount: -5 }];
+assert.ok(!alreadyCollected({ entries: [{ krDate: '2026-11-25', flows: nullFlows }] }, '2026-11-25'), '수급 미확인 항목은 다시 수집');
+assert.ok(alreadyCollected({ entries: [{ krDate: '2026-11-25', flows: fullFlows }] }, '2026-11-25'));
+{
+  const old = { krDate: '2026-11-25', flows: nullFlows, keywords: ['a'] };
+  const prev = { krDate: '2026-11-24', flows: fullFlows };
+  // 새 수집에 수급이 있으면 같은 날짜 항목을 교체(맨 앞 자리 유지)
+  const r1 = mergeEntry([old, prev], { krDate: '2026-11-25', flows: fullFlows, keywords: ['b'] });
+  assert.equal(r1.changed, true);
+  assert.deepEqual(r1.entries.map(e => [e.krDate, e.keywords?.[0]]), [['2026-11-25', 'b'], ['2026-11-24', undefined]]);
+  // 새 수집도 수급이 없으면 그대로 둔다
+  const r2 = mergeEntry([old, prev], { krDate: '2026-11-25', flows: nullFlows, keywords: ['c'] });
+  assert.equal(r2.changed, false);
+  assert.equal(r2.entries[0], old);
+  // 새 날짜는 맨 앞에 추가
+  const r3 = mergeEntry([prev], { krDate: '2026-11-25', flows: nullFlows });
+  assert.equal(r3.changed, true);
+  assert.deepEqual(r3.entries.map(e => e.krDate), ['2026-11-25', '2026-11-24']);
+}
+
 
 assert.equal(addDays('2026-07-31', 1), '2026-08-01');
 assert.equal(addDays('2026-12-31', 1), '2027-01-01');
