@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T02:16:12Z",
+  "generated_at": "2026-11-25T02:20:27Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -3570,7 +3570,7 @@
           {
             "label": "영업이익 전년 동기 대비 증가",
             "ok": null,
-            "value": null
+            "value": "자료 없음"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
@@ -3585,7 +3585,7 @@
           {
             "label": "부채비율 100% 이하",
             "ok": null,
-            "value": null
+            "value": "금융업이라 해당 없음"
           }
         ],
         "as_of": "2026-09-30"
@@ -3603,12 +3603,12 @@
           {
             "label": "영업이익률 15% 이상",
             "ok": null,
-            "value": null
+            "value": "금융업이라 해당 없음"
           },
           {
             "label": "매출총이익률 40% 이상",
             "ok": null,
-            "value": null
+            "value": "금융업이라 해당 없음"
           },
           {
             "label": "최근 3년 ROE 모두 10% 이상",
