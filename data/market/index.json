@@ -2,6 +2,90 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.25",
+      "krDate": "2026-11-25",
+      "usDate": "2026-11-24",
+      "wtiDate": "2026-11-24",
+      "collectedAt": "2026-11-25T07:45:48.094Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "4,697.51",
+          "chg": -6.16
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "650.64",
+          "chg": -2.29
+        },
+        {
+          "name": "원/달러",
+          "value": "1,342.60",
+          "chg": 0.01
+        },
+        {
+          "name": "S&P500",
+          "value": "7,201.09",
+          "chg": -0.5
+        },
+        {
+          "name": "나스닥",
+          "value": "23,733.54",
+          "chg": -1.48
+        },
+        {
+          "name": "VIX",
+          "value": "26.36",
+          "chg": -0.98
+        },
+        {
+          "name": "미국채 10년",
+          "value": "4.904",
+          "chg": -0.014,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "82.05",
+          "chg": 2.35
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": null
+        },
+        {
+          "name": "기관",
+          "amount": null
+        },
+        {
+          "name": "개인",
+          "amount": null
+        }
+      ],
+      "comment": "미국 AI주 급락 여파에 반도체 붕괴, 코스피 4700선 이탈",
+      "keywords": [
+        "미국 AI주 급락",
+        "반도체",
+        "코스피"
+      ],
+      "mood": "약세 · 위험회피",
+      "moodUp": false,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-25T16:00:25+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5881",
+          "keywordsFrom": "title"
+        }
+      }
+    },
+    {
       "date": "11.23",
       "krDate": "2026-11-23",
       "usDate": "2026-11-20",
