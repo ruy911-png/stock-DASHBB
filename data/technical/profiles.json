@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T14:40:43Z",
+  "generated_at": "2026-11-25T01:04:35Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -196,24 +196,23 @@
       "name": "대덕전자",
       "market": "kosdaq",
       "symbol": "353200.KQ",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-24",
       "window": "2y",
-      "bars": 486,
+      "bars": 485,
       "labels": [
         "급등 빈발형",
         "급등 후 반전형",
-        "추세 지속형",
         "고변동형",
         "윗꼬리 빈발형"
       ],
       "main_labels": [
-        "추세 지속형",
-        "고변동형"
+        "고변동형",
+        "급등 빈발형"
       ],
       "metrics": {
-        "years": 1.93,
+        "years": 1.92,
         "surge_days": 24,
-        "surge_per_year": 12.4,
+        "surge_per_year": 12.5,
         "crash_days": 13,
         "limit_up_days": 1,
         "limit_down_days": 0,
@@ -222,27 +221,27 @@
         "after_surge_5d_pos_rate": 0.38,
         "after_surge_20d_mean_pct": 6.52,
         "after_surge_20d_pos_rate": 0.7,
-        "above_ma60_pct_1y": 0.7,
+        "above_ma60_pct_1y": 0.69,
         "ma60_cross_count_1y": 9,
         "autocorr_1d_1y": -0.05,
-        "ret_1y_pct": 56.24,
+        "ret_1y_pct": 49.14,
         "longest_up_streak": 6,
-        "vol_annual_pct_1y": 104.97,
+        "vol_annual_pct_1y": 104.79,
         "max_drawdown_1y_pct": -62.7,
         "gap3_days_rate_1y": 0.33,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 1.0,
         "upper_shadow_days_rate_1y": 0.23,
-        "close_position_mean_1y": 0.48,
-        "top5_gain_share_pct_1y": 16.53
+        "close_position_mean_1y": 0.47,
+        "top5_gain_share_pct_1y": 16.65
       },
       "notes": [
-        "2년 급등일(+10%↑) 24회(연 12.4회), 급락일(−10%↓) 13회, 상한가 1회·하한가 0회",
+        "2년 급등일(+10%↑) 24회(연 12.5회), 급락일(−10%↓) 13회, 상한가 1회·하한가 0회",
         "급등 뒤 5거래일 평균 -0.4%, 플러스 비율 38% · 20거래일 평균 +6.5% (표본 24회)",
-        "최근 1년 60일선 위 70%(교차 9회), 1년 수익률 +56.2%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 6일",
+        "최근 1년 60일선 위 69%(교차 9회), 1년 수익률 +49.1%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 6일",
         "연환산 변동성 105%, 1년 최대 낙폭 -62.7%, 3%↑ 갭 발생일 33%",
         "거래량 3배↑ 급증일 3회, 그날 상승 100%",
-        "윗꼬리 긴 날 23%, 종가의 일중 위치 평균 0.48(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
+        "윗꼬리 긴 날 23%, 종가의 일중 위치 평균 0.47(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"
       ]
     },
     "PLTR": {
