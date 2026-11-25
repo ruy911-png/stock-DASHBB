@@ -6,7 +6,7 @@
       "krDate": "2026-11-25",
       "usDate": "2026-11-24",
       "wtiDate": "2026-11-24",
-      "collectedAt": "2026-11-25T07:45:48.094Z",
+      "collectedAt": "2026-11-25T12:17:15.782Z",
       "indices": [
         {
           "name": "KOSPI",
@@ -20,8 +20,8 @@
         },
         {
           "name": "원/달러",
-          "value": "1,342.60",
-          "chg": 0.01
+          "value": "1,345.20",
+          "chg": 0.2
         },
         {
           "name": "S&P500",
@@ -53,21 +53,22 @@
       "flows": [
         {
           "name": "외국인",
-          "amount": null
+          "amount": -18193
         },
         {
           "name": "기관",
-          "amount": null
+          "amount": 39
         },
         {
           "name": "개인",
-          "amount": null
+          "amount": 13449
         }
       ],
-      "comment": "미국 AI주 급락 여파에 반도체 붕괴, 코스피 4700선 이탈",
+      "comment": "메모리 공급 과잉·관세 우려에 외국인 1.9조 순매도, 코스피 4700선 붕괴",
       "keywords": [
-        "미국 AI주 급락",
-        "반도체",
+        "메모리 공급 과잉",
+        "관세 우려",
+        "외국인",
         "코스피"
       ],
       "mood": "약세 · 위험회피",
@@ -79,8 +80,8 @@
         "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
         "briefing": {
           "provider": "네이버페이 증권 AI 브리핑",
-          "publishedAt": "2026-11-25T16:00:25+09:00",
-          "url": "https://m.stock.naver.com/briefing/market/posts/5881",
+          "publishedAt": "2026-11-25T20:01:31+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5885",
           "keywordsFrom": "title"
         }
       }
