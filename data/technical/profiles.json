@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T12:00:28Z",
+  "generated_at": "2026-11-26T23:46:52Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -3084,6 +3084,59 @@
         "연환산 변동성 126%, 1년 최대 낙폭 -60.8%, 3%↑ 갭 발생일 32%",
         "거래량 3배↑ 급증일 10회, 그날 상승 100%",
         "윗꼬리 긴 날 18%, 종가의 일중 위치 평균 0.46(0 저가~1 고가), 상승분의 상위 5일 집중도 18%"
+      ]
+    },
+    "006800": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "006800.KS",
+      "as_of": "2026-11-26",
+      "window": "2y",
+      "bars": 486,
+      "labels": [
+        "급등 빈발형",
+        "급등 지속형",
+        "박스권형",
+        "고변동형",
+        "거래량 동반 상승형"
+      ],
+      "main_labels": [
+        "박스권형",
+        "고변동형"
+      ],
+      "metrics": {
+        "years": 1.93,
+        "surge_days": 19,
+        "surge_per_year": 9.9,
+        "crash_days": 4,
+        "limit_up_days": 0,
+        "limit_down_days": 0,
+        "after_surge_n": 19,
+        "after_surge_5d_mean_pct": 5.94,
+        "after_surge_5d_pos_rate": 0.63,
+        "after_surge_20d_mean_pct": 15.77,
+        "after_surge_20d_pos_rate": 0.58,
+        "above_ma60_pct_1y": 0.4,
+        "ma60_cross_count_1y": 7,
+        "autocorr_1d_1y": -0.06,
+        "ret_1y_pct": -13.99,
+        "longest_up_streak": 7,
+        "vol_annual_pct_1y": 82.78,
+        "max_drawdown_1y_pct": -78.23,
+        "gap3_days_rate_1y": 0.3,
+        "volume_spike_days_1y": 7,
+        "volume_spike_up_rate": 1.0,
+        "upper_shadow_days_rate_1y": 0.14,
+        "close_position_mean_1y": 0.45,
+        "top5_gain_share_pct_1y": 19.78
+      },
+      "notes": [
+        "2년 급등일(+10%↑) 19회(연 9.9회), 급락일(−10%↓) 4회, 상한가 0회·하한가 0회",
+        "급등 뒤 5거래일 평균 +5.9%, 플러스 비율 63% · 20거래일 평균 +15.8% (표본 19회)",
+        "최근 1년 60일선 위 40%(교차 7회), 1년 수익률 -14.0%, 하루 수익률 자기상관 -0.06, 최장 연속 상승 7일",
+        "연환산 변동성 83%, 1년 최대 낙폭 -78.2%, 3%↑ 갭 발생일 30%",
+        "거래량 3배↑ 급증일 7회, 그날 상승 100%",
+        "윗꼬리 긴 날 14%, 종가의 일중 위치 평균 0.45(0 저가~1 고가), 상승분의 상위 5일 집중도 20%"
       ]
     }
   },
