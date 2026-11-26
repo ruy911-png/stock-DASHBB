@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T23:48:52Z",
+  "generated_at": "2026-11-26T23:53:15Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -4107,6 +4107,69 @@
       },
       "new": true,
       "name_hint": "Manyo Factory Co., Ltd"
+    },
+    "483650": {
+      "name": "",
+      "market": "kospi",
+      "symbol": "483650.KS",
+      "as_of": "2026-11-26",
+      "close": 134500.0,
+      "chg_1d_pct": -2.11,
+      "ma5": 130160.0,
+      "ma20": 135390.0,
+      "ma60": 161601.6667,
+      "ma120": 191900.0,
+      "ma_order": "역배열(5<20<60<120)",
+      "pct_vs_ma20": -0.66,
+      "pct_vs_ma120": -29.91,
+      "rsi14": 45.57,
+      "stoch_k14": 52.45,
+      "volume": 166532.0,
+      "volume_avg20": 142304.0,
+      "volume_ratio20": 1.17,
+      "high52": 265000.0,
+      "low52": 116500.0,
+      "pct_from_high52": -49.25,
+      "pct_from_low52": 15.45,
+      "ret_1m_pct": -8.94,
+      "ret_3m_pct": -42.27,
+      "ret_6m_pct": -38.58,
+      "bars": 369,
+      "score": {
+        "met": 2,
+        "total": 5,
+        "unknown": 0,
+        "items": [
+          {
+            "label": "종가 > 20일선",
+            "ok": false
+          },
+          {
+            "label": "종가 > 120일선",
+            "ok": false
+          },
+          {
+            "label": "이동평균 정배열",
+            "ok": false
+          },
+          {
+            "label": "RSI(14) 30~70",
+            "ok": true
+          },
+          {
+            "label": "거래량 ≥ 20일 평균",
+            "ok": true
+          }
+        ]
+      },
+      "heat": {
+        "over": [],
+        "under": [],
+        "total": 3,
+        "unknown": 0
+      },
+      "new": true,
+      "name_hint": "d'Alba Global Co., Ltd."
     }
   }
 }
