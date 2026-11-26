@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T00:27:07Z",
+  "generated_at": "2026-11-26T12:00:28Z",
   "source": "yfinance 일봉 2년(분할 보정), 코드 계산 — 과거 통계이며 예측·매수·매도 판단 아님",
   "failed": [
     "KOSPI",
@@ -1189,7 +1189,7 @@
       "name": "머크",
       "market": "us",
       "symbol": "MRK",
-      "as_of": "2026-11-20",
+      "as_of": "2026-11-25",
       "window": "2y",
       "bars": 501,
       "labels": [
@@ -1210,24 +1210,24 @@
         "after_surge_5d_pos_rate": 1.0,
         "after_surge_20d_mean_pct": -3.32,
         "after_surge_20d_pos_rate": 0.0,
-        "above_ma60_pct_1y": 0.83,
+        "above_ma60_pct_1y": 0.81,
         "ma60_cross_count_1y": 17,
-        "autocorr_1d_1y": -0.05,
-        "ret_1y_pct": 40.68,
+        "autocorr_1d_1y": -0.07,
+        "ret_1y_pct": 39.73,
         "longest_up_streak": 8,
-        "vol_annual_pct_1y": 30.22,
+        "vol_annual_pct_1y": 30.34,
         "max_drawdown_1y_pct": -15.11,
         "gap3_days_rate_1y": 0.01,
         "volume_spike_days_1y": 3,
         "volume_spike_up_rate": 0.33,
         "upper_shadow_days_rate_1y": 0.02,
         "close_position_mean_1y": 0.5,
-        "top5_gain_share_pct_1y": 16.73
+        "top5_gain_share_pct_1y": 16.97
       },
       "notes": [
         "2년 급등일(+10%↑) 1회(연 0.5회), 급락일(−10%↓) 0회",
         "급등 뒤 5거래일 평균 +0.6%, 플러스 비율 100% · 20거래일 평균 -3.3% (표본 1회)",
-        "최근 1년 60일선 위 83%(교차 17회), 1년 수익률 +40.7%, 하루 수익률 자기상관 -0.05, 최장 연속 상승 8일",
+        "최근 1년 60일선 위 81%(교차 17회), 1년 수익률 +39.7%, 하루 수익률 자기상관 -0.07, 최장 연속 상승 8일",
         "연환산 변동성 30%, 1년 최대 낙폭 -15.1%, 3%↑ 갭 발생일 1%",
         "거래량 3배↑ 급증일 3회, 그날 상승 33%",
         "윗꼬리 긴 날 2%, 종가의 일중 위치 평균 0.50(0 저가~1 고가), 상승분의 상위 5일 집중도 17%"

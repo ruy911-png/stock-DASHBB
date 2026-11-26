@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T00:27:06Z",
+  "generated_at": "2026-11-26T12:00:27Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1392,31 +1392,31 @@
       "name": "머크",
       "market": "us",
       "symbol": "MRK",
-      "as_of": "2026-11-20",
-      "close": 133.72,
-      "chg_1d_pct": 0.69,
-      "ma5": 138.428,
-      "ma20": 144.3555,
-      "ma60": 145.8123,
-      "ma120": 137.2685,
+      "as_of": "2026-11-25",
+      "close": 140.29,
+      "chg_1d_pct": -0.9,
+      "ma5": 136.772,
+      "ma20": 144.054,
+      "ma60": 145.335,
+      "ma120": 137.7817,
       "ma_order": "혼조",
-      "pct_vs_ma20": -7.37,
-      "pct_vs_ma120": -2.59,
-      "rsi14": 33.77,
-      "stoch_k14": 10.72,
-      "volume": 15606500.0,
-      "volume_avg20": 9187375.0,
-      "volume_ratio20": 1.7,
+      "pct_vs_ma20": -2.61,
+      "pct_vs_ma120": 1.82,
+      "rsi14": 46.03,
+      "stoch_k14": 49.75,
+      "volume": 12609400.0,
+      "volume_avg20": 9647325.0,
+      "volume_ratio20": 1.31,
       "high52": 156.45,
-      "low52": 94.97,
-      "pct_from_high52": -14.53,
-      "pct_from_low52": 40.8,
-      "ret_1m_pct": -9.18,
-      "ret_3m_pct": -11.24,
-      "ret_6m_pct": 9.24,
+      "low52": 96.89,
+      "pct_from_high52": -10.33,
+      "pct_from_low52": 44.79,
+      "ret_1m_pct": -1.08,
+      "ret_3m_pct": -6.19,
+      "ret_6m_pct": 17.02,
       "bars": 501,
       "score": {
-        "met": 2,
+        "met": 3,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1426,7 +1426,7 @@
           },
           {
             "label": "종가 > 120일선",
-            "ok": false
+            "ok": true
           },
           {
             "label": "이동평균 정배열",
@@ -1444,9 +1444,7 @@
       },
       "heat": {
         "over": [],
-        "under": [
-          "스토캐스틱 %K(14)"
-        ],
+        "under": [],
         "total": 3,
         "unknown": 0
       }
