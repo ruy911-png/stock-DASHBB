@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T14:39:41Z",
+  "generated_at": "2026-11-27T15:12:11Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -1854,9 +1854,9 @@
       "symbol": "MS",
       "financial": true,
       "fundamental": {
-        "met": 1,
+        "met": 2,
         "total": 5,
-        "unknown": 2,
+        "unknown": 3,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
@@ -1864,19 +1864,19 @@
             "value": "+10.5%"
           },
           {
-            "label": "영업이익 전년 동기 대비 증가",
-            "ok": null,
-            "value": "자료 없음"
+            "label": "세전이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+7.5%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
-            "ok": false,
-            "value": "-582.8억"
+            "ok": null,
+            "value": "금융업이라 해당 없음"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
-            "ok": false,
-            "value": "-615.1억"
+            "ok": null,
+            "value": "금융업이라 해당 없음"
           },
           {
             "label": "부채비율 100% 이하",
