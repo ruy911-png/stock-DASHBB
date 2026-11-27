@@ -103,14 +103,14 @@ def fundamental_score(qi: pd.DataFrame, qc: pd.DataFrame, qb: pd.DataFrame, fina
     items = [_growth_item("매출 전년 동기 대비 증가", rev), profit]
     for label, s in (("영업현금흐름 플러스(최근 12개월)", ocf), ("잉여현금흐름 플러스(최근 12개월)", fcf)):
         if financial:  # 증권사·은행은 트레이딩 자산·대출 증감으로 현금흐름 부호가 흔들려 건전성 신호가 아니다(2026-11-27, MS)
-            items.append({"label": label, "ok": None, "value": "금융업이라 해당 없음"})
+            items.append({"label": label, "ok": None, "value": "금융권이라 해당 없음"})
             continue
         v = _ttm(s)
         items.append({"label": label, "ok": None if v is None else v > 0, "value": _amt(v) if v is not None
                       else ("자료 없음" if s.empty else "연속한 4분기 자료 없음")})
     l, e = _latest(liab), _latest(eq)
     if financial or l is None or e is None or e <= 0:  # 금융업은 예금·차입이 영업이라 부채비율이 의미 없다. 자본잠식도 계산 안 함
-        why = "금융업이라 해당 없음" if financial else ("자료 없음" if l is None or e is None else "자기자본 마이너스로 계산 불가")
+        why = "금융권이라 해당 없음" if financial else ("자료 없음" if l is None or e is None else "자기자본 마이너스로 계산 불가")
         items.append({"label": "부채비율 100% 이하", "ok": None, "value": why})
     else:
         items.append({"label": "부채비율 100% 이하", "ok": l / e * 100 <= 100, "value": _pct(l / e * 100)})
@@ -130,7 +130,7 @@ def moat_score(ai: pd.DataFrame, ab: pd.DataFrame, financial: bool = False) -> d
     def ratio(a: pd.Series, label: str, th: float, skip: bool) -> dict:
         x, r = _latest(a), _latest(rev)
         if skip or x is None or r is None or r <= 0:
-            return {"label": label, "ok": None, "value": "금융업이라 해당 없음" if skip else "자료 없음"}
+            return {"label": label, "ok": None, "value": "금융권이라 해당 없음" if skip else "자료 없음"}
         v = x / r * 100
         return {"label": label, "ok": v >= th, "value": _pct(v)}
 
@@ -195,12 +195,12 @@ def selftest() -> int:
     f4 = fundamental_score(qi, qc.iloc[:, :3], _frame({"Total Liabilities Net Minority Interest": [80.0], "Stockholders Equity": [-5.0]}, q[:1]))
     assert [i["ok"] for i in f4["items"]][2:] == [None, None, None], f4
     # 금융업(2026-11-27 사용자 지적: MS 기본적 1/5): 증권사·은행은 트레이딩 자산·대출 증감으로 영업현금흐름이 크게 마이너스가 되어도
-    # 나쁜 신호가 아니다 → 현금흐름 2개와 부채비율은 '금융업이라 해당 없음'. 야후가 금융사엔 영업이익을 주지 않으므로 세전이익 증감을 본다
+    # 나쁜 신호가 아니다 → 현금흐름 2개와 부채비율은 '금융권이라 해당 없음'. 야후가 금융사엔 영업이익을 주지 않으므로 세전이익 증감을 본다
     fq = _frame({"Total Revenue": [120.0, 110, 105, 100, 100], "Pretax Income": [30.0, 28, 25, 22, 20]}, q)
     f5 = fundamental_score(fq, _frame({"Operating Cash Flow": [-300.0, -50, -10, -20, 5], "Free Cash Flow": [-310.0, -60, -12, -22, 3]}, q), qb, financial=True)
     assert [i["label"] for i in f5["items"]][:2] == ["매출 전년 동기 대비 증가", "세전이익 전년 동기 대비 증가"], f5
     assert [i["ok"] for i in f5["items"]] == [True, True, None, None, None], f5
-    assert f5["items"][1]["value"] == "+50.0%" and f5["items"][2]["value"] == "금융업이라 해당 없음", f5
+    assert f5["items"][1]["value"] == "+50.0%" and f5["items"][2]["value"] == "금융권이라 해당 없음", f5
     assert (f5["met"], f5["unknown"]) == (2, 3), f5
     # 빈 표(데이터 없음) → 전부 확인 못 함
     empty = pd.DataFrame()
@@ -236,8 +236,8 @@ def selftest() -> int:
     assert why(hole_eq, "최근 3년 ROE 모두 10% 이상") == "2024년 자기자본 자료 없음", hole_eq
     assert why(m4, "최근 3년 ROE 모두 10% 이상") == "연간 자료 2년뿐" and why(m4, "최근 3년 매출 연속 증가") == "연간 자료 2년뿐", m4
     assert why(moat_score(ai, _frame({"Stockholders Equity": [-10.0, 300, 300, 300]}, y)), "ROE 15% 이상") == "자기자본 마이너스로 계산 불가"
-    assert why(m3, "영업이익률 15% 이상") == "금융업이라 해당 없음" and why(m2, "매출총이익률 40% 이상") == "자료 없음"
-    assert why(f5, "부채비율 100% 이하") == "금융업이라 해당 없음"
+    assert why(m3, "영업이익률 15% 이상") == "금융권이라 해당 없음" and why(m2, "매출총이익률 40% 이상") == "자료 없음"
+    assert why(f5, "부채비율 100% 이하") == "금융권이라 해당 없음"
     assert why(f4, "부채비율 100% 이하") == "자기자본 마이너스로 계산 불가"
     assert why(f4, "영업현금흐름 플러스(최근 12개월)") == "연속한 4분기 자료 없음"
     assert why(f2, "영업이익 전년 동기 대비 증가") == "1년 전 같은 분기 자료 없음"
