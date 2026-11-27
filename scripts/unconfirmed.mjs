@@ -54,6 +54,21 @@ export function hasGrowth(fundamental) {
   return growthProblems(fundamental).length === 0;
 }
 
+// 해자 섹션 빈약(사용자 지적 2026-11-24 포티넷·2026-11-27 모건스탠리): 강점 2개 이상 + 그중 숫자 근거 1개 이상 + 리스크 1개
+export const MIN_MOAT_STRENGTHS = 2;
+const stripSource = b => b.replace(/\s*\([^()]*\)\s*$/, ''); // 끝의 출처 괄호
+const evidenceNumber = b => /\d/.test(stripSource(b).replace(/\b[1-4]Q\d{2}\b|20\d{2}년?/g, ''));
+export function moatProblems(moat) {
+  const bullets = String(moat || '').split('\n').map(b => b.replace(/^•\s*/, '').trim()).filter(Boolean);
+  const risks = bullets.filter(b => /^리스크\s*[:：]/.test(b));
+  const strengths = bullets.filter(b => !/^리스크\s*[:：]/.test(b));
+  const out = [];
+  if (strengths.length < MIN_MOAT_STRENGTHS) out.push({ kind: 'few-strengths', detail: `강점 ${strengths.length}개(최소 ${MIN_MOAT_STRENGTHS}개)` });
+  if (!strengths.some(evidenceNumber)) out.push({ kind: 'no-number', detail: '강점에 점유율·고객 수·마진 같은 숫자 근거 없음' });
+  if (!risks.length) out.push({ kind: 'no-risk', detail: "'리스크:' bullet 없음" });
+  return out;
+}
+
 export function checkUnconfirmed(analysis, max = MAX_UNCONFIRMED) {
   const found = findUnconfirmed(analysis);
   const problems = found.filter(f => f.reason === null).map(f => ({ kind: 'no-reason', ...f }));
@@ -61,6 +76,9 @@ export function checkUnconfirmed(analysis, max = MAX_UNCONFIRMED) {
   if (typeof analysis?.fundamental === 'string' && analysis.fundamental.trim()) {
     const bullet = analysis.fundamental.split('\n')[0].trim();
     for (const g of growthProblems(analysis.fundamental)) problems.push({ kind: 'no-growth', section: 'fundamental', bullet, detail: g.detail });
+  }
+  if (typeof analysis?.moat === 'string') {
+    for (const m of moatProblems(analysis.moat)) problems.push({ kind: 'thin-moat', section: 'moat', detail: m.detail });
   }
   return { ok: problems.length === 0, found, problems };
 }
@@ -82,6 +100,7 @@ function main(argv) {
     console.log(`${code} ${latest.date}: 미확인 ${r.found.length}개(한도 ${MAX_UNCONFIRMED}) — ${r.ok ? '통과' : '다시 찾기'}`);
     for (const p of r.problems) {
       if (p.kind === 'no-reason') console.log(`  - [이유 없음] ${SECTION_NAMES[p.section]}: ${p.bullet}`);
+      else if (p.kind === 'thin-moat') console.log(`  - [해자 빈약] ${p.detail} — 강점 2개(점유율·고객 수·전환비용·마진 등 숫자 근거) + 리스크 1개로 다시 쓴다`);
       else if (p.kind === 'no-growth') console.log(`  - [증감률] ${p.detail} — 매출·이익 각각 전년 대비 증감률(+X%)을 넣는다: ${p.bullet}`);
       else console.log(`  - [너무 많음] ${p.count}개 > ${p.max}개: 찾을 수 있는 값을 다시 찾고, 끝내 없는 것만 미확인(이유)로 남긴다`);
     }
