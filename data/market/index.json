@@ -2,6 +2,90 @@
   "version": 1,
   "entries": [
     {
+      "date": "11.27",
+      "krDate": "2026-11-27",
+      "usDate": "2026-11-25",
+      "wtiDate": "2026-11-25",
+      "collectedAt": "2026-11-27T14:50:24.672Z",
+      "indices": [
+        {
+          "name": "KOSPI",
+          "value": "4,915.68",
+          "chg": 4.34
+        },
+        {
+          "name": "KOSDAQ",
+          "value": "708.99",
+          "chg": 8.13
+        },
+        {
+          "name": "원/달러",
+          "value": "1,336.40",
+          "chg": -0.57
+        },
+        {
+          "name": "S&P500",
+          "value": "7,182.78",
+          "chg": -0.25
+        },
+        {
+          "name": "나스닥",
+          "value": "23,585.80",
+          "chg": -0.62
+        },
+        {
+          "name": "VIX",
+          "value": "28.29",
+          "chg": 7.32
+        },
+        {
+          "name": "미국채 10년",
+          "value": "4.848",
+          "chg": -0.056,
+          "unit": "%p"
+        },
+        {
+          "name": "WTI",
+          "value": "83.68",
+          "chg": 1.99
+        }
+      ],
+      "flows": [
+        {
+          "name": "외국인",
+          "amount": 11625
+        },
+        {
+          "name": "기관",
+          "amount": 2190
+        },
+        {
+          "name": "개인",
+          "amount": -17916
+        }
+      ],
+      "comment": "증안펀드 기대와 외국인 매수에 코스피 4900선 회복",
+      "keywords": [
+        "증안펀드 기대",
+        "외국인 매수",
+        "코스피"
+      ],
+      "mood": "강세 · 위험선호",
+      "moodUp": true,
+      "sources": {
+        "kr": "https://m.stock.naver.com/domestic/index/KOSPI/total",
+        "us": "https://m.stock.naver.com/worldstock/index/.INX/total",
+        "vix": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv",
+        "wti": "https://m.stock.naver.com/marketindex/energy/CLcv1",
+        "briefing": {
+          "provider": "네이버페이 증권 AI 브리핑",
+          "publishedAt": "2026-11-27T20:01:53+09:00",
+          "url": "https://m.stock.naver.com/briefing/market/posts/5924",
+          "keywordsFrom": "title"
+        }
+      }
+    },
+    {
       "date": "11.26",
       "krDate": "2026-11-26",
       "usDate": "2026-11-25",
