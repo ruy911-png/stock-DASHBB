@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T23:53:15Z",
+  "generated_at": "2026-11-27T14:39:38Z",
   "source": "yfinance 일봉(분할 보정 종가), 코드 계산 — 판단 없음",
   "failed": [
     "KOSPI",
@@ -1642,31 +1642,31 @@
       "name": "모건스탠리",
       "market": "us",
       "symbol": "MS",
-      "as_of": "2026-11-20",
-      "close": 165.67,
-      "chg_1d_pct": -5.32,
-      "ma5": 178.184,
-      "ma20": 185.0255,
-      "ma60": 193.2503,
-      "ma120": 204.7136,
+      "as_of": "2026-11-25",
+      "close": 167.55,
+      "chg_1d_pct": -0.73,
+      "ma5": 169.918,
+      "ma20": 182.446,
+      "ma60": 191.0805,
+      "ma120": 203.6186,
       "ma_order": "역배열(5<20<60<120)",
-      "pct_vs_ma20": -10.46,
-      "pct_vs_ma120": -19.07,
-      "rsi14": 29.87,
-      "stoch_k14": 2.37,
-      "volume": 10399400.0,
-      "volume_avg20": 6276260.0,
-      "volume_ratio20": 1.66,
+      "pct_vs_ma20": -8.16,
+      "pct_vs_ma120": -17.71,
+      "rsi14": 35.16,
+      "stoch_k14": 16.89,
+      "volume": 9741200.0,
+      "volume_avg20": 6636265.0,
+      "volume_ratio20": 1.47,
       "high52": 228.55,
       "low52": 154.37,
-      "pct_from_high52": -27.51,
-      "pct_from_low52": 7.32,
-      "ret_1m_pct": -9.95,
-      "ret_3m_pct": -22.61,
-      "ret_6m_pct": -17.59,
-      "bars": 501,
+      "pct_from_high52": -26.69,
+      "pct_from_low52": 8.54,
+      "ret_1m_pct": -10.36,
+      "ret_3m_pct": -22.02,
+      "ret_6m_pct": -17.78,
+      "bars": 500,
       "score": {
-        "met": 1,
+        "met": 2,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1684,7 +1684,7 @@
           },
           {
             "label": "RSI(14) 30~70",
-            "ok": false
+            "ok": true
           },
           {
             "label": "거래량 ≥ 20일 평균",
@@ -1695,8 +1695,6 @@
       "heat": {
         "over": [],
         "under": [
-          "RSI(14)",
-          "20일선 이격도",
           "스토캐스틱 %K(14)"
         ],
         "total": 3,
