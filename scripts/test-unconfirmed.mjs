@@ -2,7 +2,7 @@
 // 새 분석은 ① 미확인마다 이유를 붙이고(미확인(이유)) ② 한 분석에 미확인이 MAX_UNCONFIRMED개를 넘지 않아야 한다.
 // 걸리면 refresh-analyses 스킬이 그 항목만 다시 찾아본다. 예전 분석은 검사하지 않는다(종목을 지정해 최신 분석만 검사).
 import assert from 'node:assert/strict';
-import { findUnconfirmed, checkUnconfirmed, hasGrowth, growthProblems, MAX_UNCONFIRMED } from './unconfirmed.mjs';
+import { findUnconfirmed, checkUnconfirmed, hasGrowth, growthProblems, moatProblems, MAX_UNCONFIRMED } from './unconfirmed.mjs';
 
 // 10/29 모더나(MRNA) 실제 분석(문장 일부 줄임) — 이유 없는 미확인 5개
 const mrna = {
@@ -35,14 +35,15 @@ assert.equal(findUnconfirmed({ moat: '• 점유율은 미확인()' })[0].reason
 const fixed = {
   ...mrna,
   overview: mrna.overview.replace('3분기 실적과 연간 가이던스는 미확인', '연간 매출 가이던스 15억~22억달러'),
-  moat: mrna.moat.replace('점유율 수치는 미확인', '점유율 수치는 미확인(공개 자료 없음)').replace('영향 규모는 미확인', '영향 규모는 미확인(수치 근거 없음)'),
+  // 2026-11-27 해자 규칙 강화(강점 2개·숫자 근거·리스크 1개)에 맞춰 강점 1개를 더함
+  moat: mrna.moat.replace('점유율 수치는 미확인', '점유율 수치는 미확인(공개 자료 없음)').replace('• 리스크: RSV·독감 시장은 대형 제약사가 선점해 후발 진입이다. 영향 규모는 미확인', '• 강점: mRNA 파이프라인 45개로 플랫폼 재사용 폭이 넓다'),
   fundamental: mrna.fundamental.replace('3분기 실적은 11월 초 예정이라 미확인', '3분기 실적은 11월 6일 발표 예정').replace('2분기 매출 1.45억달러, 순손실 7.8억달러', '2분기 매출 1.45억달러(+2.1%), 순손실 7.8억달러(적자 축소)'),
   valuation: mrna.valuation.replace('자체 과거평균·동종 PBR은 미확인', '5년 평균 PBR 약 4배'),
 };
 const good = checkUnconfirmed(fixed);
 assert.deepEqual(good.problems, []);
 assert.equal(good.ok, true);
-assert.equal(findUnconfirmed(fixed).length, 2);
+assert.equal(findUnconfirmed(fixed).length, 1);
 
 // 5) 이유가 있어도 한도를 넘으면 실패(다 미확인으로 두는 것을 막는다)
 const many = { overview: Array.from({ length: MAX_UNCONFIRMED + 1 }, (_, i) => `• 항목${i} 미확인(공개 자료 없음)`).join('\n') };
@@ -92,3 +93,19 @@ assert.equal(wm.ok, false);
 assert.ok(wm.problems.some(p => p.kind === 'no-growth' && /이익/.test(p.detail)));
 
 console.log('미확인 검사기 테스트 통과');
+
+// 8) 해자 섹션이 빈약함(사용자 지적 2026-11-24 포티넷, 2026-11-27 모건스탠리 "제대로 분석 못해"):
+//    강점 bullet 2개 이상(그중 1개 이상은 점유율·고객 수·마진 같은 숫자 근거) + '리스크:' bullet 1개
+const msMoat = '• 고객자산 기반의 반복 수수료와 대출·예금이 고객 이탈을 막는다. IB 점유율은 미확인(리그테이블 수치 없음) (Zacks/Nasdaq, 2026)\n• 리스크: WM 순신규자산 절반 이상이 IPO 관련이라 딜 사이클에 민감하다 (MS 3Q26 8-K, 2026-10-14)';
+assert.deepEqual(moatProblems(msMoat).map(p => p.kind), ['few-strengths', 'no-number']);
+const ftntMoat = '• 방화벽 출하량 점유율 약 55%로 1위(회사 발표)이며, 자체 ASIC과 단일 OS로 원가·성능 우위를 둔다. (Fortinet 4Q25)\n• 3Q26 GAAP 매출총이익률 79.0%로 높은 이익률을 지킨다. (Fortinet 3Q26)\n• 리스크: 보안이 클라우드 SASE로 옮겨 가면 이탈할 수 있다. (DeepVal, 2026)';
+assert.deepEqual(moatProblems(ftntMoat), []);
+assert.deepEqual(moatProblems('• 강점: 점유율 40%로 1위다 (A)\n• 강점: 고객 1만 곳이다 (B)').map(p => p.kind), ['no-risk']);
+// 날짜·출처 괄호 속 숫자는 근거로 치지 않는다
+assert.deepEqual(moatProblems('• 브랜드가 강하다 (회사 10-K, 2026)\n• 네트워크 효과가 있다 (기사, 2026-10-01)\n• 리스크: 규제다 (B)').map(p => p.kind), ['no-number']);
+// checkUnconfirmed에도 나온다 → refresh-analyses 6단계가 다시 찾는다
+const thin = checkUnconfirmed({ ...fixed, moat: msMoat });
+assert.equal(thin.ok, false);
+assert.ok(thin.problems.some(p => p.kind === 'thin-moat'));
+assert.equal(checkUnconfirmed({ ...fixed, moat: ftntMoat }).ok, true);
+console.log('해자 섹션 검사 테스트 통과');

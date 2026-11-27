@@ -96,8 +96,15 @@ def fundamental_score(qi: pd.DataFrame, qc: pd.DataFrame, qb: pd.DataFrame, fina
     fcf = _series(qc, "Free Cash Flow")
     liab = _series(qb, "Total Liabilities Net Minority Interest")
     eq = _series(qb, "Stockholders Equity", "Common Stock Equity")
-    items = [_growth_item("매출 전년 동기 대비 증가", rev), _growth_item("영업이익 전년 동기 대비 증가", op)]
+    if financial:  # 야후는 금융사에 영업이익을 주지 않는다 → 세전이익 증감(2026-11-27)
+        profit = _growth_item("세전이익 전년 동기 대비 증가", _series(qi, "Pretax Income"))
+    else:
+        profit = _growth_item("영업이익 전년 동기 대비 증가", op)
+    items = [_growth_item("매출 전년 동기 대비 증가", rev), profit]
     for label, s in (("영업현금흐름 플러스(최근 12개월)", ocf), ("잉여현금흐름 플러스(최근 12개월)", fcf)):
+        if financial:  # 증권사·은행은 트레이딩 자산·대출 증감으로 현금흐름 부호가 흔들려 건전성 신호가 아니다(2026-11-27, MS)
+            items.append({"label": label, "ok": None, "value": "금융업이라 해당 없음"})
+            continue
         v = _ttm(s)
         items.append({"label": label, "ok": None if v is None else v > 0, "value": _amt(v) if v is not None
                       else ("자료 없음" if s.empty else "연속한 4분기 자료 없음")})
@@ -187,9 +194,14 @@ def selftest() -> int:
     # 분기가 4개 미만이면 최근 12개월 현금흐름은 확인 못 함, 자본잠식이면 부채비율 확인 못 함
     f4 = fundamental_score(qi, qc.iloc[:, :3], _frame({"Total Liabilities Net Minority Interest": [80.0], "Stockholders Equity": [-5.0]}, q[:1]))
     assert [i["ok"] for i in f4["items"]][2:] == [None, None, None], f4
-    # 금융업: 부채비율은 의미가 없어 확인 못 함
-    f5 = fundamental_score(qi, qc, qb, financial=True)
-    assert f5["items"][4]["ok"] is None and f5["unknown"] == 1
+    # 금융업(2026-11-27 사용자 지적: MS 기본적 1/5): 증권사·은행은 트레이딩 자산·대출 증감으로 영업현금흐름이 크게 마이너스가 되어도
+    # 나쁜 신호가 아니다 → 현금흐름 2개와 부채비율은 '금융업이라 해당 없음'. 야후가 금융사엔 영업이익을 주지 않으므로 세전이익 증감을 본다
+    fq = _frame({"Total Revenue": [120.0, 110, 105, 100, 100], "Pretax Income": [30.0, 28, 25, 22, 20]}, q)
+    f5 = fundamental_score(fq, _frame({"Operating Cash Flow": [-300.0, -50, -10, -20, 5], "Free Cash Flow": [-310.0, -60, -12, -22, 3]}, q), qb, financial=True)
+    assert [i["label"] for i in f5["items"]][:2] == ["매출 전년 동기 대비 증가", "세전이익 전년 동기 대비 증가"], f5
+    assert [i["ok"] for i in f5["items"]] == [True, True, None, None, None], f5
+    assert f5["items"][1]["value"] == "+50.0%" and f5["items"][2]["value"] == "금융업이라 해당 없음", f5
+    assert (f5["met"], f5["unknown"]) == (2, 3), f5
     # 빈 표(데이터 없음) → 전부 확인 못 함
     empty = pd.DataFrame()
     f6 = fundamental_score(empty, empty, empty)
