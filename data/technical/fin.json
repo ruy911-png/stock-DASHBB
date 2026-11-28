@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T15:12:11Z",
+  "generated_at": "2026-11-28T07:57:50Z",
   "source": "yfinance 분기·연간 재무제표, 코드 계산 — 판단 없음",
   "failed": [],
   "items": {
@@ -276,12 +276,12 @@
           {
             "label": "최근 3년 ROE 모두 10% 이상",
             "ok": null,
-            "value": null
+            "value": "연간 자료 2년뿐"
           },
           {
             "label": "최근 3년 매출 연속 증가",
             "ok": null,
-            "value": null
+            "value": "연간 자료 2년뿐"
           }
         ],
         "as_of": "2025-12-31"
@@ -1002,34 +1002,34 @@
       "symbol": "001450.KS",
       "financial": true,
       "fundamental": {
-        "met": 2,
+        "met": 0,
         "total": 5,
-        "unknown": 3,
+        "unknown": 4,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
             "ok": null,
-            "value": null
+            "value": "1년 전 같은 분기 자료 없음"
           },
           {
-            "label": "영업이익 전년 동기 대비 증가",
-            "ok": null,
-            "value": null
+            "label": "세전이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-62.5%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "3.3조"
+            "ok": null,
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "3.2조"
+            "ok": null,
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           }
         ],
         "as_of": "2026-06-30"
@@ -1047,12 +1047,12 @@
           {
             "label": "영업이익률 15% 이상",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "매출총이익률 40% 이상",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "최근 3년 ROE 모두 10% 이상",
@@ -1128,7 +1128,7 @@
           {
             "label": "최근 3년 ROE 모두 10% 이상",
             "ok": null,
-            "value": null
+            "value": "2023년 자기자본 마이너스로 ROE 계산 불가"
           },
           {
             "label": "최근 3년 매출 연속 증가",
@@ -1428,7 +1428,7 @@
       "symbol": "139480.KS",
       "financial": false,
       "fundamental": {
-        "met": 4,
+        "met": 3,
         "total": 5,
         "unknown": 0,
         "items": [
@@ -1439,18 +1439,18 @@
           },
           {
             "label": "영업이익 전년 동기 대비 증가",
-            "ok": true,
-            "value": "+1380.8%"
+            "ok": false,
+            "value": "-69.6%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "1.6조"
+            "value": "1.4조"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": true,
-            "value": "8,804.1억"
+            "value": "6,632.7억"
           },
           {
             "label": "부채비율 100% 이하",
@@ -1927,7 +1927,7 @@
       "fundamental": {
         "met": 1,
         "total": 5,
-        "unknown": 4,
+        "unknown": 3,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
@@ -1935,24 +1935,24 @@
             "value": "+3.2%"
           },
           {
-            "label": "영업이익 전년 동기 대비 증가",
-            "ok": null,
-            "value": null
+            "label": "세전이익 전년 동기 대비 증가",
+            "ok": false,
+            "value": "-13.8%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "부채비율 100% 이하",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           }
         ],
         "as_of": "2026-09-30"
@@ -1970,12 +1970,12 @@
           {
             "label": "영업이익률 15% 이상",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "매출총이익률 40% 이상",
             "ok": null,
-            "value": null
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "최근 3년 ROE 모두 10% 이상",
@@ -2822,12 +2822,12 @@
           {
             "label": "영업이익률 15% 이상",
             "ok": null,
-            "value": null
+            "value": "자료 없음"
           },
           {
             "label": "매출총이익률 40% 이상",
             "ok": null,
-            "value": null
+            "value": "자료 없음"
           },
           {
             "label": "최근 3년 ROE 모두 10% 이상",
@@ -3558,9 +3558,9 @@
       "symbol": "SCHW",
       "financial": true,
       "fundamental": {
-        "met": 3,
+        "met": 2,
         "total": 5,
-        "unknown": 2,
+        "unknown": 3,
         "items": [
           {
             "label": "매출 전년 동기 대비 증가",
@@ -3568,19 +3568,19 @@
             "value": "+16.9%"
           },
           {
-            "label": "영업이익 전년 동기 대비 증가",
-            "ok": null,
-            "value": "자료 없음"
+            "label": "세전이익 전년 동기 대비 증가",
+            "ok": true,
+            "value": "+25.0%"
           },
           {
             "label": "영업현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "124.9억"
+            "ok": null,
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "잉여현금흐름 플러스(최근 12개월)",
-            "ok": true,
-            "value": "117.0억"
+            "ok": null,
+            "value": "금융권이라 해당 없음"
           },
           {
             "label": "부채비율 100% 이하",
@@ -4335,7 +4335,7 @@
       }
     },
     "012330": {
-      "name": "",
+      "name": "현대모비스",
       "symbol": "012330.KS",
       "financial": false,
       "fundamental": {
@@ -4406,7 +4406,7 @@
       }
     },
     "036930": {
-      "name": "",
+      "name": "주성엔지니어링",
       "symbol": "036930.KQ",
       "financial": false,
       "fundamental": {
@@ -4548,8 +4548,8 @@
       }
     },
     "439090": {
-      "name": "",
-      "symbol": "439090.KS",
+      "name": "마녀공장",
+      "symbol": "439090.KQ",
       "financial": false,
       "fundamental": {
         "met": 4,
@@ -4619,7 +4619,7 @@
       }
     },
     "483650": {
-      "name": "",
+      "name": "달바글로벌",
       "symbol": "483650.KS",
       "financial": false,
       "fundamental": {
